@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import store from './redux'
+import { Provider } from 'react-redux';
+import Content from './Components/content'
+import Nav from './Components/navbar';
+import Footer from './Components/footer'
+import Login from './Components/login'
+import Signup from './Components/signup'
+import FootNav from './Components/content - Copy'
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        
+          <BrowserRouter>
+  <div>
+    
+          <Nav/>
+                <Switch>
+  
+                  <Route path='/login' component={Login} />
+                  <Route path='/signup' component={Signup}/>
+                  <Route path='/' component={Content}/>
+                
+                </Switch>
+          <FootNav/>
+          <Footer/>
+  </div>
+
+          </BrowserRouter>
+          </Provider>
+
     );
   }
 }
