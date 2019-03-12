@@ -8,7 +8,7 @@ import Nav from './Components/navbar';
 import Footer from './Components/footer'
 import Login from './Components/login'
 import Signup from './Components/signup'
-import FootNav from './Components/content - Copy'
+import FootNav from './Components/footnav'
 class App extends Component {
 
   render() {
