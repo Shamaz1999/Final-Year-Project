@@ -3,6 +3,7 @@ import "./../bootstrap/bootstrapC.css"
 import { Link } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
+import cardImg from './../images/4.jpg'
 
 class Content extends Component {
 
@@ -18,8 +19,8 @@ class Content extends Component {
             for (let i = 0; i <= arr.length; i++) {
                 d = arr.map((index) =>
                     <div className="col-md-3"  >
-                        <div class="card" style={im} >
-                            <img class="card-img-top" src='images/7.jpg' alt="Card image cap" />
+                        <div class="card" style={im} >                        
+                            <img class="card-img-top" src={cardImg} alt="Card image cap" />
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -36,13 +37,12 @@ class Content extends Component {
         return (
 
             <div className="App" style={{ textAlign: "center" }}>
-                <div className="container">
-                    <AliceCarousel showSlideInfo={true} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
-                        <img src="images/1.jpg" onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/1.jpg" onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/1.jpg" onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/1.jpg" onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/2.jpg" onDragStart={handleOnDragStart} className="yours-custom-class" />
+                <div className="container" style={{marginBottom:"50px"}}>
+                    <AliceCarousel  showSlideInfo={true} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
+                        <img src="images/ca4.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src="images/ca3.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src="images/ca1.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src="images/ca2.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
                     </AliceCarousel>
                 </div>
                 <div className="row no-nothing">

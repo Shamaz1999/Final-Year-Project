@@ -1,6 +1,10 @@
 import React, { Component } from 'react'; 
 import "./../bootstrap/bootstrapC.css"
 import {Link} from 'react-router-dom'
+import fb from './../images/fb.png'
+import twitter from './../images/twitter.png'
+import gplus from './../images/g+.png'
+import insta from './../images/insta.png'
 
 class FootNav extends Component {    
    
@@ -40,10 +44,10 @@ return(
                 <div class="col-md-4">
                         <ul class="foot-nav-ul">
                             <li class="col-heading med-headings">Social Contacts</li>
-                            <li class="col-items"><a style={a} ><img  class="social-logos" src="images/fb.png" alt="facebook"/>Facebook Profile</a></li>
-                            <li class="col-items"><a style={a} ><img class="social-logos" src="images/twitter.png" alt="twitter"/>Twitter Profile</a></li>
-                            <li class="col-items"><a style={a} ><img class="social-logos" src="images/g+.png" alt="google plus"/>Google Plus Profile</a></li>
-                            <li class="col-items"><a style={a} ><img class="social-logos" src="images/insta.png" alt="instagram"/>Instagram Profile</a></li>
+                            <li class="col-items"><a style={a} ><img  class="social-logos" src={fb} alt="facebook"/>Facebook Profile</a></li>
+                            <li class="col-items"><a style={a} ><img class="social-logos" src={twitter} alt="twitter"/>Twitter Profile</a></li>
+                            <li class="col-items"><a style={a} ><img class="social-logos" src={gplus} alt="google plus"/>Google Plus Profile</a></li>
+                            <li class="col-items"><a style={a} ><img class="social-logos" src={insta} alt="instagram"/>Instagram Profile</a></li>
                             <li class="col-items"><a style={a} >Our Communuity</a></li>
                         </ul>
                     </div>
