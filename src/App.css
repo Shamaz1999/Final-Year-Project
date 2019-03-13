@@ -13,6 +13,14 @@ a{
 .nav-search{
   margin-left: 10px!important;
 }
+.react-phone-number-input__input{
+  border: none!important;
+}
+.react-phone-number-input__icon{
+  border: none!important;
+  margin-bottom: 15px;
+}
+
 .foot-nav{
   clear: both;
   color: white;

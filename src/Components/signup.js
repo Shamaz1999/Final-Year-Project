@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 class Signup extends Component {
+    state={
+        phone: ""
+    }
+
     render() {
+        console.log(this.state.phone)
         return (
             <div className='main-signup'>     
                 <form class="signup-form hidden" id="signup-form" method="POST" style={{marginBottom:"190px"}} action="index.html">
@@ -27,7 +34,11 @@ class Signup extends Component {
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1"><b>Mobile Number</b></label>
-                                <input type="number" name="signup-email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your Mobile Number"/>        
+                                {/* <input type="tel" pattern="[+]{1}[0-9]{3}-[0-9]{11}" required name="signup-email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your Mobile Number"/>         */}
+                                <PhoneInput className="form-control"
+    placeholder="Enter phone number"
+    
+    onChange={ phone => this.setState({ phone }) } />
                             </div>
                             <div>
                                 <p><b>Gender</b></p>

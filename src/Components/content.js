@@ -48,6 +48,7 @@ class Content extends Component {
                 <div className="row no-nothing">
                     {d}
                 </div>
+                
             </div>
 
         );
