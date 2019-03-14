@@ -9,6 +9,8 @@ import Signup from './Components/signup'
 import FootNav from './Components/footnav'
 import About from './Components/about'
 import Contact from './Components/contact'
+import Details from './Components/details'
+import MyAds from './Components/myAds'
 
 class App extends Component {
 
@@ -21,6 +23,8 @@ class App extends Component {
           <Nav />
           <Switch>
 
+            <Route path='/myads' component={MyAds} />
+            <Route path='/details' component={Details} />
             <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />
             <Route path='/login' component={Login} />

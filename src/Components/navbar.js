@@ -18,8 +18,8 @@ class Nav extends Component {
                     <div className="col-md-7 col-sm-12 text-center no-pad mt-1">
                         <form className="form-inline  d-inline-flex">
 
-                            <div class="form-group nav-search">
-                                <select class="form-control region-selec-a" id="exampleFormControlSelect1">
+                            <div className="form-group nav-search">
+                                <select className="form-control region-selec-a" id="exampleFormControlSelect1">
                                     <option value="United States">United States</option>
                                     <option value="United Kingdom">United Kingdom</option>
                                     <option value="Afghanistan">Afghanistan</option>
@@ -183,7 +183,7 @@ class Nav extends Component {
                                     <option value="Northern Mariana Islands">Northern Mariana Islands</option>
                                     <option value="Norway">Norway</option>
                                     <option value="Oman">Oman</option>
-                                    <option value="Pakistan" selected>Pakistan</option>
+                                    <option value="Pakistan" selected >Pakistan</option>
                                     <option value="Palau">Palau</option>
                                     <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
                                     <option value="Panama">Panama</option>
@@ -263,16 +263,16 @@ class Nav extends Component {
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
                             </div>
-                            <div class="input-group mb-3 ml-3 mr-3">
-                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                                <div class="input-group-append">
-                                    <button class="btn login-btn search-btn" type="button">Search</button>
+                            <div className="input-group mb-3 ml-3 mr-3">
+                                <input type="text" className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                <div className="input-group-append">
+                                    <button className="btn login-btn search-btn" type="button">Search</button>
                                 </div>
                             </div>
 
-                            <div class="form-group nav-search">
-                                <select class="form-control region-selec-b" id="exampleFormControlSelect1">
-                                    <option selected disabled>Categories</option>
+                            <div className="form-group nav-search">
+                                <select className="form-control region-selec-b" id="exampleFormControlSelect1">
+                                    <option value disabled>Categories</option>
                                     <option>Mobiles</option>
                                     <option>Vehicles</option>
                                     <option>Property for Sale</option>

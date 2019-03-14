@@ -20,7 +20,11 @@ a{
   border: none!important;
   margin-bottom: 15px;
 }
-
+.form-control:focus{
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  border-color: #EA1039!important
+}
 .foot-nav{
   clear: both;
   color: white;
@@ -346,6 +350,7 @@ margin: 0 auto;
   margin-right: 10px;
   height: 45px!important;
   width: 110px!important;
+  
 }
 .region-selec-b{
   margin-bottom: 14px!important;  
@@ -363,7 +368,8 @@ margin: 0 auto;
   transition: all .5s;
   transition-property: width, padding-bottom, margin-top;
   color: white;
-  
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important
 }
 
 .login-btn{
@@ -460,6 +466,10 @@ marquee{
   /* margin-top: 20px; */
   margin-bottom: 20px;
 }
+.marquee-text{
+  color: white;
+  font-size: 22px;
+}
 .aim-ul{
   list-style-type: circle!important;
   margin: 0 0 0 10px;
@@ -527,4 +537,35 @@ marquee{
   .card-body{
       padding: 5px;
   } 
+}
+
+/* Detail Content Styling */
+
+.detail-container{
+  padding: 60px;
+  border: 1px solid gray;
+}
+.profile-pic-container{
+  text-align: center;
+  margin: 20px;
+}
+.detail-text-group{
+  background-color: gainsboro;
+  padding: 20px;
+  display: inline-block;
+  margin: 30px;
+  width: 40%;
+}
+.detail-input{
+  background-color: transparent;
+  border-radius: none!important;
+  border: none;
+  font-size: 22px;
+  padding: 5px;
+  width: 100%;
+}
+region-selec-a
+.detail-input:focus{
+  outline: none!important;
+  border-bottom: 1px solid #EA1039;
 }

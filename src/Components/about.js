@@ -27,7 +27,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/1.jpg" class="card-img-top" width="100px;" height="150px"/>
+            <img src="images/ca3.jpg" class="card-img-top" width="100px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">At its core, banking is not simply about profit, but about personal relationships.</p>
             </div>
@@ -37,7 +37,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/2.jpg" class="card-img-top" width="100px;" height="150px"/>
+            <img src="images/ca2.jpg" class="card-img-top" width="100px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">The growth that we are targeting for our bank is in line with the banking industry.</p>
             </div>
@@ -47,7 +47,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/3.jpg" class="card-img-top" width="100px;" height="150px"/>
+            <img src="images/ca1.jpg" class="card-img-top" width="100px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">Citizen bank gives you a glimpse into what makes companies succeed and what makes companies fail.</p>
             </div>
@@ -57,7 +57,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/8.jpg" class="card-img-top" alt="..." width="150px;" height="150px"/>
+            <img src="images/ca4.jpg" class="card-img-top" alt="..." width="150px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">Good bankers, like good tea, can only be appreciated when they are in hot water.</p>
             </div>
@@ -69,7 +69,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/4.jpg" class="card-img-top" width="100px;" height="150px"/>
+            <img src="images/ca4.jpg" class="card-img-top" width="100px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">Citizens Bank gives you a glimpse into what makes companies succeed and what makes companies fail.</p>
             </div>
@@ -79,7 +79,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/5.jpg" class="card-img-top" width="100px;" height="150px"/>
+            <img src="images/ca1.jpg" class="card-img-top" width="100px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">Business and life are like a bank account-you can’t take out more than you put in.</p>
             </div>
@@ -89,7 +89,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
           <div className='qw'>
             </div>
-            <img src="images/6.jpg" class="card-img-top" width="100px;" height="150px"/>
+            <img src="images/ca3.jpg" class="card-img-top" width="100px;" height="150px"/>
             <div class="card-body">
               <p class="card-text">Being bank director is like being a pilot of an aircraft – it’s years of boredom and seconds of terror.</p>
             </div>
@@ -99,7 +99,7 @@ class About extends Component {
           <div class="card" style={{width: "19rem"}}>
             <div className='qw'>
             </div>
-              <img src="images/9.jpg" class="card-img-top" alt="..." width="100px;" height="150px"/>
+              <img src="images/ca2.jpg" class="card-img-top" alt="..." width="100px;" height="150px"/>
             
             <div class="card-body">
               <p class="card-text">A Citizens bank is a place that will lend you money if you can prove you don't need it.</p>
@@ -143,14 +143,16 @@ class About extends Component {
             
           </div>
         </div>
-        <marquee behavior="" direction="right">
-          <img src="images/b2.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
-          <img src="images/b1.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
-          <img src="images/b3.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
-          <img src="images/b4.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
-          <img src="images/b5.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
-          <img src="images/b6.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
-          <img src="images/b7.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/>
+        <marquee behavior="scroll"height="50%" direction="right">
+        <p className="marquee-text">Always Meet the buyer or seller at a crowded place and check the item before you pay</p>
+          {/* <img src="images/b2.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          {/* <img src="images/b1.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          {/* <img src="images/b3.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          {/* <img src="images/b4.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          {/* <img src="images/b5.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          {/* <img src="images/b6.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          {/* <img src="images/b7.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
+          
         </marquee>
   </div>
             </div>

@@ -6,61 +6,65 @@ import PhoneInput from 'react-phone-number-input'
 
 class Signup extends Component {
     state={
-        phone: ""
+        name:"",
+        email:"",
+        password:"",
+        phone: "",
+        gender:"",
+        DOB:"",
+        country:"",
+        address:"",
     }
 
     render() {
-        console.log(this.state.phone)
+        console.log(this.state)
         return (
             <div className='main-signup'>     
-                <form class="signup-form hidden" id="signup-form" method="POST" style={{marginBottom:"190px"}} action="index.html">
-                        <div class="display-4">
+                <form className="signup-form hidden" id="signup-form" method="POST" style={{marginBottom:"190px"}} action="index.html">
+                        <div className="display-4">
                             Create Your Account!
                         </div>
                         <br/> 
                         <br/>
                         <div>
-                            <div class="form-group mar">
-                                <label for="exampleInputEmail1"><b>Full Name</b></label>
-                                <input type="text" name="full-name" class="form-control" aria-describedby="emailHelp" placeholder="Enter your name"/>
+                            <div className="form-group mar">
+                                <label htmlFor="exampleInputEmail1"><b>Full Name</b></label>
+                                <input type="text" name="user-name" onInput={e=> this.setState({name: e.target.value})}  className="form-control" aria-describedby="emailHelp" placeholder="Enter your name"/>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><b>Email Address</b></label>
-                                <input type="email" name="signup-email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email"/>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Email Address</b></label>
+                                <input type="email" name="user-email" onInput={e=> this.setState({email: e.target.value})} className="form-control" aria-describedby="emailHelp" placeholder="Enter your email"/>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><b>Password</b></label>
-                                <input type="password" name="signup-email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your password"/>        
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Password</b></label>
+                                <input type="password" name="user-password" onInput={e=> this.setState({password: e.target.value})} className="form-control" aria-describedby="emailHelp" placeholder="Enter your password"/>        
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><b>Mobile Number</b></label>
+                            <div className="form-group">
+                                <label htmlFor="phone-num"><b>Phone Number</b></label>
                                 {/* <input type="tel" pattern="[+]{1}[0-9]{3}-[0-9]{11}" required name="signup-email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your Mobile Number"/>         */}
-                                <PhoneInput className="form-control"
-    placeholder="Enter phone number"
-    
-    onChange={ phone => this.setState({ phone }) } />
+                                <PhoneInput className="form-control" id="phone-num" placeholder="Enter phone number" onChange={ phone => this.setState({ phone }) } />
                             </div>
                             <div>
                                 <p><b>Gender</b></p>
-                                <div class="radio">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input"/>
-                                    <label class="custom-control-label" for="customRadioInline1">Male</label>
+                                <div className="radio">
+                                <div className="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" onInput={e=> this.setState({gender: e.target.value})} value="male" id="customRadioInline1" name="gender" className="custom-control-input"/>
+                                    <label className="custom-control-label" htmlFor="customRadioInline1">Male</label>
                                 </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input"/>
-                                    <label class="custom-control-label" for="customRadioInline2">Female</label>
+                                <div className="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" onInput={e=> this.setState({gender: e.target.value})} value="female" id="customRadioInline2" name="gender" className="custom-control-input"/>
+                                    <label className="custom-control-label" htmlFor="customRadioInline2">Female</label>
                                 </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><b>Date of Birth</b></label>
-                                <input type="date" name="signup-DOB" class="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh"/>        
+                            <div className="form-group">
+                                <label htmlFor="user-DOB"><b>Date of Birth</b></label>
+                                <input type="date" name="user-DOB" onInput={e=> this.setState({DOB: e.target.value})} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh"/>        
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><b>Country</b></label>
-                                <select className="form-control" name="Country"> 
-<option value="" selected="selected">Select Country</option> 
+                            <div className="form-group">
+                                <label htmlFor="user-country"><b>Country</b></label>
+                                <select id="user-country" onInput={e=> this.setState({country: e.target.value})} className="form-control" name="Country"> 
+<option value="" disabled >Select Country</option> 
 <option value="United States">United States</option> 
 <option value="United Kingdom">United Kingdom</option> 
 <option value="Afghanistan">Afghanistan</option> 
@@ -304,15 +308,15 @@ class Signup extends Component {
 <option value="Zimbabwe">Zimbabwe</option>
 </select>       
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><b>Address</b></label>
-                                <input type="text" name="signup-address" class="form-control" aria-describedby="emailHelp" placeholder="Enter your address"/>        
+                            <div className="form-group">
+                                <label htmlFor="user-address"><b>Address</b></label>
+                                <input type="text" id="user-address" onInput={e=> this.setState({address: e.target.value})} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your address"/>        
                             </div>
                             <div>
-                                <div class="float-left">
-                                    <button type="submit" class="btn login-btn">Submit</button>
+                                <div className="float-left">
+                                    <button type="submit" className="btn login-btn">Submit</button>
                                 </div>
-                                <div class="float-right">
+                                <div className="float-right">
                                     <p id="swap1"><Link to="/login">Already have an account! Sign in now.</Link></p>
                                 </div>
                             </div>
