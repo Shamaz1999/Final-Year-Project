@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import { createVerify } from 'crypto';
 
 
 class Signup extends Component {
@@ -15,12 +16,84 @@ class Signup extends Component {
         country:"",
         address:"",
     }
+    componentDidMount(){
+        const input = this.refs.userName;
+        input.focus();
+    }
+
+    verify=()=>{
+        if(this.state.name==""){
+            alert('Name is required!')
+            var input = this.refs.userName;
+            input.focus()
+            return false
+        }else
+        if(this.state.email==""){
+            alert('Email is required!')
+            var input = this.refs.userEmail;
+            input.focus()
+            return false
+        }else
+        if(this.state.password==""){
+            alert('Password is required!')
+            var input = this.refs.userPassword;
+            input.focus()
+            return false
+        }else
+        if(this.state.phone==""){
+            alert('Phone Number is required!')
+            var input = document.getElementById("phone-num")
+            input.focus()
+            return false
+        }else
+        if(this.state.gender==""){
+            alert('Gender is required!')
+            return false
+        }else
+        if(this.state.DOB==""){
+            alert('Date of Birth is required!')
+            var input = this.refs.userDOB;
+            input.focus();
+            return false
+        }else
+        if(this.state.country==""){
+            alert('Country is required!')
+            var input = this.refs.userCountry;
+            input.focus()
+            return false
+        }else
+        if(this.state.address==""){
+            alert('Address is required!')
+            var input = this.refs.userAddress;
+            input.focus()
+            return false
+        }else if(this.state.password.length <= 6){
+            alert("Password must me 7 characters long!")
+            var input = this.refs.userPassword;
+            input.focus()
+            return false
+        }else {
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            fetch('http://localhost:8000/signup', option)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err=> console.log(err))
+
+        }
+    }
 
     render() {
         console.log(this.state)
         return (
             <div className='main-signup'>     
-                <form className="signup-form hidden" id="signup-form" method="POST" style={{marginBottom:"190px"}} action="index.html">
+                <form className="signup-form hidden" id="signup-form" method="POST" style={{marginBottom:"190px"}} action="localhost:8000/signup">
                         <div className="display-4">
                             Create Your Account!
                         </div>
@@ -28,43 +101,42 @@ class Signup extends Component {
                         <br/>
                         <div>
                             <div className="form-group mar">
-                                <label htmlFor="exampleInputEmail1"><b>Full Name</b></label>
-                                <input type="text" name="user-name" onInput={e=> this.setState({name: e.target.value})}  className="form-control" aria-describedby="emailHelp" placeholder="Enter your name"/>
+                                <label htmlFor="exampleInputEmail1"><b>Full Name</b> <span className="required">*</span></label>
+                                <input type="text"  name="user-name" ref="userName" onInput={e=> this.setState({name: e.target.value})}  className="form-control"  placeholder="Enter your name"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Email Address</b></label>
-                                <input type="email" name="user-email" onInput={e=> this.setState({email: e.target.value})} className="form-control" aria-describedby="emailHelp" placeholder="Enter your email"/>
+                                <label htmlFor="exampleInputEmail1"><b>Email Address</b> <span className="required">*</span></label>
+                                <input type="email"  name="user-email" ref="userEmail" onInput={e=> this.setState({email: e.target.value})} className="form-control" placeholder="Enter your email"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Password</b></label>
-                                <input type="password" name="user-password" onInput={e=> this.setState({password: e.target.value})} className="form-control" aria-describedby="emailHelp" placeholder="Enter your password"/>        
+                                <label htmlFor="exampleInputEmail1"><b>Password</b> <span className="required">*</span></label>
+                                <input type="password"  name="user-password" ref="userPassword" onInput={e=> this.setState({password: e.target.value})} className="form-control" placeholder="Enter your password"/>        
                             </div>
                             <div className="form-group">
-                                <label htmlFor="phone-num"><b>Phone Number</b></label>
-                                {/* <input type="tel" pattern="[+]{1}[0-9]{3}-[0-9]{11}" required name="signup-email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your Mobile Number"/>         */}
-                                <PhoneInput className="form-control" id="phone-num" placeholder="Enter phone number" onChange={ phone => this.setState({ phone }) } />
+                                <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
+                                <PhoneInput className="form-control"  ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={ phone => this.setState({ phone }) } />
                             </div>
                             <div>
-                                <p><b>Gender</b></p>
+                                <p><b>Gender</b> <span className="required">*</span></p>
                                 <div className="radio">
                                 <div className="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" onInput={e=> this.setState({gender: e.target.value})} value="male" id="customRadioInline1" name="gender" className="custom-control-input"/>
+                                    <input type="radio" ref="male" onInput={e=> this.setState({gender: e.target.value})} value="male" id="customRadioInline1" name="gender" className="custom-control-input"/>
                                     <label className="custom-control-label" htmlFor="customRadioInline1">Male</label>
                                 </div>
                                 <div className="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" onInput={e=> this.setState({gender: e.target.value})} value="female" id="customRadioInline2" name="gender" className="custom-control-input"/>
+                                    <input type="radio" ref="female" onInput={e=> this.setState({gender: e.target.value})} value="female" id="customRadioInline2" name="gender" className="custom-control-input"/>
                                     <label className="custom-control-label" htmlFor="customRadioInline2">Female</label>
                                 </div>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="user-DOB"><b>Date of Birth</b></label>
-                                <input type="date" name="user-DOB" onInput={e=> this.setState({DOB: e.target.value})} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh"/>        
+                                <label htmlFor="user-DOB"><b>Date of Birth</b> <span className="required">*</span></label>
+                                <input type="date"  name="user-DOB" ref="userDOB" onInput={e=> this.setState({DOB: e.target.value})} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh"/>        
                             </div>
                             <div className="form-group">
-                                <label htmlFor="user-country"><b>Country</b></label>
-                                <select id="user-country" onInput={e=> this.setState({country: e.target.value})} className="form-control" name="Country"> 
-<option value="" disabled >Select Country</option> 
+                                <label htmlFor="user-country"><b>Country</b> <span className="required">*</span></label>
+                                <select id="user-country" ref="userCountry" onInput={e=> this.setState({country: e.target.value})} className="form-control" name="Country"> 
+<option value="" selected disabled >Select Country</option> 
 <option value="United States">United States</option> 
 <option value="United Kingdom">United Kingdom</option> 
 <option value="Afghanistan">Afghanistan</option> 
@@ -228,7 +300,7 @@ class Signup extends Component {
 <option value="Northern Mariana Islands">Northern Mariana Islands</option> 
 <option value="Norway">Norway</option> 
 <option value="Oman">Oman</option> 
-<option value="Pakistan">Pakistan</option> 
+<option  value="Pakistan">Pakistan</option> 
 <option value="Palau">Palau</option> 
 <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option> 
 <option value="Panama">Panama</option> 
@@ -309,12 +381,12 @@ class Signup extends Component {
 </select>       
                             </div>
                             <div className="form-group">
-                                <label htmlFor="user-address"><b>Address</b></label>
-                                <input type="text" id="user-address" onInput={e=> this.setState({address: e.target.value})} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your address"/>        
+                                <label htmlFor="user-address"><b>Address</b> <span className="required">*</span></label>
+                                <input type="text"id="user-address" ref="userAddress" onInput={e=> this.setState({address: e.target.value})} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your address"/>        
                             </div>
                             <div>
                                 <div className="float-left">
-                                    <button type="submit" className="btn login-btn">Submit</button>
+                                    <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>
                                 </div>
                                 <div className="float-right">
                                     <p id="swap1"><Link to="/login">Already have an account! Sign in now.</Link></p>

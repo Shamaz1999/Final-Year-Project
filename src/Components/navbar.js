@@ -12,11 +12,11 @@ class Nav extends Component {
 
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light ">
-                    <div className="col-md-3 col-sm-12 text-center">
+                    <div className="col-md-3 col-sm-12 text-center no-pad">
                         <Link to="/home"><h1 className="display-4 main-logo">Buy&Sell</h1></Link>
                     </div>
-                    <div className="col-md-7 col-sm-12 text-center no-pad mt-1">
-                        <form className="form-inline  d-inline-flex">
+                    <div className="col-md-6 col-sm-12 text-center no-pad mt-1">
+                        <form className="form-inline text-center d-inline-flex">
 
                             <div className="form-group nav-search">
                                 <select className="form-control region-selec-a" id="exampleFormControlSelect1">
@@ -288,20 +288,11 @@ class Nav extends Component {
                     </div>
 
 
-                    <div className="col-md-2 col-sm-12 text-center " >
-                        <div className="m-t-c" id="navbarSupportedContent">
-                            <ul className="login-list">
-
-                                <li style={{ padding: "10px 10px" }} className="nav-item">
-                                    <Link className="nav-link" to="/login">Log In</Link>
-                                </li>
-
-                                <li className="nav-item">
-                                    <Link to="/signup" className="nav-link">Signup</Link>
-                                </li>
-                            </ul>
-
-                        </div>
+                    <div className="col-md-3 col-sm-12 text-center " >
+                        {/* <div className="m-t-c"> */}
+                            <Link className="nav-link" to="/login">Log In</Link>
+                            <Link to="/signup" className="nav-link">Signup</Link>
+                        {/* </div> */}
                     </div>
                 </nav>
             </div>

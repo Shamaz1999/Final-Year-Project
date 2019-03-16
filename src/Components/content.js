@@ -17,14 +17,16 @@ class Content extends Component {
         }
         if (arr.length !== 0) {
             for (let i = 0; i <= arr.length; i++) {
+                let adId;
                 d = arr.map((index) =>
-                    <div className="col-md-3"  >
+                    <div className="col-md-3" >
                         <div class="card" style={im} >                        
-                            <img class="card-img-top" src={cardImg} alt="Card image cap" />
+                            <img class="card-img-top" src={cardImg} alt="Card image cap"/>
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="card-title text-left">Ad Title</h5><h5 class="card-title text-left">Rs 1400</h5>
+                                <p className="text-left">Ad Id : {adId = parseInt(Math.random()*100000000)}</p>
+                                <p class="card-text text-left">Ad Description</p>
+                                <Link to="/ad" class="btn login-btn float-right" style={{marginTop:"0px"}}>Open Ad</Link>
                             </div>
                         </div>
                     </div>
@@ -45,7 +47,7 @@ class Content extends Component {
                         <img src="images/ca2.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
                     </AliceCarousel>
                 </div>
-                <div className="row no-nothing">
+                <div className="row">
                     {d}
                 </div>
                 

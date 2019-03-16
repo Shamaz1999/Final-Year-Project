@@ -10,6 +10,10 @@ a{
   color: white;
   text-decoration: none!important;
 }
+.required{
+  color: red;
+  font-size: 20px;
+}
 .nav-search{
   margin-left: 10px!important;
 }
@@ -23,7 +27,8 @@ a{
 .form-control:focus{
   -webkit-box-shadow: none!important;
   box-shadow: none!important;
-  border-color: #EA1039!important
+  border-color: #EA1039!important;
+  outline: none!important;
 }
 .foot-nav{
   clear: both;
@@ -132,14 +137,17 @@ li.col-heading{
 
 }
 .main-logo{
-  padding-right: 40px;
+  /* padding-right: 40px; */
   color: white;
 }
 .nav-link{
   color: white!important;
   display: inline!important;
   font-size: 19px;
+  padding: 0px!important;
+  margin:0 10px;
 }
+
 .login-list{
   list-style-type: none;
 }
@@ -152,20 +160,7 @@ li.col-heading{
   padding: 4px;
   margin: 0 0 8px 86px;
 }
-.nav-links{
-  list-style-type: none;
-  float: right;
-  margin: 13px 98px;
-}
-.nav-links li{
-  margin: 5px;  
-  display: inline-block;
-}
-.nav-links li a{
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-}
+
 .clear{
   clear: both;
 }
@@ -318,13 +313,6 @@ margin: 0 auto;
   margin: 0 auto;
   width: 600px;
 }
-/* .align-left ul{
-  margin: 0 !important;
-  float: right !important;
-}
-.align-left ul li{
-  float: right !important;
-} */
 .main-signup{
   margin: 0 auto;
   width: 600px;
@@ -332,7 +320,6 @@ margin: 0 auto;
 .no-pad{
   padding: 0!important;
 }
-
 .form-container{
   color: white;
   padding: 50px;
@@ -370,7 +357,7 @@ margin: 0 auto;
   color: white;
   border-top-left-radius: 0px!important;
   border-bottom-left-radius: 0px!important
-}
+}  
 
 .login-btn{
   margin: 20px 0 0 0;
@@ -393,7 +380,15 @@ margin: 0 auto;
 .login-btn:active{
   box-shadow:  0px 0px 10px -.5px black;
   top: 3px;
-  outline: none;
+  /* outline: none!important; */
+  /* -webkit-appearance: unset!important; */
+  /* box-shadow: none!important; */
+
+}
+.login-btn:focus{
+  /* outline: none!important; */
+  -webkit-appearance: unset!important;
+  box-shadow: none!important;
 }
 .float-right p{
  margin-top: 25px;
@@ -564,8 +559,16 @@ marquee{
   padding: 5px;
   width: 100%;
 }
-region-selec-a
 .detail-input:focus{
   outline: none!important;
   border-bottom: 1px solid #EA1039;
+}
+#contact-comment{
+  resize: none;
+}
+
+/* Current Ad Component Styling */
+.ad-img-container{
+  border: 1px solid gainsboro;
+  padding: 20px 60px;
 }
