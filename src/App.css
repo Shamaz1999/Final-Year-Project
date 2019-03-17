@@ -572,3 +572,45 @@ marquee{
   border: 1px solid gainsboro;
   padding: 20px 60px;
 }
+.price-container{
+  /* margin: 0 30px; */
+  border: 1px solid gainsboro;
+}
+.favourite-container{
+  margin-top: 10px;
+}
+.adTitle-container{
+  color: rgb(161, 161, 161);
+  margin-top: 10px;
+}
+.container1{
+  margin-top: 20px;
+}
+.loc-container{
+  color: rgb(161, 161, 161);
+  font-size: 14px;
+}
+.seller-container{
+  border: 1px solid gainsboro;
+}
+.seller-info-container{
+  margin-top: 0px!important;
+}
+.seller-img-container{
+  margin-bottom: 30px;
+  display: inline;
+  margin-right: 30px
+}
+.seller-name-container{
+ display: inline; 
+ font-size: 20px
+}
+.phone-container{
+  /* margin-top: 20px; */
+  text-align: center;
+  padding: 20px;
+}
+.number{
+  margin-left: 10px;
+  display: inline;
+}
