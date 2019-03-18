@@ -13,7 +13,7 @@ class Nav extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light ">
                     <div className="col-md-3 col-sm-12 text-center no-pad">
-                        <Link to="/home"><h1 className="display-4 main-logo">Buy&Sell</h1></Link>
+                        <Link to="/"><h1 className="display-4 main-logo">Buy&Sell</h1></Link>
                     </div>
                     <div className="col-md-6 col-sm-12 text-center no-pad mt-1">
                         <form className="form-inline text-center d-inline-flex">

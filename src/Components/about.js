@@ -145,13 +145,6 @@ class About extends Component {
         </div>
         <marquee behavior="scroll"height="50%" direction="right">
         <p className="marquee-text">Always Meet the buyer or seller at a crowded place and check the item before you pay</p>
-          {/* <img src="images/b2.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
-          {/* <img src="images/b1.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
-          {/* <img src="images/b3.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
-          {/* <img src="images/b4.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
-          {/* <img src="images/b5.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
-          {/* <img src="images/b6.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
-          {/* <img src="images/b7.jpg" style={{marginLeft: "10px"}} width="200px" height="100px"/> */}
           
         </marquee>
   </div>

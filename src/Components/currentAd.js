@@ -5,14 +5,13 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 
 class Ad extends Component {
-    state={
-        name:"",
-        topic:"",
-        comments:""
-    }
+   
 
     render(){
-        console.log(this.state)
+        console.log(this.props)
+        console.log(this.props.match.params.adId)
+        console.log(this.props.match.url)
+
         const handleOnDragStart = e => e.preventDefault()
 
         return(
@@ -21,20 +20,27 @@ class Ad extends Component {
                 <div className="col-md-8" style={{margin:"0px "}}>
                     <div className="ad-img-container">               
                     <AliceCarousel duration={400} autoPlay={false} mouseDragEnabled >
-                        <img src="images/ca4.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/ca3.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/ca1.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src="images/ca2.jpg" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca4.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca3.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca1.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca2.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
                     </AliceCarousel>
-
+                    </div>
                     <div className="ad-desc-container">
-                    <div className="container">
-                        <hr/>
+                    <h4>Details</h4>
+                    <div className="ad-detail-container">
+                        <p className="ads-type">Type</p>
+                        <div className="ads-type">Mobile</div>
                     </div>
-                    
+                    <div className="contaner">
+                    <hr/>
                     </div>
+                    <h4>Description</h4>
+                    <div style={{marginTop:"15px"}}>
+                        Ad Description Here
+
                     </div>
-                    
+                    </div> 
                 </div>
                 <div className="col-md-4 ">
                     <div className="row">
@@ -67,7 +73,7 @@ class Ad extends Component {
                                         <img src={require('./../images/man.png')} height="70" alt=""/>
                                     </div>
                                     <div className="seller-name-container">
-                                      <Link to="/sellerProfile">Seller Name Here</Link>
+                                      <Link to={this.props.match.params.adId + "/sellerProfile"}>Seller Name Here</Link>
                                     </div>
                                 </div>
 

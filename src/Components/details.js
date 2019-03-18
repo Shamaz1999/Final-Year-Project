@@ -16,27 +16,29 @@ class Details extends Component {
                         <div className="profile-pic-container">
                             <img height="150" width="150" src={man} alt="profile-pic" />
                         </div>
-
-                        <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Your Name</label>
-                                <br/>
-                                <input type="text" name="detail-name" className="detail-input"  />                               
-                        </span>
-                        <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">About Me (optional)</label>
-                                <br/>
-                                <input type="text" name="detail-info" className="detail-input"  />                               
-                        </span>
-                        <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Mobile Number</label>
-                                <br/>
-                                <input type="text" name="detail-mobile" className="detail-input"/>
-                        </span>
-                        <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Change Password</label>
-                                <br/>
-                                <input type="text" name="detail-name" className="detail-input" />     
-                        </span>
+                        <div style={{textAlign:'center'}}>
+    
+                            <span className="detail-text-group">
+                                    <label htmlFor="exampleInputEmail1">Your Name</label>
+                                    <br/>
+                                    <input type="text" name="detail-name" className="detail-input"  />                               
+                            </span>
+                            <span className="detail-text-group">
+                                    <label htmlFor="exampleInputEmail1">About Me (optional)</label>
+                                    <br/>
+                                    <input type="text" name="detail-info" className="detail-input"  />                               
+                            </span>
+                            <span className="detail-text-group">
+                                    <label htmlFor="exampleInputEmail1">Mobile Number</label>
+                                    <br/>
+                                    <input type="text" name="detail-mobile" className="detail-input"/>
+                            </span>
+                            <span className="detail-text-group">
+                                    <label htmlFor="exampleInputEmail1">Change Password</label>
+                                    <br/>
+                                    <input type="text" name="detail-name" className="detail-input" />     
+                            </span>
+                        </div>
 
                         <button className="btn btn-outline-danger mt-3">Delete my account and data</button>
 

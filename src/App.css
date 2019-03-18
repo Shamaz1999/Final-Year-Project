@@ -597,7 +597,6 @@ marquee{
   margin-top: 0px!important;
 }
 .seller-img-container{
-  margin-bottom: 30px;
   display: inline;
   margin-right: 30px
 }
@@ -606,11 +605,27 @@ marquee{
  font-size: 20px
 }
 .phone-container{
-  /* margin-top: 20px; */
   text-align: center;
   padding: 20px;
 }
 .number{
   margin-left: 10px;
   display: inline;
+}
+.ad-desc-container{
+  border: 1px solid gainsboro;
+  margin-top: 20px;
+  padding: 20px 50px;
+}
+p.ads-type{
+  margin-left: 10px;
+  color: rgb(161, 161, 161);
+  display: inline;
+  font-size: 18px
+}
+div.ads-type{
+  display: inline;
+  margin-left: 150px;
+  font-size: 18px;
+
 }
