@@ -272,15 +272,17 @@ class Nav extends Component {
 
                             <div className="form-group nav-search">
                                 <select className="form-control region-selec-b" id="exampleFormControlSelect1">
-                                    <option value disabled>Categories</option>
-                                    <option>Mobiles</option>
-                                    <option>Vehicles</option>
-                                    <option>Property for Sale</option>
-                                    <option>Property for Rent</option>
-                                    <option>Electronics and Home Appliances</option>
-                                    <option>Bikes</option>
-                                    <option>Business, Industrial & Agriculture</option>
-                                    <option>Services</option>
+                                    <option value=""disabled>Categories</option>
+                                    <option value="mobiles">Mobiles</option>
+                                    <option value="vehicles">Vehicles</option>
+                                    <option value="property for sale">Property for Sale</option>
+                                    <option value="property for rent">Property for Rent</option>
+                                    <option value="electronics">Electronics and Home Appliances</option>
+                                    <option value="bikes">Bikes</option>
+                                    <option value="business,industrial">Business, Industrial & Agriculture</option>
+                                    <option value="services">Services</option>
+                                    <option value="other">Other</option>
+                                    
                                 </select>
                             </div>
 
@@ -289,10 +291,8 @@ class Nav extends Component {
 
 
                     <div className="col-md-3 col-sm-12 text-center " >
-                        {/* <div className="m-t-c"> */}
                             <Link className="nav-link" to="/login">Log In</Link>
                             <Link to="/signup" className="nav-link">Signup</Link>
-                        {/* </div> */}
                     </div>
                 </nav>
             </div>

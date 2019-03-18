@@ -7,6 +7,24 @@ import girl from './../images/girl.png'
 
 class Details extends Component {
 
+    delete = ()=>{
+
+        let retVal = window.confirm("Do you want to delete your account ?");
+               if( retVal == true ) {
+                  document.write ("Your account has been deleted");
+                  return true;
+               } else {
+                  return false;
+               }
+    }
+
+    discard = ()=>{
+        this.forceUpdate()  
+    }
+
+    save = ()=>{
+        alert('Your changes have been saved')
+    }
     render(){
         return(
             <div className="app">
@@ -40,15 +58,15 @@ class Details extends Component {
                             </span>
                         </div>
 
-                        <button className="btn btn-outline-danger mt-3">Delete my account and data</button>
+                        <button className="btn btn-outline-danger mt-3" onClick={this.delete}>Delete my account and data</button>
 
                         <div className="container">
                         <hr/>
                         </div>
 
-                        <button className="btn btn-outline-info mt-3">Discard</button>
+                        <button className="btn btn-outline-info mt-3" onClick={this.discard}>Discard</button>
 
-                        <button className="btn login-btn float-right">Save Changes</button>
+                        <button className="btn login-btn float-right" onClick={this.save}>Save Changes</button>
 
                     </div>
 

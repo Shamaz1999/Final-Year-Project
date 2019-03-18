@@ -6,6 +6,9 @@ ul, li {
   margin: 0px!important;
   padding: 0px!important;
 }
+label{
+  padding: 0 10px;
+}
 a{
   color: white;
   text-decoration: none!important;
@@ -627,5 +630,14 @@ div.ads-type{
   display: inline;
   margin-left: 150px;
   font-size: 18px;
+}
 
+/* Post Ad component styling */
+.post-form-container{
+  width: 65%;
+  /* text-align: center; */
+  margin: 0 auto; 
+}
+.ad-img-upload{
+  padding-bottom: 10px!important;
 }

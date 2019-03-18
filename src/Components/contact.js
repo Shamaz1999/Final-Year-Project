@@ -11,6 +11,7 @@ class Contact extends Component {
         const input = this.refs.name;
         input.focus();
     }
+    
     verify = ()=>{
 
         if(this.state.name==""){

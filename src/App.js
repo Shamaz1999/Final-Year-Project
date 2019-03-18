@@ -13,6 +13,7 @@ import Details from './Components/details'
 import MyAds from './Components/myAds'
 import Ad from './Components/currentAd'
 import Seller from './Components/sellerprofile'
+import Post from './Components/postAd'
 
 class App extends Component {
 
@@ -25,9 +26,10 @@ class App extends Component {
           <Nav />
           <Switch>
 
-            <Route path='/ad/:adId' component={Ad} />
             <Route path='/ad/:adsd/sellerProfile' component={Seller} />
+            <Route path='/ad/:adId' component={Ad} />
             <Route path='/myads' component={MyAds} />
+            <Route path='/postad' component={Post} />
             <Route path='/details' component={Details} />
             <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />

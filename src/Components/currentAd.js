@@ -3,15 +3,27 @@ import {Link} from 'react-router-dom'
 import adImg from './../images/b3.jpg'
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
+import star from './../images/star.png'
+import starSelect from './../images/starSelect.png'
 
 class Ad extends Component {
+    
+
+    fav = (src)=>{
+        alert(src)
+        if(src === starSelect){
+            src = starSelect
+        }
+        else{
+            src = starSelect
+        }
+    }
    
 
     render(){
         console.log(this.props)
         console.log(this.props.match.params.adId)
         console.log(this.props.match.url)
-
         const handleOnDragStart = e => e.preventDefault()
 
         return(
@@ -48,7 +60,7 @@ class Ad extends Component {
                             <div className="price-container" style={{padding:"15px 30px"}}>
                                 <h1 className="float-left">Rs 70000</h1>
                                 <div className="favourite-container float-right">
-                                    <img src={require('./../images/star.png')} height="30" width="30" alt="favourite"/>
+                                    <img src={star} height="30" width="30" alt="favourite"/>
                                 </div>
                                 <div className="adTitle-container clear">
                                         Ad Title Here

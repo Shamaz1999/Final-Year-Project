@@ -33,17 +33,17 @@ class Seller extends Component {
                         <span className="detail-text-group">
                                 <label htmlFor="exampleInputEmail1">Your Name</label>
                                 <br/>
-                                <input type="text" name="detail-name" className="detail-input"  />                               
+                                <input type="text" disabled name="detail-name" className="detail-input"  />                               
                         </span>
                         <span className="detail-text-group">
                                 <label htmlFor="exampleInputEmail1">About Me</label>
                                 <br/>
-                                <input type="text" name="detail-info" className="detail-input"  />                               
+                                <input type="text" disabled name="detail-info" className="detail-input"  />                               
                         </span>
                         <span className="detail-text-group">
                                 <label htmlFor="exampleInputEmail1">Mobile Number</label>
                                 <br/>
-                                <input type="text" name="detail-mobile" className="detail-input"/>
+                                <input type="text" disabled name="detail-mobile" className="detail-input"/>
                         </span>
                         <div className="container">
                         <hr/>
