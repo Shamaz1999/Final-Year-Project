@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import "./../bootstrap/bootstrapC.css"
+// import onLogin from './onLogin';
+import $ from 'jquery'
 
 
 class Nav extends Component {
+    state= {
+        isloggedin: true
+    }
 
 
     render() {
@@ -19,7 +24,113 @@ class Nav extends Component {
                         <form className="form-inline text-center d-inline-flex">
 
                             <div className="form-group nav-search">
-                                <select className="form-control region-selec-a" id="exampleFormControlSelect1">
+                                <CountrySelect/>
+                            </div>
+                            <div className="input-group mb-3 ml-3 mr-3">
+                                <input type="text" className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                <div className="input-group-append">
+                                    <button className="btn login-btn search-btn" type="button">Search</button>
+                                </div>
+                            </div>
+
+                            <div className="form-group nav-search">
+                                <select className="form-control region-selec-b" id="exampleFormControlSelect1">
+                                    <option value=""disabled>Categories</option>
+                                    <option value="mobiles">Mobiles</option>
+                                    <option value="vehicles">Vehicles</option>
+                                    <option value="property for sale">Property for Sale</option>
+                                    <option value="property for rent">Property for Rent</option>
+                                    <option value="electronics">Electronics and Home Appliances</option>
+                                    <option value="bikes">Bikes</option>
+                                    <option value="business,industrial">Business, Industrial & Agriculture</option>
+                                    <option value="services">Services</option>
+                                    <option value="other">Other</option>
+                                    
+                                </select>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                    <div className="col-md-3 col-sm-12 text-center " >
+                        { this.state.isloggedin ? <Onlogin/> :<Notloggedin/> }    
+                    </div>
+                </nav>
+            </div>
+        );
+    }
+}
+
+class Onlogin extends Component {
+
+    render(){
+        let a ={
+            color: "white!important",
+            textDecoration: "none!important",
+          }
+
+        $(document).ready(function(){
+            $("#dropdown").click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $("#dropdown-list").slideToggle("fast")
+            });
+    
+            $('#dropdown-list').click( function(e) { 
+            e.stopPropagation(); 
+        });
+    
+            $('body').click( function() {
+           $('#dropdown-list').slideUp("fast");
+            });
+    
+        })
+
+
+        return(
+            <div className="app">
+                <div  class="dropdown">
+                                <img id="dropdown" class="user-image" src={require('./../images/man.png')} height="60" width="60" alt="User Image"/>
+                                <div id="dropdown-list">
+                                    <ul>
+                                        <li class="u-name-l">
+                                            <a href="Javascript: void(0)">Username</a>
+                                            <hr class="u-name-divider"/>
+                                        </li>
+                                        <li class="u-name-li">
+                                            <Link to="/details">Profile</Link>
+                                       </li>
+                                       <li class="u-name-li">
+                                            <Link to="/postad">Post Ad</Link>
+                                       </li>
+                                       <li class="u-name-li">
+                                            <Link to="/myAds">My Ads</Link>
+                                       </li>
+                                        <li class="u-name-li">
+                                            <a href="Javascript: void(0)" class="u-name-l">Log Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+            
+            </div>
+        );
+    }
+}
+
+const Notloggedin = ()=>(
+    <div>
+                 <Link className="nav-link" to="/login">Log In</Link>
+                 <Link to="/signup" className="nav-link">Signup</Link>
+             </div>
+)
+
+class CountrySelect extends Component{
+
+    render(){
+        return(
+            <select className="form-control region-selec-a" id="exampleFormControlSelect1">
                                     <option value="United States">United States</option>
                                     <option value="United Kingdom">United Kingdom</option>
                                     <option value="Afghanistan">Afghanistan</option>
@@ -262,41 +373,9 @@ class Nav extends Component {
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
-                            </div>
-                            <div className="input-group mb-3 ml-3 mr-3">
-                                <input type="text" className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                                <div className="input-group-append">
-                                    <button className="btn login-btn search-btn" type="button">Search</button>
-                                </div>
-                            </div>
-
-                            <div className="form-group nav-search">
-                                <select className="form-control region-selec-b" id="exampleFormControlSelect1">
-                                    <option value=""disabled>Categories</option>
-                                    <option value="mobiles">Mobiles</option>
-                                    <option value="vehicles">Vehicles</option>
-                                    <option value="property for sale">Property for Sale</option>
-                                    <option value="property for rent">Property for Rent</option>
-                                    <option value="electronics">Electronics and Home Appliances</option>
-                                    <option value="bikes">Bikes</option>
-                                    <option value="business,industrial">Business, Industrial & Agriculture</option>
-                                    <option value="services">Services</option>
-                                    <option value="other">Other</option>
-                                    
-                                </select>
-                            </div>
-
-                        </form>
-                    </div>
-
-
-                    <div className="col-md-3 col-sm-12 text-center " >
-                            <Link className="nav-link" to="/login">Log In</Link>
-                            <Link to="/signup" className="nav-link">Signup</Link>
-                    </div>
-                </nav>
-            </div>
-        );
+        )
     }
+
 }
+
 export default Nav;

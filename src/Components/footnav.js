@@ -36,9 +36,8 @@ return(
                     <ul className="foot-nav-ul">
                         <li className="col-heading med-headings">Quick Links</li>
                         <li className="col-items"><Link style={a} to="/" href="index.html">Home</Link></li>
-                        <li className="col-items"><Link style={a} to="/details">Profile</Link></li>
-                        <li className="col-items"><Link style={a} to="/postad">Post Ad</Link></li>
-                        <li className="col-items"><Link style={a} to="/myads">My Ads</Link></li>
+                        <li className="col-items"><Link style={a} to="/login">Login</Link></li>
+                        <li className="col-items"><Link style={a} to="/signup">Signup</Link></li>
                         <li className="col-items"><Link style={a} to="/contact">Contact Us</Link></li>
                         <li className="col-items"><Link style={a} to="/about">About</Link></li>
                     </ul>

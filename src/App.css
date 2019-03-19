@@ -135,9 +135,7 @@ li.col-heading{
   background-image:url("./images/b7.jpg") ,linear-gradient(to right,#EA1039,rgba(27, 20, 100,1));
   background-blend-mode: multiply;
   color:white;
-  overflow: hidden;
   margin-bottom: 50px;
-
 }
 .main-logo{
   /* padding-right: 40px; */
@@ -641,3 +639,59 @@ div.ads-type{
 .ad-img-upload{
   padding-bottom: 10px!important;
 }
+.custom-file-label {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+}
+
+/* login Portal Styling */
+.dropdown img{
+}
+
+.user-info{
+  padding-top: 4px;
+}
+#dropdown-list ul li a{
+  list-style-type: none;
+  width: auto;
+  color: black;
+  margin: 0;
+}
+.u-name-divider{
+  margin: 5px;
+}
+.u-name-l{
+  list-style-type: none;
+}
+.u-name-li{
+  color: white;
+  list-style-type: none;
+  width: auto;
+  padding: 5px 10px;
+  transition: .5s ;
+  background-color: transparent;
+  transition-property: background-color;   
+}
+.u-name-li:hover{
+  background-color: rgba(65, 83, 206, 0.9);
+  color: white;
+}
+#dropdown{
+  position: relative;
+}
+#dropdown-list{
+  display: none;
+  z-index: 10;
+  position: absolute;
+  padding: 20px 30px;
+  border-radius: 1px;
+  background-color: rgba(234, 16, 56, 0.89); 
+  background-image: linear-gradient(to bottom,rgba(102, 119, 230, 0.9) ,rgba(235, 61, 93, 0.89));
+  padding: 5px 10px;
+  transform: translate(-50px, -50px);
+  top: 185%;
+  left: 45%;
+  width: 140px; 
+  border-radius: 5px;
+}
+
