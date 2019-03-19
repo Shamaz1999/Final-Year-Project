@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css";
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
+import ImageUpload from './imageUpload'
 
 
 class Post extends Component {
 
     
     render(){
-        $(document).ready(function(){
 
+        $(document).ready(function(){
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
@@ -61,8 +62,9 @@ class Post extends Component {
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1"><b>Upload Pictures</b> <span className="required"><span style={{fontSize:'14px'}}>(you can select multiple pictures)</span>*</span></label>
                             <div class="custom-file">
-                                <label class="custom-file-label"  id="txt" for="customFile">Choose Pictures</label>
-                                <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="filename" multiple />
+                                {/* <label class="custom-file-label"  id="txt" for="customFile">Choose Pictures</label> */}
+                                {/* <input type="file" class="custom-file-input" accept="image/*" id="customFile" name="filename" multiple /> */}
+                                <ImageUpload/>
                             </div>
                         </div>
                         <div className="form-group">

@@ -145,7 +145,6 @@ class About extends Component {
         </div>
         <marquee behavior="scroll"height="50%" direction="right">
         <p className="marquee-text">Always Meet the buyer or seller at a crowded place and check the item before you pay</p>
-          
         </marquee>
   </div>
             </div>

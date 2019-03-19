@@ -32,7 +32,20 @@ class Contact extends Component {
             input.focus()
             return false
         }
-            alert("Thanks for your feedback! Now you can navigate to Homepage")
+        var option = {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+    fetch('http://localhost:8000/contact', option)
+            .then(res => res.json())
+            .then(data => console.log(data),alert("Thanks for your feedback! Now you can navigate to Homepage"))
+            .catch(err => console.log(err,alert("There was an error please try again.")))
+
+            
         
         
     }

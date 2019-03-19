@@ -121,9 +121,9 @@ class Onlogin extends Component {
 
 const Notloggedin = ()=>(
     <div>
-                 <Link className="nav-link" to="/login">Log In</Link>
-                 <Link to="/signup" className="nav-link">Signup</Link>
-             </div>
+        <Link className="nav-link" to="/login">Log In</Link>
+        <Link to="/signup" className="nav-link">Signup</Link>
+    </div>
 )
 
 class CountrySelect extends Component{
