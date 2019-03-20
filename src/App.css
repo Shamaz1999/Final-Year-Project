@@ -643,11 +643,42 @@ div.ads-type{
   border-top-left-radius: 0px!important;
   border-bottom-left-radius: 0px!important;
 }
-
-/* login Portal Styling */
-.dropdown img{
+.ad-img-upload-container{
+  border: 1px solid gainsboro;
+  padding: 5px;
+}
+.img-upload-btn{
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  margin: 0px;
+  font-size: 14px;
+}
+.hid{
+  display: none;
+}
+.show{
+  display: initial;
+}
+.imgupload1{
+  border: 1px solid gainsboro;
+  margin: 5px 0;
+  padding: 10px;
+  text-align: center;
+}
+.img-upload-input{
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid gainsboro;
+}
+.img-upload-progress{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
+  margin: 0 10px
 }
 
+
+
+/* login Portal Styling */
 .user-info{
   padding-top: 4px;
 }

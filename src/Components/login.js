@@ -18,13 +18,29 @@ class Login extends Component {
             var input = this.refs.email;
             input.focus();
             return false
-        }
+        }else
         if(this.state.password==""){
             alert("Password is required");
             var input = this.refs.password;
             input.focus();
             return false
+        }else{
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            fetch('http://localhost:8000/login', option)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+
         }
+
+    
     }
 
     render() {
@@ -46,7 +62,7 @@ class Login extends Component {
                             </div>
                             <div>
                                 <div className="float-left">
-                                    <button onClick={this.verify} className="btn login-btn">Submit</button>
+                                    <button onClick={this.verify} type="button" className="btn login-btn">Submit</button>
                                 </div>
                                 <div className="float-right">
                                    <p id="swap">

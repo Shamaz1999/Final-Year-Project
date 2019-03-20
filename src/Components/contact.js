@@ -5,7 +5,8 @@ class Contact extends Component {
     state={
         name:"",
         topic:"",
-        comments:""
+        comments:"",
+        date: new Date()
     }
     componentDidMount(){
         const input = this.refs.name;

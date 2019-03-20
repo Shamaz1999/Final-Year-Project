@@ -48,7 +48,8 @@ render(){
 
     return(
         <div>
-            <input type="file" onChange={this.handleChange}/>
+            <label class="custom-file-label"  id="txt" for="customFile">Choose Pictures</label>
+            <input accept="image/*" className="custom-file-input" type="file" onChange={this.handleChange}/>
             <button type="button" onClick={this.handleUpload}>Upload</button>
             <progress value={this.state.progress} max="100" />
             <img ref='img' src={this.state.url} height="60" alt="Uploaded" />
