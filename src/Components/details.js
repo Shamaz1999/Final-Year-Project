@@ -3,10 +3,14 @@ import "./../bootstrap/bootstrapC.css";
 import { Link } from 'react-router-dom';
 import man from './../images/man.png'
 import girl from './../images/girl.png'
+import {connect} from 'react-redux'
+
 
 
 class Details extends Component {
-
+    disp=()=>{
+        this.props.dispatch({type:"insertads",payload:"Samsung"})
+    }
     delete = ()=>{
 
         let retVal = window.confirm("Do you want to delete your account ?");
@@ -27,7 +31,10 @@ class Details extends Component {
     }
     render(){
         return(
+            
             <div className="app">
+                {console.log(this.props.data)}
+                <button onClick={this.disp}>Click ME</button>
                 <div className="container">
                 
                     <div className="detail-container">
@@ -77,5 +84,10 @@ class Details extends Component {
         );
     }
 }
+const mapStateToProps=(store)=>{
+    return {
+        data:store.adsReducer
+    }
+}
 
-export default Details
+export default connect(mapStateToProps)(Details)

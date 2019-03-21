@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css";
 import {storage} from './firebase/index'
 import $ from 'jquery'
-// import ImageUpload from './imageUpload'
+import PhoneInput from 'react-phone-number-input'
+import { get } from 'http';
 
 
 class Post extends Component {
@@ -16,8 +17,10 @@ class Post extends Component {
         price:'',
         location:'',
         description:'',
+        sellerId:'',
+        sellerName:'',
         phone:'',
-        date: new Date(),
+        date: '',
         image1:null,
         url1:'',
         progress1:0,
@@ -31,6 +34,9 @@ class Post extends Component {
         url4:'',
         progress4:0
     }
+
+    
+    
     
     // First image upload Code
     
@@ -43,32 +49,32 @@ class Post extends Component {
     handleUpload1=()=>{
         const {image1}=this.state;
         const uploadTask= storage.ref(`images/${image1.name}`).put(image1)
-    uploadTask.on('state_changed', 
-    (snapshot)=>{
-        // progress funcion
-        const progress1=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
-        this.setState({progress1});
-    },
-    (error)=>{
-        // error funcion
-        
-        console.log(error);
-     }, 
-     ()=>{
-         // complete funcion
-         storage.ref('images').child(image1.name).getDownloadURL()
-         .then(url1=>{
-             // this.refs.img.src=url;
-             this.setState({url1});
-             console.log(this.state)
+        uploadTask.on('state_changed', 
+        (snapshot)=>{
+            // progress funcion
+            const progress1=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
+            this.setState({progress1});
+        },
+        (error)=>{
+            // error funcion
+            
+            console.log(error);
+        }, 
+        ()=>{
+            // complete funcion
+            storage.ref('images').child(image1.name).getDownloadURL()
+            .then(url1=>{
+                // this.refs.img.src=url;
+                this.setState({url1});
+                console.log(this.state)
             })
             
         }
         )
     }
-
+    
     // Second image upload code
-
+    
     handleChange2=(e)=>{
         if(e.target.files[0]){
             const image2=e.target.files[0];
@@ -115,29 +121,29 @@ class Post extends Component {
         const uploadTask= storage.ref(`images/${image3.name}`).put(image3)
         uploadTask.on('state_changed', 
         (snapshot)=>{
-    // progress funcion
-        const progress3=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
-        this.setState({progress3});
-    },
-    (error)=>{
-        // error funcion
+            // progress funcion
+            const progress3=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
+            this.setState({progress3});
+        },
+        (error)=>{
+            // error funcion
+            
+            console.log(error);
+        }, 
+        ()=>{
+            // complete funcion
+            storage.ref('images').child(image3.name).getDownloadURL()
+            .then(url3=>{
+                // this.refs.img.src=url;
+                this.setState({url3});
+                console.log(this.state)
+            })
+            
+        }
+        )
+    }
     
-        console.log(error);
-     }, 
-     ()=>{
-         // complete funcion
-         storage.ref('images').child(image3.name).getDownloadURL()
-         .then(url3=>{
-        // this.refs.img.src=url;
-        this.setState({url3});
-        console.log(this.state)
-    })
-    
-}
-)
-}
-
-// Fouth image upload Code
+    // Fouth image upload Code
     handleChange4=(e)=>{
         if(e.target.files[0]){
             const image4=e.target.files[0];
@@ -150,38 +156,38 @@ class Post extends Component {
         uploadTask.on('state_changed', 
         (snapshot)=>{
             // progress funcion
-        const progress4=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
-        this.setState({progress4});
-    },
-     (error)=>{
-         // error funcion
-         
-         console.log(error);
+            const progress4=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
+            this.setState({progress4});
+        },
+        (error)=>{
+            // error funcion
+            
+            console.log(error);
         }, 
         ()=>{
             // complete funcion
-    storage.ref('images').child(image4.name).getDownloadURL()
-    .then(url4=>{
-        // this.refs.img.src=url;
-        this.setState({url4});
-        console.log(this.state)
-    })
+            storage.ref('images').child(image4.name).getDownloadURL()
+            .then(url4=>{
+                // this.refs.img.src=url;
+                this.setState({url4});
+                console.log(this.state)
+            })
+            
+        }
+        )
+    }
     
-}
-)
-}
-
     // Showing hidden upload button and progress bar
-up1=()=>{
-    document.getElementById('upBtn1').classList.add('show')
-    document.getElementById('upProg1').classList.add('show')
-    document.getElementById('upImg1').classList.add('show')
-}
-up2=()=>{
-    document.getElementById('upBtn2').classList.add('show')
-    document.getElementById('upImg2').classList.add('show')
-    document.getElementById('upProg2').classList.add('show')
-
+    up1=()=>{
+        document.getElementById('upBtn1').classList.add('show')
+        document.getElementById('upProg1').classList.add('show')
+        document.getElementById('upImg1').classList.add('show')
+    }
+    up2=()=>{
+        document.getElementById('upBtn2').classList.add('show')
+        document.getElementById('upImg2').classList.add('show')
+        document.getElementById('upProg2').classList.add('show')
+        
 }
 up3=()=>{
     document.getElementById('upBtn3').classList.add('show')
@@ -194,19 +200,28 @@ up4=()=>{
     document.getElementById('upImg4').classList.add('show')
 }
 
-    // Validating and sending to database
+// Validating and sending to database
 
-    verify = ()=>{
-        if (this.state.adTitle == "") {
-            alert('Title is required!')
-            var input = this.refs.adTitle;
-            input.focus()
-            return false
-        } else  if (this.state.brand == "") {
-            alert('Brand name is required!')
-            var input = this.refs.itemBrand;
-            input.focus()
-            return false
+verify = ()=>{
+    var d = new Date()
+    var months = [
+        'January','February','March','April','May','June','July'
+        ,'August','September','October','November','December',''
+    ]
+    var day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    var date = day[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+" "+d.getFullYear();
+    this.setState({date:date})
+
+    if (this.state.adTitle == "") {
+        alert('Title is required!')
+        var input = this.refs.adTitle;
+        input.focus()
+        return false
+    } else  if (this.state.brand == "") {
+        alert('Brand name is required!')
+        var input = this.refs.itemBrand;
+        input.focus()
+        return false
         } else  if (this.state.category == "") {
             alert('Category is required!')
             var input = this.refs.adCategory;
@@ -265,25 +280,25 @@ up4=()=>{
                     'Content-Type': 'application/json'
                 }
             }
-
-        fetch('http://localhost:8000/postad', option)
-                .then(res => res.json())
-                .then(data => console.log(data))
-                .catch(err => console.log(err))
+            
+            fetch('http://localhost:8000/postad', option)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
         }
     }
-
-render(){
     
-    $(document).ready(function(){
-        $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
+    render(){
         
-    })
-    console.log(this.state)
-    
+        $(document).ready(function(){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            
+        })
+        console.log(this.state)
+        
         return(
             <div className="app">
                 <div className="container">
@@ -361,9 +376,13 @@ render(){
                             <label htmlFor="exampleInputEmail1"><b>Description</b> <span className="required">*</span></label>
                             <textarea name="adDesc" ref="adDesc" onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{resize:'none'}} cols="30" rows="5"></textarea>
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="exampleInputEmail1"><b>Your Phone Number</b> <span className="required">*</span></label>
                             <input type="tel"  name="adPhone" ref="adPhone" onInput={e => this.setState({ phone: e.target.value })}  className="form-control"  placeholder="Your phone number here"/>
+                        </div> */}
+                         <div className="form-group">
+                            <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
+                            <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={phone => this.setState({ phone })} />
                         </div>
                         <br/>
                         <button type="button" onClick={this.verify} className="btn login-btn float-right ">Submit</button>

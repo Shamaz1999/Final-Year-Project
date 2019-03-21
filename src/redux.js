@@ -1,25 +1,9 @@
-import {createStore, combineReducers} from 'redux';
-// import {connect} from 'redux' 
-const userReducer =(state=["Ali","Ahmad","Zohaib"],action)=>{
-    switch(action.type){
+import { createStore,combineReducers} from 'redux';
+import updatee from './reducer/update'
+import userReducer from'./reducer/userreducer'
+import adsReducer from './reducer/adsReducer'
 
-        case "Add":
-        return [...state, action.payload];
-        default:
-        return state;
-    }
-}
+let allreducer = combineReducers({ userReducer,updatee,adsReducer});
+let store = createStore(allreducer);
 
-const bookReducer=(state=["English","math","phy"],action)=>{
-
-    switch(action.type){
-
-        case "book":
-        return [...state, action.payload];
-        default:
-        return state;
-    }
-}
-const allReducers=combineReducers({userReducer, bookReducer});
-let store=createStore(allReducers);
 export default store;

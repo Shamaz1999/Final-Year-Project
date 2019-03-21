@@ -14,18 +14,20 @@ import MyAds from './Components/myAds'
 import Ad from './Components/currentAd'
 import Seller from './Components/sellerprofile'
 import Post from './Components/postAd'
+import {Provider} from 'react-redux'
+import store from './redux'
 
 class App extends Component {
 
   render() {
     return (
-
+      <Provider store={store}>
       <BrowserRouter>
 
         <div>
           <Nav />
           <Switch>
-
+            
             <Route path='/ad/:adsd/sellerProfile' component={Seller} />
             <Route path='/ad/:adId' component={Ad} />
             <Route path='/myads' component={MyAds} />
@@ -43,7 +45,7 @@ class App extends Component {
         </div>
 
       </BrowserRouter>
-
+      </Provider>
     );
   }
 }

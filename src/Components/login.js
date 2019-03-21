@@ -1,27 +1,30 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
-
+import {connect} from 'react-redux'
 
 class Login extends Component {
 
     state={
         email:"",
-        password:""
+        password:"",
+        // user:'',
+        // isLoggedIn: false,
+
     }
     componentDidMount(){
         const input = this.refs.email;
         input.focus();
     }
     verify=()=>{
-        if(this.state.email == ""){
+        if(this.state.email === ""){
             alert('Email is required');
-            var input = this.refs.email;
+            const input = this.refs.email;
             input.focus();
             return false
         }else
-        if(this.state.password==""){
+        if(this.state.password===""){
             alert("Password is required");
-            var input = this.refs.password;
+            const input = this.refs.password;
             input.focus();
             return false
         }else{
@@ -35,8 +38,16 @@ class Login extends Component {
 
             fetch('http://localhost:8000/login', option)
             .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+            .then(data => {console.log(data)
+                // this.setState({user:data})
+                // this.setState({isLoggedIn:true})
+                alert('You are logged into your account')
+                this.props.dispatch({type:'Add_user',payload:data})
+            })
+            .catch(err => {console.log(err)
+                this.setState({isLoggedIn:false})
+                alert('Your email and password does not match')
+            })
 
         }
 
@@ -72,8 +83,14 @@ class Login extends Component {
                             </div>
                         </div>
                     </form>
+                    {console.log(this.props.user)}
             </div>
         );
     }
 }
-export default Login;
+const mapStateToProps=(store)=>{
+    return{
+        user:store.userReducer
+    }
+}
+export default connect(mapStateToProps)(Login);

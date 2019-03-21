@@ -7,6 +7,11 @@ import star from './../images/star.png'
 import starSelect from './../images/starSelect.png'
 
 class Ad extends Component {
+
+    state={
+        id:this.props.match.params.adId,
+        ad:''
+    }
     
 
     fav = (src)=>{
@@ -18,38 +23,69 @@ class Ad extends Component {
             src = starSelect
         }
     }
-   
+
+    componentDidMount(){
+
+        
+
+        var option = {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+    fetch('http://localhost:8000/currentad', option)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({ad:data},()=>console.log(this.state))
+                console.log(data)})
+            .catch(err => console.log(err))
+
+    
+
+    }
 
     render(){
-        console.log(this.props)
-        console.log(this.props.match.params.adId)
-        console.log(this.props.match.url)
-        const handleOnDragStart = e => e.preventDefault()
+        
 
+        const handleOnDragStart = e => e.preventDefault()
+        var arr = [this.state.ad.url1,this.state.ad.url2,this.state.ad.url3,this.state.ad.url4]
+        let item =[1,2,3,4].map((i)=>(
+            <div key={i}>
+            <img key={this.state.ad.url1} src={arr[i-1]} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+            </div>
+        ))
         return(
             <div className="app" >
                 <div className="row" >
                 <div className="col-md-8" style={{margin:"0px "}}>
-                    <div className="ad-img-container">               
-                    <AliceCarousel duration={400} autoPlay={false} mouseDragEnabled >
-                        <img src={require('./../images/ca4.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca3.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca1.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca2.jpg')} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                    <div className="ad-img-container">
+                    {/* <img src={this.state.ad.url1} alt=""/>               */}
+                    <AliceCarousel items={item} autoPlay={false} mouseDragEnabled >
+                        
                     </AliceCarousel>
                     </div>
                     <div className="ad-desc-container">
                     <h4>Details</h4>
                     <div className="ad-detail-container">
-                        <p className="ads-type">Type</p>
-                        <div className="ads-type">Mobile</div>
+                        <div className="float-left">
+                            <p className="ads-type">Type</p>
+                            <div className="ads-type">{this.state.ad.category}</div>
+                        </div>
+                        <div className="float-right">
+                            <p className="ads-type">Condition</p>
+                            <div className="ads-type">{this.state.ad.condition}</div>
+                        </div>
+                        <div className="clear"></div>
                     </div>
                     <div className="contaner">
                     <hr/>
                     </div>
                     <h4>Description</h4>
                     <div style={{marginTop:"15px"}}>
-                        Ad Description Here
+                        {this.state.ad.description}
 
                     </div>
                     </div> 
@@ -58,19 +94,19 @@ class Ad extends Component {
                     <div className="row">
                         <div className="col-md-12" style={{padding:"0px"}}>
                             <div className="price-container" style={{padding:"15px 30px"}}>
-                                <h1 className="float-left">Rs 70000</h1>
+                                <h1 className="float-left">Rs {this.state.ad.price}</h1>
                                 <div className="favourite-container float-right">
                                     <img src={star} height="30" width="30" alt="favourite"/>
                                 </div>
                                 <div className="adTitle-container clear">
-                                        Ad Title Here
+                                        {this.state.ad.adTitle}
                                 </div>
                                 <div className="container1">
                                     <div className="loc-container float-left">
-                                        location here
+                                        {this.state.ad.location}
                                     </div>
                                     <div className="loc-container float-right">
-                                        date Here
+                                        {this.state.ad.date}
                                     </div>
                                     <div style={{marginBottom:"10px"}} className="clear"></div>
                                 </div>
@@ -93,7 +129,7 @@ class Ad extends Component {
                                     <div className="phone-container">
                                         <img src={require('./../images/phone.png')} height="30" alt="phone"/>
                                        <div className="number">
-                                            03002724118
+                                            {this.state.ad.phone}
                                        </div>
                                     </div>
                                 </div>

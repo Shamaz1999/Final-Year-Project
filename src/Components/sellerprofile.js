@@ -1,6 +1,5 @@
 import React, { Component } from 'react'; 
 import "./../bootstrap/bootstrapC.css";
-import { Link } from 'react-router-dom';
 import man from './../images/man.png'
 import girl from './../images/girl.png'
 
@@ -14,7 +13,7 @@ class Seller extends Component {
        const gender= 'male';
        let profile = '';
         
-        if (gender == 'male') {
+        if (gender === 'male') {
             profile = man
         }
         else {

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-import { createVerify } from 'crypto';
+import {storage} from './firebase/index'
+
 
 
 class Signup extends Component {
@@ -15,7 +16,10 @@ class Signup extends Component {
         DOB: "",
         country: "",
         address: "",
-        date: new Date()
+        date: new Date(),
+        image1:null,
+        url1:'',
+        progress1:0,
     }
     componentDidMount() {
         const input = this.refs.userName;
@@ -23,40 +27,40 @@ class Signup extends Component {
     }
 
     verify = () => {
-        if (this.state.name == "") {
+        if (this.state.name === "") {
             alert('Name is required!')
             var input = this.refs.userName;
             input.focus()
             return false
-        } else if (this.state.email == "") {
+        } else if (this.state.email === "") {
             alert('Email is required!')
             var input = this.refs.userEmail;
             input.focus()
             return false
-        } else if (this.state.password == "") {
+        } else if (this.state.password === "") {
             alert('Password is required!')
             var input = this.refs.userPassword;
             input.focus()
             return false
-        } else if (this.state.phone == "") {
+        } else if (this.state.phone === "") {
             alert('Phone Number is required!')
             var input = document.getElementById("phone-num")
             input.focus()
             return false
-        } else if (this.state.gender == "") {
+        } else if (this.state.gender === "") {
             alert('Gender is required!')
             return false
-        } else if (this.state.DOB == "") {
+        } else if (this.state.DOB === "") {
             alert('Date of Birth is required!')
             var input = this.refs.userDOB;
             input.focus();
             return false
-        } else if (this.state.country == "") {
+        } else if (this.state.country === "") {
             alert('Country is required!')
             var input = this.refs.userCountry;
             input.focus()
             return false
-        } else if (this.state.address == "") {
+        } else if (this.state.address === "") {
             alert('Address is required!')
             var input = this.refs.userAddress;
             input.focus()
@@ -83,6 +87,46 @@ class Signup extends Component {
 
         }
     }
+
+    // Profile Picture Upload Code
+    handleChange1=(e)=>{
+        if(e.target.files[0]){
+            const image1=e.target.files[0];
+            this.setState({image1});
+        }
+    }
+    handleUpload1=()=>{
+        const {image1}=this.state;
+        const uploadTask= storage.ref(`images/${image1.name}`).put(image1)
+    uploadTask.on('state_changed', 
+    (snapshot)=>{
+        // progress funcion
+        const progress1=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
+        this.setState({progress1});
+    },
+    (error)=>{
+        // error funcion
+        
+        console.log(error);
+     }, 
+     ()=>{
+         // complete funcion
+         storage.ref('images').child(image1.name).getDownloadURL()
+         .then(url1=>{
+             // this.refs.img.src=url;
+             this.setState({url1});
+             console.log(this.state)
+            })
+            
+        }
+        )
+    }
+        // Showing hidden upload button and progress bar
+up1=()=>{
+    document.getElementById('upBtn1').classList.add('show')
+    document.getElementById('upProg1').classList.add('show')
+    document.getElementById('upImg1').classList.add('show')
+}
     
     country1 = (country) => { this.setState({ country }) }
     render() {
@@ -130,6 +174,13 @@ class Signup extends Component {
                             <label htmlFor="user-DOB"><b>Date of Birth</b> <span className="required">*</span></label>
                             <input type="date" name="user-DOB" ref="userDOB" onInput={e => this.setState({ DOB: e.target.value })} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh" />
                         </div>
+                        <label htmlFor="exampleInputEmail1"><b>Profile Picture</b> <span className="required"><span style={{fontSize:'14px'}}>(after selecting files click on upload)</span>*</span></label>
+                        <div className="imgupload1">
+                                    <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1}/>
+                                    <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
+                                    <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
+                                    <img ref='img1' id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                </div>
                         <div className="form-group">
                             <label htmlFor="user-country"><b>Country</b> <span className="required">*</span></label>
                             <CountrySelect country={this.country1} />
