@@ -48,10 +48,10 @@ class Content extends Component {
                         <div className="card" style={im} >                        
                             <img className="card-img-top" height="150" width="400" src={this.state.ads[index].url1} alt="Card image cap"/>
                             <div className="card-body">
-                                <h5 className="card-title text-left">{this.state.ads[index].adTitle}</h5><h5 class="card-title text-left">{this.state.ads[index].price}</h5>
+                                <h5 className="card-title text-left">{this.state.ads[index].adTitle}</h5><h5 className="card-title text-left">{this.state.ads[index].price}</h5>
                                 <p className="text-left">Ad Id : {adId = this.state.ads[index]._id}</p>
                                 <p className="card-text text-left">{this.state.ads[index].description}</p>
-                                <Link to={"/ad/"+adId} class="btn login-btn float-right" style={{marginTop:"0px"}}>Open Ad</Link>
+                                <Link to={"/ad/"+adId} className="btn login-btn float-right" style={{marginTop:"0px"}}>Open Ad</Link>
                             </div>
                         </div>
                     </div>

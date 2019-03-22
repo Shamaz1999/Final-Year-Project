@@ -2,14 +2,45 @@ import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css";
 import man from './../images/man.png'
 import girl from './../images/girl.png'
+import { connect } from 'react-redux'
 
 
 class Seller extends Component {
+    state={
+        id:'',
+        name:'',
+        phone:'',
+        about:'',
+        
+    }
 
+    componentDidMount(){
+
+
+        let user = JSON.parse(localStorage.getItem('user'));
+    if (user === null){
+      user = {
+        _id:this.props.user._id,
+        name : this.props.user.name,
+        email : this.props.user.email,
+        password:this.props.user.password,
+        DOB:this.props.user.DOB,
+        phone:this.props.user.phone,
+        gender:this.props.user.gender,
+        country:this.props.user.country,
+        date:this.props.user.date,
+        address:this.props.user.address,
+        url1:this.props.user.url1
+    };
+    localStorage.setItem('user',JSON.stringify(user))
+}
+    }
+    
     
     render(){
         console.log(this.props)
-
+        console.log(this.props.ad.sellerId)
+        
        const gender= 'male';
        let profile = '';
         
@@ -57,5 +88,11 @@ class Seller extends Component {
         );
     }
 }
+const mapStateToProps = (store) => {
+    return {
+        ad: store.adsReducer
+    }
+}
+export default connect(mapStateToProps)(Seller);
 
-export default Seller
+// export default Seller

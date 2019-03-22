@@ -5,6 +5,8 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import star from './../images/star.png'
 import starSelect from './../images/starSelect.png'
+import { connect } from 'react-redux'
+
 
 class Ad extends Component {
 
@@ -45,10 +47,13 @@ class Ad extends Component {
 
     
 
-    }
+        }
 
-    render(){
+
         
+        render(){
+            this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
+            console.log(this.state.ad.sellerId)
 
         const handleOnDragStart = e => e.preventDefault()
         var arr = [this.state.ad.url1,this.state.ad.url2,this.state.ad.url3,this.state.ad.url4]
@@ -118,10 +123,10 @@ class Ad extends Component {
                                 <h5 className="" style={{padding:"20px 0px"}}>Seller Description</h5>
                                 <div className="seller-info-container ">
                                     <div className="seller-img-container">
-                                        <img src={require('./../images/man.png')} height="70" alt=""/>
+                                        <img src={this.state.ad.sellerImg} height="70" alt="Profile Pictur"/>
                                     </div>
                                     <div className="seller-name-container">
-                                      <Link to={this.props.match.params.adId + "/sellerProfile"}>Seller Name Here</Link>
+                                      <Link to={this.props.match.params.adId + "/sellerProfile"} onClick={this.st}>{this.state.ad.sellerName}</Link>
                                     </div>
                                 </div>
 
@@ -141,5 +146,11 @@ class Ad extends Component {
             );
     }
 }
+const mapStateToProps = (store) => {
+    return {
+        ad: store.adsReducer
+    }
+}
+export default connect(mapStateToProps)(Ad);
 
-export default Ad
+// export default Ad

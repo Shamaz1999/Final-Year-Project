@@ -3,13 +3,14 @@ import "./../bootstrap/bootstrapC.css";
 import {storage} from './firebase/index'
 import $ from 'jquery'
 import PhoneInput from 'react-phone-number-input'
-import { get } from 'http';
+import { connect } from 'react-redux'
 
 
 class Post extends Component {
 
     
     state={
+        sellerCountry:'',
         adTitle:'',
         brand:'',
         category:'',
@@ -18,6 +19,7 @@ class Post extends Component {
         location:'',
         description:'',
         sellerId:'',
+        sellerImg:'',
         sellerName:'',
         phone:'',
         date: '',
@@ -36,7 +38,41 @@ class Post extends Component {
     }
 
     
-    
+    componentDidMount(){
+
+        var d = new Date()
+    var months = [
+        'January','February','March','April','May','June','July'
+        ,'August','September','October','November','December',''
+    ]
+    var day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    var dat = day[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+" "+d.getFullYear();
+    this.setState({date:dat})
+        
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user === null){
+      user = {
+        _id:this.props.user._id,
+        name : this.props.user.name,
+        email : this.props.user.email,
+        password:this.props.user.password,
+        DOB:this.props.user.DOB,
+        phone:this.props.user.phone,
+        gender:this.props.user.gender,
+        country:this.props.user.country,
+        date:this.props.user.date,
+        address:this.props.user.address,
+        url1:this.props.user.url1
+    };
+    localStorage.setItem('user',JSON.stringify(user))
+}
+      this.setState({sellerId:user._id})  
+      this.setState({sellerName:user.name})  
+      this.setState({sellerCountry:user.country})
+      this.setState({sellerImg:user.url1})
+      this.setState({phone:user.phone})
+      
+    }
     
     // First image upload Code
     
@@ -203,71 +239,63 @@ up4=()=>{
 // Validating and sending to database
 
 verify = ()=>{
-    var d = new Date()
-    var months = [
-        'January','February','March','April','May','June','July'
-        ,'August','September','October','November','December',''
-    ]
-    var day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-    var date = day[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+" "+d.getFullYear();
-    this.setState({date:date})
 
-    if (this.state.adTitle == "") {
+    if (this.state.adTitle === "") {
         alert('Title is required!')
         var input = this.refs.adTitle;
         input.focus()
         return false
-    } else  if (this.state.brand == "") {
+    } else  if (this.state.brand === "") {
         alert('Brand name is required!')
         var input = this.refs.itemBrand;
         input.focus()
         return false
-        } else  if (this.state.category == "") {
+        } else  if (this.state.category === "") {
             alert('Category is required!')
             var input = this.refs.adCategory;
             input.focus()
             return false
-        } else if (this.state.condition == "") {
+        } else if (this.state.condition === "") {
             alert('Condition is required!')
             var input = this.refs.adCondition;
             input.focus()
             return false
-        } else if (this.state.price == "") {
+        } else if (this.state.price === "") {
             alert('Price is required!')
             var input = this.refs.adPrice;
             input.focus()
             return false
-        } else if (this.state.location == "") {
+        } else if (this.state.location === "") {
             alert('Location is required!')
             var input = this.refs.adloc;
             input.focus()
             return false
-        } else if (this.state.description == "") {
+        } else if (this.state.description === "") {
             alert('Description is required!')
             var input = this.refs.adDesc;
             input.focus()
             return false
-        } else if (this.state.phone == "") {
+        } else if (this.state.phone === "") {
             alert('Your Phone number is required!')
             var input = this.refs.adPhone;
             input.focus()
             return false
-        } else if (this.state.url1 == "") {
+        } else if (this.state.url1 === "") {
             alert('You have to upload 4 pictures!')
             var input = this.refs.imgup1;
             input.focus()
             return false
-        } else if (this.state.url2 == "") {
+        } else if (this.state.url2 === "") {
             alert('You have to upload 4 pictures!')
             var input = this.refs.imgup2;
             input.focus()
             return false
-        } else if (this.state.url3 == "") {
+        } else if (this.state.url3 === "") {
             alert('You have to upload 4 pictures!')
             var input = this.refs.imgup3;
             input.focus()
             return false
-        } else if (this.state.url4 == "") {
+        } else if (this.state.url4 === "") {
             alert('You have to upload 4 pictures!')
             var input = this.refs.imgup4;
             input.focus()
@@ -376,13 +404,9 @@ verify = ()=>{
                             <label htmlFor="exampleInputEmail1"><b>Description</b> <span className="required">*</span></label>
                             <textarea name="adDesc" ref="adDesc" onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{resize:'none'}} cols="30" rows="5"></textarea>
                         </div>
-                        {/* <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Your Phone Number</b> <span className="required">*</span></label>
-                            <input type="tel"  name="adPhone" ref="adPhone" onInput={e => this.setState({ phone: e.target.value })}  className="form-control"  placeholder="Your phone number here"/>
-                        </div> */}
                          <div className="form-group">
                             <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
-                            <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={phone => this.setState({ phone })} />
+                            <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" value={this.state.phone} onChange={phone => this.setState({ phone })} />
                         </div>
                         <br/>
                         <button type="button" onClick={this.verify} className="btn login-btn float-right ">Submit</button>
@@ -392,5 +416,10 @@ verify = ()=>{
         );
     }
 }
-
-export default Post
+const mapStateToProps = (store) => {
+    return {
+        user: store.userReducer
+    }
+}
+export default connect(mapStateToProps)(Post);
+// export default Post

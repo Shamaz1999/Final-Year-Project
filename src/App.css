@@ -705,6 +705,12 @@ div.ads-type{
 
   width: 100%;
 }
-
+.user-image{
+  border-radius: 100%;
+}
+.small{
+  font-size: 12px;
+  color: rgb(144, 144, 144)
+}
 
 

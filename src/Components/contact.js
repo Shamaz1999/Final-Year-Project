@@ -15,19 +15,19 @@ class Contact extends Component {
     
     verify = ()=>{
 
-        if(this.state.name==""){
+        if(this.state.name===""){
             alert('Your Name is required!')
             const input = this.refs.name
             input.focus()
             return false
         }
-        if(this.state.topic==""){
+        if(this.state.topic===""){
             alert('Topic Name is required!')
             const input = this.refs.topic
             input.focus()
             return false
         }
-        if(this.state.comments==""){
+        if(this.state.comments===""){
             alert('Description is required!')
             const input = this.refs.comment
             input.focus()

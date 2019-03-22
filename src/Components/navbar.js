@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import "./../bootstrap/bootstrapC.css"
-// import onLogin from './onLogin';
-import { Dropdown } from "react-bootstrap";
-import $ from 'jquery'
+import Onlogin from './onLogin';
 import {connect} from 'react-redux'
 
 class Nav extends Component {
@@ -19,7 +17,7 @@ class Nav extends Component {
         return (
 
             <div>
-                <button onClick={this.logout}>LOg Out</button>
+                {/* <button onClick={this.logout}>LOg Out</button> */}
                 <nav className="navbar navbar-expand-lg navbar-light ">
                     <div className="col-md-3 col-sm-12 text-center no-pad">
                         <Link to="/"><h1 className="display-4 main-logo">Buy&Sell</h1></Link>
@@ -56,43 +54,14 @@ class Nav extends Component {
                         </form>
                     </div>
 
-                    {console.log(this.props.user)}
                     <div className="col-md-3 col-sm-12 text-center " >
-                        {this.props.user===null ? <Notloggedin />:<Onlogin />}
+                        {JSON.parse(localStorage.getItem('user'))===null ? <Notloggedin />:<Onlogin />}
                     </div>
                 </nav>
             </div>
         );
     }
 }
-
-class Onlogin extends Component {
-   
-    render() {
-
-
-        return (
-            <div className="app">
-
-                <Dropdown style={{textAlign:'center'}}>
-                    <Dropdown.Toggle className="dropdown" variant="success" id="dropdown-basic">
-                        <img id="dropdown" className="user-image" src={require('./../images/man.png')} height="60" width="60" alt="User Image" />  </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item ><a>Username</a><hr className="u-name-divider" /></Dropdown.Item>
-                        <Dropdown.Item><Link className="black" to="/details">Profile</Link></Dropdown.Item>
-                        <Dropdown.Item ><Link className="black" to="/postad">Post Ad</Link></Dropdown.Item>
-                        <Dropdown.Item><Link className="black" to="/myAds">My Ads</Link></Dropdown.Item>
-                        <Dropdown.Item ><a className="black" href="Javascript: void(0)" onClick={this.logout} >Log Out</a></Dropdown.Item>
-
-                    </Dropdown.Menu>
-                </Dropdown>
-
-            </div>
-        );
-    }
-}
-
 
 
 const Notloggedin = () => (
@@ -106,7 +75,7 @@ class CountrySelect extends Component {
 
     render() {
         return (
-            <select className="form-control region-selec-a" id="exampleFormControlSelect1">
+            <select defaultValue="Pakistan" className="form-control region-selec-a" id="exampleFormControlSelect1">
                 <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Afghanistan">Afghanistan</option>
@@ -270,7 +239,7 @@ class CountrySelect extends Component {
                 <option value="Northern Mariana Islands">Northern Mariana Islands</option>
                 <option value="Norway">Norway</option>
                 <option value="Oman">Oman</option>
-                <option value="Pakistan" selected >Pakistan</option>
+                <option value="Pakistan">Pakistan</option>
                 <option value="Palau">Palau</option>
                 <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
                 <option value="Panama">Panama</option>

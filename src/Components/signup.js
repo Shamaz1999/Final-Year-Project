@@ -17,6 +17,7 @@ class Signup extends Component {
         country: "",
         address: "",
         date: new Date(),
+        about:'',
         image1:null,
         url1:'',
         progress1:0,
@@ -82,7 +83,30 @@ class Signup extends Component {
 
         fetch('http://localhost:8000/signup', option)
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    let user = JSON.parse(localStorage.getItem('user'));
+                    if (user===null) {
+                        user = {
+                            _id: data._id,
+                            name: data.name,
+                            email: data.email,
+                            password: data.password,
+                            DOB: data.DOB,
+                            phone: data.phone,
+                            gender: data.gender,
+                            country: data.country,
+                            date: data.date,
+                            address: data.address,
+                            url1: data.url1,
+                            about: data.about
+                            }
+                            localStorage.setItem('user', JSON.stringify(user))
+                        }
+                        console.log(user)
+                            // this.props.history.push("/")  
+                    console.log(data._id)
+                    console.log(data.name)
+                    console.log(data)})
                 .catch(err => console.log(err))
 
         }
@@ -189,6 +213,10 @@ up1=()=>{
                             <label htmlFor="user-address"><b>Address</b> <span className="required">*</span></label>
                             <input type="text" id="user-address" ref="userAddress" onInput={e => this.setState({ address: e.target.value })} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your address" />
                         </div>
+                        <div className="form-group">
+                                <label htmlFor="exampleInputPassword1"><b>About you</b> <span className="required">*</span></label>
+                                <textarea name="comments" id="contact-comment" ref="comment" onChange={e => this.setState({about:e.target.value})} className="form-control" cols="30" rows="6"></textarea>
+                            </div>
                         <div>
                             <div className="float-left">
                                 <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>
@@ -213,8 +241,8 @@ class CountrySelect extends Component {
 
     render() {
         return (
-            <select id="user-country" ref="userCountry" onInput={e => (this.setState({ country: e.target.value }))} onChange={e => this.props.country(e.target.value)} className="form-control" name="Country">
-                <option value="" selected disabled >Select Country</option>
+            <select id="user-country" defaultValue="q" ref="userCountry" onInput={e => (this.setState({ country: e.target.value }))} onChange={e => this.props.country(e.target.value)} className="form-control" name="Country">
+                <option value="q" disabled >Select Country</option>
                 <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Afghanistan">Afghanistan</option>
