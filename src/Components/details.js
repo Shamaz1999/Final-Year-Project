@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; 
 import "./../bootstrap/bootstrapC.css";
 import {connect} from 'react-redux'
+import man from './../images/man.png'
+import girl from './../images/girl.png'
 
 
 
@@ -18,27 +20,30 @@ class Details extends Component {
 
     let user = JSON.parse(localStorage.getItem('user'));
     if (user === null){
-      user = {
-        _id:this.props.user._id,
-        name : this.props.user.name,
-        email : this.props.user.email,
-        password:this.props.user.password,
-        DOB:this.props.user.DOB,
-        phone:this.props.user.phone,
-        gender:this.props.user.gender,
-        country:this.props.user.country,
-        date:this.props.user.date,
-        about:this.props.user.about,
-        address:this.props.user.address,
-        url1:this.props.user.url1
-    };
-    localStorage.setItem('user',JSON.stringify(user))
-}
+        user = {
+            _id:this.props.user._id,
+            name : this.props.user.name,
+            email : this.props.user.email,
+            password:this.props.user.password,
+            DOB:this.props.user.DOB,
+            phone:this.props.user.phone,
+            gender:this.props.user.gender,
+            country:this.props.user.country,
+            date:this.props.user.date,
+            about:this.props.user.about,
+            address:this.props.user.address,
+            url1:this.props.user.url1
+        };
+        localStorage.setItem('user',JSON.stringify(user))
+        console.log(user.about)
+    }
 let  u = JSON.parse(localStorage.getItem('user'))
 this.refs.name.value=u.name
 this.refs.phone.value=u.phone
 this.refs.about.value=u.about
 this.refs.password.value=u.password
+this.refs.address.value=u.address
+
 
 this.setState({name:u.name})
 this.setState({phone:u.phone})
@@ -104,8 +109,21 @@ discard = ()=>{
         alert('Your changes have been saved')
     }
     render(){
+        
         let u = JSON.parse(localStorage.getItem('user'))
         console.log(this.props)
+
+
+        var dp= null
+if (u.url1 === "") {
+    if (u.gender === "male"){
+        dp = man
+    }
+    if (u.gender === "female"){
+        dp = girl
+    }
+}
+
         return(
             
             <div className="app">
@@ -113,7 +131,7 @@ discard = ()=>{
                 
                     <div className="detail-container">
                         <div className="profile-pic-container">
-                            <img height="150" width="150" src={u.url1} alt="profile-pic" />
+                            <img height="150" width="150" src={dp} alt="profile-pic" />
                         </div>
                         <div style={{textAlign:'center'}}>
     
@@ -123,9 +141,9 @@ discard = ()=>{
                                     <input onChange={e => this.setState({name:e.target.value})} type="text" ref="name" name="detail-name" className="detail-input"/>                               
                             </span>
                             <span className="detail-text-group">
-                                    <label htmlFor="exampleInputEmail1">About Me</label>
+                                    <label htmlFor="exampleInputEmail1">Address</label>
                                     <br/>
-                                    <input onChange={e => this.setState({about:e.target.value})} type="text" ref="about" name="detail-info" className="detail-input"  />                               
+                                    <input onChange={e => this.setState({about:e.target.value})} type="text" ref="address" name="detail-info" className="detail-input"  />                               
                             </span>
                             <span className="detail-text-group">
                                     <label htmlFor="exampleInputEmail1">Mobile Number</label>
@@ -137,6 +155,11 @@ discard = ()=>{
                                     <br/>
                                     <input onChange={e => this.setState({password:e.target.value})} type="text" ref="password" name="detail-name" className="detail-input" />     
                             </span>
+                            <div className="detail-text-group" style={{width:'88%', }}>
+                                    <label htmlFor="exampleInputEmail1">About Me</label>
+                                    <br/>
+                                    <textarea onChange={e => this.setState({about:e.target.value})} style={{resize:"none"}} rows="5" type="text" ref="about" name="detail-info" className="detail-input"  />                               
+                            </div>
                         </div>
 
                         <button className="btn btn-outline-danger mt-3" type="button" onClick={this.delete}>Delete my account and data</button>

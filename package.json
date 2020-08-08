@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "firebase": "^5.9.0",
+    "firebase": "^7.17.2",
     "jquery": "^3.3.1",
     "react": "^16.8.4",
     "react-alice-carousel": "^1.13.1",
@@ -15,7 +15,8 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "serve": "^11.3.2"
   },
   "devDependencies": {},
   "scripts": {

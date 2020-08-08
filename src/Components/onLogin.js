@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import { Dropdown } from "react-bootstrap";
-
+import man from './../images/man.png'
+import girl from './../images/girl.png'
 
 
 class Onlogin extends Component {
@@ -34,12 +35,22 @@ let user = JSON.parse(localStorage.getItem('user'));
     };
     localStorage.setItem('user',JSON.stringify(user))
 }
+ var dp= null
+if (user.url1 === "") {
+    if (user.gender === "male"){
+        dp = man
+    }
+    if (user.gender === "female"){
+        dp = girl
+    }
+
+}
         return (
             <div className="app">
 
                 <Dropdown style={{textAlign:'center'}}>
                     <Dropdown.Toggle className="dropdown" variant="success" id="dropdown-basic">
-                        <img id="dropdown" className="user-image" src={user.url1} height="60" width="60" alt="User Image" />  </Dropdown.Toggle>
+                        <img id="dropdown" className="user-image" height="60" width="60" alt="User Image" src={dp}/>  </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                         <Dropdown.Item ><a>{user.name}</a><hr className="u-name-divider" /></Dropdown.Item>

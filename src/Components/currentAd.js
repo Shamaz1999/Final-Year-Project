@@ -27,9 +27,6 @@ class Ad extends Component {
     }
 
     componentDidMount(){
-
-        
-
         var option = {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -41,19 +38,22 @@ class Ad extends Component {
     fetch('http://localhost:8000/currentad', option)
             .then(res => res.json())
             .then(data => {
-                this.setState({ad:data},()=>console.log(this.state))
-                console.log(data)})
+                console.log(data)
+                this.setState({ad:data},
+                ()=>console.log(this.state))
+                this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
+            })
             .catch(err => console.log(err))
-
-    
-
         }
 
-
-        
+        var 
+  
         render(){
-            this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
-            console.log(this.state.ad.sellerId)
+            
+            // this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
+            // console.log(this.state.ad.sellerId)
+            console.log(this.state)
+
 
         const handleOnDragStart = e => e.preventDefault()
         var arr = [this.state.ad.url1,this.state.ad.url2,this.state.ad.url3,this.state.ad.url4]
@@ -68,9 +68,8 @@ class Ad extends Component {
                 <div className="col-md-8" style={{margin:"0px "}}>
                     <div className="ad-img-container">
                     {/* <img src={this.state.ad.url1} alt=""/>               */}
-                    <AliceCarousel items={item} autoPlay={false} mouseDragEnabled >
-                        
-                    </AliceCarousel>
+                    <AliceCarousel items={item} autoPlay={false} mouseDragEnabled />      
+                    {/* </AliceCarousel> */}
                     </div>
                     <div className="ad-desc-container">
                     <h4>Details</h4>

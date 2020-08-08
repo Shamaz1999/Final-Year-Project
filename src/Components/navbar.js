@@ -20,11 +20,10 @@ class Nav extends Component {
                 {/* <button onClick={this.logout}>LOg Out</button> */}
                 <nav className="navbar navbar-expand-lg navbar-light ">
                     <div className="col-md-3 col-sm-12 text-center no-pad">
-                        <Link to="/"><h1 className="display-4 main-logo">Buy&Sell</h1></Link>
+                        <Link to="/"><h1 className="display-4 main-logo">Buy&amp;Sell</h1></Link>
                     </div>
                     <div className="col-md-6 col-sm-12 text-center no-pad mt-1">
                         <form className="form-inline text-center d-inline-flex">
-
                             <div className="form-group nav-search">
                                 <CountrySelect />
                             </div>
@@ -34,7 +33,6 @@ class Nav extends Component {
                                     <button className="btn login-btn search-btn" type="button">Search</button>
                                 </div>
                             </div>
-
                             <div className="form-group nav-search">
                                 <select className="form-control region-selec-b" id="exampleFormControlSelect1">
                                     <option value="" disabled>Categories</option>
@@ -44,13 +42,11 @@ class Nav extends Component {
                                     <option value="property for rent">Property for Rent</option>
                                     <option value="electronics">Electronics and Home Appliances</option>
                                     <option value="bikes">Bikes</option>
-                                    <option value="business,industrial">Business, Industrial & Agriculture</option>
+                                    <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
                                     <option value="services">Services</option>
                                     <option value="other">Other</option>
-
                                 </select>
                             </div>
-
                         </form>
                     </div>
 
