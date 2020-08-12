@@ -59,7 +59,7 @@ class Content extends Component {
             }
 
         } else{
-            d = 'Sorry no ads have been posted'
+            d = <h2 style={{margin: '10px auto', fontWeight:'400'}} >Sorry no ads have been posted yet!</h2> 
         }
         const handleOnDragStart = e => e.preventDefault()
         

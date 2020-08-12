@@ -73,7 +73,7 @@ class MyAds extends Component {
             }
 
         } else{
-            d = 'You have not posted any ads'
+            d = <h2 style={{margin: '10px auto', fontWeight:'400'}} >You have not posted any ads yet!</h2>
         }
         
         return (

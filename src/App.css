@@ -6,6 +6,28 @@ ul, li {
   margin: 0px!important;
   padding: 0px!important;
 }
+.no-margin{
+  margin: 0px!important;
+}
+.no-padding{
+  padding: 0px!important;
+}
+.no-border{
+  border: none;
+}
+.no-outline{
+  outline: none;
+}
+
+.phone-no-field{
+  background-color: transparent;
+  width: 130px;
+}
+.show-phone-btn{
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px !important;
+}
 label{
   padding: 0 10px;
 }
@@ -606,8 +628,12 @@ marquee{
  font-size: 20px
 }
 .phone-container{
-  text-align: center;
   padding: 20px;
+  text-align: center; 
+}
+.user-chat-btn{
+  padding: 5px 15px;
+  border-radius: 5px;
 }
 .number{
   margin-left: 10px;

@@ -46,15 +46,28 @@ class Ad extends Component {
             .catch(err => console.log(err))
         }
 
-        var 
+         phoneLoginAlert = () => {
+             var user = JSON.parse(localStorage.getItem("user"))
+             if(user !== "")
+            alert("You need to Log In to view the number!")
+            else
+            return
+        }
+         chatLoginAlert = () => {
+             var user = JSON.parse(localStorage.getItem("user"))
+             if(user !== "")
+            alert("You need to Log In to chat with this user!")
+            else
+            return
+        }
   
         render(){
             
             // this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
             // console.log(this.state.ad.sellerId)
             console.log(this.state)
-
-
+        
+        var user = JSON.parse(localStorage.getItem("user"))
         const handleOnDragStart = e => e.preventDefault()
         var arr = [this.state.ad.url1,this.state.ad.url2,this.state.ad.url3,this.state.ad.url4]
         let item =[1,2,3,4].map((i)=>(
@@ -131,10 +144,24 @@ class Ad extends Component {
 
                                 <div className="container2">
                                     <div className="phone-container">
-                                        <img src={require('./../images/phone.png')} height="30" alt="phone"/>
-                                       <div className="number">
-                                            {this.state.ad.phone}
+                                        <span className="phone-image-conainer">
+                                            <img src={require('./../images/phone.png')} height="20" alt="phone"/>
+                                        </span>
+                                       <div className="number" onClick={this.phoneLoginAlert}>
+                                            {/* {this.state.ad.phone} */}
+                                            <input className="no-border no-outline phone-no-field " disabled  value={this.state.ad.phone}
+                                                type={
+                                                    user ? "text" : "password"
+                                                }
+                                            />
+                                        {/* <button className="show-phone-btn login-btn" >View Number</button>  */}
                                        </div>
+                                    </div>
+                                    <div className="user-chat-btn-container pb-3 text-center">
+                                        <button className="btn login-btn no-margin"
+                                          onClick={user ? ()=> this.props.history.push('/'+this.state.ad.sellerId+'/chat') : this.chatLoginAlert }
+                                        >
+                                          Chat with this user</button>   
                                     </div>
                                 </div>
                             </div>
