@@ -27,8 +27,8 @@ class Nav extends Component {
                             <div className="form-group nav-search">
                                 <CountrySelect />
                             </div>
-                            <div className="input-group mb-3 ml-3 mr-3">
-                                <input type="text" className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                            <div style={{height:'45px'}} className="input-group ml-3 mr-3">
+                                <input type="text" style={{height:'45px'}} className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                                 <div className="input-group-append">
                                     <button className="btn login-btn search-btn" type="button">Search</button>
                                 </div>

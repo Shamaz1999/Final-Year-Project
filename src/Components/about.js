@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 class About extends Component {
 
     render(){
+      window.scrollTo(0,0);
         return(
 
             <div className="app">

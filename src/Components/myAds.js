@@ -30,6 +30,8 @@ class MyAds extends Component {
     }
 
     render() {
+        window.scrollTo(0,0);
+
         let d;
         let im = {
             margin: "20px 0",

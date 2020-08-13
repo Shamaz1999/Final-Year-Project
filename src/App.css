@@ -18,7 +18,9 @@ ul, li {
 .no-outline{
   outline: none;
 }
-
+progress{
+  color: #EA1039;
+}
 .phone-no-field{
   background-color: transparent;
   width: 130px;
@@ -356,17 +358,17 @@ margin: 0 auto;
   margin: 0px!important;
 }
 .region-selec-a{
-  margin-bottom: 14px!important;  
+  /* margin-bottom: 14px!important;   */
   margin-right: 10px;
   height: 45px!important;
   width: 110px!important;
   
 }
 .region-selec-b{
-  margin-bottom: 14px!important;  
+  /* margin-bottom: 14px!important;   */
   margin-right: 10px;
   height: 45px!important;
-  width: 125px!important;
+  width: 110px!important;
 }
 .form-control{
   padding-bottom:0; 
@@ -378,10 +380,15 @@ margin: 0 auto;
   transition: all .5s;
   transition-property: width, padding-bottom, margin-top;
   color: white;
-  border-top-left-radius: 0px!important;
-  border-bottom-left-radius: 0px!important
+  /* border-top-left-radius: 0px!important; */
+  /* border-bottom-left-radius: 0px!important */
 }  
-
+.face{
+  /* font-size: 29px; */
+  /* height: 70px; */
+  /* width: 70px; */
+  color: #EA1039;
+}
 .login-btn{
   margin: 20px 0 0 0;
   border: none;
@@ -701,10 +708,9 @@ div.ads-type{
   border: 1px solid gainsboro;
 }
 .img-upload-progress{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
-  margin: 0 10px
+  margin: 0 10px;
+  color: #EA1039;
 }
-
 
 
 /* login Portal Styling */

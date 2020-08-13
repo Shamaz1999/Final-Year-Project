@@ -6,7 +6,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import star from './../images/star.png'
 import starSelect from './../images/starSelect.png'
 import { connect } from 'react-redux'
-
+import FontAwesome from 'react-fontawesome'
 
 class Ad extends Component {
 
@@ -16,17 +16,8 @@ class Ad extends Component {
     }
     
 
-    fav = (src)=>{
-        alert(src)
-        if(src === starSelect){
-            src = starSelect
-        }
-        else{
-            src = starSelect
-        }
-    }
-
     componentDidMount(){
+        
         var option = {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -34,35 +25,52 @@ class Ad extends Component {
                 'Content-Type': 'application/json'
             }
         }
-
-    fetch('http://localhost:8000/currentad', option)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                this.setState({ad:data},
+        
+        fetch('http://localhost:8000/currentad', option)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            this.setState({ad:data},
                 ()=>console.log(this.state))
                 this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
             })
             .catch(err => console.log(err))
         }
-
-         phoneLoginAlert = () => {
-             var user = JSON.parse(localStorage.getItem("user"))
-             if(user !== "")
+        
+        phoneLoginAlert = () => {
+            var user = JSON.parse(localStorage.getItem("user"))
+            if(user !== "")
             alert("You need to Log In to view the number!")
             else
             return
         }
-         chatLoginAlert = () => {
-             var user = JSON.parse(localStorage.getItem("user"))
-             if(user !== "")
+        chatLoginAlert = () => {
+            var user = JSON.parse(localStorage.getItem("user"))
+            if(user !== "")
             alert("You need to Log In to chat with this user!")
             else
             return
         }
-  
+        favLoginAlert = () => {
+            var user = JSON.parse(localStorage.getItem("user"))
+            if(user !== "")
+            alert("You need to Log In to mark as favourite!")
+            else
+            return
+        }
+        
         render(){
             
+           let markFav = ()=>{
+               
+                document.getElementById('favIcon').setAttribute('name','star')
+                console.log('starred ')
+           }
+
+           
+
+
+            window.scrollTo(0,0);
             // this.props.dispatch({type:'insertads',payload:this.state.ad.sellerId})
             // console.log(this.state.ad.sellerId)
             console.log(this.state)
@@ -113,7 +121,10 @@ class Ad extends Component {
                             <div className="price-container" style={{padding:"15px 30px"}}>
                                 <h1 className="float-left">Rs {this.state.ad.price}</h1>
                                 <div className="favourite-container float-right">
-                                    <img src={star} height="30" width="30" alt="favourite"/>
+                                    {/* <img src={star} height="30" width="30" alt="favourite"/> */}
+                                    <FontAwesome name="star" id="favIcon" size="2x" ref="fav" className="face" 
+                                    onClick={user ? markFav : this.favLoginAlert }
+                                    />
                                 </div>
                                 <div className="adTitle-container clear">
                                         {this.state.ad.adTitle}
@@ -144,10 +155,12 @@ class Ad extends Component {
 
                                 <div className="container2">
                                     <div className="phone-container">
+                                       <div className="number"
+                                       onClick={user ? ()=>  true : this.phoneLoginAlert }
+                                       >
                                         <span className="phone-image-conainer">
                                             <img src={require('./../images/phone.png')} height="20" alt="phone"/>
                                         </span>
-                                       <div className="number" onClick={this.phoneLoginAlert}>
                                             {/* {this.state.ad.phone} */}
                                             <input className="no-border no-outline phone-no-field " disabled  value={this.state.ad.phone}
                                                 type={

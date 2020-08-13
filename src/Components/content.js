@@ -12,7 +12,6 @@ class Content extends Component {
         }
     }
     componentDidMount(){
-
         var option = {
             method: 'POST',
             body: '',
@@ -24,19 +23,20 @@ class Content extends Component {
         .then(res => res.json())
         // .then(data => console.log(data) )
         .then(data=> {console.log(data)
-        this.setState({ads:data})
+            this.setState({ads:data})
         })
         .catch(err => console.log(err))
-            // console.log(ads)
-            // console.log(this.state);
-        }
+        // console.log(ads)
+        // console.log(this.state);
+    }
     
-
+    
     render() {
-
+        window.scrollTo(0,0);
+        
         let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 'a', "g", "f"];
         let d;
-                 
+        
         let im = {
             margin: "20px 0",
         }
@@ -44,7 +44,7 @@ class Content extends Component {
             for (let i = 0; i <= arr.length; i++) {
                 let adId;
                 d = this.state.ads.map((item ,index) =>
-                    <div key={index} className="col-md-3" >
+                <div key={index} className="col-md-3" >
                         <div className="card" style={im} >                        
                             <img className="card-img-top" height="150" width="400" src={this.state.ads[index].url1} alt="Card image cap"/>
                             <div className="card-body">

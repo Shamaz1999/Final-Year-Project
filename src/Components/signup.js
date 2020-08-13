@@ -159,7 +159,7 @@ up1=()=>{
         return (
             <div className='main-signup'>
                 <form className="signup-form hidden" id="signup-form" method="POST" style={{ marginBottom: "190px" }} action="localhost:8000/signup">
-                    <div className="display-4">
+                    <div className="display-4 text-center">
                         Create Your Account!
                         </div>
                     <br />
@@ -200,9 +200,10 @@ up1=()=>{
                         </div>
                         <label htmlFor="exampleInputEmail1"><b>Profile Picture</b> <span className="required"><span style={{fontSize:'14px'}}>(after selecting files click on upload)</span>*</span></label>
                         <div className="imgupload1">
-                                    <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1}/>
-                                    <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
-                                    <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
+                            <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1}/>
+                            <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
+                            <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
+                      
                                     <img ref='img1' id="upImg1" src={this.state.url1} className="hid" height="30" />
                                 </div>
                         <div className="form-group">
