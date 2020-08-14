@@ -98,17 +98,22 @@ class Signup extends Component {
                             date: data.date,
                             address: data.address,
                             url1: data.url1,
-                            about: data.about
+                            about: data.about,
+                            favorites:data.favourites
                             }
                             localStorage.setItem('user', JSON.stringify(user))
                         }
                         console.log(user)
                             // this.props.history.push("/")  
-                    console.log(data._id)
-                    console.log(data.name)
-                    console.log(data)})
-                .catch(err => console.log(err))
+                    // console.log(data._id)
+                    // console.log(data.name)
+                    console.log(data)
+                    alert('Your Account has been created! You can log in now.')
+                    this.props.history.push('/login')
+                    }
+                    )
 
+                .catch(err => console.log(err))
         }
     }
 

@@ -37,19 +37,19 @@ class Details extends Component {
         localStorage.setItem('user',JSON.stringify(user))
         console.log(user.about)
     }
-let  u = JSON.parse(localStorage.getItem('user'))
-this.refs.name.value=u.name
-this.refs.phone.value=u.phone
-this.refs.about.value=u.about
-this.refs.password.value=u.password
-this.refs.address.value=u.address
+// let  u = JSON.parse(localStorage.getItem('user'))
+this.refs.name.value=user.name
+this.refs.phone.value=user.phone
+this.refs.about.value=user.about
+this.refs.password.value=user.password
+this.refs.address.value=user.address
 
 
-this.setState({name:u.name})
-this.setState({phone:u.phone})
-this.setState({password:u.password})
-this.setState({about:u.password})
-this.setState({id: u._id},console.log(this.state.id))
+this.setState({name:user.name})
+this.setState({phone:user.phone})
+this.setState({password:user.password})
+this.setState({about:user.about})
+this.setState({id: user._id})
 
 
 }
@@ -111,9 +111,6 @@ discard = ()=>{
     render(){
         
         let u = JSON.parse(localStorage.getItem('user'))
-        console.log(this.props)
-
-
         var dp= null
 if (u.url1 === "") {
     if (u.gender === "male"){
@@ -123,6 +120,7 @@ if (u.url1 === "") {
         dp = girl
     }
 }
+else{dp = u.url1}
 
         return(
             

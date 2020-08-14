@@ -13,12 +13,13 @@ class Onlogin extends Component {
     }
 
     logout=()=>{
-        alert('You have been logged out')
         localStorage.removeItem('user');
+        alert('You have been logged out')
     }   
     render() {
-console.log(this.props)
-let user = JSON.parse(localStorage.getItem('user'));
+
+    console.log(this.props)
+    let user = JSON.parse(localStorage.getItem('user'));
     if (user === null){
       user = {
         _id:this.props.user._id,
@@ -31,11 +32,13 @@ let user = JSON.parse(localStorage.getItem('user'));
         country:this.props.user.country,
         date:this.props.user.date,
         address:this.props.user.address,
-        url1:this.props.user.url1
+        url1:this.props.user.url1,
+        favorites:this.props.user.favourites,
     };
     localStorage.setItem('user',JSON.stringify(user))
+    console.log(user)
 }
- var dp= null
+ var dp= null;
 if (user.url1 === "") {
     if (user.gender === "male"){
         dp = man
@@ -43,8 +46,8 @@ if (user.url1 === "") {
     if (user.gender === "female"){
         dp = girl
     }
-
 }
+else{dp = user.url1}
         return (
             <div className="app">
 
@@ -58,7 +61,6 @@ if (user.url1 === "") {
                         <Dropdown.Item ><Link className="black" to="/postad">Post Ad</Link></Dropdown.Item>
                         <Dropdown.Item><Link className="black" to="/myAds">My Ads</Link></Dropdown.Item>
                         <Dropdown.Item ><Link className="black" to="/" onClick={this.logout} >Log Out</Link></Dropdown.Item>
-
                     </Dropdown.Menu>
                 </Dropdown>
 

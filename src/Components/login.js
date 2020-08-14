@@ -39,7 +39,6 @@ class Login extends Component {
                     .then(data => {
                         console.log(data)
                         let user = JSON.parse(localStorage.getItem('user'));
-                        console.log(user)
                         if (user===null) {
                             user = {
                                 _id: data._id,
@@ -53,9 +52,11 @@ class Login extends Component {
                                 date: data.date,
                                 address: data.address,
                                 url1: data.url1,
-                                about: data.url1
+                                about: data.about,
+                                favorites : data.favorites
                             }
                             localStorage.setItem('user', JSON.stringify(user))
+                            console.log(user)
                         }
                         user = {
                             _id: data._id,
@@ -69,10 +70,11 @@ class Login extends Component {
                             date: data.date,
                             address: data.address,
                             url1: data.url1,
-                            about: data.url1
+                            about: data.about,
+                            favorites:data.favorites
                         }
                         localStorage.setItem('user', JSON.stringify(user))
-
+                        console.log(data.favorites)
                             this.props.dispatch({ type: 'Add_user', payload: data })
                             this.props.history.push("/")
 
@@ -89,8 +91,6 @@ class Login extends Component {
     }
 
     render() {
-        console.log(this.state)
-        console.log(this.props)
 
         return (
             <div className="main-login">
