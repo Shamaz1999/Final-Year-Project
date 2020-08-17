@@ -17,6 +17,7 @@ import Post from './Components/postAd'
 import {Provider} from 'react-redux'
 import store from './redux'
 import Chat from './Components/chat';
+import favAds from './Components/favAds';
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path='/ad/:adsd/sellerProfile' component={Seller} />
             <Route path='/ad/:adId' component={Ad} />
             <Route path='/myads' component={MyAds} />
+            <Route path='/favoriteAds' component={favAds} />
             <Route path='/postad' component={Post} />
             <Route path='/:sellerId/chat' component={Chat} />
             <Route path='/details' component={Details} />

@@ -311,8 +311,12 @@ verify = ()=>{
             
             fetch('http://localhost:8000/postad', option)
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => 
+                console.log(data) 
+            )
             .catch(err => console.log(err))
+            alert('Your Ad has been posted!')
+            this.props.history.push('/')
         }
     }
     

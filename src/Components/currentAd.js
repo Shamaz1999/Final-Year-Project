@@ -141,30 +141,33 @@ class Ad extends Component {
         
         
         render() {
-            
+        var pp ;
          var isFav = false;
          var user = JSON.parse(localStorage.getItem("user"));
         for(var i = 0; i< user.favorites.length; i++){
-            console.log('inside loop')
-            console.log(user.favorites[i].favid)
-            console.log(this.props.match.params.adId)
 
             if(user.favorites[i].favid === this.props.match.params.adId){
                 console.log(user.favorites[i])
+                // var c = document.getElementById('favIcon')
+                // c.classList.remove('fa-star-o')
+                // c.classList.add('fa-star')
+                pp = starSelect
                 isFav = true
             }
             else{
+                pp = star
                isFav = false
             }
         }
-        
+        console.log(isFav)
         let markFav = () => {
             if (isFav === false) {
 
-                var c = document.getElementById('favIcon')
-                c.classList.remove('fa-star-o')
-                c.classList.add('fa-star')
+                // var c = document.getElementById('favIcon')
+                // c.classList.remove('fa-star-o')
+                // c.classList.add('fa-star')
 
+                pp = starSelect
                 var option = {
                     method: 'POST',
                     body: JSON.stringify(this.state),
@@ -185,11 +188,12 @@ class Ad extends Component {
 
                 isFav = true;
             }
-            else {
-                var c = document.getElementById('favIcon')
-                c.classList.remove('fa-star')
-                c.classList.add('fa-star-o')
-
+            if (isFav === true) {
+                // var c = document.getElementById('favIcon')
+                // c.classList.remove('fa-star')
+                // c.classList.add('fa-star-o')
+                console.log('this is true')
+                pp = star
                 var option = {
                     method: 'POST',
                     body: JSON.stringify(this.state),
@@ -269,6 +273,9 @@ class Ad extends Component {
                                         {/* <img src={star} height="30" width="30" alt="favourite"/> */}
                                         <FontAwesome name="star-o" id="favIcon" size="2x" ref="fav" className="face"
                                             onClick={user ? markFav : this.favLoginAlert}
+                                        />
+                                        <img src={pp} height="30"
+                                             onClick={user ? markFav : this.favLoginAlert}
                                         />
                                     </div>
                                     <div className="adTitle-container clear">

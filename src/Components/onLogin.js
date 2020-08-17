@@ -60,6 +60,7 @@ else{dp = user.url1}
                         <Dropdown.Item><Link className="black" to="/details">Profile</Link></Dropdown.Item>
                         <Dropdown.Item ><Link className="black" to="/postad">Post Ad</Link></Dropdown.Item>
                         <Dropdown.Item><Link className="black" to="/myAds">My Ads</Link></Dropdown.Item>
+                        <Dropdown.Item><Link className="black" to="/favoriteAds">Favorite Ads</Link></Dropdown.Item>
                         <Dropdown.Item ><Link className="black" to="/" onClick={this.logout} >Log Out</Link></Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
