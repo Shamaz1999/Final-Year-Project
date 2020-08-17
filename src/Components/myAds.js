@@ -42,40 +42,47 @@ class MyAds extends Component {
         console.log(this.state.ads[t])
         
         
-        if (this.state.ads.length !== 0) {
-            for (let i = 0; i <= this.state.ads.length; i++) {
-                var q = -1;
-                q++
-                let url = [this.state.ads[q].url1,this.state.ads[q].url2,this.state.ads[q].url3,this.state.ads[q].url4]
-                let item =[1,2,3,4].map((u)=>(
-                    <div key={u}>
-                    <img height='180'  src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
-                    </div>
-                ))
-                d = this.state.ads.map((index,y) =>
-                    <div className="col-md-4"  >
-                        <div class="card" style={im} >
-                        <AliceCarousel items={item} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000}    mouseDragEnabled >
+        // if (this.state.ads.length !== 0) {
+        //     for (let i = 0; i <= this.state.ads.length; i++) {
+        //         var q = -1;
+        //         q++
+        //         let url = [this.state.ads[q].url1,this.state.ads[q].url2,this.state.ads[q].url3,this.state.ads[q].url4]
+        //         let item =[1,2,3,4].map((u)=>(
+        //             <div key={u}>
+        //             <img height='180'  src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
+        //             </div>
+        //         ))
+        //         d = this.state.ads.map((index,y) =>
+        //             <div className="col-md-4"  >
+        //                 <div class="card" style={im} >
+        //                 <AliceCarousel items={item} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000}    mouseDragEnabled >
                         
-                            {/* <img  src={cardImg} alt="Card image cap" /> */}
-                    </AliceCarousel>                       
-                            <div class="card-body">
-                                <h6 className='float-left'>{this.state.ads[y].adTitle}</h6>
-                                <h6 className='float-right'>Rs {this.state.ads[y].price}</h6>
-                                <div className="clear"></div>
-                                <p>{this.state.ads[y].description}</p>
-                                <div>
-                                    <div className="float-left small">{this.state.ads[y].location}</div>
-                                    <div className="float-right small">{this.state.ads[y].date}</div>    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+        //                     {/* <img  src={cardImg} alt="Card image cap" /> */}
+        //             </AliceCarousel>                       
+        //                     <div class="card-body">
+        //                         <h6 className='float-left'>{this.state.ads[y].adTitle}</h6>
+        //                         <h6 className='float-right'>Rs {this.state.ads[y].price}</h6>
+        //                         <div className="clear"></div>
+        //                         <p>{this.state.ads[y].description}</p>
+        //                         <div>
+        //                             <div className="float-left small">{this.state.ads[y].location}</div>
+        //                             <div className="float-right small">{this.state.ads[y].date}</div>    
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         )
+        //     }
 
-        } else{
-            d = <h2 style={{margin: '10px auto', fontWeight:'400'}} >You have not posted any ads yet!</h2>
+        // } else{
+        //     d = <h2 style={{margin: '10px auto', fontWeight:'400'}} >You have not posted any ads yet!</h2>
+        // }
+        const items = (data) => {
+            return data.map((url, index) => {
+                return (<div key={index}>
+                    <img height='180' src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
+                </div>)
+            })
         }
         
         return (
@@ -84,7 +91,33 @@ class MyAds extends Component {
                 <div className="display-4 mt-5 mb-5">Your Ads</div>
              
                 <div className="row no-nothing">
-                    {d}
+                    {/* {d} */}
+                    {   this.state.ads.length?
+                        this.state.ads.map((ad, index) => {
+                            return (<div className="col-md-4"  >
+                                <div class="card" style={im} >
+                                    <AliceCarousel 
+                                    // items={items}
+                                     buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
+                                         {items([ad.url1,ad.url2,ad.url3,ad.url4])}
+                                        {/* <img src={cardImg} alt="Card image cap" /> */}
+                                    </AliceCarousel>
+                                    <div class="card-body">
+                                        <h6 className='float-left'>{ad.adTitle}</h6>
+                                        <h6 className='float-right'>Rs {ad.price}</h6>
+                                        <div className="clear"></div>
+                                        <p>{ad.description}</p>
+                                        <div>
+                                            <div className="float-left small">{ad.location}</div>
+                                            <div className="float-right small">{ad.date}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>)
+                        })
+                        :
+                        <h2 style={{ margin: '10px auto', fontWeight: '400' }} >You do not have any favorite ads yet!</h2>
+                    }
                 </div>
                 <div className="container">
                     <hr/>

@@ -14,13 +14,19 @@ class Ad extends Component {
         id: this.props.match.params.adId,
         ad: '',
         user: JSON.parse(localStorage.getItem("user")),
-        favAdId: '',
+        // favAdId: '',
+        isFav:false,
     }
 
 
     componentDidMount() {
 
         //Updating User
+        var isFav = false;
+         var user = JSON.parse(localStorage.getItem("user"));
+         var adId=this.props.match.params.adId;
+         isFav=user.favorites.includes(adId);
+         this.setState({isFav:isFav});
 
         var option = {
             method: 'POST',
@@ -142,31 +148,33 @@ class Ad extends Component {
         
         render() {
         var pp ;
-         var isFav = false;
+        //  var isFav = false;
          var user = JSON.parse(localStorage.getItem("user"));
-        for(var i = 0; i< user.favorites.length; i++){
+        //  var adId=this.props.match.params.adId;
+        //  isFav=user.favorites.includes(adId);
+        // for(var i = 0; i< user.favorites.length; i++){
 
-            if(user.favorites[i].favid === this.props.match.params.adId){
-                console.log(user.favorites[i])
-                // var c = document.getElementById('favIcon')
-                // c.classList.remove('fa-star-o')
-                // c.classList.add('fa-star')
-                pp = starSelect
-                isFav = true
-            }
-            else{
-                pp = star
-               isFav = false
-            }
-        }
-        console.log(isFav)
+        //     if(user.favorites[i].favid === this.props.match.params.adId){
+        //         console.log(user.favorites[i])
+        //         // var c = document.getElementById('favIcon')
+        //         // c.classList.remove('fa-star-o')
+        //         // c.classList.add('fa-star')
+        //         pp = starSelect
+        //         isFav = true
+        //     }
+        //     else{
+        //         pp = star
+        //        isFav = false
+        //     }
+        // }
+        // console.log(this.state.isFav);
         let markFav = () => {
-            if (isFav === false) {
+            if (!this.state.isFav) {
 
                 // var c = document.getElementById('favIcon')
                 // c.classList.remove('fa-star-o')
                 // c.classList.add('fa-star')
-
+                console.log("add fav");
                 pp = starSelect
                 var option = {
                     method: 'POST',
@@ -186,13 +194,13 @@ class Ad extends Component {
                     })
                     .catch(err => console.log(err))
 
-                isFav = true;
+                    this.setState({isFav:true});
             }
-            if (isFav === true) {
+            else {
                 // var c = document.getElementById('favIcon')
                 // c.classList.remove('fa-star')
                 // c.classList.add('fa-star-o')
-                console.log('this is true')
+                console.log('remove fav')
                 pp = star
                 var option = {
                     method: 'POST',
@@ -209,11 +217,8 @@ class Ad extends Component {
                         // this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId })
                     })
                     .catch(err => console.log(err))
-
-                isFav = false;
+                    this.setState({isFav:false})
             }
-
-
 
         }
 
@@ -271,12 +276,12 @@ class Ad extends Component {
                                     <h1 className="float-left">Rs {this.state.ad.price}</h1>
                                     <div className="favourite-container float-right">
                                         {/* <img src={star} height="30" width="30" alt="favourite"/> */}
-                                        <FontAwesome name="star-o" id="favIcon" size="2x" ref="fav" className="face"
+                                        <FontAwesome name={this.state.isFav?"star":"star-o"} id="favIcon" size="2x" ref="fav" className="face"
                                             onClick={user ? markFav : this.favLoginAlert}
                                         />
-                                        <img src={pp} height="30"
+                                        {/* <img src={pp} height="30"
                                              onClick={user ? markFav : this.favLoginAlert}
-                                        />
+                                        /> */}
                                     </div>
                                     <div className="adTitle-container clear">
                                         {this.state.ad.adTitle}
