@@ -11,8 +11,8 @@ class Chat extends Component {
     
 
     render() {
-        console.log(this.state)
-        console.log(this.props)
+        window.scrollTo(0, 0);
+
 
         return (
             <div className="main-login">

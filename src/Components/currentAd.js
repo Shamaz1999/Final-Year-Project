@@ -147,35 +147,13 @@ class Ad extends Component {
         
         
         render() {
-        var pp ;
-        //  var isFav = false;
+       
          var user = JSON.parse(localStorage.getItem("user"));
-        //  var adId=this.props.match.params.adId;
-        //  isFav=user.favorites.includes(adId);
-        // for(var i = 0; i< user.favorites.length; i++){
-
-        //     if(user.favorites[i].favid === this.props.match.params.adId){
-        //         console.log(user.favorites[i])
-        //         // var c = document.getElementById('favIcon')
-        //         // c.classList.remove('fa-star-o')
-        //         // c.classList.add('fa-star')
-        //         pp = starSelect
-        //         isFav = true
-        //     }
-        //     else{
-        //         pp = star
-        //        isFav = false
-        //     }
-        // }
-        // console.log(this.state.isFav);
+      
         let markFav = () => {
             if (!this.state.isFav) {
 
-                // var c = document.getElementById('favIcon')
-                // c.classList.remove('fa-star-o')
-                // c.classList.add('fa-star')
-                console.log("add fav");
-                pp = starSelect
+               
                 var option = {
                     method: 'POST',
                     body: JSON.stringify(this.state),
@@ -187,21 +165,50 @@ class Ad extends Component {
                 fetch('http://localhost:8000/markfavorite', option)
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                        // this.setState({ ad: data },
-                        // () => console.log(this.state))
-                        // this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId })
+                        this.setState({user:data});
+                        let user = JSON.parse(localStorage.getItem('user'));
+                        if (user === null) {
+                            user = {
+                                _id: data._id,
+                                name: data.name,
+                                email: data.email,
+                                password: data.password,
+                                DOB: data.DOB,
+                                phone: data.phone,
+                                gender: data.gender,
+                                country: data.country,
+                                date: data.date,
+                                address: data.address,
+                                url1: data.url1,
+                                about: data.about,
+                                favorites: data.favorites
+                            }
+                            localStorage.setItem('user', JSON.stringify(user))
+                        }
+                        user = {
+                            _id: data._id,
+                            name: data.name,
+                            email: data.email,
+                            password: data.password,
+                            DOB: data.DOB,
+                            phone: data.phone,
+                            gender: data.gender,
+                            country: data.country,
+                            date: data.date,
+                            address: data.address,
+                            url1: data.url1,
+                            about: data.about,
+                            favorites: data.favorites
+                        }
+                        localStorage.setItem('user', JSON.stringify(user))
+                        
                     })
                     .catch(err => console.log(err))
 
                     this.setState({isFav:true});
             }
             else {
-                // var c = document.getElementById('favIcon')
-                // c.classList.remove('fa-star')
-                // c.classList.add('fa-star-o')
-                console.log('remove fav')
-                pp = star
+              
                 var option = {
                     method: 'POST',
                     body: JSON.stringify(this.state),
@@ -211,10 +218,43 @@ class Ad extends Component {
                 fetch('http://localhost:8000/removefavorite', option)
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                        // this.setState({ ad: data },
-                        // () => console.log(this.state))
-                        // this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId })
+                        this.setState({user:data})
+                        let user = JSON.parse(localStorage.getItem('user'));
+                        if (user === null) {
+                            user = {
+                                _id: data._id,
+                                name: data.name,
+                                email: data.email,
+                                password: data.password,
+                                DOB: data.DOB,
+                                phone: data.phone,
+                                gender: data.gender,
+                                country: data.country,
+                                date: data.date,
+                                address: data.address,
+                                url1: data.url1,
+                                about: data.about,
+                                favorites: data.favorites
+                            }
+                            localStorage.setItem('user', JSON.stringify(user))
+                        }
+                        user = {
+                            _id: data._id,
+                            name: data.name,
+                            email: data.email,
+                            password: data.password,
+                            DOB: data.DOB,
+                            phone: data.phone,
+                            gender: data.gender,
+                            country: data.country,
+                            date: data.date,
+                            address: data.address,
+                            url1: data.url1,
+                            about: data.about,
+                            favorites: data.favorites
+                        }
+                        localStorage.setItem('user', JSON.stringify(user))
+                      
                     })
                     .catch(err => console.log(err))
                     this.setState({isFav:false})

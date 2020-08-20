@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css"
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
-import cardImg from './../images/6.jpg'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 
 
 class MyAds extends Component {
     state={
-        ads:[]
+        ads:[],
+        adToDelete:''
     }
 
     componentDidMount(){
@@ -24,65 +26,105 @@ class MyAds extends Component {
         fetch('http://localhost:8000/userads', option)
         .then(res => res.json())
         .then(data => {
-            this.setState({ads:data},console.log(this.state.ads[0]))
+            this.setState({ads:data})
             console.log(data)})
         .catch(err => console.log(err))
     }
 
     render() {
         window.scrollTo(0,0);
+        
+        const deleteAd = (id)=>{
+            console.log(id)
+            this.setState({adToDelete:id},()=>{
+                let val = window.confirm('Are you sure you want to delete your Ad?');
+                if(val){
+                    var option = {
+                        method: 'POST',
+                        body: JSON.stringify(this.state),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                    fetch('http://localhost:8000/deletead', option)
+                    .then(res => res.json())
+                    .then(data => {
+                        this.setState({ user: data }, ()=>{
+                            console.log(this.state)
+                            let user = JSON.parse(localStorage.getItem('user'));
+                        if (user === null) {
+                            user = {
+                                _id: data._id,
+                                name: data.name,
+                                email: data.email,
+                                password: data.password,
+                                DOB: data.DOB,
+                                phone: data.phone,
+                                gender: data.gender,
+                                country: data.country,
+                                date: data.date,
+                                address: data.address,
+                                url1: data.url1,
+                                about: data.about,
+                                favorites: data.favorites
+                            }
+                            localStorage.setItem('user', JSON.stringify(user))
+                        }
+                        user = {
+                            _id: data._id,
+                            name: data.name,
+                            email: data.email,
+                            password: data.password,
+                            DOB: data.DOB,
+                            phone: data.phone,
+                            gender: data.gender,
+                            country: data.country,
+                            date: data.date,
+                            address: data.address,
+                            url1: data.url1,
+                            about: data.about,
+                            favorites: data.favorites
+                        }
+                        localStorage.setItem('user', JSON.stringify(user))
+                        var ads = [...this.state.ads];
+                        ads.map((value,index)=>{
+                            console.log('indside map func')
+                            console.log(value + " "+this.state.ads[index]._id )
+                            if(value._id == this.state.ads[index]._id){
+                                console.log('indside if cond')
+                                ads.splice(index,1)
+                                this.setState({ads:ads},()=>console.log(this.state))
+                            }
+                        })
 
-        let d;
+                        })
+                        
+                    })
+                    .catch(err => {console.log(err)})
+            
+                    alert("Your ad has been deleted");
+                    // window.location.reload();
+                }
+                if(!val){
+                    return false
+                }
+            })
+            // console.log(this.state.adToDelete);
+           
+        }
+ 
         let im = {
             margin: "20px 0",
-        }
-        
-        const handleOnDragStart = e => e.preventDefault()
-        let t = 0
-        console.log(this.state.ads[t])
-        
-        
-        // if (this.state.ads.length !== 0) {
-        //     for (let i = 0; i <= this.state.ads.length; i++) {
-        //         var q = -1;
-        //         q++
-        //         let url = [this.state.ads[q].url1,this.state.ads[q].url2,this.state.ads[q].url3,this.state.ads[q].url4]
-        //         let item =[1,2,3,4].map((u)=>(
-        //             <div key={u}>
-        //             <img height='180'  src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
-        //             </div>
-        //         ))
-        //         d = this.state.ads.map((index,y) =>
-        //             <div className="col-md-4"  >
-        //                 <div class="card" style={im} >
-        //                 <AliceCarousel items={item} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000}    mouseDragEnabled >
-                        
-        //                     {/* <img  src={cardImg} alt="Card image cap" /> */}
-        //             </AliceCarousel>                       
-        //                     <div class="card-body">
-        //                         <h6 className='float-left'>{this.state.ads[y].adTitle}</h6>
-        //                         <h6 className='float-right'>Rs {this.state.ads[y].price}</h6>
-        //                         <div className="clear"></div>
-        //                         <p>{this.state.ads[y].description}</p>
-        //                         <div>
-        //                             <div className="float-left small">{this.state.ads[y].location}</div>
-        //                             <div className="float-right small">{this.state.ads[y].date}</div>    
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         )
-        //     }
-
-        // } else{
-        //     d = <h2 style={{margin: '10px auto', fontWeight:'400'}} >You have not posted any ads yet!</h2>
-        // }
+        }     
+        const handleOnDragStart = e => e.preventDefault()     
         const items = (data) => {
             return data.map((url, index) => {
                 return (<div key={index}>
                     <img height='180' src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
                 </div>)
             })
+
+            console.log(this.state)
         }
         
         return (
@@ -94,7 +136,7 @@ class MyAds extends Component {
                     {/* {d} */}
                     {   this.state.ads.length?
                         this.state.ads.map((ad, index) => {
-                            return (<div className="col-md-4"  >
+                            return (<div className="card-wrapper"  >
                                 <div class="card" style={im} >
                                     <AliceCarousel 
                                     // items={items}
@@ -106,17 +148,23 @@ class MyAds extends Component {
                                         <h6 className='float-left'>{ad.adTitle}</h6>
                                         <h6 className='float-right'>Rs {ad.price}</h6>
                                         <div className="clear"></div>
-                                        <p>{ad.description}</p>
+                                        <p className="ad-description">{ad.description}</p>
                                         <div>
                                             <div className="float-left small">{ad.location}</div>
                                             <div className="float-right small">{ad.date}</div>
                                         </div>
                                     </div>
+                                       <div className="text-left ">
+                                            <Button  bsPrefix="edit-ad-btn no-outline no-border" onClick={()=>deleteAd(ad._id)} >Delete</Button>
+                                            <Link to={"/myads/"+ad._id+"/edit"} className="edit-ad-btn float-right" >Edit</Link>
+                                       </div>
+                                      
+                                        
                                 </div>
                             </div>)
                         })
                         :
-                        <h2 style={{ margin: '10px auto', fontWeight: '400' }} >You do not have any favorite ads yet!</h2>
+                        <h2 style={{ margin: '10px auto', fontWeight: '400' }} >You have not posted any ads yet!</h2>
                     }
                 </div>
                 <div className="container">

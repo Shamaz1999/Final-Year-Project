@@ -406,7 +406,7 @@ verify = ()=>{
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1"><b>Description</b> <span className="required">*</span></label>
-                            <textarea name="adDesc" ref="adDesc" onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{resize:'none'}} cols="30" rows="5"></textarea>
+                            <textarea name="adDesc" ref="adDesc" onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{resize:'none'}}  rows="5"></textarea>
                         </div>
                          <div className="form-group">
                             <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>

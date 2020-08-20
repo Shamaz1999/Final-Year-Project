@@ -58,7 +58,7 @@ class Contact extends Component {
             <div className="main-login">
                 <form className="login-form" method="POST" style={{marginBottom:"190px"}} id="login-form">
                         <div className="display-4" style={{marginBottom:"20px"}}>
-                            Contact Us
+                            How can we help you?
                         </div>
                         <p className="text-center mb-5">Feel free to gives us suggestion about how we can improve our work</p>
                         <div>
