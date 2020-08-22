@@ -33,7 +33,7 @@ class About extends Component {
                   The website we are offering has a very simple yet attractive interface for users who are new to E-Commerce. The
                   features of this website include a lite design, account management (updating or deleting accounts), ad history
                   , search for ads without craeting an account. There is also an administration contact page for any complains and suggestions. The main
-                  aim of this website is to make E-Commerce more reliable, user-friendly and to attract more users to shift to
+                  aim of this website is to make E-Commerce more reliable, user-friendly, to provide secure communication between buyer and seller and to attract more users to shift to
                   E-commerce.
                   </div>
               </h5>
@@ -47,14 +47,15 @@ class About extends Component {
                     <li>Check profile detail.</li>
                     <li>User Easily modify acount detail.</li>
                     <li>Furture detail please Contact us.</li>
-                    <Link class="btn login-btn" to="/contact">Contact Us</Link>
+                    {/* <li>Always Meet the buyer or seller at a crowded place and check the item before you pay.</li> */}
+                    <Link className="btn login-btn" to="/contact">Contact Us</Link>
                   </ul>
                </span>
               </div>
         </div>
-          <marquee behavior="scroll" height="50%" direction="right">
+          {/* <marquee behavior="scroll" height="50%" direction="right">
             <p className="marquee-text">Always Meet the buyer or seller at a crowded place and check the item before you pay</p>
-          </marquee>
+          </marquee> */}
         </div>
 
       </div>

@@ -59,7 +59,7 @@ disp=()=>{
 delete = ()=>{
     
     let retVal = window.confirm("Do you want to delete your account ?");
-    if( retVal == true ) {
+    if( retVal === true ) {
         var option = {
             method: 'POST',
             body: JSON.stringify(this.state),

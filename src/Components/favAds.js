@@ -79,7 +79,7 @@ class FavAds extends Component {
         console.log('THis is fav ' + favs);
         console.log('THis is state ' + this.state.user.favorites);
 
-        var option = {
+        var option1 = {
             method: 'POST',
             body: JSON.stringify(favs),
             headers: {
@@ -87,7 +87,7 @@ class FavAds extends Component {
             }
         }
 
-        fetch('http://localhost:8000/favoriteads', option)
+        fetch('http://localhost:8000/favoriteads', option1)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -153,10 +153,7 @@ class FavAds extends Component {
                             localStorage.setItem('user', JSON.stringify(user))
                             var ads = [...this.state.ads];
                             ads.map((value,index)=>{
-                                console.log('indside map func')
-                                console.log(value + " "+this.state.ads[index]._id )
-                                if(value._id == this.state.ads[index]._id){
-                                    console.log('indside if cond')
+                                if(value._id === this.state.ads[index]._id){
                                     ads.splice(index,1)
                                     this.setState({ads:ads},()=>console.log(this.state))
                                 }
@@ -190,7 +187,7 @@ class FavAds extends Component {
         const items = (data) => {
             return data.map((url, index) => {
                 return (<div key={index}>
-                    <img height='180' src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
+                    <img height='180' src={url} onDragStart={handleOnDragStart} alt="Adpic" />
                 </div>)
             })
         }

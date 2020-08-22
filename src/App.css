@@ -109,7 +109,7 @@ li.col-heading{
   position: absolute;
   /* bottom: 0; */
 }
-.terms a,.cookie a,.privacy a{
+.terms span,.cookie span,.privacy span{
   color: #EA1039;
   padding: 5px 10px;
   background-color: transparent;
@@ -117,9 +117,10 @@ li.col-heading{
   transition-property: background-color;
   font-size: 16px;
 }
-.terms a:hover,.privacy a:hover,.cookie a:hover{
+.terms span:hover,.privacy span:hover,.cookie span:hover{
   background-color: rgba(57, 73, 171,.9);
   color: white;
+  cursor: pointer;
 }
 /* .caro-img{
   width: 500px;
@@ -213,14 +214,15 @@ li.col-heading{
   /* margin-bottom: 14px!important;   */
   margin-right: 10px;
   height: 45px!important;
-  width: 110px!important;
-  
+  width: 125px!important;
+  /* padding: 9px !important */
 }
 .region-selec-b{
   /* margin-bottom: 14px!important;   */
-  margin-right: 10px;
+  /* margin-right: 10px; */
   height: 45px!important;
-  width: 110px!important;
+  width: 125px!important;
+  /* padding: 9px !important */
 }
 .form-control{
   padding-bottom:0; 
@@ -241,6 +243,7 @@ li.col-heading{
   /* width: 70px; */
   color: #EA1039;
 }
+
 .login-btn{
   margin: 20px 0 0 0;
   border: none;
@@ -326,7 +329,9 @@ table{
   font-size: 70px;
   margin: 80px 0 40px 0;
 }
-
+.container2{
+  margin: 30px  auto 0 auto;
+}
 marquee{
   /* margin-top: 20px; */
   margin-bottom: 20px;
@@ -470,7 +475,7 @@ marquee{
  font-size: 20px
 }
 .phone-container{
-  padding: 20px;
+  /* padding: 20px; */
   text-align: center; 
 }
 .user-chat-btn{
@@ -627,8 +632,26 @@ div.ads-type{
 .ads-btn-container{
   margin-top: 10px;
 }
+.seached-ad-heading{
+  font-size: 70px;
+  font-weight: 300;
+  /* padding-bottom: 50px; */
+}
+.searched-ads-container{
+  /* width: 100%; */
+  /* padding: 20px; */
+  text-align: center;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* margin: 0 auto; */
+}
 
-
+.display{
+  display: initial;
+}
+.hidd{
+  display: none;
+}
 
  /* Scrollbar Styling */
 

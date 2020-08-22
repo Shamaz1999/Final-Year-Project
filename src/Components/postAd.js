@@ -242,63 +242,63 @@ verify = ()=>{
 
     if (this.state.adTitle === "") {
         alert('Title is required!')
-        var input = this.refs.adTitle;
-        input.focus()
+        var adTitle = this.refs.adTitle;
+        adTitle.focus()
         return false
     } else  if (this.state.brand === "") {
         alert('Brand name is required!')
-        var input = this.refs.itemBrand;
-        input.focus()
+        var itemBrand = this.refs.itemBrand;
+        itemBrand.focus()
         return false
         } else  if (this.state.category === "") {
             alert('Category is required!')
-            var input = this.refs.adCategory;
-            input.focus()
+            var adCategory = this.refs.adCategory;
+            adCategory.focus()
             return false
         } else if (this.state.condition === "") {
             alert('Condition is required!')
-            var input = this.refs.adCondition;
-            input.focus()
+            var adCondition = this.refs.adCondition;
+            adCondition.focus()
             return false
         } else if (this.state.price === "") {
             alert('Price is required!')
-            var input = this.refs.adPrice;
-            input.focus()
+            var adPrice = this.refs.adPrice;
+            adPrice.focus()
             return false
         } else if (this.state.location === "") {
             alert('Location is required!')
-            var input = this.refs.adloc;
-            input.focus()
+            var adloc = this.refs.adloc;
+            adloc.focus()
             return false
         } else if (this.state.description === "") {
             alert('Description is required!')
-            var input = this.refs.adDesc;
-            input.focus()
+            var adDesc = this.refs.adDesc;
+            adDesc.focus()
             return false
         } else if (this.state.phone === "") {
             alert('Your Phone number is required!')
-            var input = this.refs.adPhone;
-            input.focus()
+            var adPhone = this.refs.adPhone;
+            adPhone.focus()
             return false
         } else if (this.state.url1 === "") {
             alert('You have to upload 4 pictures!')
-            var input = this.refs.imgup1;
-            input.focus()
+            var imgup1 = this.refs.imgup1;
+            imgup1.focus()
             return false
         } else if (this.state.url2 === "") {
             alert('You have to upload 4 pictures!')
-            var input = this.refs.imgup2;
-            input.focus()
+            var imgup2 = this.refs.imgup2;
+            imgup2.focus()
             return false
         } else if (this.state.url3 === "") {
             alert('You have to upload 4 pictures!')
-            var input = this.refs.imgup3;
-            input.focus()
+            var imgup3 = this.refs.imgup3;
+            imgup3.focus()
             return false
         } else if (this.state.url4 === "") {
             alert('You have to upload 4 pictures!')
-            var input = this.refs.imgup4;
-            input.focus()
+            var imgup4 = this.refs.imgup4;
+            imgup4.focus()
             return false
         } else{
             var option = {
@@ -382,25 +382,25 @@ verify = ()=>{
                                     <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1}/>
                                     <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
                                     <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                                    <img ref='img1' id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                    <img ref='img1' alt="image1" id="upImg1" src={this.state.url1} className="hid" height="30" />
                                 </div>
                                 <div className="imgupload1">
                                     <input ref="imgup2" accept="image/*" className="img-upload-input" type="file" onInput={this.up2} onChange={this.handleChange2}/>
                                     <button type="button" id="upBtn2" className="img-upload-btn login-btn hid" onClick={this.handleUpload2}>Upload</button>
                                     <progress id="upProg2" value={this.state.progress2} className="img-upload-progress hid" max="100" />
-                                    <img ref='img2' id="upImg2" src={this.state.url2} className="hid" height="30" />
+                                    <img ref='img2' alt="image2" id="upImg2" src={this.state.url2} className="hid" height="30" />
                                 </div>
                                 <div className="imgupload1">
                                     <input ref="imgup3" accept="image/*" className="img-upload-input" type="file" onInput={this.up3} onChange={this.handleChange3}/>
                                     <button type="button" id="upBtn3" className="img-upload-btn login-btn hid" onClick={this.handleUpload3}>Upload</button>
                                     <progress id="upProg3" value={this.state.progress3} className="img-upload-progress hid" max="100" />
-                                    <img ref='img3' id="upImg3" src={this.state.url3} className="hid" height="30" />
+                                    <img ref='img3' alt="image3" id="upImg3" src={this.state.url3} className="hid" height="30" />
                                 </div>
                                 <div className="imgupload1">
                                     <input ref="imgup4" accept="image/*" className="img-upload-input" type="file" onInput={this.up4} onChange={this.handleChange4}/>
                                     <button type="button"  id="upBtn4" className="img-upload-btn login-btn hid" onClick={this.handleUpload4}>Upload</button>
                                     <progress id="upProg4" value={this.state.progress4} className="img-upload-progress hid" max="100" />
-                                    <img ref='img4' id="upImg4" src={this.state.url4} className="hid" height="30" />
+                                    <img ref='img4' alt="image4" id="upImg4" src={this.state.url4} className="hid" height="30" />
                                 </div>
                             </div>
                         </div>

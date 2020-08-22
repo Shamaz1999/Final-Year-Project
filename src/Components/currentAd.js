@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import adImg from './../images/b3.jpg'
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
-import star from './../images/star.png'
-import starSelect from './../images/starSelect.png'
 import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
 
@@ -25,24 +22,41 @@ class Ad extends Component {
         var isFav = false;
          var user = JSON.parse(localStorage.getItem("user"));
          var adId=this.props.match.params.adId;
-         isFav=user.favorites.includes(adId);
-         this.setState({isFav:isFav});
 
-        var option = {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
+         if(user){
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
-        }
-
-        fetch('http://localhost:8000/updateuser', option)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({user:data})
-                console.log(this.state)
-                let user = JSON.parse(localStorage.getItem('user'));
-                if (user===null) {
+    
+            fetch('http://localhost:8000/updateuser', option)
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({user:data})
+                    console.log(this.state)
+                    let user = JSON.parse(localStorage.getItem('user'));
+                    if (user===null) {
+                        user = {
+                            _id: data._id,
+                            name: data.name,
+                            email: data.email,
+                            password: data.password,
+                            DOB: data.DOB,
+                            phone: data.phone,
+                            gender: data.gender,
+                            country: data.country,
+                            date: data.date,
+                            address: data.address,
+                            url1: data.url1,
+                            about: data.about,
+                            favorites : data.favorites
+                        }
+                        localStorage.setItem('user', JSON.stringify(user))
+                        console.log(user)
+                    }
                     user = {
                         _id: data._id,
                         name: data.name,
@@ -56,33 +70,25 @@ class Ad extends Component {
                         address: data.address,
                         url1: data.url1,
                         about: data.about,
-                        favorites : data.favorites
+                        favorites:data.favorites
                     }
                     localStorage.setItem('user', JSON.stringify(user))
-                    console.log(user)
-                }
-                user = {
-                    _id: data._id,
-                    name: data.name,
-                    email: data.email,
-                    password: data.password,
-                    DOB: data.DOB,
-                    phone: data.phone,
-                    gender: data.gender,
-                    country: data.country,
-                    date: data.date,
-                    address: data.address,
-                    url1: data.url1,
-                    about: data.about,
-                    favorites:data.favorites
-                }
-                localStorage.setItem('user', JSON.stringify(user))
-            })
-            .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+
+
+            isFav = user.favorites.includes(adId);
+            this.setState({isFav:isFav});
+         }
+         else{
+            console.log('user is not logged in')
+         }
+
+       
 
 
 
-        var option = {
+        var option1 = {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -90,7 +96,7 @@ class Ad extends Component {
             }
         }
 
-        fetch('http://localhost:8000/currentad', option)
+        fetch('http://localhost:8000/currentad', option1)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -125,25 +131,6 @@ class Ad extends Component {
 
 
 
-    //Updating userinfo
-    // updateUser = () => {
-
-    //     var option = {
-    //         method: 'POST',
-    //         body: JSON.stringify(this.state),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }
-
-    //     fetch('http://localhost:8000/updateuser', option)
-    //         .then(res => res.json())
-    //         .then(data => {
-        //             console.log(data)
-        //         })
-        //         .catch(err => console.log(err))
-        
-        // }
         
         
         render() {
@@ -209,13 +196,13 @@ class Ad extends Component {
             }
             else {
               
-                var option = {
+                var option1 = {
                     method: 'POST',
                     body: JSON.stringify(this.state),
                     headers: { 'Content-Type': 'application/json' }
                 }
 
-                fetch('http://localhost:8000/removefavorite', option)
+                fetch('http://localhost:8000/removefavorite', option1)
                     .then(res => res.json())
                     .then(data => {
                         this.setState({user:data})
@@ -265,7 +252,6 @@ class Ad extends Component {
 
        
 
-        // updateUser();
 
         window.scrollTo(0, 0);
         console.log(this.state)
@@ -274,7 +260,7 @@ class Ad extends Component {
         var arr = [this.state.ad.url1, this.state.ad.url2, this.state.ad.url3, this.state.ad.url4]
         let item = [1, 2, 3, 4].map((i) => (
             <div key={i}>
-                <img key={this.state.ad.url1} src={arr[i - 1]} height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                <img key={this.state.ad.url1} src={arr[i - 1]} height='500' width='1200' onDragStart={handleOnDragStart} alt="adpic" className="yours-custom-class" />
             </div>
         ))
         return (
@@ -315,13 +301,8 @@ class Ad extends Component {
                                 <div className="price-container" style={{ padding: "15px 30px" }}>
                                     <h1 className="float-left">Rs {this.state.ad.price}</h1>
                                     <div className="favourite-container float-right">
-                                        {/* <img src={star} height="30" width="30" alt="favourite"/> */}
                                         <FontAwesome name={this.state.isFav?"star":"star-o"} id="favIcon" size="2x" ref="fav" className="face"
-                                            onClick={user ? markFav : this.favLoginAlert}
-                                        />
-                                        {/* <img src={pp} height="30"
-                                             onClick={user ? markFav : this.favLoginAlert}
-                                        /> */}
+                                            onClick={user ? markFav : this.favLoginAlert}/>
                                     </div>
                                     <div className="adTitle-container clear">
                                         {this.state.ad.adTitle}
@@ -339,8 +320,8 @@ class Ad extends Component {
                             </div>
                         </div>
                         <div className="col-md-12" style={{ padding: "0px", marginTop: "50px" }}>
-                            <div className="seller-container" style={{ padding: "5px 30px" }}>
-                                <h5 className="" style={{ padding: "20px 0px" }}>Seller Description</h5>
+                            <div className="seller-container" style={{ padding: "30px" }}>
+                                <h5 className="" style={{ paddingBottom: "10px" }}>Seller Description</h5>
                                 <div className="seller-info-container ">
                                     <div className="seller-img-container">
                                         <img src={this.state.ad.sellerImg} height="70" alt="Profile Pictur" />
@@ -351,28 +332,21 @@ class Ad extends Component {
                                 </div>
 
                                 <div className="container2">
-                                    <div className="phone-container">
+                                    <span className="phone-container">
                                         <div className="number"
-                                            onClick={user ? () => true : this.phoneLoginAlert}
-                                        >
+                                            onClick={user ? () => true : this.phoneLoginAlert}>
                                             <span className="phone-image-conainer">
                                                 <img src={require('./../images/phone.png')} height="20" alt="phone" />
                                             </span>
-                                            {/* {this.state.ad.phone} */}
                                             <input className="no-border no-outline phone-no-field " disabled value={this.state.ad.phone}
-                                                type={
-                                                    user ? "text" : "password"
-                                                }
-                                            />
-                                            {/* <button className="show-phone-btn login-btn" >View Number</button>  */}
+                                                type={user ? "text" : "password"}/>
                                         </div>
-                                    </div>
-                                    <div className="user-chat-btn-container pb-3 text-center">
-                                        <button className="btn login-btn no-margin"
-                                            onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}
-                                        >
-                                            Chat with this user</button>
-                                    </div>
+                                    </span>
+                                    <span className="user-chat-btn-container pb-3 text-center">
+                                        <button style={{ width:'50% '}} className="btn login-btn no-margin"
+                                            onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
+                                            Chat</button>
+                                    </span>
                                 </div>
                             </div>
                         </div>

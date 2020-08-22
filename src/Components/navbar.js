@@ -1,41 +1,98 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import "./../bootstrap/bootstrapC.css"
 import Onlogin from './onLogin';
 import {connect} from 'react-redux'
 
+
 class Nav extends Component {
     state = {
-        isloggedin: true
+        isloggedin: true,
+        search:'',
+        category:'',
+        country:'',
     }
 
     logout=()=>{
         this.props.dispatch({type:"Add_user",payload:null})
     }
+
+    //Seach ads by category 
+    categoryAds=()=>{
+        
+        localStorage.removeItem('sa');
+        var option = {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch('http://localhost:8000/categoryads', option)
+        .then(res => res.json())
+        .then(data => {
+            let sa = JSON.parse(localStorage.getItem('sa'))
+            sa = data;
+            localStorage.setItem('sa',JSON.stringify(sa))
+            this.props.history.push('/') 
+        })
+        .catch(err => {console.log(err)})
+    }
+
+    handleHome = ()=>{
+        localStorage.removeItem('sa');
+        this.props.history.push('/');
+    }
+
+
+    //Search ads by search
+    searchAds=()=>{
+        localStorage.removeItem('sa');
+        var option = {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        fetch('http://localhost:8000/searchads', option)
+        .then(res => res.json())
+        .then(data => {
+            let sa = JSON.parse(localStorage.getItem('sa'))
+            sa = data;
+            localStorage.setItem('sa',JSON.stringify(sa))
+            this.props.history.push('/')
+            // window.location.reload();
+        })
+        .catch(err => {console.log(err)})
+    }
+
+    country1 = (country) => { this.setState({ country }) }
+
     render() {
 
         return (
 
             <div>
-                {/* <button onClick={this.logout}>LOg Out</button> */}
                 <nav className="navbar navbar-expand-lg navbar-light ">
                     <div className="col-md-3 col-sm-12 text-center no-pad">
-                        <Link to="/"><h1 className="display-4 main-logo">Buy&amp;Sell</h1></Link>
+                        <Link to="/"><h1 className="display-4 main-logo" onClick={this.handleHome}>Buy&amp;Sell</h1></Link>
                     </div>
                     <div className="col-md-6 col-sm-12 text-center no-pad mt-1">
                         <form className="form-inline text-center d-inline-flex">
                             <div className="form-group nav-search">
-                                <CountrySelect />
+                                <CountrySelect prop={this.props}  country={this.country1}/>
                             </div>
-                            <div style={{height:'45px'}} className="input-group ml-3 mr-3">
-                                <input type="text" style={{height:'45px'}} className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                            <div style={{height:'45px', width:'350px' }} className="input-group ml-3 mr-3">
+                                <input type="text" style={{height:'45px'}} onChange={e => this.setState({ search: e.target.value })} className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                                 <div className="input-group-append">
-                                    <button className="btn login-btn search-btn" type="button">Search</button>
+                                    <button className="btn login-btn search-btn" onClick={this.searchAds} type="button">Search</button>
                                 </div>
                             </div>
                             <div className="form-group nav-search">
-                                <select className="form-control region-selec-b" id="exampleFormControlSelect1">
-                                    <option value="" disabled>Categories</option>
+                                <select className="form-control region-selec-b" onChange={this.categoryAds}  onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
+                                    <option selected disabled>Categories</option>
                                     <option value="mobiles">Mobiles</option>
                                     <option value="vehicles">Vehicles</option>
                                     <option value="property for sale">Property for Sale</option>
@@ -68,10 +125,36 @@ const Notloggedin = () => (
 )
 
 class CountrySelect extends Component {
+    state={
+        country:'',
+    }
+
+    countryAds=()=>{
+        
+        localStorage.removeItem('sa');
+        var option = {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch('http://localhost:8000/countryads', option)
+        .then(res => res.json())
+        .then(data => {
+            let sa = JSON.parse(localStorage.getItem('sa'))
+            sa = data;
+            console.log(data)
+            localStorage.setItem('sa',JSON.stringify(sa))
+            this.props.prop.history.push('/')
+        })
+        .catch(err => {console.log(err)})
+    }
 
     render() {
         return (
-            <select defaultValue="Pakistan" className="form-control region-selec-a" id="exampleFormControlSelect1">
+            <select  onChange={this.countryAds}  onInput={e=>this.setState({country:e.target.value})} className="form-control region-selec-a" id="exampleFormControlSelect1">
+                <option disabled selected>Countries</option>
                 <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Afghanistan">Afghanistan</option>
@@ -323,4 +406,4 @@ const mapStateToProps=(store)=>{
         user:store.userReducer
     }
 }
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps)(withRouter(Nav));

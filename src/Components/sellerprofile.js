@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import "./../bootstrap/bootstrapC.css";
 import man from './../images/man.png'
-import girl from './../images/girl.png'
+// import girl from './../images/girl.png'
 import { connect } from 'react-redux'
 
 
@@ -12,9 +12,7 @@ class Seller extends Component {
     }
 
     componentWillMount(){
-        // let user = JSON.parse(localStorage.getItem('user'));
-        // console.log(user)
-        // console.log(this.props)
+      
         var option = {
             method: "POST",
             body: JSON.stringify(this.state),

@@ -23,7 +23,7 @@ return(
             <div className="row">   
                 <div className="col-md-4">
                     <ul className="foot-nav-ul">
-                        <li className="col-heading med-headings">Popular Categories</li>
+                        <li className="col-heading med-headings">Categories</li>
                         <li className="col-items">Mobile Phone</li>
                         <li className="col-items">Cars</li>
                         <li className="col-items">Jobs</li>
@@ -44,11 +44,11 @@ return(
                 <div className="col-md-4">
                         <ul className="foot-nav-ul">
                             <li className="col-heading med-headings">Social Contacts</li>
-                            <li className="col-items"><a style={a} className="footnav-social-links" ><img  className="social-logos" src={fb} alt="facebook"/>Facebook Profile</a></li>
-                            <li className="col-items"><a style={a} className="footnav-social-links" ><img className="social-logos" src={twitter} alt="twitter"/>Twitter Profile</a></li>
-                            <li className="col-items"><a style={a} className="footnav-social-links" ><img className="social-logos" src={gplus} alt="google plus"/>Google Plus Profile</a></li>
-                            <li className="col-items"><a style={a} className="footnav-social-links" ><img className="social-logos" src={insta} alt="instagram"/>Instagram Profile</a></li>
-                            <li className="col-items"><a style={a} className="footnav-social-links" >Our Communuity</a></li>
+                            <li className="col-items"><span style={a} className="footnav-social-links" ><img  className="social-logos" src={fb} alt="facebook"/>Facebook Profile</span></li>
+                            <li className="col-items"><span style={a} className="footnav-social-links" ><img className="social-logos" src={twitter} alt="twitter"/>Twitter Profile</span></li>
+                            <li className="col-items"><span style={a} className="footnav-social-links" ><img className="social-logos" src={gplus} alt="google plus"/>Google Plus Profile</span></li>
+                            <li className="col-items"><span style={a} className="footnav-social-links" ><img className="social-logos" src={insta} alt="instagram"/>Instagram Profile</span></li>
+                            <li className="col-items"><span style={a} className="footnav-social-links" >Our Communuity</span></li>
                         </ul>
                     </div>
                 </div>

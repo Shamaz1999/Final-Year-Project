@@ -90,7 +90,7 @@ class MyAds extends Component {
                         ads.map((value,index)=>{
                             console.log('indside map func')
                             console.log(value + " "+this.state.ads[index]._id )
-                            if(value._id == this.state.ads[index]._id){
+                            if(value._id === this.state.ads[index]._id){
                                 console.log('indside if cond')
                                 ads.splice(index,1)
                                 this.setState({ads:ads},()=>console.log(this.state))
@@ -120,11 +120,9 @@ class MyAds extends Component {
         const items = (data) => {
             return data.map((url, index) => {
                 return (<div key={index}>
-                    <img height='180' src={url} onDragStart={handleOnDragStart} alt="Ad Image" />
+                    <img height='180' src={url} onDragStart={handleOnDragStart} alt="Adpic" />
                 </div>)
             })
-
-            console.log(this.state)
         }
         
         return (

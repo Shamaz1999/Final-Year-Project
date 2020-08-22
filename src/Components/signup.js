@@ -30,46 +30,46 @@ class Signup extends Component {
     verify = () => {
         if (this.state.name === "") {
             alert('Name is required!')
-            var input = this.refs.userName;
-            input.focus()
+            var userName = this.refs.userName;
+            userName.focus()
             return false
         } else if (this.state.email === "") {
             alert('Email is required!')
-            var input = this.refs.userEmail;
-            input.focus()
+            var userEmail = this.refs.userEmail;
+            userEmail.focus()
             return false
         } else if (this.state.password === "") {
             alert('Password is required!')
-            var input = this.refs.userPassword;
-            input.focus()
+            var userPassword = this.refs.userPassword;
+            userPassword.focus()
             return false
         } else if (this.state.phone === "") {
             alert('Phone Number is required!')
-            var input = document.getElementById("phone-num")
-            input.focus()
+            var phoneNum = document.getElementById("phone-num")
+            phoneNum.focus()
             return false
         } else if (this.state.gender === "") {
             alert('Gender is required!')
             return false
         } else if (this.state.DOB === "") {
             alert('Date of Birth is required!')
-            var input = this.refs.userDOB;
-            input.focus();
+            var userDOB = this.refs.userDOB;
+            userDOB.focus();
             return false
         } else if (this.state.country === "") {
             alert('Country is required!')
-            var input = this.refs.userCountry;
-            input.focus()
+            var userCountry = this.refs.userCountry;
+            userCountry.focus()
             return false
         } else if (this.state.address === "") {
             alert('Address is required!')
-            var input = this.refs.userAddress;
-            input.focus()
+            var userAddress = this.refs.userAddress;
+            userAddress.focus()
             return false
         } else if (this.state.password.length <= 6) {
             alert("Password must me 7 characters long!")
-            var input = this.refs.userPassword;
-            input.focus()
+            var userPassword1 = this.refs.userPassword;
+            userPassword1.focus()
             return false
         } else {
         
@@ -208,8 +208,7 @@ up1=()=>{
                             <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1}/>
                             <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
                             <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                      
-                                    <img ref='img1' id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                    <img ref='img1' alt="profile" id="upImg1" src={this.state.url1} className="hid" height="30" />
                                 </div>
                         <div className="form-group">
                             <label htmlFor="user-country"><b>Country</b> <span className="required">*</span></label>
