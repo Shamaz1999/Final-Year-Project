@@ -16,10 +16,15 @@ class Chat extends Component {
     }
 
     componentDidMount(){
+
+
         var socket = io('http://localhost:8000'
         , {path: '/socket.io'}  
         );
         console.log(socket)
+
+
+        
     }
 
 
@@ -31,6 +36,9 @@ class Chat extends Component {
         }
         else{
 
+
+
+            
         }
     }
     
