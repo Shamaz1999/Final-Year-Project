@@ -48,7 +48,6 @@ class Content extends Component {
 
     allAds = () => {
         localStorage.removeItem('sa')
-        // window.location.reload();
         this.setState({ showingSearched: false })
     }
 
