@@ -95,6 +95,7 @@ class Nav extends Component {
                                     <option selected disabled>Categories</option>
                                     <option value="mobiles">Mobiles</option>
                                     <option value="vehicles">Vehicles</option>
+                                    <option value="furniture">Furniture</option>
                                     <option value="property for sale">Property for Sale</option>
                                     <option value="property for rent">Property for Rent</option>
                                     <option value="electronics">Electronics and Home Appliances</option>

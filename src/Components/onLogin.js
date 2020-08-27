@@ -4,19 +4,37 @@ import { connect } from 'react-redux'
 import { Dropdown } from "react-bootstrap";
 import man from './../images/man.png'
 import girl from './../images/girl.png'
+import io from 'socket.io-client';
+
 
 
 class Onlogin extends Component {
 
     state = {
-        isloggedin: true
+        isloggedin: true,
+        socket: null,
+    }
+
+
+    componentDidMount() {
+        if (!this.state.socket) {
+            var socket = io('http://localhost:8000'
+                // , {path: '/socket.io'}  
+            );
+            // this.setState({socket});
+            this.props.dispatch({ type: "ADD_SOCKET", payload: socket })
+        }
+        let user = JSON.parse(localStorage.getItem('user'));
+        socket.emit('new user', user._id);
     }
 
     logout = () => {
-        localStorage.removeItem('user');
-        alert('You have been logged out')
+        this.props.socket.socket.disconnect();
+        // localStorage.removeItem('user');
+        // alert('You have been logged out');
     }
     render() {
+
 
         console.log(this.props)
         let user = JSON.parse(localStorage.getItem('user'));
@@ -91,7 +109,8 @@ class Onlogin extends Component {
 }
 const mapStateToProps = (store) => {
     return {
-        user: store.userReducer
+        user: store.userReducer,
+        socket: store.socket,
     }
 }
 

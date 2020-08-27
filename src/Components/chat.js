@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { Link } from "react-router-dom"
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 // import About from './about';
 // import {Button} from 'react-bootstrap'
 import { MessageList, ChatList, SystemMessage } from 'react-chat-elements'
@@ -18,10 +18,10 @@ class Chat extends Component {
     componentDidMount(){
 
 
-        var socket = io('http://localhost:8000'
-        , {path: '/socket.io'}  
-        );
-        console.log(socket)
+        // var socket = io('http://localhost:8000'
+        // , {path: '/socket.io'}  
+        // );
+        // console.log(socket)
 
 
         
@@ -29,7 +29,7 @@ class Chat extends Component {
 
 
     handleSend = () =>{
-        var d = new Date()
+        var d = new Date();
         console.log(d)
         if(this.state.msg == ''){
             alert('Please type something before sending!');
@@ -44,8 +44,8 @@ class Chat extends Component {
     
     render() {
 
-        
-        // window.scrollTo(0, 0);
+
+        const socket= this.props.socket.socket;
         
       
 
@@ -106,10 +106,11 @@ class Chat extends Component {
         );
     }
 }
-// const mapStateToProps = (store) => {
-//     return {
-//         user: store.userReducer
-//     }
-// }
-// export default connect(mapStateToProps)(Chat);
-export default Chat;
+const mapStateToProps = (store) => {
+    return {
+        // user: store.userReducer
+        socket: store.socket
+    }
+}
+export default connect(mapStateToProps)(Chat);
+// export default Chat;

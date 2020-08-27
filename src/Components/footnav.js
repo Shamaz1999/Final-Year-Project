@@ -39,8 +39,8 @@ return(
                         <ul className="foot-nav-ul">
                             <li className="col-heading med-headings">Social Contacts</li>
                             <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="facebook" />Facebook Profile</span></li>
-                            <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="google-plus" />Twitter Profile</span></li>
-                            <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="twitter" />Google Plus Profile</span></li>
+                            <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="twitter" />Twitter Profile</span></li>
+                            <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="google-plus" />Google Plus Profile</span></li>
                             <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="instagram" />Instagram Profile</span></li>
                             <li className="col-items"><span  className="footnav-social-links" >Our Communuity</span></li>
                         </ul>

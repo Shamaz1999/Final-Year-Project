@@ -349,11 +349,12 @@ verify = ()=>{
                                 <option value="" disabled selected>Select Category</option>
                                 <option value="mobiles">Mobiles</option>
                                 <option value="vehicles">Vehicles</option>
+                                <option value="furniture">Furniture</option>
                                 <option value="property for sale">Property for Sale</option>
                                 <option value="property for rent">Property for Rent</option>
                                 <option value="electronics">Electronics and Home Appliances</option>
                                 <option value="bikes">Bikes</option>
-                                <option value="business,industrial">Business, Industrial & Agriculture</option>
+                                <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
                                 <option value="services">Services</option>
                                 <option value="other">Other</option>                                    
                             </select>

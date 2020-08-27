@@ -383,7 +383,6 @@ class EditAd extends Component {
 
         return (
             <div className="app">
-                This is edit Ad
                 <div className="container">
                     <form method="POST" className="post-form-container">
                         <div className="form-group">
@@ -400,6 +399,7 @@ class EditAd extends Component {
                                 <option value="" disabled selected>Select Category</option>
                                 <option value="mobiles">Mobiles</option>
                                 <option value="vehicles">Vehicles</option>
+                                <option value="furniture">Furniture</option>
                                 <option value="property for sale">Property for Sale</option>
                                 <option value="property for rent">Property for Rent</option>
                                 <option value="electronics">Electronics and Home Appliances</option>
