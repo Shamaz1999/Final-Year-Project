@@ -66,11 +66,22 @@ class Onlogin extends Component {
             }
         }
         else { dp = user.url1 }
+
+        const handleProfileMenu = () => {
+            var m = document.getElementById("menu");
+            if (m.classList.contains("hide-profile-menu")) {
+                m.classList.remove("hide-profile-menu")
+            }
+            else {
+                m.classList.add("hide-profile-menu")
+            }
+        }
+
         return (
             <div className="app">
 
                 <Dropdown style={{ textAlign: 'center' }}>
-                    <Dropdown.Toggle className="dropdown" variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle className="dropdown">
                         <img id="dropdown" className="user-image" height="60" width="60" alt="User" src={dp} />  </Dropdown.Toggle>
 
                     <Dropdown.Menu>

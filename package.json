@@ -13,6 +13,7 @@
     "react-chat-elements": "^10.10.2",
     "react-dom": "^16.8.4",
     "react-fontawesome": "^1.7.1",
+    "react-loading-skeleton": "^2.1.1",
     "react-phone-number-input": "^2.3.7",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",

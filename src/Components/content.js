@@ -3,6 +3,7 @@ import "./../bootstrap/bootstrapC.css"
 import { Link } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
+import Skeleton from 'react-loading-skeleton'
 
 class Content extends Component {
     constructor(props) {
@@ -10,9 +11,11 @@ class Content extends Component {
         this.state = {
             ads: "",
             showingSearched: false,
+            isDataLoaded: false
         }
     }
     componentDidMount() {
+
         var option = {
             method: 'POST',
             body: '',
@@ -25,24 +28,11 @@ class Content extends Component {
             // .then(data => console.log(data) )
             .then(data => {
                 console.log(data)
-                this.setState({ ads: data })
+                this.setState({ ads: data });
+                this.setState({ isDataLoaded: true });
             })
             .catch(err => console.log(err))
 
-
-        // let rt = JSON.parse(localStorage.getItem('sa'))
-
-        // if(rt !== null){
-        //     if(rt.length !== 0){
-        //         document.getElementById('ad').classList.add("display")
-        //         document.getElementById('as').classList.add("hidd")
-        //     }
-        //     if(rt.length === 0 ){
-        //         document.getElementById('ad').classList.add("display")
-        //         document.getElementById('as').classList.add("hidd")
-        //     }
-
-        // }
 
     }
 
@@ -53,12 +43,13 @@ class Content extends Component {
 
     render() {
         window.scrollTo(0, 0);
-
-        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 'a', "g", "f"];
+        let skeletonCards = [ 1, 2, 3, 4, 5, 6, 7, 8];
         let d;
         let e;
-        console.log(e)
+        let sc;
+
         let searchedAds = JSON.parse(localStorage.getItem('sa'));
+        console.log(searchedAds)
         const handleOnDragStart = e => e.preventDefault();
 
         const items = (data) => {
@@ -73,7 +64,7 @@ class Content extends Component {
             margin: "20px 0",
         }
         if (this.state.ads.length !== 0) {
-            for (let i = 0; i <= arr.length; i++) {
+            for (let i = 0; i <= this.state.ads.length; i++) {
                 let adId;
                 d = this.state.ads.map((item, index) =>
                     <div key={index} className="card-wrapper" >
@@ -135,32 +126,50 @@ class Content extends Component {
                 }
             }
             else {
-                console.log("this is 1st")
                 e = <h2 style={{ margin: '10px auto', fontWeight: '400' }} >Sorry, No ads found matching your query!</h2>
             }
         }
         if (searchedAds === null) {
-            console.log("this is 2nd")
-
             e = <h2 style={{ margin: '10px auto', fontWeight: '400' }} >You have not searched for an ad</h2>
 
         }
 
         var sa = localStorage.getItem('sa')
 
+
+        //Skeleteon Card Ads
+
+        for( let i = 1; i !== skeletonCards.length; i++){
+            sc = skeletonCards.map((item, index)=>{
+            return  <div className="card-wrapper" >
+                <div className="card" style={im} >                   
+                    <Skeleton height={200} />
+                <div className="card-body">
+                <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton  /></h5>
+                <div className="divider"><hr /></div>
+                <p className="text-left"> <Skeleton  /></p>
+                <div className="card-text text-left ad-description"><Skeleton  /></div>
+                <div className="card-text text-left ad-description"><Skeleton  /></div>
+                <div className="d-flex space-btw align-center ads-btn-container">
+                    <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90}  /></span>
+                    <span>
+                        <Skeleton width={90}  />
+                        {/* <Link to={"/ad/"} className="btn login-btn open-ad-btn float-right" style={{ marginTop: "0px" }}>Open Ad</Link> */}
+                    </span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            })
+        }
+
         return (
 
             <div className="App" style={{ textAlign: "center" }}>
-                <div className="container" style={{ marginBottom: "50px" }}>
-                    <AliceCarousel showSlideInfo={true} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
-                        <img src={require('./../images/ca4.jpg')} alt="slider1" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca3.jpg')} alt="slider2" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca2.jpg')} alt="slider3" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca1.jpg')} alt="slider4" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                    </AliceCarousel>
-                </div>
+                
                 <div className="row">
                     {sa ?
+                        //This displays Searched Ads
                         <div style={{ width: '100%' }} className="">
                             <span className="seached-ad-heading">Searched Ads</span>
                             <div className="ads-container">
@@ -169,13 +178,29 @@ class Content extends Component {
                             <button className="btn login-btn" onClick={this.allAds}>All Ads</button>
                         </div>
                         :
+                        //This displays All Ads
                         <div id="as" className="ads-container">
-                            {d}
+
+                            {
+                                this.state.isDataLoaded ?
+                                <>{d}</>
+                                :
+                                <>{sc}</>
+                            }
+                        
                         </div>
                     }
 
                 </div>
 
+                <div className="container" style={{ marginBottom: "0px",marginTop: "50px" }}>
+                    <AliceCarousel showSlideInfo={true} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
+                        <img src={require('./../images/ca4.jpg')} alt="slider1" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca3.jpg')} alt="slider2" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca2.jpg')} alt="slider3" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca1.jpg')} alt="slider4" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                    </AliceCarousel>
+                </div>
             </div>
 
         );

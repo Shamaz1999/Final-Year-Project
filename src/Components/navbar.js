@@ -2,24 +2,39 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import "./../bootstrap/bootstrapC.css"
 import Onlogin from './onLogin';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import FontAwesome from 'react-fontawesome'
 
 
 class Nav extends Component {
     state = {
         isloggedin: true,
-        search:'',
-        category:'',
-        country:'',
+        search: '',
+        category: '',
+        country: '',
     }
 
-    logout=()=>{
-        this.props.dispatch({type:"Add_user",payload:null})
+    componentDidMount() {
+
+        var input = document.getElementById("searchBar");
+
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("searchBtn").click();
+            }
+        });
+    }
+
+
+
+    logout = () => {
+        this.props.dispatch({ type: "Add_user", payload: null })
     }
 
     //Seach ads by category 
-    categoryAds=()=>{
-        
+    categoryAds = () => {
+
         localStorage.removeItem('sa');
         var option = {
             method: 'POST',
@@ -29,24 +44,25 @@ class Nav extends Component {
             }
         }
         fetch('http://localhost:8000/categoryads', option)
-        .then(res => res.json())
-        .then(data => {
-            let sa = JSON.parse(localStorage.getItem('sa'))
-            sa = data;
-            localStorage.setItem('sa',JSON.stringify(sa))
-            this.props.history.push('/') 
-        })
-        .catch(err => {console.log(err)})
+            .then(res => res.json())
+            .then(data => {
+                let sa = JSON.parse(localStorage.getItem('sa'))
+                sa = data;
+                localStorage.setItem('sa', JSON.stringify(sa))
+                this.props.history.push('/')
+            })
+            .catch(err => { console.log(err) })
     }
 
-    handleHome = ()=>{
+    handleHome = () => {
         localStorage.removeItem('sa');
         this.props.history.push('/');
     }
 
 
     //Search ads by search
-    searchAds=()=>{
+    searchAds = () => {
+        console.log(this.state.search)
         localStorage.removeItem('sa');
         var option = {
             method: 'POST',
@@ -57,20 +73,38 @@ class Nav extends Component {
         }
 
         fetch('http://localhost:8000/searchads', option)
-        .then(res => res.json())
-        .then(data => {
-            let sa = JSON.parse(localStorage.getItem('sa'))
-            sa = data;
-            localStorage.setItem('sa',JSON.stringify(sa))
-            this.props.history.push('/')
-            // window.location.reload();
-        })
-        .catch(err => {console.log(err)})
+            .then(res => res.json())
+            .then(data => {
+                let sa = JSON.parse(localStorage.getItem('sa'))
+                sa = data;
+                localStorage.setItem('sa', JSON.stringify(sa))
+                this.props.history.push('/')
+            })
+            .catch(err => { console.log(err) })
+        // window.alert('key pressed')
     }
 
     country1 = (country) => { this.setState({ country }) }
 
+    // handleSearch = ()=>{
+    //     var s = document.getElementById('searchBar');
+    //     var b = document.getElementById('searchBtn')
+    //     if(s.classList.contains("hiddenSearch")){
+    //         s.classList.remove("hiddenSearch");
+    //         s.classList.add("showSearch");
+    //         b.classList.remove("search-btn-radius");
+    //     }
+    //     else{
+    //         s.classList.remove("showSearch");
+    //         s.classList.add("hiddenSearch");
+    //         b.classList.add("search-btn-radius");
+
+    //     }
+    // }
+
     render() {
+
+
 
         return (
 
@@ -80,36 +114,46 @@ class Nav extends Component {
                         <Link to="/"><h1 className="display-4 main-logo" onClick={this.handleHome}>Buy&amp;Sell</h1></Link>
                     </div>
                     <div className="col-md-6 col-sm-12 text-center no-pad mt-1">
-                        <form className="form-inline text-center d-inline-flex">
-                            <div className="form-group nav-search">
-                                <CountrySelect prop={this.props}  country={this.country1}/>
-                            </div>
-                            <div style={{height:'45px', width:'350px' }} className="input-group ml-3 mr-3">
-                                <input type="text" style={{height:'45px'}} onChange={e => this.setState({ search: e.target.value })} className="form-control" placeholder="Search for ads" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                                <div className="input-group-append">
-                                    <button className="btn login-btn search-btn" onClick={this.searchAds} type="button">Search</button>
+                        <div className=" text-center">
+                            <div className="navbar-form-wrapper">
+                                <div className=" nav-search">
+                                    <CountrySelect prop={this.props} country={this.country1} />
+                                </div>
+                                <div className="input-group ml-3 mr-3">
+                                    <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="showSearch no-outline"
+                                        placeholder="Search for ads"
+                                    />
+                                    <div className="append">
+                                        <button className="btn login-btn search-btn "
+                                            id="searchBtn"
+                                            onClick={this.searchAds}
+                                            //   onClick={this.handleSearch} 
+                                            type="button">
+                                            <FontAwesome name="search" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className=" nav-search">
+                                    <select className="form-control region-selec-b" onChange={this.categoryAds} onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
+                                        <option selected disabled>Categories</option>
+                                        <option value="mobiles">Mobiles</option>
+                                        <option value="vehicles">Vehicles</option>
+                                        <option value="furniture">Furniture</option>
+                                        <option value="property for sale">Property for Sale</option>
+                                        <option value="property for rent">Property for Rent</option>
+                                        <option value="electronics">Electronics and Home Appliances</option>
+                                        <option value="bikes">Bikes</option>
+                                        <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
+                                        <option value="services">Services</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div className="form-group nav-search">
-                                <select className="form-control region-selec-b" onChange={this.categoryAds}  onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
-                                    <option selected disabled>Categories</option>
-                                    <option value="mobiles">Mobiles</option>
-                                    <option value="vehicles">Vehicles</option>
-                                    <option value="furniture">Furniture</option>
-                                    <option value="property for sale">Property for Sale</option>
-                                    <option value="property for rent">Property for Rent</option>
-                                    <option value="electronics">Electronics and Home Appliances</option>
-                                    <option value="bikes">Bikes</option>
-                                    <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
-                                    <option value="services">Services</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </div>
 
                     <div className="col-md-3 col-sm-12 text-center " >
-                        {JSON.parse(localStorage.getItem('user'))===null ? <Notloggedin />:<Onlogin />}
+                        {JSON.parse(localStorage.getItem('user')) === null ? <Notloggedin /> : <Onlogin />}
                     </div>
                 </nav>
             </div>
@@ -126,12 +170,12 @@ const Notloggedin = () => (
 )
 
 class CountrySelect extends Component {
-    state={
-        country:'',
+    state = {
+        country: '',
     }
 
-    countryAds=()=>{
-        
+    countryAds = () => {
+
         localStorage.removeItem('sa');
         var option = {
             method: 'POST',
@@ -141,20 +185,20 @@ class CountrySelect extends Component {
             }
         }
         fetch('http://localhost:8000/countryads', option)
-        .then(res => res.json())
-        .then(data => {
-            let sa = JSON.parse(localStorage.getItem('sa'))
-            sa = data;
-            console.log(data)
-            localStorage.setItem('sa',JSON.stringify(sa))
-            this.props.prop.history.push('/')
-        })
-        .catch(err => {console.log(err)})
+            .then(res => res.json())
+            .then(data => {
+                let sa = JSON.parse(localStorage.getItem('sa'))
+                sa = data;
+                console.log(data)
+                localStorage.setItem('sa', JSON.stringify(sa))
+                this.props.prop.history.push('/')
+            })
+            .catch(err => { console.log(err) })
     }
 
     render() {
         return (
-            <select  onChange={this.countryAds}  onInput={e=>this.setState({country:e.target.value})} className="form-control region-selec-a" id="exampleFormControlSelect1">
+            <select onChange={this.countryAds} onInput={e => this.setState({ country: e.target.value })} className="form-control region-selec-a" id="exampleFormControlSelect1">
                 <option disabled selected>Countries</option>
                 <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
@@ -402,9 +446,9 @@ class CountrySelect extends Component {
     }
 
 }
-const mapStateToProps=(store)=>{
+const mapStateToProps = (store) => {
     return {
-        user:store.userReducer
+        user: store.userReducer
     }
 }
 export default connect(mapStateToProps)(withRouter(Nav));

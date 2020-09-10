@@ -11,11 +11,11 @@ import io from 'socket.io-client';
 class Chat extends Component {
 
     state = {
-        msg:'',
-        msgList:[]
+        msg: '',
+        msgList: []
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
 
         // var socket = io('http://localhost:8000'
@@ -24,30 +24,30 @@ class Chat extends Component {
         // console.log(socket)
 
 
-        
+
     }
 
 
-    handleSend = () =>{
+    handleSend = () => {
         var d = new Date();
         console.log(d)
-        if(this.state.msg == ''){
+        if (this.state.msg == '') {
             alert('Please type something before sending!');
         }
-        else{
+        else {
 
 
 
-            
+
         }
     }
-    
+
     render() {
 
 
-        const socket= this.props.socket.socket;
-        
-      
+        const socket = this.props.socket.socket;
+
+
 
         return (
             <div className="text-center">
@@ -71,7 +71,7 @@ class Chat extends Component {
                                         position: 'left',
                                         type: 'text',
                                         text: 'Hello',
-                                        date: new Date(), 
+                                        date: new Date(),
                                     },
                                     {
                                         position: 'right',
@@ -79,12 +79,12 @@ class Chat extends Component {
                                         text: 'I want to buy what you are selling',
                                         date: new Date(),
                                     },
-                                   
+
                                 ]} />
                         </div>
                         <div className="message-input-wrapper">
-                               <input type="text" className="message-input" onInput={ e => this.setState({msg: e.target.value})} placeholder="Type here..." />
-                               <button type="submit" className="btn login-btn chat-send-btn" onClick={this.handleSend}><FontAwesome name="send" /></button>
+                            <input type="text" className="message-input" onInput={e => this.setState({ msg: e.target.value })} placeholder="Type here..." />
+                            <button type="submit" className="btn login-btn chat-send-btn" onClick={this.handleSend}><FontAwesome name="send" /></button>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ ul, li {
   border: none;
 }
 .no-outline{
-  outline: none;
+  outline: none !important;
 }
 progress{
   color: #EA1039;
@@ -41,9 +41,7 @@ a{
   color: red;
   font-size: 20px;
 }
-.nav-search{
-  margin-left: 10px!important;
-}
+
 .react-phone-number-input__input{
   border: none!important;
 }
@@ -233,7 +231,10 @@ color: white !important;
   margin: 0 0 50px 0;
 }
 .search-btn{
-  margin: 0px!important;
+  height: 45px;
+  margin: 0px auto!important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
 }
 .region-selec-a{
   /* margin-bottom: 14px!important;   */
@@ -268,13 +269,41 @@ color: white !important;
   /* width: 70px; */
   color: #EA1039;
 }
+#searchBar{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  transition: width .5s, padding .5s;
 
+}
+.dropdown-toggle::after {
+  display:none !important;
+}
+
+
+.navbar-form-wrapper{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
+.showSearch{
+  height: 45px !important;
+  width: 88% !important;
+  padding: 10px;
+  /* border: 0px !important; */
+  border: none !important;
+}
+.showSearch:focus{
+  
+  border: 1px solid crimson !important;
+}
 .login-btn{
   margin: 20px 0 0 0;
   border: none;
   color: white;
   border-radius: 0px;
   background-color: #EA1039;
+  /* background-color: #ea10383b; */
   top: 0;
   transition-property: background-color ;
   transition:  .5s;
@@ -284,6 +313,7 @@ color: white !important;
 }
 .login-btn:hover{
   background-color: rgba(57, 73, 171,.9);
+  /* background-color: rgba(57, 72, 171, 0.301); */
   outline: none;
   color: white;
 }
@@ -627,6 +657,14 @@ div.ads-type{
 }
 .edit-ad-btn:focus{
   outline: none !important;
+}
+.current-edit-ad-btn{
+  width: 50% !important;
+  margin: 0px !important ;
+  background-color: #EA1039;
+  display: inline-block;
+  color: white;
+  text-align: center;
 }
 .card-wrapper{
   margin: 5px 15px;
