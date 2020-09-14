@@ -4,7 +4,9 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 class Ad extends Component {
@@ -115,21 +117,51 @@ class Ad extends Component {
     phoneLoginAlert = () => {
         var user = JSON.parse(localStorage.getItem("user"))
         if (user !== "")
-            alert("You need to Log In to view the number!")
+        toast('You need to log in to view the number', {
+            className:'logout-toast',
+            position: "bottom-left",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton:false,
+            // progress: undefined,
+            });
         else
             return
     }
     chatLoginAlert = () => {
         var user = JSON.parse(localStorage.getItem("user"))
         if (user !== "")
-            alert("You need to Log In to chat with this user!")
+        toast('You need to log in to chat with this user!', {
+            className:'logout-toast',
+            position: "bottom-left",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton:false,
+            // progress: undefined,
+            });
         else
             return
     }
     favLoginAlert = () => {
         var user = JSON.parse(localStorage.getItem("user"))
         if (user !== "")
-            alert("You need to Log In to mark as favourite!")
+        toast('You need to log In to mark as favourite!', {
+            className:'logout-toast',
+            position: "bottom-left",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton:false,
+            // progress: undefined,
+            });
         else
             return
     }
@@ -198,6 +230,17 @@ class Ad extends Component {
                     .catch(err => console.log(err))
 
                 this.setState({ isFav: true });
+                toast('Added to favorites!', {
+                    className:'logout-toast',
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton:false,
+                    // progress: undefined,
+                    });
             }
             else {
 
@@ -250,11 +293,29 @@ class Ad extends Component {
                     })
                     .catch(err => console.log(err))
                 this.setState({ isFav: false })
+                toast('Removed from favorites!', {
+                    className:'logout-toast',
+                    position: "bottom-left",
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton:false,
+                    // progress: undefined,
+                    });
             }
 
         }
 
+        var userId ;
 
+        if(this.state.user == null){
+            userId = 'empty;'
+        }
+        else{
+            userId = this.state.user._id;            
+        }
 
 
 
@@ -352,7 +413,7 @@ class Ad extends Component {
                                         </div>
                                     }
                                     <div className="favourite-container float-right">
-                                       { this.state.ad.sellerId == this.state.user._id
+                                       { this.state.ad.sellerId  == userId
                                             ?
                                             ""
                                             :
@@ -426,7 +487,7 @@ class Ad extends Component {
                                     <div className="seller-name-container">
                                         {this.state.isDataLoaded
                                             ?
-                                            <Link to={this.props.match.params.adId + "/sellerProfile"} onClick={this.st}>{this.state.ad.sellerName}</Link>
+                                            <Link to={"/"+this.props.match.params.adId + "/sellerProfile/"+this.state.ad.sellerId} onClick={this.st}>{this.state.ad.sellerName}</Link>
                                             :
                                             <Skeleton height={20} width={300} />
                                         }
@@ -450,7 +511,7 @@ class Ad extends Component {
                                             </span>
                                             <span className="user-chat-btn-container pb-3 text-center">
                                                 {
-                                                     this.state.ad.sellerId == this.state.user._id
+                                                     this.state.ad.sellerId == userId
                                                         ?
                                                     <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
                                                         :

@@ -4,15 +4,20 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import { Button } from 'react-bootstrap';
-import Skeleton from 'react-loading-skeleton'
+import { Button, Modal } from 'react-bootstrap';
+import Skeleton from 'react-loading-skeleton';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 
 class MyAds extends Component {
     state={
         ads:[],
         adToDelete:'',
-        isDataLoaded: false
+        isDataLoaded: false,
+        show: false,
+        adUpdated:'',
     }
 
     componentDidMount(){
@@ -71,8 +76,8 @@ class MyAds extends Component {
         const deleteAd = (id)=>{
             console.log(id)
             this.setState({adToDelete:id},()=>{
-                let val = window.confirm('Are you sure you want to delete your Ad?');
-                if(val){
+                // let val = window.confirm('Are you sure you want to delete your Ad?');
+                // if(val){
                     var option = {
                         method: 'POST',
                         body: JSON.stringify(this.state),
@@ -83,43 +88,7 @@ class MyAds extends Component {
                     fetch('http://localhost:8000/deletead', option)
                     .then(res => res.json())
                     .then(data => {
-                        this.setState({ user: data }, ()=>{
-                            console.log(this.state)
-                            let user = JSON.parse(localStorage.getItem('user'));
-                        if (user === null) {
-                            user = {
-                                _id: data._id,
-                                name: data.name,
-                                email: data.email,
-                                password: data.password,
-                                DOB: data.DOB,
-                                phone: data.phone,
-                                gender: data.gender,
-                                country: data.country,
-                                date: data.date,
-                                address: data.address,
-                                url1: data.url1,
-                                about: data.about,
-                                favorites: data.favorites
-                            }
-                            localStorage.setItem('user', JSON.stringify(user))
-                        }
-                        user = {
-                            _id: data._id,
-                            name: data.name,
-                            email: data.email,
-                            password: data.password,
-                            DOB: data.DOB,
-                            phone: data.phone,
-                            gender: data.gender,
-                            country: data.country,
-                            date: data.date,
-                            address: data.address,
-                            url1: data.url1,
-                            about: data.about,
-                            favorites: data.favorites
-                        }
-                        localStorage.setItem('user', JSON.stringify(user))
+                        this.setState({ adUpdated: data }, ()=>{
                         var ads = [...this.state.ads];
                         ads.map((value,index)=>{
                             console.log('indside map func')
@@ -135,13 +104,25 @@ class MyAds extends Component {
                         
                     })
                     .catch(err => {console.log(err)})
+
+                    this.setState({show:false})
+                    toast('Your ad has been deleted!', {
+                        className: 'logout-toast',
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: false,
+                        closeButton: false,
+                        // progress: undefined,
+                    })
             
-                    alert("Your ad has been deleted");
                     // window.location.reload();
-                }
-                if(!val){
-                    return false
-                }
+                // }
+                // if(!val){
+                //     return false
+                // }
             })
             // console.log(this.state.adToDelete);
            
@@ -159,6 +140,10 @@ class MyAds extends Component {
             })
         }
         
+        const handleClose = () => this.setState({ show: false });
+        const handleShow = () => this.setState({ show: true });
+
+
         return (
 
             <div className="App" style={{ textAlign: "center" }}>
@@ -189,12 +174,23 @@ class MyAds extends Component {
                                             </div>
                                         </div>
                                            <div className="text-left ">
-                                                <Button  bsPrefix="edit-ad-btn no-outline no-border" onClick={()=>deleteAd(ad._id)} >Delete</Button>
+                                                <Button  bsPrefix="edit-ad-btn no-outline no-border" onClick={()=>handleShow()} >Delete</Button>
                                                 <Link to={"/myads/"+ad._id+"/edit"} className="edit-ad-btn float-right" >Edit</Link>
                                            </div>
                                           
                                             
                                     </div>
+                                    {/* Confirmation Modal */}
+                                    <Modal  className="confirmation-modal" show={this.state.show} onHide={handleClose}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Confirm</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
+                                            <Modal.Footer className="confirmation-modal-footer">
+                                                <Button className="confirmation-modal-yes-btn no-outline"  onClick={() => deleteAd(ad._id)}>Yes</Button>
+                                                <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                 </div>)
                             })
                             :

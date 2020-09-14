@@ -100,47 +100,45 @@ li.col-heading{
 
 .footer{
   height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 100px;
+
   /* margin-top: 10px; */
+  color: white;
   width: 100%;
-  font-size: 19px;
+  font-size: 14px;
   text-align: center;
-  background-color: transparent;
+  background-color: black;
   position: absolute;
   /* bottom: 0; */
 }
-.terms span,.cookie span,.privacy span{
-  color: #EA1039;
+.terms span,.cookie span,.privacy span, .copyright{
+  /* color: #EA1039;
   padding: 5px 10px;
   background-color: transparent;
   transition: .5s;
   transition-property: background-color;
-  font-size: 16px;
-}
-.terms span:hover,.privacy span:hover,.cookie span:hover{
-  background-color: rgba(57, 73, 171,.9);
-  color: white;
+  font-size: 16px; */
+  margin: 0 10px;
   cursor: pointer;
 }
-/* .caro-img{
-  width: 500px;
-  height: 200px;
-} */
 
+.terms span:hover,.cookie span:hover,.privacy span:hover, .copyright:hover{
+  /* color: rgba(27, 20, 100,1); */
+  color: #EA1039;
+}
+.seller-profile-container{
+  height: 60vh;
+}
 .footnav-social-links{
   cursor: pointer;
   color: white;
   text-decoration: none;
 }
 .footnav-social-links:hover{
-  color: white;
-}
-
-.copyright{
-  margin: 3px 0 0 0;
-  background-image: linear-gradient(to right,rgba(57, 73, 171,.9),rgba(27, 20, 100,1));
-  background-blend-mode: multiply;
-  color: white;  
-  font-size: 16px; 
+  color: #EA1039;
 }
 .navbar{
   width: 100%;
@@ -160,8 +158,49 @@ li.col-heading{
   font-size: 19px;
   padding: 0px!important;
   margin:0 10px;
+  transition: .3s color;
 }
-
+.nav-link:hover{
+  color: #EA1039 !important;
+}
+.confirmation-modal .modal-content{
+  background-color: white;
+}
+.confirmation-modal-footer{
+  padding: 16px 50px !important;
+  display: flex;
+  /* flex-direction: row !important; */
+  justify-content: space-between !important;
+}
+.confirmation-modal-yes-btn{
+  background-color: #EA1039 !important;
+  border: 1px solid #EA1039 !important;
+  font-size: 14px !important;
+  margin: 0 !important;
+  padding: 6px 24px !important;
+}
+.main-content-container{
+  padding: 0 10px;
+}
+.confirmation-modal-yes-btn:focus , .confirmation-modal-no-btn:focus{
+  box-shadow: none !important;
+  outline: none !important;
+}
+.confirmation-modal-yes-btn:hover{
+  background-color: rgba(27, 20, 100,1) !important;
+  border: 1px solid rgba(27, 20, 100,1) !important;
+}
+.confirmation-modal-no-btn{
+  background-color: grey !important;
+  border: 1px solid grey !important;
+  font-size: 14px !important;
+  margin: 0 !important;
+  padding: 6px 24px !important;
+}
+.confirmation-modal-no-btn:hover{
+  background-color: rgb(97, 97, 97) !important;
+  border: 1px solid rgb(97, 97, 97)y !important;
+}
 .login-list{
   list-style-type: none;
 }
@@ -178,10 +217,7 @@ li.col-heading{
 .clear{
   clear: both;
 }
-.footer-copyright{
-  text-align: center;
-  font-size: 15px;
-}
+
 .container{
   width: 100%;
   margin: 0 auto;
@@ -285,16 +321,22 @@ color: white !important;
   flex-direction: row !important;
   justify-content: space-between !important;
 }
-
+.logout-toast{
+  background-color: #EA1039 !important;
+  border-radius: 5px !important;
+  /* background-color: rgba(27, 20, 100,1) !important; */
+  text-align: center !important;
+  color: white !important;
+}
 .showSearch{
   height: 45px !important;
   width: 88% !important;
   padding: 10px;
   /* border: 0px !important; */
-  border: none !important;
+  border: 0px !important;
 }
 .showSearch:focus{
-  
+
   border: 1px solid crimson !important;
 }
 .login-btn{
@@ -312,7 +354,8 @@ color: white !important;
   outline: none;
 }
 .login-btn:hover{
-  background-color: rgba(57, 73, 171,.9);
+  background-color: rgba(27, 20, 100,1);
+  /* background-color: rgba(57, 73, 171,.9); */
   /* background-color: rgba(57, 72, 171, 0.301); */
   outline: none;
   color: white;
@@ -653,7 +696,8 @@ div.ads-type{
 }
 .edit-ad-btn:hover{
   color: white;
-  background-color: rgba(57, 73, 171,.9);
+  /* background-color: rgba(57, 73, 171,.9); */
+  background-color: rgba(27, 20, 100,1);
 }
 .edit-ad-btn:focus{
   outline: none !important;

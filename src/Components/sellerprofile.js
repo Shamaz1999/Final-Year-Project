@@ -1,32 +1,38 @@
 import React, { Component } from 'react'; 
 import "./../bootstrap/bootstrapC.css";
 import man from './../images/man.png'
+import girl from './../images/girl.png'
 // import girl from './../images/girl.png'
 import { connect } from 'react-redux'
 
 
 class Seller extends Component {
     state={
-        id:this.props.match.params.adsd,
+        sellerId:this.props.match.params.sellerId,
+        // sellerId:"5ca753751068f50017ddb561",
         seller:''
     }
 
     componentWillMount(){
-      
+       console.log(this.state)
         var option = {
             method: "POST",
             body: JSON.stringify(this.state),
             headers:{
                 'Content-Type': 'application/json'
             }
-        }
+        }   
 
-        fetch('http://localhost:8000/currentad', option)
+        fetch('http://localhost:8000/sellerprofile', option)
         .then(res => res.json())
         .then(data =>{
-            this.setState({seller:data},
-            ()=>console.log(this.state),
-            )
+            if(data.data == null){
+                this.setState({seller: null})
+            }
+            console.log(data)
+            // this.setState({seller:data},
+            // ()=>console.log(this.state),
+            // )
         })
         .catch(err => console.log(err))
         
@@ -36,25 +42,28 @@ class Seller extends Component {
     render(){
         // let user = this.state.seller
         localStorage.setItem('seller', JSON.stringify(this.state.seller))
+        // var sellerDate = this.state.seller.date
         var seller = JSON.parse(localStorage.getItem("seller"))
-        console.log(seller)
         var dp= "";
+
+        if(seller !== null ){
         if (seller.sellerImg === "") {
             // console.log('1st')
-            // if (seller.gender === "male"){
+            if (seller.gender === "male"){
                 dp = man
-            // }
-            // if (seller.gender === "female"){
-                // dp = girl
             }
-        else{
-            dp = seller.sellerImg;
-            console.log('2dn')
+            if (seller.gender === "female"){
+                dp = girl
+            }
         }
-        
+        else{
+            dp = seller.url1;
+        }
+    }
         return(
-            <div className="app">
-                <div className="container">               
+            <div  className="seller-profile-container">
+
+                { this.state.seller ? <div className="container">               
                     <div className="detail-container text-center">
                         <div className="profile-pic-container">
                             <img height="150" width="150" src={dp} alt="profile-pic" />
@@ -62,12 +71,12 @@ class Seller extends Component {
                         <span className="detail-text-group">
                             <label htmlFor="exampleInputEmail1">Seller Name</label>
                             <br/>
-                            <input type="text" disabled name="detail-name" refs="sellerName" className="detail-input" value={seller.sellerName} />                               
+                            <input type="text" disabled name="detail-name" refs="sellerName" className="detail-input" value={seller.name} />                               
                         </span>
                         <span className="detail-text-group">
-                            <label htmlFor="exampleInputEmail1">Seller Location</label>
+                            <label htmlFor="exampleInputEmail1">Date Joined</label>
                             <br/>
-                            <input type="text" disabled name="detail-info" className="detail-input" value={seller.location}  />                               
+                            <input type="text" disabled name="detail-info" className="detail-input" value={seller.date}  />                               
                         </span>
                         <span className="detail-text-group">
                             <label htmlFor="exampleInputEmail1">Seller Mobile Number</label>
@@ -77,19 +86,24 @@ class Seller extends Component {
                         <span className="detail-text-group">
                             <label htmlFor="exampleInputEmail1">Seller Country</label>
                             <br/>
-                            <input type="text" disabled name="detail-mobile" value={seller.sellerCountry} className="detail-input"/>
+                            <input type="text" disabled name="detail-mobile" value={seller.country} className="detail-input"/>
                         </span>
                        
                         <div className="container">
                         <hr/>
                         </div>
-
-                    </div>
-
-                   
-
+                    </div>     
                 </div>
+                :
+                <div  className="container" >
+                    <h1 style={{ margin: '30px auto', fontWeight: '400', textAlign:'center' }} >Sorry! user found.</h1>
+                    <h3 style={{ margin: '70px auto', fontWeight: '400', textAlign:'center' }} >Maybe the user have deleted his account</h3>
+                    
+                </div >
+                
+}
             </div>
+
         );
     }
 }

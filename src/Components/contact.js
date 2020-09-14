@@ -1,4 +1,6 @@
 import React, { Component } from 'react'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 // import {Link} from 'react-router-dom'
 
 class Contact extends Component {
@@ -16,19 +18,50 @@ class Contact extends Component {
     verify = ()=>{
 
         if(this.state.name===""){
-            alert('Your Name is required!')
+            toast('Your Name is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            // alert('Your Name is required!')
             const input = this.refs.name
             input.focus()
             return false
         }
         if(this.state.topic===""){
-            alert('Topic Name is required!')
+            toast('Topic Name is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
             const input = this.refs.topic
             input.focus()
             return false
         }
         if(this.state.comments===""){
-            alert('Description is required!')
+            toast('Description is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
             const input = this.refs.comment
             input.focus()
             return false

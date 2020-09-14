@@ -81,7 +81,6 @@ class Nav extends Component {
                 this.props.history.push('/')
             })
             .catch(err => { console.log(err) })
-        // window.alert('key pressed')
     }
 
     country1 = (country) => { this.setState({ country }) }
@@ -119,11 +118,11 @@ class Nav extends Component {
                                 <div className=" nav-search">
                                     <CountrySelect prop={this.props} country={this.country1} />
                                 </div>
-                                <div className="input-group ml-3 mr-3">
+                                <div className="input-group">
                                     <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="showSearch no-outline"
                                         placeholder="Search for ads"
                                     />
-                                    <div className="append">
+                                    <div className="input-group-append">
                                         <button className="btn login-btn search-btn "
                                             id="searchBtn"
                                             onClick={this.searchAds}

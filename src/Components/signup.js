@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import {storage} from './firebase/index'
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 class Signup extends Component {
@@ -16,58 +17,166 @@ class Signup extends Component {
         DOB: "",
         country: "",
         address: "",
-        date: new Date(),
+        date: '',
         about:'',
         image1:null,
         url1:'',
         progress1:0,
     }
     componentDidMount() {
+
+    var d = new Date()
+    var months = [
+        'January','February','March','April','May','June','July'
+        ,'August','September','October','November','December',''
+    ]
+    var day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    var dat = day[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+" "+d.getFullYear();
+    this.setState({date:dat})
+
         const input = this.refs.userName;
         input.focus();
     }
 
     verify = () => {
         if (this.state.name === "") {
-            alert('Name is required!')
+            toast('Name is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             var userName = this.refs.userName;
             userName.focus()
             return false
         } else if (this.state.email === "") {
-            alert('Email is required!')
+            toast('Email is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             var userEmail = this.refs.userEmail;
             userEmail.focus()
             return false
         } else if (this.state.password === "") {
-            alert('Password is required!')
+            toast('Password is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             var userPassword = this.refs.userPassword;
             userPassword.focus()
             return false
         } else if (this.state.phone === "") {
-            alert('Phone Number is required!')
+            toast('Phone Number is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             var phoneNum = document.getElementById("phone-num")
             phoneNum.focus()
             return false
         } else if (this.state.gender === "") {
-            alert('Gender is required!')
+            toast('Gender is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             return false
         } else if (this.state.DOB === "") {
-            alert('Date of Birth is required!')
+            toast('Date of Birth is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+        
             var userDOB = this.refs.userDOB;
             userDOB.focus();
             return false
         } else if (this.state.country === "") {
-            alert('Country is required!')
+            toast('Country is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             var userCountry = this.refs.userCountry;
             userCountry.focus()
             return false
         } else if (this.state.address === "") {
-            alert('Address is required!')
+            toast('Address is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            
             var userAddress = this.refs.userAddress;
             userAddress.focus()
             return false
         } else if (this.state.password.length <= 6) {
-            alert("Password must me 7 characters long!")
+            toast('Password must me 7 characters long!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
             var userPassword1 = this.refs.userPassword;
             userPassword1.focus()
             return false
@@ -108,7 +217,17 @@ class Signup extends Component {
                     // console.log(data._id)
                     // console.log(data.name)
                     console.log(data)
-                    alert('Your Account has been created! You can log in now.')
+                    toast('Your Account has been created! You can log in now.', {
+                        className:'logout-toast',
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: false,
+                        closeButton: false,
+                        // progress: undefined,
+                        });
                     this.props.history.push('/login')
                     }
                     )

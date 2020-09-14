@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class Login extends Component {
 
@@ -14,13 +16,35 @@ class Login extends Component {
     }
     verify = () => {
         if (this.state.email === "") {
-            alert('Email is required');
+            toast('Email is required!', {
+                className:'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton:false,
+                // progress: undefined,
+                });
+            // alert('Email is required');
             const input = this.refs.email;
             input.focus();
             return false
         } else
             if (this.state.password === "") {
-                alert("Password is required");
+                toast('Password is required', {
+                    className:'logout-toast',
+                    position: "top-center",
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton:false,
+                    // progress: undefined,
+                    });
+                // alert("Password is required");
                 const input = this.refs.password;
                 input.focus();
                 return false

@@ -4,6 +4,9 @@ import {storage} from './firebase/index'
 // import $ from 'jquery'
 import PhoneInput from 'react-phone-number-input'
 import { connect } from 'react-redux'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 
 class Post extends Component {
@@ -241,62 +244,182 @@ up4=()=>{
 verify = ()=>{
 
     if (this.state.adTitle === "") {
-        alert('Title is required!')
+        toast('Title is required!', {
+            className: 'logout-toast',
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton: false,
+            // progress: undefined,
+        })
         var adTitle = this.refs.adTitle;
         adTitle.focus()
         return false
     } else  if (this.state.brand === "") {
-        alert('Brand name is required!')
+        toast('Brand name is required!', {
+            className: 'logout-toast',
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton: false,
+            // progress: undefined,
+        })
         var itemBrand = this.refs.itemBrand;
         itemBrand.focus()
         return false
         } else  if (this.state.category === "") {
-            alert('Category is required!')
+            toast('Category is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var adCategory = this.refs.adCategory;
             adCategory.focus()
             return false
         } else if (this.state.condition === "") {
-            alert('Condition is required!')
+            toast('Condition is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var adCondition = this.refs.adCondition;
             adCondition.focus()
             return false
         } else if (this.state.price === "") {
-            alert('Price is required!')
+            toast('Price is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var adPrice = this.refs.adPrice;
             adPrice.focus()
             return false
         } else if (this.state.location === "") {
-            alert('Location is required!')
+            toast('Location is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var adloc = this.refs.adloc;
             adloc.focus()
             return false
         } else if (this.state.description === "") {
-            alert('Description is required!')
+            toast('Description is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var adDesc = this.refs.adDesc;
             adDesc.focus()
             return false
         } else if (this.state.phone === "") {
-            alert('Your Phone number is required!')
+            toast('Your Phone number is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var adPhone = this.refs.adPhone;
             adPhone.focus()
             return false
         } else if (this.state.url1 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var imgup1 = this.refs.imgup1;
             imgup1.focus()
             return false
         } else if (this.state.url2 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var imgup2 = this.refs.imgup2;
             imgup2.focus()
             return false
         } else if (this.state.url3 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var imgup3 = this.refs.imgup3;
             imgup3.focus()
             return false
         } else if (this.state.url4 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             var imgup4 = this.refs.imgup4;
             imgup4.focus()
             return false
@@ -315,7 +438,18 @@ verify = ()=>{
                 console.log(data) 
             )
             .catch(err => console.log(err))
-            alert('Your Ad has been posted!')
+
+            toast('Your Ad has been posted!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            })
             this.props.history.push('/')
         }
     }

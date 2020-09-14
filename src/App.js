@@ -19,6 +19,7 @@ import store from './redux'
 import Chat from './Components/chat';
 import favAds from './Components/favAds';
 import editAd from './Components/editAd';
+import { ToastContainer } from 'react-toastify';
 
 class App extends Component {
 
@@ -31,14 +32,14 @@ class App extends Component {
           <Nav />
           <Switch>
             
-            <Route path='/ad/:adsd/sellerProfile' component={Seller} />
+            <Route path='/:adsd/sellerProfile/:sellerId' component={Seller} />
             <Route path='/ad/:adId' component={Ad} />
             <Route path='/myads/:adId/edit' component={editAd} />
             <Route path='/myads' component={MyAds} />
             <Route path='/favoriteAds' component={favAds} />
             <Route path='/postad' component={Post} />
             <Route path='/:sellerId/chat' component={Chat} />
-            <Route path='/details' component={Details} />
+            <Route path='/details/:userId' component={Details} />
             <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />
             <Route path='/login' component={Login} />
@@ -47,6 +48,7 @@ class App extends Component {
 
           </Switch>
           <FootNav />
+          <ToastContainer/>
           <Footer />
         </div>
 

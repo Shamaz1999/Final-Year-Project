@@ -165,9 +165,9 @@ class Content extends Component {
 
         return (
 
-            <div className="App" style={{ textAlign: "center" }}>
+            <div className="main-content-container" style={{ textAlign: "center" }}>
                 
-                <div className="row">
+                <div className="rdow">
                     {sa ?
                         //This displays Searched Ads
                         <div style={{ width: '100%' }} className="">

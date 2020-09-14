@@ -5,7 +5,8 @@ import { Dropdown } from "react-bootstrap";
 import man from './../images/man.png'
 import girl from './../images/girl.png'
 import io from 'socket.io-client';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 class Onlogin extends Component {
@@ -30,8 +31,18 @@ class Onlogin extends Component {
 
     logout = () => {
         this.props.socket.socket.disconnect();
-        // localStorage.removeItem('user');
-        // alert('You have been logged out');
+        localStorage.removeItem('user');
+        toast('You have been logged out!', {
+            className:'logout-toast',
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton: false,
+            // progress: undefined,
+            });
     }
     render() {
 
@@ -67,15 +78,7 @@ class Onlogin extends Component {
         }
         else { dp = user.url1 }
 
-        const handleProfileMenu = () => {
-            var m = document.getElementById("menu");
-            if (m.classList.contains("hide-profile-menu")) {
-                m.classList.remove("hide-profile-menu")
-            }
-            else {
-                m.classList.add("hide-profile-menu")
-            }
-        }
+       
 
         return (
             <div className="app">
@@ -88,7 +91,7 @@ class Onlogin extends Component {
                         <Dropdown.Item ><span>{user.name}</span><hr className="u-name-divider" /></Dropdown.Item>
                         <Dropdown.Item>
                             <span>
-                                <Link className="black" to="/details">Profile</Link>
+                                <Link className="black" to={"/details/"+user._id}>Profile</Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item >

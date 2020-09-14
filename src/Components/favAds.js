@@ -3,19 +3,21 @@ import "./../bootstrap/bootstrapC.css"
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class FavAds extends Component {
     state = {
         ads: [],
         user: JSON.parse(localStorage.getItem('user')),
         id: '',
-        isDataLoaded: false
+        isDataLoaded: false,
+        show: false,
     }
 
     componentDidMount() {
-        console.log('did mount ran');
         //Updating User
         var option = {
             method: 'POST',
@@ -100,12 +102,14 @@ class FavAds extends Component {
 
 
     render() {
+        const handleClose = () => this.setState({ show: false });
+        const handleShow = () => this.setState({ show: true });
 
         const removefav = (id) => {
             this.setState({ id: id }, () => {
 
-                var c = window.confirm('Are you sure you want to remove it from favorites?')
-                if (c) {
+                // var c = window.confirm('Are you sure you want to remove it from favorites?')
+                // if (c) {
                     var option = {
                         method: 'POST',
                         body: JSON.stringify(this.state),
@@ -165,13 +169,27 @@ class FavAds extends Component {
 
                         })
                         .catch(err => console.log(err))
+                        this.setState({show:false})
 
+                    toast('Ad removed from favorites!', {
+                        className: 'logout-toast',
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: false,
+                        closeButton: false,
+                        // progress: undefined,
+                    })
+                        // (this.props.history.push('/login'))
 
                 }
-                else {
-                    return false
-                }
-            })
+                // else {
+                //     return false
+                // }
+            // }
+            )
         }
 
 
@@ -249,9 +267,23 @@ class FavAds extends Component {
                                                 </div>
                                             </div>
                                             <div className="text-left">
-                                                <Button onClick={() => removefav(ad._id)} bsPrefix="edit-ad-btn no-outline no-border" >Remove</Button>
+                                                <Button
+                                                    // onClick={() => removefav(ad._id)}
+                                                    onClick={() => handleShow()}
+                                                    bsPrefix="edit-ad-btn no-outline no-border" >Remove</Button>
                                             </div>
                                         </div>
+                                        {/* Confirmation Modal */}
+                                        <Modal  className="confirmation-modal" show={this.state.show} onHide={handleClose}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Confirm</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
+                                            <Modal.Footer className="confirmation-modal-footer">
+                                                <Button className="confirmation-modal-yes-btn no-outline" onClick={() => removefav(ad._id)}>Yes</Button>
+                                                <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                     </div>)
                                 })
                                 :
@@ -276,6 +308,10 @@ class FavAds extends Component {
                             </div>
                     }
                 </div>
+
+
+
+
             </div>
 
         );

@@ -18,12 +18,11 @@ return(
                 <div className="col-md-4">
                     <ul className="foot-nav-ul">
                         <li className="col-heading med-headings">Categories</li>
-                        <li className="col-items">Mobile Phone</li>
-                        <li className="col-items">Cars</li>
-                        <li className="col-items">Jobs</li>
-                        <li className="col-items">Men's Wear</li>
-                        <li className="col-items">Services</li>
-                        <li className="col-items">Bikes</li>
+                        <li className="col-items"><span className="footnav-social-links">Mobiles</span></li>
+                        <li className="col-items"><span className="footnav-social-links">Vehicles</span></li>
+                        <li className="col-items"><span className="footnav-social-links">Services</span></li>
+                        <li className="col-items"><span className="footnav-social-links">Furniture</span></li>
+                        <li className="col-items"><span className="footnav-social-links">Bikes</span></li>
                     </ul>
                 </div>
                 <div className="col-md-4">
