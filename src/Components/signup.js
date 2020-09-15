@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-import {storage} from './firebase/index'
+import { storage } from './firebase/index'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -16,23 +16,24 @@ class Signup extends Component {
         gender: "",
         DOB: "",
         country: "",
+        city: "",
         address: "",
         date: '',
-        about:'',
-        image1:null,
-        url1:'',
-        progress1:0,
+        about: '',
+        url1: '',
+        image1: null,
+        progress1: 0,
     }
     componentDidMount() {
 
-    var d = new Date()
-    var months = [
-        'January','February','March','April','May','June','July'
-        ,'August','September','October','November','December',''
-    ]
-    var day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-    var dat = day[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+" "+d.getFullYear();
-    this.setState({date:dat})
+        var d = new Date()
+        var months = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July'
+            , 'August', 'September', 'October', 'November', 'December', ''
+        ]
+        var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        var dat = day[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + " " + d.getFullYear();
+        this.setState({ date: dat })
 
         const input = this.refs.userName;
         input.focus();
@@ -41,148 +42,165 @@ class Signup extends Component {
     verify = () => {
         if (this.state.name === "") {
             toast('Name is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
             var userName = this.refs.userName;
             userName.focus()
             return false
         } else if (this.state.email === "") {
             toast('Email is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
             var userEmail = this.refs.userEmail;
             userEmail.focus()
             return false
         } else if (this.state.password === "") {
             toast('Password is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
             var userPassword = this.refs.userPassword;
             userPassword.focus()
             return false
         } else if (this.state.phone === "") {
             toast('Phone Number is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
             var phoneNum = document.getElementById("phone-num")
             phoneNum.focus()
             return false
         } else if (this.state.gender === "") {
             toast('Gender is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
             return false
         } else if (this.state.DOB === "") {
             toast('Date of Birth is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-        
+            });
+
             var userDOB = this.refs.userDOB;
             userDOB.focus();
             return false
         } else if (this.state.country === "") {
             toast('Country is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
             var userCountry = this.refs.userCountry;
             userCountry.focus()
             return false
-        } else if (this.state.address === "") {
-            toast('Address is required!', {
-                className:'logout-toast',
+        } else if (this.state.city === "") {
+            toast('City is required!', {
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
-            
+            });
+
+            var userCity = this.refs.userCity;
+            userCity.focus()
+            return false
+        }
+        else if (this.state.address === "") {
+            toast('Address is required!', {
+                className: 'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            });
+
             var userAddress = this.refs.userAddress;
             userAddress.focus()
             return false
         } else if (this.state.password.length <= 6) {
             toast('Password must me 7 characters long!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
+                closeButton: false,
                 // progress: undefined,
-                });
+            });
             var userPassword1 = this.refs.userPassword;
             userPassword1.focus()
             return false
         } else {
-        
-        var option = {
+
+            var option = {
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 headers: {
@@ -190,11 +208,11 @@ class Signup extends Component {
                 }
             }
 
-        fetch('http://localhost:8000/signup', option)
+            fetch('http://localhost:8000/signup', option)
                 .then(res => res.json())
                 .then(data => {
                     let user = JSON.parse(localStorage.getItem('user'));
-                    if (user===null) {
+                    if (user === null) {
                         user = {
                             _id: data._id,
                             name: data.name,
@@ -204,21 +222,22 @@ class Signup extends Component {
                             phone: data.phone,
                             gender: data.gender,
                             country: data.country,
+                            city: data.city,
                             date: data.date,
                             address: data.address,
                             url1: data.url1,
                             about: data.about,
-                            favorites:data.favourites
-                            }
-                            localStorage.setItem('user', JSON.stringify(user))
+                            favorites: data.favourites
                         }
-                        console.log(user)
-                            // this.props.history.push("/")  
+                        localStorage.setItem('user', JSON.stringify(user))
+                    }
+                    console.log(user)
+                    // this.props.history.push("/")  
                     // console.log(data._id)
                     // console.log(data.name)
                     console.log(data)
                     toast('Your Account has been created! You can log in now.', {
-                        className:'logout-toast',
+                        className: 'logout-toast',
                         position: "top-center",
                         autoClose: 3000,
                         hideProgressBar: true,
@@ -227,55 +246,55 @@ class Signup extends Component {
                         draggable: false,
                         closeButton: false,
                         // progress: undefined,
-                        });
-                    this.props.history.push('/login')
-                    }
-                    )
+                    });
+                    // this.props.history.push('/login')
+                }
+                )
 
                 .catch(err => console.log(err))
         }
     }
 
     // Profile Picture Upload Code
-    handleChange1=(e)=>{
-        if(e.target.files[0]){
-            const image1=e.target.files[0];
-            this.setState({image1});
+    handleChange1 = (e) => {
+        if (e.target.files[0]) {
+            const image1 = e.target.files[0];
+            this.setState({ image1 });
         }
     }
-    handleUpload1=()=>{
-        const {image1}=this.state;
-        const uploadTask= storage.ref(`images/${image1.name}`).put(image1)
-    uploadTask.on('state_changed', 
-    (snapshot)=>{
-        // progress funcion
-        const progress1=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
-        this.setState({progress1});
-    },
-    (error)=>{
-        // error funcion
-        
-        console.log(error);
-     }, 
-     ()=>{
-         // complete funcion
-         storage.ref('images').child(image1.name).getDownloadURL()
-         .then(url1=>{
-             // this.refs.img.src=url;
-             this.setState({url1});
-             console.log(this.state)
-            })
-            
-        }
+    handleUpload1 = () => {
+        const { image1 } = this.state;
+        const uploadTask = storage.ref(`images/${image1.name}`).put(image1)
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // progress funcion
+                const progress1 = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                this.setState({ progress1 });
+            },
+            (error) => {
+                // error funcion
+
+                console.log(error);
+            },
+            () => {
+                // complete funcion
+                storage.ref('images').child(image1.name).getDownloadURL()
+                    .then(url1 => {
+                        // this.refs.img.src=url;
+                        this.setState({ url1 });
+                        console.log(this.state)
+                    })
+
+            }
         )
     }
-        // Showing hidden upload button and progress bar
-up1=()=>{
-    document.getElementById('upBtn1').classList.add('show')
-    document.getElementById('upProg1').classList.add('show')
-    document.getElementById('upImg1').classList.add('show')
-}
-    
+    // Showing hidden upload button and progress bar
+    up1 = () => {
+        document.getElementById('upBtn1').classList.add('show')
+        document.getElementById('upProg1').classList.add('show')
+        document.getElementById('upImg1').classList.add('show')
+    }
+
     country1 = (country) => { this.setState({ country }) }
     render() {
         console.log(this.state)
@@ -322,25 +341,29 @@ up1=()=>{
                             <label htmlFor="user-DOB"><b>Date of Birth</b> <span className="required">*</span></label>
                             <input type="date" name="user-DOB" ref="userDOB" onInput={e => this.setState({ DOB: e.target.value })} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh" />
                         </div>
-                        <label htmlFor="exampleInputEmail1"><b>Profile Picture</b> <span className="required"><span style={{fontSize:'14px'}}>(after selecting files click on upload)</span>*</span></label>
+                        <label htmlFor="exampleInputEmail1"><b>Profile Picture</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting files click on upload)</span>*</span></label>
                         <div className="imgupload1">
-                            <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1}/>
+                            <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
                             <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
                             <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                                    <img ref='img1' alt="profile" id="upImg1" src={this.state.url1} className="hid" height="30" />
-                                </div>
+                            <img ref='img1' alt="profile" id="upImg1" src={this.state.url1} className="hid" height="30" />
+                        </div>
                         <div className="form-group">
                             <label htmlFor="user-country"><b>Country</b> <span className="required">*</span></label>
                             <CountrySelect country={this.country1} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="user-address"><b>City</b> <span className="required">*</span></label>
+                            <input type="text" id="user-city" ref="userCity" onInput={e => this.setState({ city: e.target.value })} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your city" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="user-address"><b>Address</b> <span className="required">*</span></label>
                             <input type="text" id="user-address" ref="userAddress" onInput={e => this.setState({ address: e.target.value })} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your address" />
                         </div>
                         <div className="form-group">
-                                <label htmlFor="exampleInputPassword1"><b>About you</b> <span className="required">*</span></label>
-                                <textarea name="comments" id="contact-comment" ref="comment" onChange={e => this.setState({about:e.target.value})} className="form-control" cols="30" rows="6"></textarea>
-                            </div>
+                            <label htmlFor="exampleInputPassword1"><b>About you</b> <span className="required">*</span></label>
+                            <textarea name="comments" id="contact-comment" ref="comment" onChange={e => this.setState({ about: e.target.value })} className="form-control" cols="30" rows="6"></textarea>
+                        </div>
                         <div>
                             <div className="float-left">
                                 <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>

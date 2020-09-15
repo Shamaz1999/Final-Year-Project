@@ -11,7 +11,7 @@ class FootNav extends Component {
             
 return(
 
-    <div className="App">
+    <div className="footnav-container">
         <div className="foot-nav">
         <div className="container">
             <div className="row">   

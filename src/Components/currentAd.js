@@ -413,7 +413,7 @@ class Ad extends Component {
                                         </div>
                                     }
                                     <div className="favourite-container float-right">
-                                       { this.state.ad.sellerId  == userId
+                                       { this.state.ad.sellerId  === userId
                                             ?
                                             ""
                                             :
@@ -477,7 +477,7 @@ class Ad extends Component {
                                         {this.state.isDataLoaded
                                             ?
                                             // <div >
-                                            <img src={this.state.ad.sellerImg} width='100' height="80" alt="Profile Picture" />
+                                            <img src={this.state.ad.sellerImg} width='100' height="80" alt="Profile Pic" />
                                             // </div>
 
                                             :
@@ -511,7 +511,7 @@ class Ad extends Component {
                                             </span>
                                             <span className="user-chat-btn-container pb-3 text-center">
                                                 {
-                                                     this.state.ad.sellerId == userId
+                                                     this.state.ad.sellerId === userId
                                                         ?
                                                     <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
                                                         :

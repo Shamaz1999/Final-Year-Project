@@ -42,9 +42,7 @@ class Login extends Component {
                     pauseOnHover: true,
                     draggable: false,
                     closeButton:false,
-                    // progress: undefined,
                     });
-                // alert("Password is required");
                 const input = this.refs.password;
                 input.focus();
                 return false
@@ -105,7 +103,27 @@ class Login extends Component {
                     .catch(err => {
                         console.log(err)
                         this.setState({ isLoggedIn: false })
-                        alert('Your email and password does not match')
+                        toast('Something Went Wrong!', {
+                            className:'logout-toast',
+                            position: "top-center",
+                            autoClose: 4000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: false,
+                            closeButton:false,
+                            });
+                        toast('Please make sure you are entering the right credentials', {
+                            className:'logout-toast',
+                            position: "top-center",
+                            autoClose: 4000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: false,
+                            closeButton:false,
+                            });
+                        // alert('Your email and password does not match')
                     })
 
             }

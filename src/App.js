@@ -28,7 +28,7 @@ class App extends Component {
       <Provider store={store}>
       <BrowserRouter>
 
-        <div>
+        <div className="background-class">
           <Nav />
           <Switch>
             
