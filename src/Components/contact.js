@@ -87,7 +87,7 @@ class Contact extends Component {
     render(){
         console.log(this.state)
         return(
-            <div className="app">
+            <div className="app text-color">
             <div className="main-login">
                 <form className="login-form" method="POST" style={{marginBottom:"190px"}} id="login-form">
                         <div className="display-4" style={{marginBottom:"20px"}}>

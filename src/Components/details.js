@@ -6,6 +6,8 @@ import girl from './../images/girl.png';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { Row, Col, Modal, Button } from 'react-bootstrap'
+import Skeleton from 'react-loading-skeleton'
+
 
 
 class Details extends Component {
@@ -31,7 +33,8 @@ class Details extends Component {
             _id: this.props.match.params.userId,
         },
         show: false,
-        theme: JSON.parse(localStorage.getItem('theme')),
+        // theme: JSON.parse(localStorage.getItem('theme')),
+        isDataloaded: false,
     }
 
     componentDidMount() {
@@ -47,32 +50,14 @@ class Details extends Component {
         fetch('http://localhost:8000/updateuser', option)
             .then(res => res.json())
             .then(data => {
-                this.setState({ user: data },)
+                this.setState({ user: data })
+                this.setState({isDataloaded: true})
                 localStorage.setItem('user', JSON.stringify(data))
             })
             .catch(err => console.log(err))
 
 
         let user = JSON.parse(localStorage.getItem('user'));
-        // if (user === null) {
-        //     user = {
-        //         _id: this.props.user._id,
-        //         name: this.props.user.name,
-        //         email: this.props.user.email,
-        //         password: this.props.user.password,
-        //         DOB: this.props.user.DOB,
-        //         phone: this.props.user.phone,
-        //         gender: this.props.user.gender,
-        //         country: this.props.user.country,
-        //         date: this.props.user.date,
-        //         about: this.props.user.about,
-        //         address: this.props.user.address,
-        //         url1: this.props.user.url1
-        //     };
-        //     localStorage.setItem('user', JSON.stringify(user))
-        //     console.log(user.about)
-        // }
-        // let  u = JSON.parse(localStorage.getItem('user'))
 
         this.refs.name.value = user.name
         this.refs.phone.value = user.phone
@@ -308,28 +293,36 @@ class Details extends Component {
             }
         }
         else { dp = this.state.user.url1 }
+        var theme = localStorage.getItem('theme');
+        // if(this.state.theme==='dark'){
+        //     document.getElementById('switcher').checked = true
+        // }
+        // else{
+            
+        //     document.getElementById('switcher').checked = false
+        // }
 
-        const handleTheme = (e)=>{
-          var theme = localStorage.getItem('theme');
+        const handleTheme = ()=>{
           console.log(this.state.theme)
-          if(this.state.theme === null || 'normal' || undefined){
+          if(theme === 'normal'){
               console.log("first one") 
-              document.documentElement.setAttribute('data-theme', 'dark');
-              this.setState({theme:'dark'})
               theme = "dark"
+            //   this.setState({theme:'dark'})
+              document.documentElement.setAttribute('data-theme', 'dark');
               localStorage.setItem('theme', JSON.stringify(theme))
-            }
-            else{
+            }else
+            // if(theme === 'dark')
+            {
                 console.log("second one")
-                document.documentElement.setAttribute('data-theme', 'normal');
-                this.setState({theme:'normal'})
+                // this.setState({theme:'normal'})
                 theme = "normal"
+                document.documentElement.setAttribute('data-theme', 'normal');
                 localStorage.setItem('theme', JSON.stringify(theme))
           }
         }
 
         return (
-            <div className="app">
+            <div className="app text-color">
                 <div className="details-container">
                     <div className="details-header">
                         <h2 style={{ fontWeight: '400' }} >Profile Details</h2>
@@ -337,7 +330,7 @@ class Details extends Component {
                             <div id='comments'>
                                 <label htmlFor="switcher">Dark Mode</label>
                                 <label class="switch">
-                                    <input id="switcher" onClick={() => handleTheme()} type="checkbox" />
+                                    <input id="switcher"  onChange={() => handleTheme()} type="checkbox" />
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -350,7 +343,7 @@ class Details extends Component {
                                 </div>
                             <hr />
                             <div className="details-profile-pic-container">
-                                <img src={dp} height='250' width="300" className="details-profile-pic" alt="Profile Pic" />
+                                {this.state.isDataloaded ? <img src={dp} height='250' width="300" className="details-profile-pic" alt="Profile Pic" /> : <Skeleton height={250} width={300}/>}
                             </div>
                             <div className="profile-details-wrapper" >
                                 <div className="profile-details-container">

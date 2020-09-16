@@ -123,7 +123,7 @@ class Nav extends Component {
                                         placeholder="Search for ads"
                                     />
                                     <div className="input-group-append">
-                                        <button className="btn login-btn search-btn "
+                                        <button className="btn  search-btn "
                                             id="searchBtn"
                                             onClick={this.searchAds}
                                             //   onClick={this.handleSearch} 

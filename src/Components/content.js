@@ -101,8 +101,8 @@ class Content extends Component {
             if (searchedAds.length !== 0) {
                 for (let i = 0; i <= searchedAds.length; i++) {
                     e = searchedAds.map((item, index) =>
-                        <div key={index} className="card-wrapper" >
-                            <div className="card" style={im} >
+                        <div key={index} className="card-wrapper " >
+                            <div className="card card-background-color" style={im} >
                                 <AliceCarousel
                                     buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
                                     {items([item.url1, item.url2, item.url3, item.url4])}
@@ -141,7 +141,7 @@ class Content extends Component {
 
         for( let i = 1; i !== skeletonCards.length; i++){
             sc = skeletonCards.map((item, index)=>{
-            return  <div className="card-wrapper" >
+            return  <div className="card-wrapper card-background-color" >
                 <div className="card" style={im} >                   
                     <Skeleton height={200} />
                 <div className="card-body">
@@ -165,7 +165,7 @@ class Content extends Component {
 
         return (
 
-            <div className="main-content-container" style={{ textAlign: "center" }}>
+            <div className="main-content-container text-color" style={{ textAlign: "center" }}>
                 
                 <div className="rdow">
                     {sa ?

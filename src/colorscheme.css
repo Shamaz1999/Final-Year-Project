@@ -1,0 +1,35 @@
+/* Normal Theme */
+html[data-theme="normal"] {
+  --primary-color: #EA1039;
+  --secondary-color: rgba(27, 20, 100,1);
+  --dark-color: rgb(14, 14, 14);
+  --text-color: black;
+  --profile-page-input-border-color : white;
+  --theme-background-color : white;
+  --modal-no-btn-color:grey;
+  --modal-no-btn-hover-color:rgb(97, 97, 97);
+  --toast-color:#EA1039;
+  --toast-border-color:#EA1039;
+  --profile-page-tabs-shadow-color:rgba(0, 0, 0, 0.438);
+  --skeleton-loader-first-color: #eee;
+  --skeleton-loader-second-color: #f5f5f5;
+}
+
+
+
+/* Dark Theme */
+html[data-theme="dark"] {
+  --primary-color: #EA1039;
+  --secondary-color: rgba(27, 20, 100,1);
+  --dark-color: rgb(14, 14, 14);
+  --text-color: white;
+  --profile-page-input-border-color : rgb(14, 14, 14);
+  --theme-background-color : rgb(14, 14, 14);
+  --modal-no-btn-color:grey;
+  --modal-no-btn-hover-color:rgb(97, 97, 97);
+  --toast-color: rgb(14,14,14);
+  --toast-border-color:white;
+  --profile-page-tabs-shadow-color: rgb(14, 14, 14);
+  --skeleton-loader-first-color: #474747;
+  --skeleton-loader-second-color: #2c2c2c;
+}

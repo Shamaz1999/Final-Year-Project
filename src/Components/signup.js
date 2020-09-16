@@ -314,11 +314,11 @@ class Signup extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1"><b>Email Address</b> <span className="required">*</span></label>
-                            <input type="email" name="user-email" ref="userEmail" onInput={e => this.setState({ email: e.target.value })} className="form-control" placeholder="Enter your email" />
+                            <input type="email" name="signup-email" ref="userEmail" onInput={e => this.setState({ email: e.target.value })} className="form-control" placeholder="Enter your email" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1"><b>Password</b> <span className="required">*</span></label>
-                            <input type="password" name="user-password" ref="userPassword" onInput={e => this.setState({ password: e.target.value })} className="form-control" placeholder="Enter your password" />
+                            <input type="password" name="signup-password" ref="userPassword" onInput={e => this.setState({ password: e.target.value })} className="form-control" placeholder="Enter your password" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
@@ -369,7 +369,7 @@ class Signup extends Component {
                                 <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>
                             </div>
                             <div className="float-right">
-                                <p id="swap1"><Link to="/login">Already have an account! Sign in now.</Link></p>
+                                <p id="swap1"><Link className="login-signup-page-swap" to="/login">Already have an account! Sign in now.</Link></p>
                             </div>
                         </div>
 

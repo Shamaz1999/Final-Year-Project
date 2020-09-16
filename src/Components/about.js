@@ -21,7 +21,7 @@ class About extends Component {
             <Link className="btn cont-btn login-btn" to="/contact">Contact Us</Link>
           </div>
         </div>
-        <div className="about-content">
+        <div className="about-content text-color">
          
           <div className="about-content text-center">
             <div className="about-mission">

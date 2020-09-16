@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 import {toast} from 'react-toastify'
+import {Button} from 'react-bootstrap'
 import 'react-toastify/dist/ReactToastify.min.css';
 
 class Login extends Component {
@@ -150,11 +151,11 @@ class Login extends Component {
                         </div>
                         <div>
                             <div className="float-left">
-                                <button onClick={this.verify} type="button" className="btn login-btn">Submit</button>
+                                <Button onClick={this.verify} type="button" bsPrefix="btn login-btn">Submit</Button>
                             </div>
                             <div className="float-right">
                                 <p id="swap">
-                                    <Link to="/signup">Don't have an account! Create one now.</Link>
+                                    <Link className="login-signup-page-swap" to="/signup">Don't have an account! Create one now.</Link>
                                 </p>
                             </div>
                         </div>
