@@ -90,18 +90,8 @@ class MyAds extends Component {
                     .then(data => {
                         this.setState({ adUpdated: data }, ()=>{
                         var ads = [...this.state.ads];
-                        ads.map((value,index)=>{
-                            console.log('indside map func')
-                            console.log(value + " "+this.state.ads[index]._id )
-                            if(value._id === this.state.ads[index]._id){
-                                console.log('indside if cond')
-                                ads.splice(index,1)
-                                this.setState({ads:ads},()=>console.log(this.state))
-                            }
+                        this.setState({ads:ads.filter((ad)=>{return ad._id!==id})})
                         })
-
-                        })
-                        
                     })
                     .catch(err => {console.log(err)})
 

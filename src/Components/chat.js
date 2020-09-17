@@ -12,19 +12,18 @@ class Chat extends Component {
 
     state = {
         msg: '',
-        msgList: []
+        msgList: [],
+        sellerId:""
     }
 
     componentDidMount() {
 
-
+        const sellerId= this.props.match.params.sellerId;
+        this.setState({sellerId})
         // var socket = io('http://localhost:8000'
         // , {path: '/socket.io'}  
         // );
         // console.log(socket)
-
-
-
     }
 
 

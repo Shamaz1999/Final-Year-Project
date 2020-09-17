@@ -110,37 +110,19 @@ class FavAds extends Component {
 
                 // var c = window.confirm('Are you sure you want to remove it from favorites?')
                 // if (c) {
-                    var option = {
-                        method: 'POST',
-                        body: JSON.stringify(this.state),
-                        headers: { 'Content-Type': 'application/json' }
-                    }
+                var option = {
+                    method: 'POST',
+                    body: JSON.stringify(this.state),
+                    headers: { 'Content-Type': 'application/json' }
+                }
 
-                    fetch('http://localhost:8000/removefavorite', option)
-                        .then(res => res.json())
-                        .then(data => {
-                            this.setState({ user: data }, () => {
-                                console.log(this.state)
-                                let user = JSON.parse(localStorage.getItem('user'));
-                                if (user === null) {
-                                    user = {
-                                        _id: data._id,
-                                        name: data.name,
-                                        email: data.email,
-                                        password: data.password,
-                                        DOB: data.DOB,
-                                        phone: data.phone,
-                                        gender: data.gender,
-                                        country: data.country,
-                                        date: data.date,
-                                        address: data.address,
-                                        url1: data.url1,
-                                        about: data.about,
-                                        favorites: data.favorites
-                                    }
-                                    localStorage.setItem('user', JSON.stringify(user))
-                                    console.log(user)
-                                }
+                fetch('http://localhost:8000/removefavorite', option)
+                    .then(res => res.json())
+                    .then(data => {
+                        this.setState({ user: data }, () => {
+                            console.log(this.state)
+                            let user = JSON.parse(localStorage.getItem('user'));
+                            if (user === null) {
                                 user = {
                                     _id: data._id,
                                     name: data.name,
@@ -157,38 +139,57 @@ class FavAds extends Component {
                                     favorites: data.favorites
                                 }
                                 localStorage.setItem('user', JSON.stringify(user))
-                                var ads = [...this.state.ads];
-                                ads.map((value, index) => {
-                                    if (value._id === this.state.ads[index]._id) {
-                                        ads.splice(index, 1)
-                                        this.setState({ ads: ads }, () => console.log(this.state))
-                                    }
-                                })
-
-                            })
+                                console.log(user)
+                            }
+                            user = {
+                                _id: data._id,
+                                name: data.name,
+                                email: data.email,
+                                password: data.password,
+                                DOB: data.DOB,
+                                phone: data.phone,
+                                gender: data.gender,
+                                country: data.country,
+                                date: data.date,
+                                address: data.address,
+                                url1: data.url1,
+                                about: data.about,
+                                favorites: data.favorites
+                            }
+                            localStorage.setItem('user', JSON.stringify(user))
+                            var ads = [...this.state.ads];
+                            // ads.map((value, index) => {
+                            //     if (value._id === this.state.ads[index]._id) {
+                            //         ads.splice(index, 1)
+                            //         this.setState({ ads: ads }, () => console.log(this.state))
+                            //     }
+                            // })
+                            this.setState({ads:ads.filter(ad=>{ return ad._id!==id})})
 
                         })
-                        .catch(err => console.log(err))
-                        this.setState({show:false})
 
-                    toast('Ad removed from favorites!', {
-                        className: 'logout-toast',
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: false,
-                        closeButton: false,
-                        // progress: undefined,
                     })
-                        // (this.props.history.push('/login'))
+                    .catch(err => console.log(err))
+                this.setState({ show: false })
 
-                }
+                toast('Ad removed from favorites!', {
+                    className: 'logout-toast',
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton: false,
+                    // progress: undefined,
+                })
+                // (this.props.history.push('/login'))
+
+            }
                 // else {
                 //     return false
                 // }
-            // }
+                // }
             )
         }
 
@@ -274,7 +275,7 @@ class FavAds extends Component {
                                             </div>
                                         </div>
                                         {/* Confirmation Modal */}
-                                        <Modal  className="confirmation-modal" show={this.state.show} onHide={handleClose}>
+                                        <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
                                             <Modal.Header closeButton>
                                                 <Modal.Title>Confirm</Modal.Title>
                                             </Modal.Header>

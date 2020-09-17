@@ -29,6 +29,7 @@ class Details extends Component {
         favorites: [],
         image1: null,
         progress1: 0,
+        theme: "",
         user: {
             _id: this.props.match.params.userId,
         },
@@ -38,7 +39,7 @@ class Details extends Component {
     }
 
     componentDidMount() {
-
+        this.setState({ theme: localStorage.getItem('theme') })
         var option = {
             method: "POST",
             body: JSON.stringify(this.state),
@@ -51,7 +52,7 @@ class Details extends Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({ user: data })
-                this.setState({isDataloaded: true})
+                this.setState({ isDataloaded: true })
                 localStorage.setItem('user', JSON.stringify(data))
             })
             .catch(err => console.log(err))
@@ -83,37 +84,37 @@ class Details extends Component {
 
         // let retVal = window.confirm("Do you want to delete your account ?");
         // if (retVal === true) {
-            var option = {
-                method: 'POST',
-                body: JSON.stringify(this.state),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+        var option = {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
             }
-            fetch('http://localhost:8000/deleteuser', option)
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                })
-                .catch(err => { console.log(err) })
+        }
+        fetch('http://localhost:8000/deleteuser', option)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => { console.log(err) })
 
-            toast('Your Account has been deleted', {
-                className: 'logout-toast',
-                position: "top-center",
-                autoClose: 4000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: false,
-                closeButton: false,
-                // progress: undefined,
-            });
-            localStorage.removeItem('user')
-            this.props.history.push('/')
-            // alert("Your account has been deleted");
-            // return true;
+        toast('Your Account has been deleted', {
+            className: 'logout-toast',
+            position: "top-center",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton: false,
+            // progress: undefined,
+        });
+        localStorage.removeItem('user')
+        this.props.history.push('/')
+        // alert("Your account has been deleted");
+        // return true;
         // } else {
-            // return false;
+        // return false;
         // }
     }
 
@@ -159,7 +160,7 @@ class Details extends Component {
             var name = this.refs.name;
             name.focus()
             return false
-        }else if (this.state.password === "" || this.state.password.length <=6) {
+        } else if (this.state.password === "" || this.state.password.length <= 6) {
             toast('Passowrd cannot be null and must be 7 characters long!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -175,7 +176,7 @@ class Details extends Component {
             var password = this.refs.password;
             password.focus()
             return false
-        }else if (this.state.country === "") {
+        } else if (this.state.country === "") {
             toast('Country is required!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -191,7 +192,7 @@ class Details extends Component {
             var country = this.refs.country;
             country.focus()
             return false
-        }else if (this.state.city === "") {
+        } else if (this.state.city === "") {
             toast('City is required!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -207,7 +208,7 @@ class Details extends Component {
             var city = this.refs.city;
             city.focus()
             return false
-        }else if (this.state.phone === "") {
+        } else if (this.state.phone === "") {
             toast('Phone is required!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -222,7 +223,7 @@ class Details extends Component {
             var phone = this.refs.phone;
             phone.focus()
             return false
-        }else if (this.state.about === "") {
+        } else if (this.state.about === "") {
             toast('About is required!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -238,44 +239,44 @@ class Details extends Component {
             var about = this.refs.about;
             about.focus()
             return false
-        }else{
+        } else {
 
 
-        var option = {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
-        }
-        console.log(this.state)
-        fetch('http://localhost:8000/updateinfo', option)
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                // let u = JSON.parse(localStorage.getItem('user'))
-                // u = data;
-                // localStorage.setItem('user', JSON.stringify(u))
-                // this.props.dispatch({type:'Add_user',payload:data})
-                localStorage.setItem('user', JSON.stringify(data))
-                this.setState({ user: data })
-            })
-            .catch(err => { console.log(err) })
+            console.log(this.state)
+            fetch('http://localhost:8000/updateinfo', option)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data)
+                    // let u = JSON.parse(localStorage.getItem('user'))
+                    // u = data;
+                    // localStorage.setItem('user', JSON.stringify(u))
+                    // this.props.dispatch({type:'Add_user',payload:data})
+                    localStorage.setItem('user', JSON.stringify(data))
+                    this.setState({ user: data })
+                })
+                .catch(err => { console.log(err) })
 
-        toast('Your changes have been saved', {
-            className: 'logout-toast',
-            position: "top-center",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            closeButton: false,
-        });
+            toast('Your changes have been saved', {
+                className: 'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            });
         }
     }
 
-    
+
     country1 = (country) => { this.setState({ country }) }
 
     render() {
@@ -293,33 +294,20 @@ class Details extends Component {
             }
         }
         else { dp = this.state.user.url1 }
-        var theme = localStorage.getItem('theme');
-        // if(this.state.theme==='dark'){
-        //     document.getElementById('switcher').checked = true
-        // }
-        // else{
-            
-        //     document.getElementById('switcher').checked = false
-        // }
+        
 
-        const handleTheme = ()=>{
-          if(theme === 'normal'){
-              console.log("first one") 
-              theme = "dark"
-            //   this.setState({theme:'dark'})
-              document.documentElement.setAttribute('data-theme', 'dark');
-              localStorage.setItem('theme', JSON.stringify(theme))
-            }else
-            // if(theme === 'dark')
-            {
-                console.log("second one")
-                // this.setState({theme:'normal'})
-                theme = "normal"
-                document.documentElement.setAttribute('data-theme', 'normal');
-                localStorage.setItem('theme', JSON.stringify(theme))
-          }
+        const handleTheme = (e) => {
+            console.log(e.target.checked);
+            if (e.target.checked) {
+                this.setState({ theme: "dark" })
+                document.documentElement.setAttribute('data-theme', "dark");
+                localStorage.setItem('theme', "dark")
+            } else {
+                this.setState({ theme: "normal" })
+                document.documentElement.setAttribute('data-theme', "normal");
+                localStorage.setItem('theme', "normal")
+            }
         }
-
         return (
             <div className="app text-color">
                 <div className="details-container">
@@ -329,7 +317,7 @@ class Details extends Component {
                             <div id='comments'>
                                 <label htmlFor="switcher"><b>Dark Mode &nbsp;</b></label>
                                 <label className="switch">
-                                    <input id="switcher"  onChange={() => handleTheme()} type="checkbox" />
+                                    <input id="switcher" onChange={(e) => handleTheme(e)} type="checkbox" checked={this.state.theme === "dark"} />
                                     <span className="slider round"></span>
                                 </label>
                             </div>
@@ -342,7 +330,7 @@ class Details extends Component {
                                 </div>
                             <hr />
                             <div className="details-profile-pic-container">
-                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton className="details-profile-pic-skeleton"  />}
+                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton className="details-profile-pic-skeleton" />}
                             </div>
                             <div className="no-editable-profile-details-wrapper profile-details-wrapper" >
                                 <div className="profile-details-container">
@@ -360,7 +348,7 @@ class Details extends Component {
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
-                                    <div className= 'non-editable-info-container profile-details-info-container'>
+                                    <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Gender</span>
                                         <span>{u.gender}</span>
                                     </div>
@@ -421,7 +409,7 @@ class Details extends Component {
                                             <div className='profile-details-info-container'>
                                                 <span className="profile-details-small-heading">Country</span>
                                                 <span>
-                                                <CountrySelect country={this.country1} />
+                                                    <CountrySelect country={this.country1} />
                                                     {/* <input onChange={e => this.setState({ country: e.target.value })} type="text" ref="country" name="detail-info" className="detail-input" /> */}
                                                 </span>
                                             </div>
@@ -462,25 +450,25 @@ class Details extends Component {
                                     <button className="btn login-btn details-page-btn" onClick={this.discard}>Discard</button>
                                 </div>
                                 <div className="details-page-delete-btn">
-                                    <button className="btn login-btn details-page-btn" type="button" 
-                                    // onClick={this.delete}
-                                    onClick={handleShow}
-                                    >Delete Account</button>    
+                                    <button className="btn login-btn details-page-btn" type="button"
+                                        // onClick={this.delete}
+                                        onClick={handleShow}
+                                    >Delete Account</button>
                                     {/* Confirmation Modal */}
-                                    <Modal  className="confirmation-modal" show={this.state.show} onHide={handleClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Confirm</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Are you sure you want to delete you account?
-                                                <div style={{fontSize:'14px'}}>
-                                                    Please delete your ads first if you have any, otherwise they will remain in the active ads with your phone no.
+                                    <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Confirm</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Are you sure you want to delete you account?
+                                                <div style={{ fontSize: '14px' }}>
+                                                Please delete your ads first if you have any, otherwise they will remain in the active ads with your phone no.
                                                 </div>
-                                            </Modal.Body>
-                                            <Modal.Footer className="confirmation-modal-footer">
-                                                <Button className="confirmation-modal-yes-btn no-outline" onClick={this.delete} >Yes</Button>
-                                                <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
-                                            </Modal.Footer>
-                                        </Modal>
+                                        </Modal.Body>
+                                        <Modal.Footer className="confirmation-modal-footer">
+                                            <Button className="confirmation-modal-yes-btn no-outline" onClick={this.delete} >Yes</Button>
+                                            <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </div>
                             </div>
                         </div>
