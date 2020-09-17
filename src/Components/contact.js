@@ -89,31 +89,33 @@ class Contact extends Component {
         return(
             <div className="app text-color">
             <div className="main-login">
-                <form className="login-form" method="POST" style={{marginBottom:"190px"}} id="login-form">
-                        <div className="display-4" style={{marginBottom:"20px"}}>
+                <div className="login-form"  style={{marginBottom:"190px"}} id="login-form">
+                        <div className="display-4 text-center login-page-heading">
                             How can we help you?
                         </div>
                         <p className="text-center mb-5">Feel free to gives us suggestion about how we can improve our work</p>
-                        <div>
-                            <div className="form-group mar">
-                                <label htmlFor="exampleInputEmail1"><b>Name</b> <span className="required">*</span></label>
-                                <input type="email" name="login-email" onChange={e => this.setState({name:e.target.value})} ref="name" className="form-control"  />                               
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputPassword1"><b>Topic</b> <span className="required">*</span></label>
-                                <input type="text" name="login-pass" onChange={e => this.setState({topic:e.target.value})} ref="topic" className="form-control"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputPassword1"><b>Comment or Suggestion</b> <span className="required">*</span></label>
-                                <textarea name="comments" id="contact-comment" ref="comment" onChange={e => this.setState({comments:e.target.value})} className="form-control" cols="30" rows="6"></textarea>
-                            </div>
-                            <div>
-                                <div className="float-left">
-                                    <input type="button" className="btn login-btn" onClick={this.verify} value="Submit"/>
+                       <div className="tabs-shadow signup-form-wrapper">
+                            <div className="login-form-container">
+                                <div className="form-group mar">
+                                    <label className="signup-label" htmlFor="name"><b>Name</b> <span className="required">*</span></label>
+                                    <input type="email" id="name"  onChange={e => this.setState({name:e.target.value})} ref="name" className="form-control"  />                               
+                                </div>
+                                <div className="form-group">
+                                    <label className="signup-label" htmlFor="topic"><b>Topic</b> <span className="required">*</span></label>
+                                    <input type="text" id="topic" onChange={e => this.setState({topic:e.target.value})} ref="topic" className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <label className="signup-label" htmlFor="contact-comment"><b>Comment or Suggestion</b> <span className="required">*</span></label>
+                                    <textarea  id="contact-comment" ref="comment" onChange={e => this.setState({comments:e.target.value})} className="form-control" cols="30" rows="6"></textarea>
+                                </div>
+                                <div className="mt-1" >
+                                    <div>
+                                        <input type="button" className="btn login-btn" onClick={this.verify} value="Submit"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                       </div>
+                    </div>
             </div>            
             </div>
             );

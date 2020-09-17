@@ -146,7 +146,7 @@ class MyAds extends Component {
 
         return (
 
-            <div className="App" style={{ textAlign: "center" }}>
+            <div className="App text-color" style={{ textAlign: "center" }}>
                 <div className="display-4 mt-5 mb-5">Your Ads</div>
              
                 <div className="row no-nothing">

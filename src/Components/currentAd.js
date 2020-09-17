@@ -15,7 +15,6 @@ class Ad extends Component {
         id: this.props.match.params.adId,
         ad: '',
         user: JSON.parse(localStorage.getItem("user")),
-        // favAdId: '',
         isFav: false,
         isDataLoaded: false
     }
@@ -326,11 +325,11 @@ class Ad extends Component {
         var arr = [this.state.ad.url1, this.state.ad.url2, this.state.ad.url3, this.state.ad.url4]
         let item = [1, 2, 3, 4].map((i) => (
             <div key={i}>
-                <img key={this.state.ad.url1} src={arr[i - 1]} height='500' width='1200' onDragStart={handleOnDragStart} alt="adpic" className="yours-custom-class" />
+                <img key={this.state.ad.url1} src={arr[i - 1]} height='500' width='1200' onDragStart={handleOnDragStart} alt="adpic" className="current-ad-pictures" />
             </div>
         ))
         return (
-            <div className="app" >
+            <div className="app text-color " >
                 <div className="row" >
                     <div className="col-md-8" style={{ margin: "0px " }}>
                         <div className="ad-img-container">
@@ -339,7 +338,7 @@ class Ad extends Component {
                                 ?
                                 <AliceCarousel items={item} autoPlay={false} mouseDragEnabled />
                                 :
-                                <Skeleton height={500} />
+                                <Skeleton className="current-ad-images-skeleton" />
                             }
                             {/* </AliceCarousel> */}
                         </div>
@@ -356,7 +355,7 @@ class Ad extends Component {
                             <div className="ad-detail-container">
                                 {this.state.isDataLoaded
                                     ?
-                                    <div className="float-left">
+                                    <div className="current-ad-type-container">
                                         <p className="ads-type">Type</p>
                                         <div className="ads-type">{this.state.ad.category}</div>
                                     </div>
@@ -365,17 +364,16 @@ class Ad extends Component {
                                 }
                                 {this.state.isDataLoaded
                                     ?
-                                    <div className="float-right">
+                                    <div className="current-ad-type-container">
                                         <p className="ads-type">Condition</p>
                                         <div className="ads-type">{this.state.ad.condition}</div>
                                     </div>
                                     :
-                                    <div className="float-right">
+                                    <div className="">
                                         <Skeleton width={200} />
                                     </div>
                                 }
 
-                                <div className="clear"></div>
                             </div>
                             <div className="contaner">
                                 <hr />
@@ -406,10 +404,10 @@ class Ad extends Component {
                                 <div className="price-container" style={{ padding: "15px 30px" }}>
                                     {this.state.isDataLoaded
                                         ?
-                                        <h1 className="float-left">Rs {this.state.ad.price}</h1>
+                                        <h1 className="current-ad-price float-left">Rs {this.state.ad.price}</h1>
                                         :
                                         <div className="float-left">
-                                            <Skeleton height={40} width={200} />
+                                            <Skeleton className="current-ad-price-skeleton" height={40} width={200} />
                                         </div>
                                     }
                                     <div className="favourite-container float-right">
@@ -419,7 +417,7 @@ class Ad extends Component {
                                             :
                                        <>{this.state.isDataLoaded
                                             ?
-                                            <FontAwesome name={this.state.isFav ? "star" : "star-o"} id="favIcon" size="2x" ref="fav" className="face"
+                                            <FontAwesome name={this.state.isFav ? "star" : "star-o"} id="favIcon" size="2x" ref="fav" className="favorite-star-icon"
                                                 onClick={user ? markFav : this.favLoginAlert} />
                                             :
                                             <div style={{ position: 'relative', bottom: '9px' }}>
@@ -445,7 +443,7 @@ class Ad extends Component {
                                                 ?
                                                 <>{this.state.ad.location}</>
                                                 :
-                                                <Skeleton height={10} width={120} />
+                                                <Skeleton height={10} width={90} />
                                             }
 
                                         </div>
@@ -454,7 +452,7 @@ class Ad extends Component {
                                                 ?
                                                 <>{this.state.ad.date}</>
                                                 :
-                                                <Skeleton height={10} width={120} />
+                                                <Skeleton height={10} width={90} />
                                             }
 
                                         </div>
@@ -463,76 +461,74 @@ class Ad extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-12" style={{ padding: "0px", marginTop: "50px" }}>
-                            <div className="seller-container" style={{ padding: "30px" }}>
-                                {this.state.isDataLoaded
-                                    ?
-                                    <h5 className="" style={{ paddingBottom: "10px" }}>Seller Description</h5>
-                                    :
-                                    <Skeleton height={30} width={200} />
-                                }
-
-                                <div className="seller-info-container ">
-                                    <div className="seller-img-container">
-                                        {this.state.isDataLoaded
-                                            ?
-                                            // <div >
-                                            <img src={this.state.ad.sellerImg} width='100' height="80" alt="Profile Pic" />
-                                            // </div>
-
-                                            :
-                                            <Skeleton height={100} width={120} />
-                                        }
-                                    </div>
-                                    <div className="seller-name-container">
-                                        {this.state.isDataLoaded
-                                            ?
-                                            <Link to={"/"+this.props.match.params.adId + "/sellerProfile/"+this.state.ad.sellerId} onClick={this.st}>{this.state.ad.sellerName}</Link>
-                                            :
-                                            <Skeleton height={20} width={300} />
-                                        }
-                                    </div>
-                                </div>
-
-                                <div>
+                        <div className="col-md-12 no-padding" >
+                            <div className="seller-container-wrapper">
+                                <div className="seller-container">
                                     {this.state.isDataLoaded
                                         ?
-                                        <div className="container2">
-                                            <span className="phone-container">
-                                                <div className="number"
-                                                    onClick={user ? () => true : this.phoneLoginAlert}>
-                                                    <span className="phone-image-conainer">
-
-                                                        <img src={require('./../images/phone.png')} height="20" alt="phone" />
-                                                    </span>
-                                                    <input className="no-border no-outline phone-no-field " disabled value={this.state.ad.phone}
-                                                        type={user ? "text" : "password"} />
-                                                </div>
-                                            </span>
-                                            <span className="user-chat-btn-container pb-3 text-center">
-                                                {
-                                                     this.state.ad.sellerId === userId
-                                                        ?
-                                                    <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
-                                                        :
-                                                <button style={{ width: '50% ' }} className="btn login-btn no-margin"
-                                                    // disabled = {
-                                                    //     this.state.ad.sellerId == this.state.user._id
-                                                    //         ?
-                                                    //     true
-                                                    //         :
-                                                    //     false
-                                                    // }
-                                                    onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
-                                                    Chat
-                                                    </button>
-                                                }
-                                            </span>
-                                        </div>
+                                        <h5 className="seller-desc-heading">Seller Description</h5>
                                         :
-                                        <Skeleton height={30} />
+                                        <Skeleton height={30} width={200} />
                                     }
-
+                                
+                                    <div className="seller-info-container ">
+                                        <div className="seller-pic-name-container">
+                                            <div className="seller-img-container">
+                                                {this.state.isDataLoaded
+                                                    ?
+                                                    // <div >
+                                                    <img src={this.state.ad.sellerImg} width='100' height="80" alt="Profile Pic" />
+                                                    // </div>
+                                            
+                                                    :
+                                                    <Skeleton height={100} width={120} />
+                                                }
+                                            </div>
+                                            <div className="seller-name-container">
+                                                {this.state.isDataLoaded
+                                                    ?
+                                                    <Link className="current-ad-seller-name" to={"/"+this.props.match.params.adId + "/sellerProfile/"+this.state.ad.sellerId} onClick={this.st}>{this.state.ad.sellerName}</Link>
+                                                    :
+                                                    <Skeleton height={20} width={200} />
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div>
+                                        {this.state.isDataLoaded
+                                            ?
+                                            <div className="container2">
+                                                <span className="phone-container">
+                                                    <div className="number"
+                                                        onClick={user ? () => true : this.phoneLoginAlert}>
+                                                        <span className="phone-image-conainer">
+                                                            <FontAwesome name = "phone" className="current-ad-phone-icon" />
+                                                            {/* <img src={require('./../images/phone.png')} height="20" alt="phone" /> */}
+                                                        </span>
+                                                        <input className="no-border no-outline phone-no-field " disabled value={this.state.ad.phone}
+                                                            type={user ? "text" : "password"} />
+                                                    </div>
+                                                </span>
+                                                <span className="user-chat-btn-container ">
+                                                    {
+                                                         this.state.ad.sellerId === userId
+                                                            ?
+                                                        <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
+                                                            :
+                                                    <button className="btn login-btn current-ad-chat-btn"
+        
+                                                        onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
+                                                        Chat
+                                                        </button>
+                                                    }
+                                                </span>
+                                            </div>
+                                            :
+                                            <Skeleton height={30} />
+                                        }
+                                
+                                    </div>
                                 </div>
                             </div>
                         </div>

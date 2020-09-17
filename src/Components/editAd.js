@@ -384,88 +384,95 @@ class EditAd extends Component {
         return (
             <div className="app">
                 <div className="container">
-                    <form method="POST" className="post-form-container">
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Ad Title</b> <span className="required">*</span></label>
-                            <input type="text" name="adTitle" ref="adTitle" value={this.state.adTitle} onInput={e => this.setState({ adTitle: e.target.value })} className="form-control" placeholder="Ad Title Here" />
+                 <div className="tabs-shadow signup-form-wrapper">
+                     <div className="login-form-container">
+                        <div className="display-4 login-page-heading">
+                            Edit Your Ad!
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Item Brand</b> <span className="required">*</span></label>
-                            <input type="text" name="brand" value={this.state.brand} onInput={e => this.setState({ brand: e.target.value })} ref="itemBrand" className="form-control" placeholder="Item Brand Here" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Item Category</b> <span className="required">*</span></label>
-                            <select className="form-control" onInput={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} name="adCategory" ref="adCategory">
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="mobiles">Mobiles</option>
-                                <option value="vehicles">Vehicles</option>
-                                <option value="furniture">Furniture</option>
-                                <option value="property for sale">Property for Sale</option>
-                                <option value="property for rent">Property for Rent</option>
-                                <option value="electronics">Electronics and Home Appliances</option>
-                                <option value="bikes">Bikes</option>
-                                <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
-                                <option value="services">Services</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Condition</b> <span className="required">*</span></label>
-                            <select name="adCondition" onInput={e => this.setState({ condition: e.target.value })} className="form-control" ref="adCondition">
-                                <option selected disabled>Select Condition</option>
-                                <option value="new">New</option>
-                                <option value="used">Used</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Price</b> <span className="required">*</span></label>
-                            <input type="number" name="adPrice" ref="adPrice" value={this.state.price} onInput={e => this.setState({ price: e.target.value })} className="form-control" placeholder="Item Price Here" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Location</b> <span className="required">*</span></label>
-                            <input type="text" name="adloc" ref="adloc" value={this.state.location} onInput={e => this.setState({ location: e.target.value })} className="form-control" placeholder="Your location Here" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Upload Pictures</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting images click on upload)</span>* <span style={{ fontSize: '14px' }}>(To use previous images, don't select any images now)</span></span></label>
-                            <div class="ad-img-upload-container">
-
-                                <div className="imgupload1">
-                                    <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
-                                    <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
-                                    <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                                    <img ref='img1' alt="adpic1" id="upImg1" src={this.state.url1} className="hid" height="30" />
-                                </div>
-                                <div className="imgupload1">
-                                    <input ref="imgup2" accept="image/*" className="img-upload-input" type="file" onInput={this.up2} onChange={this.handleChange2} />
-                                    <button type="button" id="upBtn2" className="img-upload-btn login-btn hid" onClick={this.handleUpload2}>Upload</button>
-                                    <progress id="upProg2" value={this.state.progress2} className="img-upload-progress hid" max="100" />
-                                    <img ref='img2' alt="adpic2" id="upImg2" src={this.state.url2} className="hid" height="30" />
-                                </div>
-                                <div className="imgupload1">
-                                    <input ref="imgup3" accept="image/*" className="img-upload-input" type="file" onInput={this.up3} onChange={this.handleChange3} />
-                                    <button type="button" id="upBtn3" className="img-upload-btn login-btn hid" onClick={this.handleUpload3}>Upload</button>
-                                    <progress id="upProg3" value={this.state.progress3} className="img-upload-progress hid" max="100" />
-                                    <img ref='img3' alt="adpic3" id="upImg3" src={this.state.url3} className="hid" height="30" />
-                                </div>
-                                <div className="imgupload1">
-                                    <input ref="imgup4" accept="image/*" className="img-upload-input" type="file" onInput={this.up4} onChange={this.handleChange4} />
-                                    <button type="button" id="upBtn4" className="img-upload-btn login-btn hid" onClick={this.handleUpload4}>Upload</button>
-                                    <progress id="upProg4" value={this.state.progress4} className="img-upload-progress hid" max="100" />
-                                    <img ref='img4' alt="adpic4" id="upImg4" src={this.state.url4} className="hid" height="30" />
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Ad Title</b> <span className="required">*</span></label>
+                                <input type="text" name="adTitle" ref="adTitle" value={this.state.adTitle} onInput={e => this.setState({ adTitle: e.target.value })} className="form-control" placeholder="Ad Title Here" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Item Brand</b> <span className="required">*</span></label>
+                                <input type="text" name="brand" value={this.state.brand} onInput={e => this.setState({ brand: e.target.value })} ref="itemBrand" className="form-control" placeholder="Item Brand Here" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Item Category</b> <span className="required">*</span></label>
+                                <select className="form-control" onInput={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} name="adCategory" ref="adCategory">
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="mobiles">Mobiles</option>
+                                    <option value="vehicles">Vehicles</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="computer and electronics">Computer and Electronics</option>
+                                    <option value="furniture">Furniture</option>
+                                    <option value="property for sale">Property for Sale</option>
+                                    <option value="property for rent">Property for Rent</option>
+                                    <option value="home appliances">Home Appliances</option>
+                                    <option value="bikes">Bikes</option>
+                                    <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
+                                    <option value="services">Services</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Condition</b> <span className="required">*</span></label>
+                                <select name="adCondition" onInput={e => this.setState({ condition: e.target.value })} className="form-control" ref="adCondition">
+                                    <option selected disabled>Select Condition</option>
+                                    <option value="new">New</option>
+                                    <option value="used">Used</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Price</b> <span className="required">*</span></label>
+                                <input type="number" name="adPrice" ref="adPrice" value={this.state.price} onInput={e => this.setState({ price: e.target.value })} className="form-control" placeholder="Item Price Here" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Location</b> <span className="required">*</span></label>
+                                <input type="text" name="adloc" ref="adloc" value={this.state.location} onInput={e => this.setState({ location: e.target.value })} className="form-control" placeholder="Your location Here" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Upload Pictures</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting images click on upload)</span>* <span style={{ fontSize: '14px' }}>(To use previous images, don't select any images now)</span></span></label>
+                                <div class="ad-img-upload-container">
+                     
+                                    <div className="imgupload1">
+                                        <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
+                                        <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
+                                        <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
+                                        <img ref='img1' alt="adpic1" id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                    </div>
+                                    <div className="imgupload1">
+                                        <input ref="imgup2" accept="image/*" className="img-upload-input" type="file" onInput={this.up2} onChange={this.handleChange2} />
+                                        <button type="button" id="upBtn2" className="img-upload-btn login-btn hid" onClick={this.handleUpload2}>Upload</button>
+                                        <progress id="upProg2" value={this.state.progress2} className="img-upload-progress hid" max="100" />
+                                        <img ref='img2' alt="adpic2" id="upImg2" src={this.state.url2} className="hid" height="30" />
+                                    </div>
+                                    <div className="imgupload1">
+                                        <input ref="imgup3" accept="image/*" className="img-upload-input" type="file" onInput={this.up3} onChange={this.handleChange3} />
+                                        <button type="button" id="upBtn3" className="img-upload-btn login-btn hid" onClick={this.handleUpload3}>Upload</button>
+                                        <progress id="upProg3" value={this.state.progress3} className="img-upload-progress hid" max="100" />
+                                        <img ref='img3' alt="adpic3" id="upImg3" src={this.state.url3} className="hid" height="30" />
+                                    </div>
+                                    <div className="imgupload1">
+                                        <input ref="imgup4" accept="image/*" className="img-upload-input" type="file" onInput={this.up4} onChange={this.handleChange4} />
+                                        <button type="button" id="upBtn4" className="img-upload-btn login-btn hid" onClick={this.handleUpload4}>Upload</button>
+                                        <progress id="upProg4" value={this.state.progress4} className="img-upload-progress hid" max="100" />
+                                        <img ref='img4' alt="adpic4" id="upImg4" src={this.state.url4} className="hid" height="30" />
+                                    </div>
                                 </div>
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1"><b>Description</b> <span className="required">*</span></label>
+                                <textarea name="adDesc" ref="adDesc" value={this.state.description} onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{ resize: 'none' }} cols="30" rows="5"></textarea>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
+                                <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" value={this.state.phone} onChange={phone => this.setState({ phone })} />
+                            </div>
+                            <br />
+                            <button type="button" onClick={this.verify} className="btn login-btn">Submit</button>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Description</b> <span className="required">*</span></label>
-                            <textarea name="adDesc" ref="adDesc" value={this.state.description} onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{ resize: 'none' }} cols="30" rows="5"></textarea>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
-                            <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" value={this.state.phone} onChange={phone => this.setState({ phone })} />
-                        </div>
-                        <br />
-                        <button type="button" onClick={this.verify} className="btn login-btn float-right ">Submit</button>
-                    </form>
+                 </div>
                 </div>
             </div>
         );

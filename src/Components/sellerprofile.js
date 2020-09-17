@@ -61,7 +61,7 @@ class Seller extends Component {
         }
     }
         return(
-            <div  className="seller-profile-container">
+            <div  className="seller-profile-container text-color">
 
                 { this.state.seller ? <div className="container">               
                     <div className="detail-container text-center">

@@ -193,12 +193,12 @@ class Content extends Component {
 
                 </div>
 
-                <div className="container" style={{ marginBottom: "0px",marginTop: "50px" }}>
+                <div className="content-carousel-container" style={{ marginBottom: "0px",marginTop: "50px" }}>
                     <AliceCarousel showSlideInfo={true} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
-                        <img src={require('./../images/ca4.jpg')} alt="slider1" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca3.jpg')} alt="slider2" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca2.jpg')} alt="slider3" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
-                        <img src={require('./../images/ca1.jpg')} alt="slider4" height='500' width='1200' onDragStart={handleOnDragStart} className="yours-custom-class" />
+                        <img src={require('./../images/ca4.jpg')} alt="slider1"  onDragStart={handleOnDragStart} className="content-carousel-image" />
+                        <img src={require('./../images/ca3.jpg')} alt="slider2" height='500' width='1200' onDragStart={handleOnDragStart} className="content-carousel-image" />
+                        <img src={require('./../images/ca2.jpg')} alt="slider3" height='500' width='1200' onDragStart={handleOnDragStart} className="content-carousel-image" />
+                        <img src={require('./../images/ca1.jpg')} alt="slider4" height='500' width='1200' onDragStart={handleOnDragStart} className="content-carousel-image" />
                     </AliceCarousel>
                 </div>
             </div>

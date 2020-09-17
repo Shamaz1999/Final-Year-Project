@@ -1,4 +1,5 @@
 @import './colorscheme.css';
+@import './responsiveness.css';
 
 ul, li {
   margin: 0px!important;
@@ -32,8 +33,9 @@ progress{
   padding: 5px;
   border-radius: 5px !important;
 }
-label{
-  padding: 0 10px;
+.signup-label{
+  padding: 0 5px;
+  margin: 0;
 }
 a{
   color: white;
@@ -57,7 +59,6 @@ a{
   padding-bottom: 80px;
 }
 .foot-nav{
-  clear: both;
   color: white;
   height: auto;
   /* margin-top: 100px; */
@@ -68,18 +69,24 @@ a{
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  padding-bottom: 20px;
-  padding-top: 30px;
+  padding: 40px 0px 30px 0px;
   /* height: 100%; */
 
 }
 .foot-nav-ul{
   list-style-type: none;
 }
+.footnav-cols-container{
+  margin: 0 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 li.col-heading{
   font-size: 35px;
   margin-top: 50px;
+  width: 300px;
   border-bottom: 2px solid white;
   text-align: center;
   padding-bottom: 10px;
@@ -93,9 +100,7 @@ li.col-heading{
 }
 
 .social-logos{
-  /* height: 30px; */
-  /* width: 30px; */
-  font-size: 25px !important;
+  font-size: 25px;
   margin-top: -3px;
   margin-right: 10px;
 }
@@ -152,8 +157,16 @@ li.col-heading{
   height: auto;
   background-image:url("./images/b7.jpg") ,linear-gradient(to right,var(--primary-color),var(--primary-color));
   background-blend-mode: multiply;
+  background-size: 450px 100%;
   color:white;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.content-carousel-container{
+  padding: 0 15px;
 }
 .main-logo{
   /* padding-right: 40px; */
@@ -255,11 +268,11 @@ color: white !important;
 
 .main-login{
   margin: 0 auto;
-  width: 600px;
+  /* width: 600px; */
 }
 .main-signup{
   margin: 0 auto;
-  width: 600px;
+  /* width: 600px; */
 }
 .no-pad{
   padding: 0!important;
@@ -269,31 +282,42 @@ color: white !important;
   padding: 50px;
   padding-top: 50px;
 }
-.login-form .display-4{
+.login-page-heading{
   text-align: center;
-  margin: 0 0 50px 0;
+  margin-bottom: 50px;
 }
-.search-btn{
-  height: 45px;
-  margin: 0px auto!important;
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-  color: white;
-  background-color: var(--primary-color) !important;
-  transition: 5s all;
+.login-form-wrapper{
+  margin: 0 auto;
+  width: 700px;
+  padding: 80px 30px ;
 }
-.search-btn:hover{
-  color: white;
-  background-color: var(--secondary-color) !important;
+.signup-form-wrapper{
+  margin: 0 auto;
+  width: 700px;
+  padding: 30px ;
+}
+.login-form-container{
+  margin: 0 auto;
+  width: 500px;
 }
 
+.login-signup-page-swap{
+
+  /* font-size: 16px; */
+  /* font-weight: bold; */
+  color: var(--link-color);
+}
 .login-signup-page-swap:hover{
   text-decoration: none !important;
   color: var(--primary-color);
 }
+.nav-searchnar-container{
+  /* width: 65% ; */
+  margin: 0 15px;
+}
 .region-selec-a{
   /* margin-bottom: 14px!important;   */
-  margin-right: 10px;
+  /* margin-right: 10px; */
   height: 45px!important;
   width: 125px!important;
   /* padding: 9px !important */
@@ -332,26 +356,42 @@ color: white !important;
   background-color: var(--theme-background-color) !important;
   color: var(--text-color) !important;
 }
-.face{
+.favorite-star-icon{
   /* font-size: 29px; */
   /* height: 70px; */
   /* width: 70px; */
   color: var(--primary-color);
 }
+.fav-ads-heading{
+  margin: 50px 0;
+}
+.current-ad-phone-icon{
+  font-size: 29px !important;
+  color: var(--primary-color);
+  position: relative;
+  top: 6px;
+}
+.phone-no-field {
+  color: var(--text-color);
+}
 #searchBar{
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   transition: width .5s, padding .5s;
-
 }
-.dropdown-toggle::after {
-  display:none !important;
+.fav-ads-container{
+  margin: 10px;
 }
-
-
+.nav-logo, .user-drop-down-wrapper{
+  width: 250px;
+}
+.nav-search-area-container{
+  width: 60%;
+  margin: 0 auto;
+}
 .navbar-form-wrapper{
   display: flex !important;
-  flex-direction: row !important;
+  flex-direction: row ;
   justify-content: space-between !important;
 }
 .logout-toast{
@@ -365,56 +405,62 @@ color: white !important;
 }
 .showSearch{
   height: 45px !important;
-  width: 88% !important;
+  width: 26.5vw !important;
   padding: 10px;
+  /* margin: 0 10px; */
+  color: var(--text-color);
   /* border: 0px !important; */
-  border: 0px !important;
+  border: 1px solid white !important;
+  background-color: var(--theme-background-color);
+  
 }
 .showSearch:focus{
   border: 1px solid var(--primary-color) !important;
 }
+.search-btn{
+  position: absolute;
+  height: 45px;
+  margin: 0px auto!important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  color: white;
+  padding: 10px !important;
+  background-color: var(--primary-color) !important;
+  transition: 5s all;
+}
+.search-btn:hover{
+  color: white;
+  background-color: var(--secondary-color) !important;
+}
 .login-btn{
-  margin: 20px 0 0 0;
+  /* margin: 20px 0 0 0; */
   border: none;
   color: white;
   border-radius: 0px;
   background-color: var(--primary-color);
-  /* background-color: #ea10383b; */
-  /* top: 0; */
-  /* transition-property: background-color ; */
   box-shadow: 0;
-  /* transition:  5s background-color; */
-  /* position: relative; */
   -webkit-transition: background-color 2s ease-out;
   -moz-transition: background-color 2s ease-out;
   -o-transition: background-color 2s ease-out;
   transition: background-color 2s ease-out, color 2s;
-  /* outline: none; */
 }
 .login-btn:hover{
   background-color: var(--secondary-color);
-  /* transition:  5s background-color; */
-  
-  /* background-color: rgba(57, 73, 171,.9); */
-  /* background-color: rgba(57, 72, 171, 0.301); */
-  /* outline: none; */
   color: white;
 }
 .login-btn:active{
-  /* box-shadow:  0px 0px 10px -.5px black; */
   top: 3px;
 }
 .login-btn:focus{
   -webkit-appearance: unset!important;
   box-shadow: none!important;
 }
-.float-right p{
- margin-top: 25px;
- font-size: 18px;
-}
-.float-right p:hover{
-  text-decoration: underline;
-  cursor: pointer;
+.login-btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
 }
 .row{
   margin: 0!important;
@@ -438,12 +484,13 @@ table{
 .about-table{
   width: 300px;
 }
-.heading-3{
+.about-sub-heading{
   font: bolder;
   font-size: 32px;
   margin: 20px 0;
 }
 .about-detail{
+  margin: 40px  10px 80px 10px;
   font-size: 25px;
   font-weight: 400;
   line-height: 30px;
@@ -451,35 +498,35 @@ table{
 .about-ul{
   display: inline-grid;
   list-style-position: inside;
+  margin: 0px  0 40px 0 !important;
 }
 .about-content{
   margin: 100px auto 100px auto;
 }
 .about-mission{
-  margin: 20px 0 !important;
+  margin: 20px 80px;
 }
 .m-heading{
   font-size: 70px;
-  margin: 10px 0 40px 0;
+  margin: 10px 0 30px 0;
 }
 .a-heading{
   font-size: 70px;
-  margin: 80px 0 40px 0;
+  margin: 10px 0 0px 0;
 }
 .container2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin: 30px  auto 0 auto;
 }
-marquee{
-  /* margin-top: 20px; */
+.seller-desc-heading{
   margin-bottom: 20px;
-}
-.marquee-text{
-  /* color: white; */
-  font-size: 22px;
 }
 
 .card{
-  width: 19rem;
+  width: 300px;
 }
 /* .qw{
   position: absolute;
@@ -543,6 +590,12 @@ marquee{
 
 /* Detail Content Styling */
 
+.content-carousel-image{
+  height: 500px;
+  width: 1200px;
+}
+
+
 .details-container{
   margin: 60px 120px;
 }
@@ -570,7 +623,13 @@ marquee{
   font-weight: bold;
 }
 .details-profile-pic{
+  height: 250px;
   width: 100%;
+}
+.details-profile-pic-skeleton{
+  height: 250px;
+  width: 100%;
+
 }
 .tabs-shadow{
   border: 1px solid white !important; 
@@ -584,10 +643,23 @@ marquee{
   margin: 20px;
 } */
 .detail-input-textarea{
-  padding: 10px 50px !important;
+  padding: 10px 40px;
   text-align: left !important;
   width: 100%;
   resize: none;
+  background-color: transparent;
+  border-radius: none!important;
+  border: 0px;
+  border-bottom: 1px solid var(--profile-page-input-border-color);
+  font-size: 14px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: .5s all;
+}
+.detail-input-textarea:focus{
+  color: var(--primary-color);
+  outline: none!important;
+  border-bottom: 1px solid var(--primary-color);
 }
 .background-class{
   background-color: var(--theme-background-color)  ;
@@ -599,6 +671,24 @@ marquee{
 .detail-input-country-select option{
   text-align-last: right !important;
   width: 160px !important;
+}
+.detail-input{
+  background-color: transparent;
+  border-radius: none!important;
+  border: 0px;
+  border-bottom: 1px solid var(--profile-page-input-border-color);
+  font-size: 14px;
+  padding: 5px;
+  text-align: right;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: .5s all;
+  /* width: 100%; */
+}
+.detail-input:focus{
+  color: var(--primary-color);
+  outline: none!important;
+  border-bottom: 1px solid var(--primary-color);
 }
 .profile-details-btn-container{
   display: flex;
@@ -639,24 +729,7 @@ marquee{
   margin: 30px;
   width: 40%;
 }
-.detail-input{
-  background-color: transparent;
-  border-radius: none!important;
-  border: 0px;
-  border-bottom: 1px solid var(--profile-page-input-border-color);
-  font-size: 14px;
-  padding: 5px;
-  text-align: right;
-  color: var(--text-color);
-  cursor: pointer;
-  transition: .5s all;
-  /* width: 100%; */
-}
-.detail-input:focus{
-  color: var(--primary-color);
-  outline: none!important;
-  border-bottom: 1px solid var(--primary-color);
-}
+
 #contact-comment{
   resize: none;
 }
@@ -668,8 +741,10 @@ marquee{
 .ad-img-container{
   border: 1px solid gainsboro;
   padding: 20px 60px;
+  border-radius: 5px;
 }
 .price-container{
+  border-radius: 5px;
   /* margin: 0 30px; */
   border: 1px solid gainsboro;
 }
@@ -680,6 +755,12 @@ marquee{
   color: rgb(161, 161, 161);
   margin-top: 10px;
 }
+.current-ad-seller-name{
+  color: var(--link-color);
+}
+.current-ad-seller-name:hover{
+  color: var(--primary-color);
+}
 .container1{
   margin-top: 20px;
 }
@@ -687,17 +768,29 @@ marquee{
   color: rgb(161, 161, 161);
   font-size: 14px;
 }
+.seller-container-wrapper{
+  margin-top: 50px;
+}
 .seller-container{
+  padding: 30px;
   border: 1px solid gainsboro;
+  border-radius: 5px;
 }
 .seller-info-container{
   margin-top: 0px!important;
 }
 .seller-img-container{
   display: inline;
-  margin-right: 30px
+  /* margin-right: 30px */
+}
+.seller-pic-name-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .seller-name-container{
+  margin-right: 50px ;
  display: inline; 
  font-size: 20px
 }
@@ -717,19 +810,21 @@ marquee{
   border: 1px solid gainsboro;
   margin-top: 20px;
   padding: 20px 50px;
+  border-radius: 5px;
 }
 p.ads-type{
-  margin-left: 10px;
   color: rgb(161, 161, 161);
   display: inline;
   font-size: 18px;
   cursor: text!important;
+  margin-right: 50px;
   text-decoration: none!important;
 }
 
 div.ads-type{
   display: inline;
-  margin-left: 100px;
+  color: var(--primary-color);
+  /* margin-left: 100px; */
   font-size: 18px;
 }
 
@@ -765,9 +860,10 @@ div.ads-type{
 }
 .imgupload1{
   border: 1px solid gainsboro;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   padding: 10px;
   text-align: center;
+  border-radius: 5px;
 }
 .img-upload-input{
   width: 100%;
@@ -782,12 +878,42 @@ div.ads-type{
 
 /* login Portal Styling */
 
+hr{
+  border-top: 1px solid var(--hr-divider-color) !important;
+}
+
 .user-info{
   padding-top: 4px;
 }
-.black{
-  color: black;
+.user-login-dropdown .dropdown-menu{
+  color: var(--text-color) !important;
+  background-color: var(--theme-background-color) !important;
 }
+.user-login-dropdown .dropdown-menu .dropdown-item{
+  padding: 0px !important;
+  transition: .5s all;
+}
+
+
+.user-login-dropdown-links{
+  width: 100% !important;
+  color: var(--drop-links);
+  transition: .5s all;
+}
+.user-login-dropdown-links-name{
+  transition: .5s all;
+  color: white;
+  padding: 5px 0px 5px 10px !important;
+  font-size: 20px;
+}
+.user-login-dropdown-links:hover{
+  color: var(--primary-color);
+}
+.user-login-dropdown-links-div{
+  padding: 5px 20px;
+}
+
+
 .dropdown{
   background-color: transparent!important;
   border: none!important;
@@ -799,10 +925,14 @@ div.ads-type{
 .u-name-divider{
   margin: 5px 0px;  
 }
-
-.yours-custom-class{
-
+.current-ad-wrapper{
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+}
+.current-ad-pictures{
   width: 100%;
+  height: 450px;
 }
 .user-image{
   border-radius: 100%;
@@ -811,7 +941,9 @@ div.ads-type{
   font-size: 12px;
   color: rgb(144, 144, 144)
 }
-
+.current-ad-images-skeleton{
+  height: 500px;
+}
 
 
 .edit-ad-btn{
@@ -820,31 +952,39 @@ div.ads-type{
   margin: 0px 30px 10px 17px;
   color: white;
   text-align: center;
-  background-color: #EA1039;
+  background-color: var(--primary-color);
   padding: 5px !important;
   border-radius: 5px;
 }
 .edit-ad-btn:hover{
   color: white;
   /* background-color: rgba(57, 73, 171,.9); */
-  background-color: rgba(27, 20, 100,1);
+  background-color: var(--secondary-color);
 }
 .edit-ad-btn:focus{
   outline: none !important;
 }
 .current-edit-ad-btn{
-  width: 50% !important;
+  width: 150px !important;
   margin: 0px !important ;
-  background-color: #EA1039;
+  background-color: var(--primary-color);
   display: inline-block;
   color: white;
   text-align: center;
+}
+.current-ad-chat-btn{
+  width: 150px;
+}
+.ad-detail-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .card-wrapper{
   margin: 5px 15px;
 }
 .card{
-  border: 1px solid white !important;
+  border: 1px solid var(--hr-divider-color) !important;
   background-color: var(--theme-background-color) !important;
 }
 
@@ -858,6 +998,17 @@ div.ads-type{
   align-items: center;
 }
 .space-btw{
+justify-content: space-between ;
+}
+.flex-row{
+  flex-direction: row;
+}
+.flex-col{
+  flex-direction: column;
+}
+.current-ad-type-container{
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 .open-ad-btn{
@@ -908,7 +1059,7 @@ div.ads-type{
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   height: 400px;
-  width: 800px;
+  width: 65%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

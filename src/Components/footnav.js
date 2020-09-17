@@ -13,19 +13,20 @@ return(
 
     <div className="footnav-container">
         <div className="foot-nav">
-        <div className="container">
-            <div className="row">   
-                <div className="col-md-4">
+        <div>
+            <div className="footnav-cols-container">   
+                <div className>
                     <ul className="foot-nav-ul">
                         <li className="col-heading med-headings">Categories</li>
                         <li className="col-items"><span className="footnav-social-links">Mobiles</span></li>
                         <li className="col-items"><span className="footnav-social-links">Vehicles</span></li>
+                        <li className="col-items"><span className="footnav-social-links">Clothing</span></li>
                         <li className="col-items"><span className="footnav-social-links">Services</span></li>
                         <li className="col-items"><span className="footnav-social-links">Furniture</span></li>
                         <li className="col-items"><span className="footnav-social-links">Bikes</span></li>
                     </ul>
                 </div>
-                <div className="col-md-4">
+                <div className="">
                     <ul className="foot-nav-ul">
                         <li className="col-heading med-headings">Quick Links</li>
                         <li className="col-items"><Link className="footnav-social-links"  to="/" >Home</Link></li>
@@ -34,7 +35,7 @@ return(
                         <li className="col-items"><Link className="footnav-social-links" to="/about">About</Link></li>
                     </ul>
                 </div>
-                <div className="col-md-4">
+                <div className="">
                         <ul className="foot-nav-ul">
                             <li className="col-heading med-headings">Social Contacts</li>
                             <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="facebook" />Facebook Profile</span></li>

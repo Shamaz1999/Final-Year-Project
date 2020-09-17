@@ -300,82 +300,82 @@ class Signup extends Component {
         console.log(this.state)
 
         return (
-            <div className='main-signup'>
-                <form className="signup-form hidden" id="signup-form" method="POST" style={{ marginBottom: "190px" }} action="localhost:8000/signup">
-                    <div className="display-4 text-center">
+            <div className='main-signup text-color'>
+                <div className="signup-form " id="signup-form" >
+                    <div className="display-4 login-page-heading">
                         Create Your Account!
-                        </div>
-                    <br />
-                    <br />
-                    <div>
-                        <div className="form-group mar">
-                            <label htmlFor="exampleInputEmail1"><b>Full Name</b> <span className="required">*</span></label>
-                            <input type="text" name="user-name" ref="userName" onInput={e => this.setState({ name: e.target.value })} className="form-control" placeholder="Enter your name" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Email Address</b> <span className="required">*</span></label>
-                            <input type="email" name="signup-email" ref="userEmail" onInput={e => this.setState({ email: e.target.value })} className="form-control" placeholder="Enter your email" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1"><b>Password</b> <span className="required">*</span></label>
-                            <input type="password" name="signup-password" ref="userPassword" onInput={e => this.setState({ password: e.target.value })} className="form-control" placeholder="Enter your password" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
-                            <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={phone => this.setState({ phone })} />
-                        </div>
-                        <div>
-                            <p><b>Gender</b> <span className="required">*</span></p>
-                            <div className="radio">
-                                <div className="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" ref="male" onInput={e => this.setState({ gender: e.target.value })} value="male" id="customRadioInline1" name="gender" className="custom-control-input" />
-                                    <label className="custom-control-label" htmlFor="customRadioInline1">Male</label>
-                                </div>
-                                <div className="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" ref="female" onInput={e => this.setState({ gender: e.target.value })} value="female" id="customRadioInline2" name="gender" className="custom-control-input" />
-                                    <label className="custom-control-label" htmlFor="customRadioInline2">Female</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="user-DOB"><b>Date of Birth</b> <span className="required">*</span></label>
-                            <input type="date" name="user-DOB" ref="userDOB" onInput={e => this.setState({ DOB: e.target.value })} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh" />
-                        </div>
-                        <label htmlFor="exampleInputEmail1"><b>Profile Picture</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting files click on upload)</span>*</span></label>
-                        <div className="imgupload1">
-                            <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
-                            <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
-                            <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                            <img ref='img1' alt="profile" id="upImg1" src={this.state.url1} className="hid" height="30" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="user-country"><b>Country</b> <span className="required">*</span></label>
-                            <CountrySelect country={this.country1} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="user-address"><b>City</b> <span className="required">*</span></label>
-                            <input type="text" id="user-city" ref="userCity" onInput={e => this.setState({ city: e.target.value })} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your city" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="user-address"><b>Address</b> <span className="required">*</span></label>
-                            <input type="text" id="user-address" ref="userAddress" onInput={e => this.setState({ address: e.target.value })} name="signup-address" className="form-control" aria-describedby="emailHelp" placeholder="Enter your address" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1"><b>About you</b> <span className="required">*</span></label>
-                            <textarea name="comments" id="contact-comment" ref="comment" onChange={e => this.setState({ about: e.target.value })} className="form-control" cols="30" rows="6"></textarea>
-                        </div>
-                        <div>
-                            <div className="float-left">
-                                <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>
-                            </div>
-                            <div className="float-right">
-                                <p id="swap1"><Link className="login-signup-page-swap" to="/login">Already have an account! Sign in now.</Link></p>
-                            </div>
-                        </div>
-
                     </div>
-
-                </form>
+                    <div className="tabs-shadow signup-form-wrapper">
+                        <div className="login-form-container special">
+                            <div className="form-group ">
+                                <label className="signup-label" htmlFor="userName"><b>Full Name</b> <span className="required">*</span></label>
+                                <input type="text" name="user-name" id="userName" ref="userName" onInput={e => this.setState({ name: e.target.value })} className="form-control" placeholder="Enter your name" />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="userEmail"><b>Email Address</b> <span className="required">*</span></label>
+                                <input type="email"  id="userEmail" ref="userEmail" onInput={e => this.setState({ email: e.target.value })} className="form-control" placeholder="Enter your email" />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="userPassword"><b>Password</b> <span className="required">*</span></label>
+                                <input type="password" id="userPassword" ref="userPassword" onInput={e => this.setState({ password: e.target.value })} className="form-control" placeholder="Enter your password" />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
+                                <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={phone => this.setState({ phone })} />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label"><b>Gender</b> <span className="required">*</span></label>
+                                <div className="radio">
+                                    <div className="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" ref="male" onInput={e => this.setState({ gender: e.target.value })} value="male" id="customRadioInline1" name="gender" className="custom-control-input" />
+                                        <label className="custom-control-label" htmlFor="customRadioInline1">Male</label>
+                                    </div>
+                                    <div className="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" ref="female" onInput={e => this.setState({ gender: e.target.value })} value="female" id="customRadioInline2" name="gender" className="custom-control-input" />
+                                        <label className="custom-control-label" htmlFor="customRadioInline2">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="user-DOB"><b>Date of Birth</b> <span className="required">*</span></label>
+                                <input type="date" name="user-DOB" ref="userDOB" onInput={e => this.setState({ DOB: e.target.value })} id="user-DOB" className="form-control" aria-describedby="emailHelp" placeholder="Enter your date of bitrh" />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" ><b>Profile Picture</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting files click on upload)</span>*</span></label>
+                                <div className="imgupload1">
+                                    <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
+                                    <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
+                                    <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
+                                    <img ref='img1' alt="profile" id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="user-country"><b>Country</b> <span className="required">*</span></label>
+                                <CountrySelect country={this.country1} />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="user-address"><b>City</b> <span className="required">*</span></label>
+                                <input type="text" id="user-city" ref="userCity" onInput={e => this.setState({ city: e.target.value })} name="signup-city" className="form-control" placeholder="Enter your city" />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="user-address"><b>Address</b> <span className="required">*</span></label>
+                                <input type="text" id="user-address" ref="userAddress" onInput={e => this.setState({ address: e.target.value })} name="signup-address" className="form-control"  placeholder="Enter your address" />
+                            </div>
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="exampleInputPassword1"><b>About you</b> <span className="required">*</span></label>
+                                <textarea name="comments" id="contact-comment" ref="comment" onChange={e => this.setState({ about: e.target.value })} className="form-control" cols="30" rows="6"></textarea>
+                            </div>
+                            <div className="login-btn-container">
+                                <div>
+                                    <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>
+                                </div>
+                                <div>
+                                    <Link className="login-signup-page-swap" to="/login">Already have an account! Sign in now.</Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -241,8 +241,8 @@ class FavAds extends Component {
         }
         return (
 
-            <div className="App" style={{ textAlign: "center" }}>
-                <div className="display-4 mt-5 mb-5">Favorite Ads</div>
+            <div className="fav-ads-container text-color" style={{ textAlign: "center" }}>
+                <div className="display-4 fav-ads-heading">Favorite Ads</div>
 
                 <div className="row no-nothing">
                     {
@@ -287,7 +287,7 @@ class FavAds extends Component {
                                     </div>)
                                 })
                                 :
-                                <h2 style={{ margin: '10px auto', fontWeight: '400' }} >You do not have any favorite ads yet!</h2>
+                                <h2 className="no-ads-msg" style={{ margin: '10px auto', fontWeight: '400' }} >You do not have any favorite ads yet!</h2>
                             }</>
                             :
                             <>{sc}</>

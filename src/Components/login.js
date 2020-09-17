@@ -135,32 +135,32 @@ class Login extends Component {
     render() {
 
         return (
-            <div className="main-login">
-                <form className="login-form" method="POST" style={{ marginBottom: "190px" }} id="login-form" action="">
-                    <div className="display-4">
+            <div className="main-login text-color">
+                <div className="login-form" id="login-form">
+                    <div className="display-4 login-page-heading">
                         Login to Your Account!
                         </div>
-                    <div>
-                        <div className="form-group mar">
-                            <label htmlFor="exampleInputEmail1"><b>Email Address</b> <span className="required">*</span></label>
-                            <input type="email" name="login-email" onChange={e => this.setState({ email: e.target.value })} ref="email" className="form-control" placeholder="Enter email" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1"><b>Password</b> <span className="required">*</span></label>
-                            <input type="password" name="login-pass" onChange={e => this.setState({ password: e.target.value })} ref="password" className="form-control" placeholder="Enter Password" />
-                        </div>
-                        <div>
-                            <div className="float-left">
-                                <Button onClick={this.verify} type="button" bsPrefix="btn login-btn">Submit</Button>
+                    <div className="tabs-shadow login-form-wrapper">
+                        <div className="login-form-container special">
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="loginEmail"><b>Email Address</b> <span className="required">*</span></label>
+                                <input type="email" name="login-email" id="loginEmail" onChange={e => this.setState({ email: e.target.value })} ref="email" className="form-control" placeholder="Enter email" />
                             </div>
-                            <div className="float-right">
-                                <p id="swap">
+                            <div className="form-group">
+                                <label className="signup-label" htmlFor="loginPassword" ><b>Password</b> <span className="required">*</span></label>
+                                <input type="password" name="login-pass" id="loginPassword" onChange={e => this.setState({ password: e.target.value })} ref="password" className="form-control" placeholder="Enter Password" />
+                            </div>
+                            <div className="login-btn-container">
+                                <div>
+                                    <Button onClick={this.verify} type="button" bsPrefix="btn login-btn">Submit</Button>
+                                </div>
+                                <div>
                                     <Link className="login-signup-page-swap" to="/signup">Don't have an account! Create one now.</Link>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         );
     }

@@ -6,6 +6,7 @@ import man from './../images/man.png'
 import girl from './../images/girl.png'
 import io from 'socket.io-client';
 import { toast } from 'react-toastify';
+import Skeleton from 'react-loading-skeleton'
 import 'react-toastify/dist/ReactToastify.min.css';
 
 
@@ -14,10 +15,34 @@ class Onlogin extends Component {
     state = {
         isloggedin: true,
         socket: null,
+        isDataloaded: false,
+        user:{
+          _id: JSON.parse(localStorage.getItem('user'))._id,
+        }
     }
 
 
     componentDidMount() {
+
+        var option = {
+            method: "POST",
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        fetch('http://localhost:8000/updateuser', option)
+            .then(res => res.json())
+            .then(data => {
+                console.log('data recieved on onLogin')
+                this.setState({ user: data })
+                this.setState({isDataloaded: true})
+                localStorage.setItem('user', JSON.stringify(data))
+            })
+            .catch(err => console.log(err))
+
+
         if (!this.state.socket) {
             var socket = io('http://localhost:8000'
                 // , {path: '/socket.io'}  
@@ -46,28 +71,10 @@ class Onlogin extends Component {
     }
     render() {
 
-
-        console.log(this.props)
         let user = JSON.parse(localStorage.getItem('user'));
-        if (user === null) {
-            user = {
-                _id: this.props.user._id,
-                name: this.props.user.name,
-                email: this.props.user.email,
-                password: this.props.user.password,
-                DOB: this.props.user.DOB,
-                phone: this.props.user.phone,
-                gender: this.props.user.gender,
-                country: this.props.user.country,
-                date: this.props.user.date,
-                address: this.props.user.address,
-                url1: this.props.user.url1,
-                favorites: this.props.user.favourites,
-            };
-            localStorage.setItem('user', JSON.stringify(user))
-            console.log(user)
-        }
+       
         var dp = null;
+        console.log(user.url1)
         if (user.url1 === "") {
             if (user.gender === "male") {
                 dp = man
@@ -79,39 +86,59 @@ class Onlogin extends Component {
         else { dp = user.url1 }
 
        
-
+console.log(this.state)
         return (
-            <div className="app">
+            <div className="app text-color">
 
-                <Dropdown style={{ textAlign: 'center' }}>
+                <Dropdown style={{ textAlign: 'center' }} className="user-login-dropdown" >
                     <Dropdown.Toggle className="dropdown">
-                        <img id="dropdown" className="user-image" height="60" width="60" alt="User" src={dp} />  </Dropdown.Toggle>
-
+                        {this.state.isDataloaded 
+                         ?
+                         <span>
+                             <img id="dropdown" className="user-image" height="50" width="50" alt="User" src={ dp} />
+                             <span className=" user-login-dropdown-links-name">{user.name}</span>
+                         </span>
+                         :
+                         <Skeleton/>}
+                    </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item ><span>{user.name}</span><hr className="u-name-divider" /></Dropdown.Item>
+                        {/* <Dropdown.Item >
+                            <div className=" user-login-dropdown-links-name">{user.name}</div>
+                        </Dropdown.Item> */}
+                            {/* <hr className="u-name-divider" /> */}
                         <Dropdown.Item>
                             <span>
-                                <Link className="black" to={"/details/"+user._id}>Profile</Link>
+                                <Link className="user-login-dropdown-links" to={"/details/"+user._id}>
+                                    <div className="user-login-dropdown-links-div">Profile</div>
+                                </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item >
                             <span>
-                                <Link className="black" to="/postad">Post Ad</Link>
+                                <Link className="user-login-dropdown-links" to="/postad">
+                                    <div className="user-login-dropdown-links-div">Post Ad</div>
+                                </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item>
                             <span>
-                                <Link className="black" to="/myAds">My Ads</Link>
+                                <Link className="user-login-dropdown-links" to="/myAds">
+                                    <div className="user-login-dropdown-links-div" >My Ads</div>
+                                </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item>
                             <span>
-                                <Link className="black" to="/favoriteAds">Favorite Ads</Link>
+                                <Link className="user-login-dropdown-links" to="/favoriteAds">
+                                    <div className="user-login-dropdown-links-div" >Favorite Ads</div>
+                                </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item >
                             <span>
-                                <Link className="black" to="/" onClick={this.logout} >Log Out</Link>
+                                <Link className="user-login-dropdown-links" to="/" onClick={this.logout} >
+                                    <div className="user-login-dropdown-links-div" >Logout</div>
+                                </Link>
                             </span>
                         </Dropdown.Item>
                     </Dropdown.Menu>

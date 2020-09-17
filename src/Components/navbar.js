@@ -108,18 +108,20 @@ class Nav extends Component {
         return (
 
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light ">
-                    <div className="col-md-3 col-sm-12 text-center no-pad">
-                        <Link to="/"><h1 className="display-4 main-logo" onClick={this.handleHome}>Buy&amp;Sell</h1></Link>
+                <nav className="navbar  ">
+                    <div className="nav-logo-container">
+                        <div className="nav-logo text-center no-pad">
+                            <Link to="/"><h1 className="display-4 main-logo" onClick={this.handleHome}>Buy&amp;Sell</h1></Link>
+                        </div>
                     </div>
-                    <div className="col-md-6 col-sm-12 text-center no-pad mt-1">
+                    <div className="nav-search-area-container text-center no-pad">
                         <div className=" text-center">
                             <div className="navbar-form-wrapper">
                                 <div className=" nav-search">
                                     <CountrySelect prop={this.props} country={this.country1} />
                                 </div>
-                                <div className="input-group">
-                                    <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="showSearch no-outline"
+                                <div className="input-group nav-searchnar-container">
+                                    <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="form-control showSearch no-outline"
                                         placeholder="Search for ads"
                                     />
                                     <div className="input-group-append">
@@ -137,10 +139,12 @@ class Nav extends Component {
                                         <option selected disabled>Categories</option>
                                         <option value="mobiles">Mobiles</option>
                                         <option value="vehicles">Vehicles</option>
+                                        <option value="clothing">Clothing</option>
+                                        <option value="computer and electronics">Computer and Electronics</option>
                                         <option value="furniture">Furniture</option>
                                         <option value="property for sale">Property for Sale</option>
                                         <option value="property for rent">Property for Rent</option>
-                                        <option value="electronics">Electronics and Home Appliances</option>
+                                        <option value="home appliances">Home Appliances</option>
                                         <option value="bikes">Bikes</option>
                                         <option value="business,industrial">Business, Industrial &amp; Agriculture</option>
                                         <option value="services">Services</option>
@@ -151,9 +155,11 @@ class Nav extends Component {
                         </div>
                     </div>
 
-                    <div className="col-md-3 col-sm-12 text-center " >
-                        {JSON.parse(localStorage.getItem('user')) === null ? <Notloggedin /> : <Onlogin />}
-                    </div>
+                   <div className="user-drop-down-wrapper">
+                        <div className=" text-center " >
+                            {JSON.parse(localStorage.getItem('user')) === null ? <Notloggedin /> : <Onlogin />}
+                        </div>
+                   </div>
                 </nav>
             </div>
         );

@@ -303,7 +303,6 @@ class Details extends Component {
         // }
 
         const handleTheme = ()=>{
-          console.log(this.state.theme)
           if(theme === 'normal'){
               console.log("first one") 
               theme = "dark"
@@ -328,10 +327,10 @@ class Details extends Component {
                         <h2 style={{ fontWeight: '400' }} >Profile Details</h2>
                         <div className="dark-mode-toggle-container">
                             <div id='comments'>
-                                <label htmlFor="switcher">Dark Mode</label>
-                                <label class="switch">
+                                <label htmlFor="switcher"><b>Dark Mode &nbsp;</b></label>
+                                <label className="switch">
                                     <input id="switcher"  onChange={() => handleTheme()} type="checkbox" />
-                                    <span class="slider round"></span>
+                                    <span className="slider round"></span>
                                 </label>
                             </div>
                         </div>
@@ -343,17 +342,17 @@ class Details extends Component {
                                 </div>
                             <hr />
                             <div className="details-profile-pic-container">
-                                {this.state.isDataloaded ? <img src={dp} height='250' width="300" className="details-profile-pic" alt="Profile Pic" /> : <Skeleton height={250} width={300}/>}
+                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton className="details-profile-pic-skeleton"  />}
                             </div>
-                            <div className="profile-details-wrapper" >
+                            <div className="no-editable-profile-details-wrapper profile-details-wrapper" >
                                 <div className="profile-details-container">
-                                    <div className='profile-details-info-container'>
-                                        <span className="profile-details-small-heading">Name</span>
+                                    <div className='non-editable-info-container profile-details-info-container'>
+                                        <span className=" profile-details-small-heading">Name</span>
                                         <span>{u.name}</span>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
-                                    <div className='profile-details-info-container'>
+                                    <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Location</span>
                                         <div>
                                             <span>{u.city}</span>, <span>{u.country}</span>
@@ -361,19 +360,19 @@ class Details extends Component {
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
-                                    <div className='profile-details-info-container'>
+                                    <div className= 'non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Gender</span>
                                         <span>{u.gender}</span>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
-                                    <div className='profile-details-info-container'>
+                                    <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Address</span>
                                         <span>{u.address}</span>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
-                                    <div className='profile-details-info-container'>
+                                    <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Date Joined</span>
                                         <span>{u.date}</span>
                                     </div>
@@ -386,8 +385,8 @@ class Details extends Component {
                                 Edit your info here
                                     </div>
                             <hr />
-                            <Row className="editable-details-cols-container">
-                                <Col className="profile-details-first-col">
+                            <div className="editable-details-cols-container">
+                                <div className="profile-details-first-col">
                                     <div className="profile-details-wrapper" >
                                         <div className="profile-details-container">
                                             <div className='profile-details-info-container'>
@@ -415,8 +414,8 @@ class Details extends Component {
                                         </div>
 
                                     </div>
-                                </Col>
-                                <Col className="profile-details-second-col">
+                                </div>
+                                <div className="profile-details-second-col">
                                     <div className="profile-details-wrapper" >
                                         <div className="profile-details-container">
                                             <div className='profile-details-info-container'>
@@ -444,8 +443,8 @@ class Details extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </Col>
-                            </Row>
+                                </div>
+                            </div>
                             <div className="profile-details-about-container">
                                 <div className="profile-details-big-heading">
                                     About Me
@@ -453,7 +452,7 @@ class Details extends Component {
                                 <hr />
                                 <div className="details-about-input-wrapper">
                                     {/* <textarea/> */}
-                                    <textarea onChange={e => this.setState({ about: e.target.value })} rows="5" type="text" ref="about" name="detail-info" className="detail-input detail-input-textarea" />
+                                    <textarea onChange={e => this.setState({ about: e.target.value })} rows="5" type="text" ref="about" name="detail-info" className=" detail-input-textarea " />
                                 </div>
                             </div>
                             <hr />
@@ -462,7 +461,7 @@ class Details extends Component {
                                     <button className="btn login-btn details-page-btn" onClick={this.save}>Save</button>
                                     <button className="btn login-btn details-page-btn" onClick={this.discard}>Discard</button>
                                 </div>
-                                <div>
+                                <div className="details-page-delete-btn">
                                     <button className="btn login-btn details-page-btn" type="button" 
                                     // onClick={this.delete}
                                     onClick={handleShow}
