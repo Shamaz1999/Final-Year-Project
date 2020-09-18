@@ -203,7 +203,7 @@ class FavAds extends Component {
 
         //Skeleteon Card Ads
 
-        for (let i = 1; i !== skeletonCards.length; i++) {
+        // for (let i = 1; i !== skeletonCards.length; i++) {
             sc = skeletonCards.map((item, index) => {
                 return <div className="card-wrapper" >
                     <div className="card" style={im} >
@@ -225,7 +225,7 @@ class FavAds extends Component {
                     </div>
                 </div>
             })
-        }
+        // }
 
         let im = {
             margin: "20px 0",

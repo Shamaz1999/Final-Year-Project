@@ -25,13 +25,10 @@ class App extends Component {
 
   componentDidMount(){
     var theme = localStorage.getItem('theme')
-    console.log(theme)
     if(theme){
-      console.log('app.js first')
       document.documentElement.setAttribute("data-theme", theme);
     }
     else{
-      console.log('app.js second')
       localStorage.setItem('theme', 'normal')
       document.documentElement.setAttribute("data-theme", 'normal');
     }

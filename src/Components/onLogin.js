@@ -35,7 +35,6 @@ class Onlogin extends Component {
         fetch('http://localhost:8000/updateuser', option)
             .then(res => res.json())
             .then(data => {
-                console.log('data recieved on onLogin')
                 this.setState({ user: data })
                 this.setState({isDataloaded: true})
                 localStorage.setItem('user', JSON.stringify(data))
@@ -57,6 +56,7 @@ class Onlogin extends Component {
     logout = () => {
         this.props.socket.socket.disconnect();
         localStorage.removeItem('user');
+        this.setState({isloggedin:false})
         toast('You have been logged out!', {
             className:'logout-toast',
             position: "top-center",
@@ -74,7 +74,6 @@ class Onlogin extends Component {
         let user = JSON.parse(localStorage.getItem('user'));
        
         var dp = null;
-        console.log(user.url1)
         if (user.url1 === "") {
             if (user.gender === "male") {
                 dp = man
@@ -84,9 +83,21 @@ class Onlogin extends Component {
             }
         }
         else { dp = user.url1 }
+console.log()
 
+const handleTheme = (e) => {
+    console.log(e.target.checked);
+    if (e.target.checked) {
+        this.setState({ theme: "dark" })
+        document.documentElement.setAttribute('data-theme', "dark");
+        localStorage.setItem('theme', "dark")
+    } else {
+        this.setState({ theme: "normal" })
+        document.documentElement.setAttribute('data-theme', "normal");
+        localStorage.setItem('theme', "normal")
+    }
+}
        
-console.log(this.state)
         return (
             <div className="app text-color">
 
@@ -96,48 +107,55 @@ console.log(this.state)
                          ?
                          <span>
                              <img id="dropdown" className="user-image" height="50" width="50" alt="User" src={ dp} />
-                             <span className=" user-login-dropdown-links-name">{user.name}</span>
+                             <span className=" user-login-dropdown-links-name">{this.state.user.firstName}</span>
                          </span>
                          :
                          <Skeleton/>}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        {/* <Dropdown.Item >
-                            <div className=" user-login-dropdown-links-name">{user.name}</div>
-                        </Dropdown.Item> */}
-                            {/* <hr className="u-name-divider" /> */}
-                        <Dropdown.Item>
+                        <Dropdown.Item className="no-hover">
                             <span>
                                 <Link className="user-login-dropdown-links" to={"/details/"+user._id}>
-                                    <div className="user-login-dropdown-links-div">Profile</div>
+                                    <div className="user-login-dropdown-links-div user-login-dropdown-links">Profile</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
-                        <Dropdown.Item >
+                        {/* <Dropdown.Item className="no-hover"> */}
+                            <span>
+                                <div className="user-login-dropdown-links-div user-login-dropdown-links">
+                                 <label className="no-margin" htmlFor="details-switcher">Dark Mode &nbsp;</label>
+                                <label className="switch details-switch">
+                                    <input id="details-switcher" onChange={(e) => handleTheme(e)} type="checkbox" checked={this.state.theme === "dark"} />
+                                    <span className="slider details-slider round"></span>
+                                </label>
+                                </div>
+                            </span>
+                        {/* </Dropdown.Item> */}
+                        <Dropdown.Item className="no-hover" >
                             <span>
                                 <Link className="user-login-dropdown-links" to="/postad">
-                                    <div className="user-login-dropdown-links-div">Post Ad</div>
+                                    <div className="user-login-dropdown-links-div user-login-dropdown-links">Post Ad</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
-                        <Dropdown.Item>
+                        <Dropdown.Item className="no-hover">
                             <span>
                                 <Link className="user-login-dropdown-links" to="/myAds">
-                                    <div className="user-login-dropdown-links-div" >My Ads</div>
+                                    <div className="user-login-dropdown-links-div user-login-dropdown-links" >My Ads</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
-                        <Dropdown.Item>
+                        <Dropdown.Item className="no-hover">
                             <span>
                                 <Link className="user-login-dropdown-links" to="/favoriteAds">
-                                    <div className="user-login-dropdown-links-div" >Favorite Ads</div>
+                                    <div className="user-login-dropdown-links-div user-login-dropdown-links" >Favorite Ads</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
-                        <Dropdown.Item >
+                        <Dropdown.Item className="no-hover" >
                             <span>
                                 <Link className="user-login-dropdown-links" to="/" onClick={this.logout} >
-                                    <div className="user-login-dropdown-links-div" >Logout</div>
+                                    <div className="user-login-dropdown-links-div user-login-dropdown-links" >Logout</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>

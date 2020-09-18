@@ -404,7 +404,7 @@ class Ad extends Component {
                                 <div className="price-container" style={{ padding: "15px 30px" }}>
                                     {this.state.isDataLoaded
                                         ?
-                                        <h1 className="current-ad-price float-left">Rs {this.state.ad.price}</h1>
+                                        <h2 className="current-ad-price float-left">Rs {this.state.ad.price}</h2>
                                         :
                                         <div className="float-left">
                                             <Skeleton className="current-ad-price-skeleton" height={40} width={200} />
@@ -476,10 +476,7 @@ class Ad extends Component {
                                             <div className="seller-img-container">
                                                 {this.state.isDataLoaded
                                                     ?
-                                                    // <div >
                                                     <img src={this.state.ad.sellerImg} width='100' height="80" alt="Profile Pic" />
-                                                    // </div>
-                                            
                                                     :
                                                     <Skeleton height={100} width={120} />
                                                 }
@@ -487,7 +484,7 @@ class Ad extends Component {
                                             <div className="seller-name-container">
                                                 {this.state.isDataLoaded
                                                     ?
-                                                    <Link className="current-ad-seller-name" to={"/"+this.props.match.params.adId + "/sellerProfile/"+this.state.ad.sellerId} onClick={this.st}>{this.state.ad.sellerName}</Link>
+                                                    <Link className="current-ad-seller-name" to={"/"+this.props.match.params.adId + "/sellerProfile/"+this.state.ad.sellerId}>{this.state.ad.sellerName}</Link>
                                                     :
                                                     <Skeleton height={20} width={200} />
                                                 }
@@ -516,11 +513,11 @@ class Ad extends Component {
                                                             ?
                                                         <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
                                                             :
-                                                    <button className="btn login-btn current-ad-chat-btn"
-        
-                                                        onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
-                                                        Chat
-                                                        </button>
+                                                    // <button className="btn login-btn current-ad-chat-btn"
+                                                    //     onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
+                                                    //     Chat
+                                                    // </button>
+                                                    <> </>
                                                     }
                                                 </span>
                                             </div>

@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 class Signup extends Component {
     state = {
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         phone: "",
@@ -23,6 +24,7 @@ class Signup extends Component {
         url1: '',
         image1: null,
         progress1: 0,
+        isSignedUp: false
     }
     componentDidMount() {
 
@@ -40,8 +42,8 @@ class Signup extends Component {
     }
 
     verify = () => {
-        if (this.state.name === "") {
-            toast('Name is required!', {
+        if (this.state.firstName === "") {
+            toast('First Name is required!', {
                 className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
@@ -53,9 +55,26 @@ class Signup extends Component {
                 // progress: undefined,
             });
 
-            var userName = this.refs.userName;
-            userName.focus()
+            var firstName = this.refs.firstName;
+            firstName.focus()
             return false
+        }else if (this.state.lastName === "") {
+            toast('Last Name is required!', {
+                className: 'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            });
+
+            var lastName = this.refs.lastName;
+            lastName.focus()
+            return false
+
         } else if (this.state.email === "") {
             toast('Email is required!', {
                 className: 'logout-toast',
@@ -207,10 +226,11 @@ class Signup extends Component {
                     'Content-Type': 'application/json'
                 }
             }
-
+            
             fetch('http://localhost:8000/signup', option)
-                .then(res => res.json())
-                .then(data => {
+            .then(res => res.json())
+            .then(data => {
+                    this.setState({isSignedUp:true})
                     let user = JSON.parse(localStorage.getItem('user'));
                     if (user === null) {
                         user = {
@@ -231,12 +251,12 @@ class Signup extends Component {
                         }
                         localStorage.setItem('user', JSON.stringify(user))
                     }
-                    console.log(user)
+                    // console.log(user)
                     // this.props.history.push("/")  
                     // console.log(data._id)
                     // console.log(data.name)
-                    console.log(data)
-                    toast('Your Account has been created! You can log in now.', {
+                    // console.log(data)
+                    toast('Your Account has been created!', {
                         className: 'logout-toast',
                         position: "top-center",
                         autoClose: 3000,
@@ -247,11 +267,25 @@ class Signup extends Component {
                         closeButton: false,
                         // progress: undefined,
                     });
-                    // this.props.history.push('/login')
+                    this.props.history.push('/')
                 }
                 )
 
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log(err)
+                    toast('Something went wrong!', {
+                        className: 'logout-toast',
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: false,
+                        closeButton: false,
+                        // progress: undefined,
+                    });
+                    
+                })
         }
     }
 
@@ -299,6 +333,7 @@ class Signup extends Component {
     render() {
         console.log(this.state)
 
+
         return (
             <div className='main-signup text-color'>
                 <div className="signup-form " id="signup-form" >
@@ -308,8 +343,12 @@ class Signup extends Component {
                     <div className="tabs-shadow signup-form-wrapper">
                         <div className="login-form-container special">
                             <div className="form-group ">
-                                <label className="signup-label" htmlFor="userName"><b>Full Name</b> <span className="required">*</span></label>
-                                <input type="text" name="user-name" id="userName" ref="userName" onInput={e => this.setState({ name: e.target.value })} className="form-control" placeholder="Enter your name" />
+                                <label className="signup-label" htmlFor="userName"><b>First Name</b> <span className="required">*</span></label>
+                                <input type="text" name="first-name" id="userName" ref="firstName" onInput={e => this.setState({ firstName: e.target.value })} className="form-control" placeholder="Enter your first name" />
+                            </div>
+                            <div className="form-group ">
+                                <label className="signup-label" htmlFor="userName"><b>Last Name</b> <span className="required">*</span></label>
+                                <input type="text" name="first-name" id="lastName" ref="lastName" onInput={e => this.setState({ lastName: e.target.value })} className="form-control" placeholder="Enter your last name" />
                             </div>
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="userEmail"><b>Email Address</b> <span className="required">*</span></label>

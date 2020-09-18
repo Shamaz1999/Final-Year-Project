@@ -47,7 +47,7 @@ class MyAds extends Component {
         
         //Skeleteon Card Ads
 
-        for( let i = 1; i !== skeletonCards.length; i++){
+        // for( let i = 1; i !== skeletonCards.length; i++){
             sc = skeletonCards.map((item, index)=>{
             return  <div className="card-wrapper" >
                 <div className="card" style={im} >                   
@@ -69,7 +69,7 @@ class MyAds extends Component {
                 </div>
             </div>
             })
-        }
+        // }
 
 
 

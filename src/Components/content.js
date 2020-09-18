@@ -90,7 +90,7 @@ class Content extends Component {
             }
 
         } else {
-            d = <h2 style={{ margin: '10px auto', fontWeight: '400' }} >Sorry no ads have been posted yet!</h2>
+            d = <h2 className="message" >Sorry no ads have been posted yet!</h2>
         }
 
 
@@ -126,11 +126,11 @@ class Content extends Component {
                 }
             }
             else {
-                e = <h2 style={{ margin: '10px auto', fontWeight: '400' }} >Sorry, No ads found matching your query!</h2>
+                e = <h2 className="seached-ad-sub-heading pt-5 pb-5" >Sorry, No ads found matching your query!</h2>
             }
         }
         if (searchedAds === null) {
-            e = <h2 style={{ margin: '10px auto', fontWeight: '400' }} >You have not searched for an ad</h2>
+            e = <h2 className="message" >You have not searched for an ad</h2>
 
         }
 
@@ -170,7 +170,7 @@ class Content extends Component {
                 <div className="rdow">
                     {sa ?
                         //This displays Searched Ads
-                        <div style={{ width: '100%' }} className="">
+                        <div style={{ width: '100%' }} >
                             <span className="seached-ad-heading">Searched Ads</span>
                             <div className="ads-container">
                                 {e}

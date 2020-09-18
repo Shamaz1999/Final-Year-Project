@@ -10,6 +10,7 @@ class Login extends Component {
     state = {
         email: "",
         password: "",
+        isLoggedIn: false
     }
     componentDidMount() {
         const input = this.refs.email;
@@ -60,6 +61,7 @@ class Login extends Component {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data)
+                        this.setState({isloggedin:true})
                         let user = JSON.parse(localStorage.getItem('user'));
                         if (user===null) {
                             user = {

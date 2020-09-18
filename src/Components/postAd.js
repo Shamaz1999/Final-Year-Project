@@ -69,8 +69,10 @@ class Post extends Component {
     };
     localStorage.setItem('user',JSON.stringify(user))
 }
-      this.setState({sellerId:user._id})  
-      this.setState({sellerName:user.name})  
+      this.setState({sellerId:user._id})
+      var sellerName = user.firstName +" "+user.lastName
+      console.log(sellerName)
+      this.setState({sellerName:sellerName})  
       this.setState({sellerCountry:user.country})
       this.setState({sellerImg:user.url1})
       this.setState({phone:user.phone})

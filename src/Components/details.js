@@ -5,7 +5,9 @@ import man from './../images/man.png';
 import girl from './../images/girl.png';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { Row, Col, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 import Skeleton from 'react-loading-skeleton'
 
 
@@ -14,7 +16,8 @@ class Details extends Component {
 
     state = {
         id: this.props.match.params.userId,
-        name: '',
+        firstName: '',
+        lastName: '',
         phone: '',
         password: '',
         email: '',
@@ -34,6 +37,7 @@ class Details extends Component {
             _id: this.props.match.params.userId,
         },
         show: false,
+        isLoggedIn: true,
         // theme: JSON.parse(localStorage.getItem('theme')),
         isDataloaded: false,
     }
@@ -60,16 +64,19 @@ class Details extends Component {
 
         let user = JSON.parse(localStorage.getItem('user'));
 
-        this.refs.name.value = user.name
-        this.refs.phone.value = user.phone
+        this.refs.firstName.value = user.firstName
+        this.refs.lastName.value = user.lastName
+        // this.refs.phone.value = user.phone
+        // var ph = user.phone
         this.refs.about.value = user.about
         this.refs.password.value = user.password
         this.refs.address.value = user.address
         // this.refs.country.value = user.country
         this.refs.city.value = user.city
 
-
-        this.setState({ name: user.name })
+        console.log(this.refs.phone)
+        this.setState({ firstName: user.firstName })
+        this.setState({ lastName: user.lastName })
         this.setState({ phone: user.phone })
         this.setState({ password: user.password })
         this.setState({ about: user.about })
@@ -94,6 +101,7 @@ class Details extends Component {
         fetch('http://localhost:8000/deleteuser', option)
             .then(res => res.json())
             .then(data => {
+                this.setState({isLoggedIn:false})
                 console.log(data)
             })
             .catch(err => { console.log(err) })
@@ -144,8 +152,8 @@ class Details extends Component {
             var address = this.refs.address;
             address.focus()
             return false
-        } else if (this.state.name === "") {
-            toast('Name is required!', {
+        } else if (this.state.firstName === "") {
+            toast('First Name is required!', {
                 className: 'logout-toast',
                 position: "bottom-left",
                 autoClose: 4000,
@@ -157,10 +165,28 @@ class Details extends Component {
                 // progress: undefined,
             });
 
-            var name = this.refs.name;
-            name.focus()
+            var firstName = this.refs.firstName;
+            firstName.focus()
             return false
-        } else if (this.state.password === "" || this.state.password.length <= 6) {
+        }
+        else if (this.state.lastName === "") {
+            toast('Last Name is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+                // progress: undefined,
+            });
+
+            var lastName = this.refs.lastName;
+            lastName.focus()
+            return false
+        }
+         else if (this.state.password === "" || this.state.password.length <= 6) {
             toast('Passowrd cannot be null and must be 7 characters long!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -308,6 +334,9 @@ class Details extends Component {
                 localStorage.setItem('theme', "normal")
             }
         }
+
+        console.log(this.props)
+
         return (
             <div className="app text-color">
                 <div className="details-container">
@@ -316,7 +345,7 @@ class Details extends Component {
                         <div className="dark-mode-toggle-container">
                             <div id='comments'>
                                 <label htmlFor="switcher"><b>Dark Mode &nbsp;</b></label>
-                                <label className="switch">
+                                <label className="switch ">
                                     <input id="switcher" onChange={(e) => handleTheme(e)} type="checkbox" checked={this.state.theme === "dark"} />
                                     <span className="slider round"></span>
                                 </label>
@@ -336,33 +365,33 @@ class Details extends Component {
                                 <div className="profile-details-container">
                                     <div className='non-editable-info-container profile-details-info-container'>
                                         <span className=" profile-details-small-heading">Name</span>
-                                        <span>{u.name}</span>
+                                        <span className="non-editable-details">{u.firstName} {u.lastName}</span>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
                                     <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Location</span>
                                         <div>
-                                            <span>{u.city}</span>, <span>{u.country}</span>
+                                            <span className="non-editable-details">{u.city}</span>, <span>{u.country}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
                                     <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Gender</span>
-                                        <span>{u.gender}</span>
+                                        <span className="non-editable-details">{u.gender}</span>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
                                     <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Address</span>
-                                        <span>{u.address}</span>
+                                        <span className="non-editable-details">{u.address}</span>
                                     </div>
                                 </div>
                                 <div className="profile-details-container">
                                     <div className='non-editable-info-container profile-details-info-container'>
                                         <span className="profile-details-small-heading">Date Joined</span>
-                                        <span>{u.date}</span>
+                                        <span className="non-editable-details">{u.date}</span>
                                     </div>
                                 </div>
                             </div>
@@ -378,9 +407,17 @@ class Details extends Component {
                                     <div className="profile-details-wrapper" >
                                         <div className="profile-details-container">
                                             <div className='profile-details-info-container'>
-                                                <span className="profile-details-small-heading">Name</span>
+                                                <span className="profile-details-small-heading">First Name</span>
                                                 <span>
-                                                    <input onChange={e => this.setState({ name: e.target.value })} type="text" ref="name" name="detail-name" className="detail-input" />
+                                                    <input onChange={e => this.setState({ firstName: e.target.value })} type="text" ref="firstName" name="detail-name" className="detail-input" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="profile-details-container">
+                                            <div className='profile-details-info-container'>
+                                                <span className="profile-details-small-heading">Last Name</span>
+                                                <span>
+                                                    <input onChange={e => this.setState({ lastName: e.target.value })} type="text" ref="lastName" name="detail-name" className="detail-input" />
                                                 </span>
                                             </div>
                                         </div>
@@ -396,7 +433,8 @@ class Details extends Component {
                                             <div className='profile-details-info-container'>
                                                 <span className="profile-details-small-heading">Phone no.</span>
                                                 <span>
-                                                    <input onChange={e => this.setState({ phone: e.target.value })} type="text" ref="phone" name="detail-mobile" className="detail-input" />
+                                                    <PhoneInput className="detail-input detail-input-phone" ref="phone" value={this.state.phone}  onChange={phone => this.setState({ phone })} />
+                                                    {/* <input onChange={e => this.setState({ phone: e.target.value })} type="text" ref="phone" name="detail-mobile" className="detail-input" /> */}
                                                 </span>
                                             </div>
                                         </div>
@@ -426,7 +464,7 @@ class Details extends Component {
                                             <div className='profile-details-info-container'>
                                                 <span className="profile-details-small-heading">Address</span>
                                                 <span>
-                                                    <input onChange={e => this.setState({ address: e.target.value })} type="text" ref="address" name="detail-info" className="detail-input" />
+                                                    <input onChange={e => this.setState({ address: e.target.value })} type="text" ref="address" name="detail-info" className="detail-input detail-input-address" />
                                                 </span>
                                             </div>
                                         </div>

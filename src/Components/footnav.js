@@ -15,7 +15,7 @@ return(
         <div className="foot-nav">
         <div>
             <div className="footnav-cols-container">   
-                <div className>
+                <div>
                     <ul className="foot-nav-ul">
                         <li className="col-heading med-headings">Categories</li>
                         <li className="col-items"><span className="footnav-social-links">Mobiles</span></li>
@@ -26,7 +26,7 @@ return(
                         <li className="col-items"><span className="footnav-social-links">Bikes</span></li>
                     </ul>
                 </div>
-                <div className="">
+                <div >
                     <ul className="foot-nav-ul">
                         <li className="col-heading med-headings">Quick Links</li>
                         <li className="col-items"><Link className="footnav-social-links"  to="/" >Home</Link></li>
@@ -35,7 +35,7 @@ return(
                         <li className="col-items"><Link className="footnav-social-links" to="/about">About</Link></li>
                     </ul>
                 </div>
-                <div className="">
+                <div>
                         <ul className="foot-nav-ul">
                             <li className="col-heading med-headings">Social Contacts</li>
                             <li className="col-items"><span  className="footnav-social-links" ><FontAwesome className="social-logos" name="facebook" />Facebook Profile</span></li>

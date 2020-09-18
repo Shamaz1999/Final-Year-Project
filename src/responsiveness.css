@@ -66,6 +66,11 @@
   text-align: center;
   margin-bottom: 10px !important;
  }
+ .seller-details-big-heading{
+  font-size: 25px;
+  padding: 15px 20px 0px 20px;
+  font-weight: bold;
+}
  .footnav-cols-container{
   margin: 0 30px !important;
  }
@@ -82,6 +87,13 @@
 
 
 @media only screen and (max-width : 768px){
+  .detail-input-phone .react-phone-number-input__row .react-phone-number-input__input{
+    text-align: right !important;
+    padding-right: 5px;
+  }
+  .detail-input-phone{
+    width: 130px !important;
+  }
   .navbar-form-wrapper{
     margin: 0 20px;
   }
@@ -127,7 +139,7 @@
     margin: 25px 0;
     font-size: 16px !important;
   }
-  .no-editable-profile-details-wrapper{
+  .no-editable-profile-details-wrapper, .no-editable-seller-details-wrapper{
     margin-top: 50px !important;
   }
   .price-container{
@@ -167,7 +179,7 @@
     margin: 10px auto;
     width: 100% !important;
   }
-  .details-right-wrapper, .details-left-wrapper{
+  .details-right-wrapper, .details-left-wrapper, .seller-profile-left-wrapper{
     width: 280px !important;
     margin: 10px auto;
   }
@@ -207,6 +219,35 @@
   .login-page-heading{
     font-size: 35px !important;
     margin-bottom: 20px !important;
+  }
+  .seller-page-heading{
+    font-size: 35px !important;
+    margin-bottom: 20px !important;
+  }
+  .seller-details-big-heading{
+    font-size: 18px !important;
+    padding: 15px 20px 0px 20px;
+    font-weight: bold;
+  }
+  .seller-profile-pic, .seller-profile-pic-skeleton{
+    height: 250px !important;
+  }
+  .seller-info-skeleton{
+    height: 10px !important;
+    width: 75px !important;
+  }
+  .detail-input-address{
+    width: auto !important;
+  }
+  .message{
+    font-size: 25px;
+  }
+  .seached-ad-sub-heading{
+    font-size: 19px;
+    margin: 40px 10px !important;
+  }
+  h4.message{
+    font-size: 19px;
   }
   .signup-form-wrapper, .login-form-wrapper{
     width: auto !important;
@@ -282,7 +323,9 @@
   }
   .about-detail{
     font-size: 16px !important;
-    /* margin: 0px 10px !important; */
+  }
+  .seached-ad-heading{
+    font-size: 40px !important;
   }
   
 

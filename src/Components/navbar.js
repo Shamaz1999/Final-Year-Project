@@ -85,22 +85,6 @@ class Nav extends Component {
 
     country1 = (country) => { this.setState({ country }) }
 
-    // handleSearch = ()=>{
-    //     var s = document.getElementById('searchBar');
-    //     var b = document.getElementById('searchBtn')
-    //     if(s.classList.contains("hiddenSearch")){
-    //         s.classList.remove("hiddenSearch");
-    //         s.classList.add("showSearch");
-    //         b.classList.remove("search-btn-radius");
-    //     }
-    //     else{
-    //         s.classList.remove("showSearch");
-    //         s.classList.add("hiddenSearch");
-    //         b.classList.add("search-btn-radius");
-
-    //     }
-    // }
-
     render() {
 
 
@@ -117,7 +101,7 @@ class Nav extends Component {
                     <div className="nav-search-area-container text-center no-pad">
                         <div className=" text-center">
                             <div className="navbar-form-wrapper">
-                                <div className=" nav-search">
+                                <div className="nav-search">
                                     <CountrySelect prop={this.props} country={this.country1} />
                                 </div>
                                 <div className="input-group nav-searchnar-container">
@@ -134,8 +118,8 @@ class Nav extends Component {
                                         </button>
                                     </div>
                                 </div>
-                                <div className=" nav-search">
-                                    <select className="form-control region-selec-b" onChange={this.categoryAds} onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
+                                <div className="nav-search">
+                                    <select className=" region-selec-b" onChange={this.categoryAds} onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
                                         <option selected disabled>Categories</option>
                                         <option value="mobiles">Mobiles</option>
                                         <option value="vehicles">Vehicles</option>
@@ -169,8 +153,8 @@ class Nav extends Component {
 
 const Notloggedin = () => (
     <div>
-        <Link className="nav-link" to="/login">Log In</Link>
-        <Link to="/signup" className="nav-link">Signup</Link>
+        <Link className="login-nav-link" to="/login">Log In</Link>
+        <Link to="/signup" className="login-nav-link">Signup</Link>
     </div>
 )
 
@@ -203,8 +187,8 @@ class CountrySelect extends Component {
 
     render() {
         return (
-            <select onChange={this.countryAds} onInput={e => this.setState({ country: e.target.value })} className="form-control region-selec-a" id="exampleFormControlSelect1">
-                <option disabled selected>Countries</option>
+            <select onChange={this.countryAds} defaultValue="countries" onInput={e => this.setState({ country: e.target.value })} className=" region-selec-a">
+                <option disabled value='countries'>Countries</option>
                 <option value="United States">United States</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Afghanistan">Afghanistan</option>
