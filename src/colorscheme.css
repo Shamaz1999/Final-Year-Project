@@ -18,7 +18,9 @@ html[data-theme="normal"] {
   --hr-divider-color:rgba(0, 0, 0, 0.1);
   /* --profile-dropdown-hover-color: rgb(231, 231, 231); */
   --profile-dropdown-hover-color: #ea10381a;
+  --chat-list-hover-color: #ea10381a;
   /* --profile-dropdown-hover-color: rgba(27, 20, 100, 0.247); */
+  --chat-list-item-border-color : #eee;
 
 
 }
@@ -44,5 +46,7 @@ html[data-theme="dark"] {
   --drop-links:white;
   --hr-divider-color:white;
   --profile-dropdown-hover-color: rgb(218, 205, 205);
+  --chat-list-hover-color: rgb(59, 59, 59);
   /* --profile-dropdown-hover-color: #ea10381a; */
+  --chat-list-item-border-color : white;
 }

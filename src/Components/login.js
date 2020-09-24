@@ -154,7 +154,7 @@ class Login extends Component {
                             </div>
                             <div className="login-btn-container">
                                 <div>
-                                    <Button onClick={this.verify} type="button" bsPrefix="btn login-btn">Submit</Button>
+                                    <Button onClick={this.verify} type="button" bsPrefix="btn login-btn postAd-submit-btn">Submit</Button>
                                 </div>
                                 <div>
                                     <Link className="login-signup-page-swap" to="/signup">Don't have an account! Create one now.</Link>

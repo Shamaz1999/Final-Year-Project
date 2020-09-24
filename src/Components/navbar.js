@@ -109,7 +109,7 @@ class Nav extends Component {
                                         placeholder="Search for ads"
                                     />
                                     <div className="input-group-append">
-                                        <button className="btn  search-btn "
+                                        <button className="btn  search-btn postAd-submit-btn"
                                             id="searchBtn"
                                             onClick={this.searchAds}
                                             //   onClick={this.handleSearch} 
@@ -119,8 +119,8 @@ class Nav extends Component {
                                     </div>
                                 </div>
                                 <div className="nav-search">
-                                    <select className=" region-selec-b" onChange={this.categoryAds} onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
-                                        <option selected disabled>Categories</option>
+                                    <select className=" region-selec-b" defaultValue="categories" onChange={this.categoryAds} onInput={e => this.setState({ category: e.target.value })} id="exampleFormControlSelect1">
+                                        <option value="categories" disabled>Categories</option>
                                         <option value="mobiles">Mobiles</option>
                                         <option value="vehicles">Vehicles</option>
                                         <option value="clothing">Clothing</option>

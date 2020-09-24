@@ -14,12 +14,13 @@ import MyAds from './Components/myAds'
 import Ad from './Components/currentAd'
 import Seller from './Components/sellerprofile'
 import Post from './Components/postAd'
-import {Provider} from 'react-redux'
-import store from './redux'
+// import {Provider} from 'react-redux'
+// import store from './redux'
 import Chat from './Components/chat';
 import favAds from './Components/favAds';
 import editAd from './Components/editAd';
 import { ToastContainer } from 'react-toastify';
+import {connect } from 'react-redux';
 
 class App extends Component {
 
@@ -27,29 +28,33 @@ class App extends Component {
     var theme = localStorage.getItem('theme')
     if(theme){
       document.documentElement.setAttribute("data-theme", theme);
+      this.props.dispatch({type:"theme_change",payload:theme})
     }
     else{
       localStorage.setItem('theme', 'normal')
       document.documentElement.setAttribute("data-theme", 'normal');
+      this.props.dispatch({type:"theme_change",payload:'normal'})
+
     }
   }
 
   render() {
     return (
-      <Provider store={store}>
+      // <Provider store={store}>
       <BrowserRouter>
 
         <div className="background-class">
           <Nav />
           <Switch>
             
-            <Route path='/:adsd/sellerProfile/:sellerId' component={Seller} />
+            <Route path='/sellerProfile/:sellerId' component={Seller} />
             <Route path='/ad/:adId' component={Ad} />
             <Route path='/myads/:adId/edit' component={editAd} />
             <Route path='/myads' component={MyAds} />
             <Route path='/favoriteAds' component={favAds} />
             <Route path='/postad' component={Post} />
             <Route path='/:sellerId/chat' component={Chat} />
+            <Route path='/chat' component={Chat} />
             <Route path='/details/:userId' component={Details} />
             <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />
@@ -64,9 +69,11 @@ class App extends Component {
         </div>
 
       </BrowserRouter>
-      </Provider>
+      // </Provider>
     );
   }
 }
+const mapStateToProps=(store)=>({
 
-export default App;
+})
+export default connect(mapStateToProps)(App);

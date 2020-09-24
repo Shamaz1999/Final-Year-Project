@@ -110,7 +110,7 @@ class Contact extends Component {
                                 </div>
                                 <div className="mt-1" >
                                     <div>
-                                        <input type="button" className="btn login-btn" onClick={this.verify} value="Submit"/>
+                                        <button  className="btn login-btn postAd-submit-btn" onClick={this.verify} >Submit</button>
                                     </div>
                                 </div>
                             </div>

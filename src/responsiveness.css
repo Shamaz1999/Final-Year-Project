@@ -24,11 +24,17 @@
    width: 50% !important;
  }
  .profile-details-wrapper{
-  margin: 20px !important;
+  margin: 20px 20px 0 20px !important;
+}
+.profile-details-address-container{
+  margin: 0 20px!important;
  }
  .m-heading{
    font-size: 60px !important;
  }
+ .details-left-wrapper {
+  width: 320px !important;
+}
  .a-heading{
   margin: 40px 0 !important; 
   font-size: 60px !important;
@@ -37,7 +43,6 @@
    font-size: 20px !important;
  }
  .current-ad-pictures{
-  /* width: 100%; */
   height: 350px !important;
  }
  .ad-img-container, .ad-desc-container {
@@ -80,6 +85,15 @@
  }
  .col-items{
    font-size: 17px !important;
+  }
+  .chat-app-right-col{
+    width: 65vw  !important;
+  }
+  .chat-app-left-col{
+    width: 35vw  !important;
+  }
+  .chatbox{
+    width: 85% !important;
   }
 
 }
@@ -125,6 +139,12 @@
     flex-direction: column !important;
     align-items: center;
   }
+  .profile-details-first-col, .profile-details-second-col {
+    width: 328px !important;
+  }
+  .detail-input{
+    padding-right: 0px !important;
+  }
   .details-page-btn{
     width: 100px;
   }
@@ -151,13 +171,32 @@
   .current-ad-price-skeleton{
     width: 150px !important;
   }
+  .chatbox{
+    width: 90% !important;
+    margin-right: 0px !important;
+  }
+  .chat-app-wrapper{
+    padding: 20px !important;
+  }
+  .chat-app-chat-list .rce-citem .rce-citem-body .rce-citem-body--top .rce-citem-body--top-title{
+    font-size: 14px;
+  } 
+  .chat-app-chat-list .rce-citem .rce-citem-body .rce-citem-body--bottom .rce-citem-body--bottom-status span{
+    font-size: 10px !important;
+  }
+  .chat-app-chat-list .rce-citem .rce-citem-body .rce-citem-body--bottom .rce-citem-body--bottom-title{
+    font-size: 12px;
+  }
+  .chat-app-chat-list .rce-citem .rce-citem-avatar{
+    padding-right: 5px;
+  } 
 
 }
 
 
 
 
-@media only screen and (max-width:420px){
+@media only screen and (max-width:425px){
   .details-container{
     margin: 20px 10px !important;
   }
@@ -295,6 +334,9 @@
   .current-ad-images-skeleton{
     height: 250px !important;
   }
+  .profile-details-first-col, .profile-details-second-col {
+    width: 278px !important;
+  }
   .logout-toast{
     width: 180px !important; 
     font-size: 14px !important;
@@ -327,6 +369,27 @@
   .seached-ad-heading{
     font-size: 40px !important;
   }
+  .chat-app-wrapper{
+    /* padding: 20px 10px !important; */
+    flex-direction: column !important;
+  }
+  .chatbox-wrapper{
+    margin: 20px 0 !important;
+  }
+  .chat-app-right-col, .chat-app-left-col{
+    width: 100% !important;
+  }
+  .chatbox{
+    padding: 10px 0 !important;
+    width: 100% !important;
+  }
+  .message-input-wrapper{
+    margin: 0 10px !important;
+  }
+  .message-input{
+    font-size: 14px;
+  }
+  
   
 
 }

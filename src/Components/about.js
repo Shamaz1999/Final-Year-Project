@@ -18,7 +18,7 @@ class About extends Component {
       is well enough that people of the nation do not understand our banking and monetary system, for if they did, we believe
       there would be a revolution before tomorrow morning.”</p> */}
           <div className="text-center">
-            <Link className="btn cont-btn login-btn" to="/contact">Contact Us</Link>
+            <Link className="btn cont-btn login-btn postAd-submit-btn" to="/contact">Contact Us</Link>
           </div>
         </div>
       
@@ -48,7 +48,7 @@ class About extends Component {
                     <li>User Easily modify acount detail.</li>
                     <li>Further detail please Contact us.</li>
                     {/* <li>Always Meet the buyer or seller at a crowded place and check the item before you pay.</li> */}
-                    <Link className="btn login-btn" to="/contact">Contact Us</Link>
+                    <Link className="btn login-btn postAd-submit-btn" to="/contact">Contact Us</Link>
                   </ul>
                </span>
               </div>

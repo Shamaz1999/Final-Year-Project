@@ -40,7 +40,6 @@ class Ad extends Component {
                 .then(res => res.json())
                 .then(data => {
                     this.setState({ user: data })
-                    console.log(this.state)
 
                     let user = JSON.parse(localStorage.getItem('user'));
                     if (user === null) {
@@ -60,7 +59,6 @@ class Ad extends Component {
                             favorites: data.favorites
                         }
                         localStorage.setItem('user', JSON.stringify(user))
-                        console.log(user)
                     }
                     user = {
                         _id: data._id,
@@ -85,9 +83,7 @@ class Ad extends Component {
             isFav = user.favorites.includes(adId);
             this.setState({ isFav: isFav });
         }
-        else {
-            console.log('user is not logged in')
-        }
+       
 
 
 
@@ -104,9 +100,8 @@ class Ad extends Component {
         fetch('http://localhost:8000/currentad', option1)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                this.setState({ ad: data },
-                    () => console.log(this.state))
+                this.setState({ ad: data }
+                    )
                 this.setState({ isDataLoaded: true });
                 this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId })
             })
@@ -316,11 +311,7 @@ class Ad extends Component {
             userId = this.state.user._id;            
         }
 
-
-
         window.scrollTo(0, 0);
-        console.log(this.state)
-
         const handleOnDragStart = e => e.preventDefault()
         var arr = [this.state.ad.url1, this.state.ad.url2, this.state.ad.url3, this.state.ad.url4]
         let item = [1, 2, 3, 4].map((i) => (
@@ -484,7 +475,7 @@ class Ad extends Component {
                                             <div className="seller-name-container">
                                                 {this.state.isDataLoaded
                                                     ?
-                                                    <Link className="current-ad-seller-name" to={"/"+this.props.match.params.adId + "/sellerProfile/"+this.state.ad.sellerId}>{this.state.ad.sellerName}</Link>
+                                                    <Link className="current-ad-seller-name" to={"/sellerProfile/"+this.state.ad.sellerId}>{this.state.ad.sellerName}</Link>
                                                     :
                                                     <Skeleton height={20} width={200} />
                                                 }
@@ -513,11 +504,11 @@ class Ad extends Component {
                                                             ?
                                                         <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
                                                             :
-                                                    // <button className="btn login-btn current-ad-chat-btn"
-                                                    //     onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
-                                                    //     Chat
-                                                    // </button>
-                                                    <> </>
+                                                    <button className="btn login-btn current-ad-chat-btn"
+                                                        onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
+                                                        Chat
+                                                    </button>
+                                                    // <> </>
                                                     }
                                                 </span>
                                             </div>

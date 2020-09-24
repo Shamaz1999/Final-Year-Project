@@ -14,8 +14,8 @@ class EditAd extends Component {
         sellerCountry: '',
         adTitle: '',
         brand: '',
-        category: '',
-        condition: '',
+        category: 'category',
+        condition: 'condition',
         price: '',
         location: '',
         description: '',
@@ -53,7 +53,7 @@ class EditAd extends Component {
         fetch('http://localhost:8000/currentad', option)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 this.setState({
                     adTitle: data.adTitle,
                     sellerCountry: data.sellerCountry,
@@ -72,30 +72,33 @@ class EditAd extends Component {
                     url2: data.url2,
                     url3: data.url3,
                     url4: data.url4
-                },
-                    () => {
+                })
+                    // () => {
                         // setting category
-                        var temp = this.state.category;
-                        var mySelect = this.refs.adCategory;
-                        var i, j;
-                        for ( i, j = 0; i = mySelect.options[j]; j++) {
-                            if (i.value === temp) {
-                                mySelect.selectedIndex = j;
-                                break;
-                            }
-                        }
+                        // var temp = this.state.category;
+                        // var mySelect = this.refs.adCategory;
+                        // var i, j;
+                        // for ( i, j = 0; i = mySelect.options[j]; j++) {
+                        //     if (i.value === temp) {
+                        //         mySelect.selectedIndex = j;
+                        //         break;
+                        //     }
+                        // }
+
+
 
                         // setting condition
-                        var temp1 = this.state.condition;
-                        var mySelect1 = this.refs.adCondition;
-                        for ( i, j = 0; i = mySelect1.options[j]; j++) {
-                            if (i.value === temp1) {
-                                mySelect1.selectedIndex = j;
-                                break;
-                            }
-                        }
-                    })
-                // this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId })
+                        // var temp1 = this.state.condition;
+                        // var mySelect1 = this.refs.adCondition;
+                        // for ( i, j = 0; i = mySelect1.options[j]; j++) {
+                        //     if (i.value === temp1) {
+                        //         mySelect1.selectedIndex = j;
+                        //         break;
+                        //     }
+                        // }
+                    // })
+                // this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId 
+            // })
             })
             .catch(err => console.log(err))
 
@@ -390,17 +393,17 @@ class EditAd extends Component {
                             Edit Your Ad!
                         </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Ad Title</b> <span className="required">*</span></label>
-                                <input type="text" name="adTitle" ref="adTitle" value={this.state.adTitle} onInput={e => this.setState({ adTitle: e.target.value })} className="form-control" placeholder="Ad Title Here" />
+                                <label className="signup-label" htmlFor="adTitle"><b>Ad Title</b> <span className="required">*</span></label>
+                                <input type="text" name="adTitle" id="adTitle" ref="adTitle" value={this.state.adTitle} onChange={e => this.setState({ adTitle: e.target.value })} className="form-control" placeholder="Ad Title Here" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Item Brand</b> <span className="required">*</span></label>
-                                <input type="text" name="brand" value={this.state.brand} onInput={e => this.setState({ brand: e.target.value })} ref="itemBrand" className="form-control" placeholder="Item Brand Here" />
+                                <label className="signup-label" htmlFor="itemBrand"><b>Item Brand</b> <span className="required">*</span></label>
+                                <input type="text" name="brand" id="itemBrand" value={this.state.brand} onInput={e => this.setState({ brand: e.target.value })} ref="itemBrand" className="form-control" placeholder="Item Brand Here" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Item Category</b> <span className="required">*</span></label>
-                                <select className="form-control" onInput={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} name="adCategory" ref="adCategory">
-                                    <option value="" disabled selected>Select Category</option>
+                                <label className="signup-label" htmlFor="adCategory"><b>Item Category</b> <span className="required">*</span></label>
+                                <select className="form-control" onInput={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} name="adCategory" id="adCategory" ref="adCategory">
+                                    <option value="category" disabled >Select Category</option>
                                     <option value="mobiles">Mobiles</option>
                                     <option value="vehicles">Vehicles</option>
                                     <option value="clothing">Clothing</option>
@@ -416,23 +419,23 @@ class EditAd extends Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Condition</b> <span className="required">*</span></label>
-                                <select name="adCondition" onInput={e => this.setState({ condition: e.target.value })} className="form-control" ref="adCondition">
-                                    <option selected disabled>Select Condition</option>
+                                <label className="signup-label" htmlFor="adCondition"><b>Condition</b> <span className="required">*</span></label>
+                                <select name="adCondition" onInput={e => this.setState({ condition: e.target.value })} defaultValue={this.state.condition} className="form-control" id="adCondition" ref="adCondition">
+                                    <option value="condition" disabled>Select Condition</option>
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Price</b> <span className="required">*</span></label>
-                                <input type="number" name="adPrice" ref="adPrice" value={this.state.price} onInput={e => this.setState({ price: e.target.value })} className="form-control" placeholder="Item Price Here" />
+                                <label className="signup-label" htmlFor="adPrice"><b>Price</b> <span className="required">*</span></label>
+                                <input type="number" name="adPrice" id="adPrice" ref="adPrice" value={this.state.price} onInput={e => this.setState({ price: e.target.value })} className="form-control" placeholder="Item Price Here" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Location</b> <span className="required">*</span></label>
-                                <input type="text" name="adloc" ref="adloc" value={this.state.location} onInput={e => this.setState({ location: e.target.value })} className="form-control" placeholder="Your location Here" />
+                                <label className="signup-label" htmlFor="adloc"><b>Location</b> <span className="required">*</span></label>
+                                <input type="text" name="adloc" id="adloc" ref="adloc" value={this.state.location} onInput={e => this.setState({ location: e.target.value })} className="form-control" placeholder="Your location Here" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Upload Pictures</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting images click on upload)</span>* <span style={{ fontSize: '14px' }}>(To use previous images, don't select any images now)</span></span></label>
+                                <label className="signup-label" htmlFor="exampleInputEmail1"><b>Upload Pictures</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting images click on upload)</span>* <span style={{ fontSize: '14px' }}>(To use previous images, don't select any images now)</span></span></label>
                                 <div class="ad-img-upload-container">
                      
                                     <div className="imgupload1">
@@ -462,15 +465,15 @@ class EditAd extends Component {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1"><b>Description</b> <span className="required">*</span></label>
-                                <textarea name="adDesc" ref="adDesc" value={this.state.description} onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{ resize: 'none' }} cols="30" rows="5"></textarea>
+                                <label className="signup-label" htmlFor="adDesc"><b>Description</b> <span className="required">*</span></label>
+                                <textarea name="adDesc" id="adDesc" ref="adDesc" value={this.state.description} onInput={e => this.setState({ description: e.target.value })} className="form-control" style={{ resize: 'none' }} cols="30" rows="5"></textarea>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
-                                <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" value={this.state.phone} onChange={phone => this.setState({ phone })} />
+                                <label className="signup-label" htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
+                                <PhoneInput className="form-control custom-phone1 phone-num-input" ref="userNum" id="phone-num" placeholder="Enter phone number" value={this.state.phone} onChange={phone => this.setState({ phone })} />
                             </div>
                             <br />
-                            <button type="button" onClick={this.verify} className="btn login-btn">Submit</button>
+                            <button type="button" onClick={this.verify} className="btn login-btn postAd-submit-btn">Submit</button>
                         </div>
                  </div>
                 </div>

@@ -202,8 +202,6 @@ class FavAds extends Component {
 
 
         //Skeleteon Card Ads
-
-        // for (let i = 1; i !== skeletonCards.length; i++) {
             sc = skeletonCards.map((item, index) => {
                 return <div className="card-wrapper" >
                     <div className="card" style={im} >
@@ -216,16 +214,15 @@ class FavAds extends Component {
                             <div className="card-text text-left ad-description"><Skeleton /></div>
                             <div className="d-flex space-btw align-center ads-btn-container">
                                 <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
-                                <span>
-                                    <Skeleton width={90} />
-                                    {/* <Link to={"/ad/"} className="btn login-btn open-ad-btn float-right" style={{ marginTop: "0px" }}>Open Ad</Link> */}
-                                </span>
+                                <span style={{ fontSize: '13px', color: 'grey', textAlign:'right' }}><Skeleton width={90} /></span>
+                            </div>
+                            <div className="text-left">
+                                <Skeleton width={120} />
                             </div>
                         </div>
                     </div>
                 </div>
             })
-        // }
 
         let im = {
             margin: "20px 0",
@@ -258,20 +255,23 @@ class FavAds extends Component {
                                                 {items([ad.url1, ad.url2, ad.url3, ad.url4])}
                                             </AliceCarousel>
                                             <div class="card-body">
-                                                <h6 className='float-left'>{ad.adTitle}</h6>
-                                                <h6 className='float-right'>Rs {ad.price}</h6>
-                                                <div className="clear"></div>
-                                                <p className="ad-description">{ad.description}</p>
-                                                <div>
-                                                    <div className="float-left small">{ad.location}</div>
-                                                    <div className="float-right small">{ad.date}</div>
+                                                <h5 className='card-title text-left'>{ad.adTitle}</h5>
+                                                <h5 className='card-title text-left'>Rs {ad.price}</h5>
+                                                <div className="divider"><hr className="ad-hr" /></div>
+                                                <div className="text-left">Ad Id : {ad._id}</div>
+                                                <div className="card-text text-left ad-description">{ad.description}</div>
+                                                <div className="d-flex space-btw align-center ads-btn-container">
+                                                    <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}>{ad.location}</span>
+                                                    <span style={{ fontSize: '13px', color: 'grey' }}>
+                                                        {ad.date}
+                                                    </span>
                                                 </div>
-                                            </div>
-                                            <div className="text-left">
+                                            <div className=" mt-1 text-left">
                                                 <Button
                                                     // onClick={() => removefav(ad._id)}
                                                     onClick={() => handleShow()}
-                                                    bsPrefix="edit-ad-btn no-outline no-border" >Remove</Button>
+                                                    bsPrefix=" my-ad-btn no-outline no-border postAd-submit-btn" >Remove</Button>
+                                            </div>
                                             </div>
                                         </div>
                                         {/* Confirmation Modal */}

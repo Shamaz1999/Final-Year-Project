@@ -37,7 +37,7 @@ class Signup extends Component {
         var dat = day[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + " " + d.getFullYear();
         this.setState({ date: dat })
 
-        const input = this.refs.userName;
+        const input = this.refs.firstName;
         input.focus();
     }
 
@@ -406,10 +406,10 @@ class Signup extends Component {
                             </div>
                             <div className="login-btn-container">
                                 <div>
-                                    <button type="submit" onClick={this.verify} className="btn login-btn">Submit</button>
+                                    <button type="submit" onClick={this.verify} className="btn login-btn postAd-submit-btn  ">Submit</button>
                                 </div>
                                 <div>
-                                    <Link className="login-signup-page-swap" to="/login">Already have an account! Sign in now.</Link>
+                                    <Link className="login-signup-page-swap " to="/login">Already have an account! Sign in now.</Link>
                                 </div>
                             </div>
                         </div>

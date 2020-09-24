@@ -9,7 +9,8 @@ import { Modal, Button } from 'react-bootstrap'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import Skeleton from 'react-loading-skeleton'
-
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import FontAwesome from 'react-fontawesome';
 
 
 class Details extends Component {
@@ -32,7 +33,7 @@ class Details extends Component {
         favorites: [],
         image1: null,
         progress1: 0,
-        theme: "",
+        theme: localStorage.getItem('theme'),
         user: {
             _id: this.props.match.params.userId,
         },
@@ -44,6 +45,14 @@ class Details extends Component {
 
     componentDidMount() {
         this.setState({ theme: localStorage.getItem('theme') })
+        // var t = this.refs.themeInput
+
+        // if(this.state.theme === 'dark'){
+        //     t.checked= true
+        // }else{
+        //     t.checked= false
+        // }
+
         var option = {
             method: "POST",
             body: JSON.stringify(this.state),
@@ -64,14 +73,12 @@ class Details extends Component {
 
         let user = JSON.parse(localStorage.getItem('user'));
 
+
         this.refs.firstName.value = user.firstName
         this.refs.lastName.value = user.lastName
-        // this.refs.phone.value = user.phone
-        // var ph = user.phone
         this.refs.about.value = user.about
         this.refs.password.value = user.password
         this.refs.address.value = user.address
-        // this.refs.country.value = user.country
         this.refs.city.value = user.city
 
         console.log(this.refs.phone)
@@ -101,7 +108,7 @@ class Details extends Component {
         fetch('http://localhost:8000/deleteuser', option)
             .then(res => res.json())
             .then(data => {
-                this.setState({isLoggedIn:false})
+                this.setState({ isLoggedIn: false })
                 console.log(data)
             })
             .catch(err => { console.log(err) })
@@ -186,7 +193,7 @@ class Details extends Component {
             lastName.focus()
             return false
         }
-         else if (this.state.password === "" || this.state.password.length <= 6) {
+        else if (this.state.password === "" || this.state.password.length <= 6) {
             toast('Passowrd cannot be null and must be 7 characters long!', {
                 className: 'logout-toast',
                 position: "bottom-left",
@@ -320,21 +327,38 @@ class Details extends Component {
             }
         }
         else { dp = this.state.user.url1 }
-        
+
 
         const handleTheme = (e) => {
-            console.log(e.target.checked);
+
+
             if (e.target.checked) {
-                this.setState({ theme: "dark" })
+                // this.setState({ theme: "dark" })
+                this.props.dispatch({type:"theme_change",payload:'dark'})
                 document.documentElement.setAttribute('data-theme', "dark");
                 localStorage.setItem('theme', "dark")
             } else {
-                this.setState({ theme: "normal" })
+                // this.setState({ theme: "normal" })
+                this.props.dispatch({type:"theme_change",payload:'normal'})
                 document.documentElement.setAttribute('data-theme', "normal");
                 localStorage.setItem('theme', "normal")
             }
         }
 
+        const copyUrl = (t)=>{
+            toast('Profile Url Copied to Clipboard', {
+                className: 'logout-toast',
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            });
+        }
+
+        const {theme}=this.props.theme;
         console.log(this.props)
 
         return (
@@ -346,7 +370,7 @@ class Details extends Component {
                             <div id='comments'>
                                 <label htmlFor="switcher"><b>Dark Mode &nbsp;</b></label>
                                 <label className="switch ">
-                                    <input id="switcher" onChange={(e) => handleTheme(e)} type="checkbox" checked={this.state.theme === "dark"} />
+                                    <input id="switcher" ref="themeInput" onChange={(e) => handleTheme(e)} type="checkbox" checked={theme === "dark"} />
                                     <span className="slider round"></span>
                                 </label>
                             </div>
@@ -394,13 +418,18 @@ class Details extends Component {
                                         <span className="non-editable-details">{u.date}</span>
                                     </div>
                                 </div>
+                                <CopyToClipboard text={'http://localhost:3000/sellerprofile/5f36c52cde036a95dc83b848'}
+                                    onCopy={ (text)=> copyUrl(text)}
+                                >
+                                <button className="btn login-btn details-page-copy-btn postAd-submit-btn">Copy Profile Url &nbsp;<FontAwesome name="copy" />
+                                </button>
+                                </CopyToClipboard>
                             </div>
                         </div>
                         <div className=" details-right-wrapper tabs-shadow">
-
                             <div className="profile-details-big-heading">
                                 Edit your info here
-                                    </div>
+                            </div>
                             <hr />
                             <div className="editable-details-cols-container">
                                 <div className="profile-details-first-col">
@@ -429,16 +458,6 @@ class Details extends Component {
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="profile-details-container">
-                                            <div className='profile-details-info-container'>
-                                                <span className="profile-details-small-heading">Phone no.</span>
-                                                <span>
-                                                    <PhoneInput className="detail-input detail-input-phone" ref="phone" value={this.state.phone}  onChange={phone => this.setState({ phone })} />
-                                                    {/* <input onChange={e => this.setState({ phone: e.target.value })} type="text" ref="phone" name="detail-mobile" className="detail-input" /> */}
-                                                </span>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                                 <div className="profile-details-second-col">
@@ -462,11 +481,22 @@ class Details extends Component {
                                         </div>
                                         <div className="profile-details-container">
                                             <div className='profile-details-info-container'>
-                                                <span className="profile-details-small-heading">Address</span>
+                                                <span className="profile-details-small-heading">Phone no.</span>
                                                 <span>
-                                                    <input onChange={e => this.setState({ address: e.target.value })} type="text" ref="address" name="detail-info" className="detail-input detail-input-address" />
+                                                    <PhoneInput className="detail-input detail-input-phone" ref="phone" value={this.state.phone} onChange={phone => this.setState({ phone })} />
+                                                    {/* <input onChange={e => this.setState({ phone: e.target.value })} type="text" ref="phone" name="detail-mobile" className="detail-input" /> */}
                                                 </span>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile-details-address-container">
+                                <div className="profile-details-container">
+                                    <div className='profile-details-info-container'>
+                                        <span className="profile-details-small-heading">Address</span>
+                                        <div style={{width:'60%', textAlign:'right'}}>
+                                            <input onChange={e => this.setState({ address: e.target.value })} type="text" ref="address" name="detail-info" className="detail-input detail-input-address" />
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +504,7 @@ class Details extends Component {
                             <div className="profile-details-about-container">
                                 <div className="profile-details-big-heading">
                                     About Me
-                                    </div>
+                                </div>
                                 <hr />
                                 <div className="details-about-input-wrapper">
                                     {/* <textarea/> */}
@@ -484,11 +514,11 @@ class Details extends Component {
                             <hr />
                             <div className="profile-details-btn-container">
                                 <div>
-                                    <button className="btn login-btn details-page-btn" onClick={this.save}>Save</button>
-                                    <button className="btn login-btn details-page-btn" onClick={this.discard}>Discard</button>
+                                    <button className="btn login-btn details-page-btn postAd-submit-btn" onClick={this.save}>Save</button>
+                                    <button className="btn login-btn details-page-btn postAd-submit-btn" onClick={this.discard}>Discard</button>
                                 </div>
                                 <div className="details-page-delete-btn">
-                                    <button className="btn login-btn details-page-btn" type="button"
+                                    <button className="btn login-btn details-page-btn postAd-submit-btn" type="button"
                                         // onClick={this.delete}
                                         onClick={handleShow}
                                     >Delete Account</button>
@@ -512,50 +542,6 @@ class Details extends Component {
                         </div>
                     </div>
                 </div>
-
-                {/* <div className="container">
-                    <div className="detail-container">
-                        <div className="profile-pic-container">
-                            <img height="150" width="150" src={dp} alt="profile-pic" />
-                        </div>
-                        <div style={{ textAlign: 'center' }}>
-
-                            <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Your Name</label>
-                                <br />
-                                <input onChange={e => this.setState({ name: e.target.value })} type="text" ref="name" name="detail-name" className="detail-input" />
-                            </span>
-                            <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Address</label>
-                                <br />
-                                <input onChange={e => this.setState({ about: e.target.value })} type="text" ref="address" name="detail-info" className="detail-input" />
-                            </span>
-                            <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Mobile Number</label>
-                                <br />
-                                <input onChange={e => this.setState({ phone: e.target.value })} type="text" ref="phone" name="detail-mobile" className="detail-input" />
-                            </span>
-                            <span className="detail-text-group">
-                                <label htmlFor="exampleInputEmail1">Password</label>
-                                <br />
-                                <input onChange={e => this.setState({ password: e.target.value })} type="text" ref="password" name="detail-name" className="detail-input" />
-                            </span>
-                            <div className="detail-text-group" style={{ width: '88%', }}>
-                                <label htmlFor="exampleInputEmail1">About Me</label>
-                                <br />
-                                <textarea onChange={e => this.setState({ about: e.target.value })} style={{ resize: "none" }} rows="5" type="text" ref="about" name="detail-info" className="detail-input" />
-                            </div>
-                        </div>
-                        <button className="btn btn-outline-danger mt-3" type="button" onClick={this.delete}>Delete my account and data</button>
-                        <div className="container">
-                            <hr />
-                        </div>
-                        <button type="button" className="btn btn-outline-info mt-3" onClick={this.discard}>Discard</button>
-                        <button className="btn login-btn float-right" type="button" onClick={this.save}>Save Changes</button>
-                    </div>
-                </div> */}
-
-
             </div>
         );
     }
@@ -563,7 +549,8 @@ class Details extends Component {
 const mapStateToProps = (store) => {
     return {
         data: store.adsReducer,
-        user: store.userReducer
+        user: store.userReducer,
+        theme: store.theme
     }
 }
 
