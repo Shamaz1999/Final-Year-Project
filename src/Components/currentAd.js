@@ -303,8 +303,7 @@ class Ad extends Component {
         }
 
         var userId ;
-
-        if(this.state.user == null){
+        if(this.state.user === null){
             userId = 'empty;'
         }
         else{
@@ -502,10 +501,10 @@ class Ad extends Component {
                                                     {
                                                          this.state.ad.sellerId === userId
                                                             ?
-                                                        <Link to={"/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
+                                                        <Link to={"/home/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
                                                             :
                                                     <button className="btn login-btn current-ad-chat-btn"
-                                                        onClick={user ? () => this.props.history.push('/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
+                                                        onClick={user ? () => this.props.history.push('/home/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
                                                         Chat
                                                     </button>
                                                     // <> </>

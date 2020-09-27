@@ -15,7 +15,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 class Seller extends Component {
     state = {
         sellerId: this.props.match.params.sellerId,
-        seller: '',
+        seller: '', 
         isDataloaded: false,
         // areAdsloaded: true,
         userFound: true,
@@ -39,7 +39,7 @@ class Seller extends Component {
             })
             .catch(err => {
                 console.log(err)
-                // this.setState({userFound:false})
+                this.setState({userFound:false})
             })
 
         // Getting all ads by seller
@@ -79,7 +79,17 @@ class Seller extends Component {
 
     render() {
         // let user = this.state.seller
-        var user = localStorage.getItem('user')
+        var user = JSON.parse(localStorage.getItem('user'))
+        var userId ;
+        if(user === null){
+            userId = 'empty;'
+        }
+        else{
+            userId = user._id;            
+        }
+        // if(user){
+            console.log( "this is user " +userId)
+        // }
         localStorage.setItem('seller', JSON.stringify(this.state.seller))
         // var sellerDate = this.state.seller.date
         var seller = JSON.parse(localStorage.getItem("seller"))
@@ -125,7 +135,7 @@ class Seller extends Component {
                         {/* <img src={require('./../images/ca4.jpg')} alt="slider1" height='200' width='300' onDragStart={handleOnDragStart} /> */}
                     </AliceCarousel>
                     <div className="card-body">
-                        <h5 className="card-title text-left"> {item.adTitle}</h5><h5 className="card-title text-left">Price: {item.Price}</h5>
+                        <h5 className="card-title text-left"> {item.adTitle}</h5><h5 className="card-title text-left">Price: {item.price}</h5>
                         <div className="divider"><hr className="ad-hr" /></div>
                         <div className="text-left">Ad Id : {item._id}</div>
                         <div className="card-text text-left ad-description">{item.description}</div>
@@ -227,9 +237,15 @@ class Seller extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="seller-chat-btn-container">
+                                                { userId === this.state.sellerId ?
+                                                    <button className="btn login-btn details-page-copy-btn postAd-submit-btn" onClick={ ()=> this.props.history.push("/details/"+ this.state.sellerId )}>
+                                                        Edit
+                                                    </button>
+                                                        :
                                                     <button className="btn login-btn details-page-copy-btn postAd-submit-btn" onClick={user ? () => this.props.history.push('/' + this.state.sellerId + '/chat') : this.chatLoginAlert}>
                                                         Chat
                                                     </button>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

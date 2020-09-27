@@ -132,7 +132,7 @@ const handleTheme = (e) => {
                     <Dropdown.Menu>
                         <Dropdown.Item className="no-hover">
                             <span>
-                                <Link className="user-login-dropdown-links" to={"/details/"+user._id}>
+                                <Link className="user-login-dropdown-links" to={"/home/details/"+user._id}>
                                     <div className="user-login-dropdown-links-div user-login-dropdown-links">Profile</div>
                                 </Link>
                             </span>
@@ -150,28 +150,28 @@ const handleTheme = (e) => {
                         {/* </Dropdown.Item> */}
                         <Dropdown.Item className="no-hover" >
                             <span>
-                                <Link className="user-login-dropdown-links" to="/postad">
+                                <Link className="user-login-dropdown-links" to="/home/postad">
                                     <div className="user-login-dropdown-links-div user-login-dropdown-links">Post Ad</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item className="no-hover" >
                             <span>
-                                <Link className="user-login-dropdown-links" to="/chat">
+                                <Link className="user-login-dropdown-links" to="/home/chat">
                                     <div className="user-login-dropdown-links-div user-login-dropdown-links">Chats</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item className="no-hover">
                             <span>
-                                <Link className="user-login-dropdown-links" to="/myAds">
+                                <Link className="user-login-dropdown-links" to="/home/myAds">
                                     <div className="user-login-dropdown-links-div user-login-dropdown-links" >My Ads</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
                         <Dropdown.Item className="no-hover">
                             <span>
-                                <Link className="user-login-dropdown-links" to="/favoriteAds">
+                                <Link className="user-login-dropdown-links" to="/home/favoriteAds">
                                     <div className="user-login-dropdown-links-div user-login-dropdown-links" >Favorite Ads</div>
                                 </Link>
                             </span>

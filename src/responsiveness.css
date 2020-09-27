@@ -86,15 +86,15 @@
  .col-items{
    font-size: 17px !important;
   }
-  .chat-app-right-col{
+  /* .chat-app-right-col{
     width: 65vw  !important;
   }
   .chat-app-left-col{
     width: 35vw  !important;
-  }
-  .chatbox{
+  } */
+  /* .chatbox{
     width: 85% !important;
-  }
+  } */
 
 }
 
@@ -171,10 +171,10 @@
   .current-ad-price-skeleton{
     width: 150px !important;
   }
-  .chatbox{
+  /* .chatbox{
     width: 90% !important;
     margin-right: 0px !important;
-  }
+  } */
   .chat-app-wrapper{
     padding: 20px !important;
   }
@@ -376,12 +376,17 @@
   .chatbox-wrapper{
     margin: 20px 0 !important;
   }
-  .chat-app-right-col, .chat-app-left-col{
+  .chat-app-right-col{
     width: 100% !important;
+  }
+  .chat-app-left-col{
+    width: 70% !important;
+    margin: 0 60px !important;
   }
   .chatbox{
     padding: 10px 0 !important;
     width: 100% !important;
+    margin: 0px !important;
   }
   .message-input-wrapper{
     margin: 0 10px !important;
@@ -389,7 +394,12 @@
   .message-input{
     font-size: 14px;
   }
-  
+  .details-page-copy-btn{
+    margin: 0 0 20px 0 !important;
+  }
+  .profile-details-small-heading, .non-editable-details{
+    font-size: 14px !important;
+  }
   
 
 }

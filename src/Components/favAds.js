@@ -3,6 +3,7 @@ import "./../bootstrap/bootstrapC.css"
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton'
 import { toast } from 'react-toastify';
@@ -248,7 +249,7 @@ class FavAds extends Component {
                             ?
                             <>{this.state.ads.length ?
                                 this.state.ads.map((ad, index) => {
-                                    return (<div className="col-md-4"  >
+                                    return (<div className="card-wrapper"  >
                                         <div class="card" style={im} >
                                             <AliceCarousel
                                                 buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
@@ -266,24 +267,28 @@ class FavAds extends Component {
                                                         {ad.date}
                                                     </span>
                                                 </div>
-                                            <div className=" mt-1 text-left">
-                                                <Button
-                                                    // onClick={() => removefav(ad._id)}
-                                                    onClick={() => handleShow()}
-                                                    bsPrefix=" my-ad-btn no-outline no-border postAd-submit-btn" >Remove</Button>
-                                            </div>
+                                           
+                                            <div className="my-ads-btns-wrapper">
+                                                
+                                                    <button className="postAd-submit-btn my-ad-btn no-outline no-border" onClick={() => handleShow()} >Remove</button>
+                                                    <button className="postAd-submit-btn my-ad-btn no-outline no-border">
+                                                        <Link to={"/ad/" + ad._id} style={{color:'white'}} >Open</Link>
+                                                    </button>
+                                                </div>  
                                             </div>
                                         </div>
                                         {/* Confirmation Modal */}
                                         <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Confirm</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
-                                            <Modal.Footer className="confirmation-modal-footer">
-                                                <Button className="confirmation-modal-yes-btn no-outline" onClick={() => removefav(ad._id)}>Yes</Button>
-                                                <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
-                                            </Modal.Footer>
+                                            <div className="background-class text-color">
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title>Confirm</Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
+                                                <Modal.Footer className="confirmation-modal-footer">
+                                                    <Button className="confirmation-modal-yes-btn no-outline" onClick={() => removefav(ad._id)}>Yes</Button>
+                                                    <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
+                                                </Modal.Footer>
+                                            </div>
                                         </Modal>
                                     </div>)
                                 })

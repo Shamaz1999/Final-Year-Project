@@ -270,6 +270,10 @@ li.col-heading{
   background-color: var(--primary-color) !important;
   color: white;
 }
+.rce-smsg{
+  background-color: rgba(245, 222, 179, 0.651) !important;
+  /* background-color: var(--secondary-color) !important; */
+}
 .rce-mbox-right {
   background-color: var(--secondary-color) !important;
   color: white;
@@ -544,6 +548,8 @@ table{
 
 .card{
   width: 300px;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
 }
 /* .qw{
   position: absolute;
@@ -1212,16 +1218,18 @@ justify-content: space-between ;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 20px 0px;
 }
 .chat-app-left-col{
-  width: 30vw;
+  width: 300px;
   padding: 10px;
   padding-right: 5px;
+  margin: 0 40px;
   
 }
 .chat-app-right-col{
-  width: 70vw;
+  width: 100%;
+  margin: 0 40px;
 }
 .chat-lists{
   /* padding: 30px 20px; */
@@ -1278,8 +1286,8 @@ justify-content: space-between ;
   box-shadow: 0px 0px 14px -5px var(--profile-page-tabs-shadow-color);
   border-radius: 5px;
   height: 472px;
-  width: 75%;
-  margin: 0 auto;
+  /* width: 75%; */
+  margin: 0 0 0 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1340,6 +1348,7 @@ justify-content: space-between ;
   outline: none !important;
   box-shadow: none !important;
 }
+
 
  /* Scrollbar Styling */
 

@@ -385,7 +385,7 @@ class EditAd extends Component {
         console.log(this.state)
 
         return (
-            <div className="app">
+            <div className="app text-color">
                 <div className="container">
                  <div className="tabs-shadow signup-form-wrapper">
                      <div className="login-form-container">

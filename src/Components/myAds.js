@@ -169,7 +169,7 @@ class MyAds extends Component {
                                                 <div className="my-ads-btns-wrapper">
                                                     <button className="postAd-submit-btn my-ad-btn no-outline no-border" onClick={() => handleShow()} >Delete</button>
                                                     <button className="postAd-submit-btn my-ad-btn no-outline no-border">
-                                                        <Link to={"/myads/" + ad._id + "/edit"} style={{color:'white'}} >Edit</Link>
+                                                        <Link to={"/home/myads/" + ad._id + "/edit"} style={{color:'white'}} >Edit</Link>
                                                     </button>
                                                 </div>
                                             </div>

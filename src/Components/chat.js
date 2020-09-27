@@ -12,6 +12,7 @@ import FontAwesome from 'react-fontawesome';
 // import io from 'socket.io-client';
 import { toast } from 'react-toastify'
 import Skeleton from 'react-loading-skeleton';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 
 
@@ -28,8 +29,8 @@ class Chat extends Component {
         room: '',
         rooms: [],
         fetchedRoom: false,
-        eventCreated:false
-
+        eventCreated: false,
+        showChatbox: false,
     }
 
 
@@ -58,6 +59,7 @@ class Chat extends Component {
                         title: room[person].firstName + " " + room[person].lastName,
                         date: false,
                         data: room[person]._id,
+                        subtitle: room[person]._id,
                         className: 'chat-app-chat-list'
                     }
                 })
@@ -177,7 +179,7 @@ class Chat extends Component {
         const user = JSON.parse(localStorage.getItem('user'))
         // const socket = this.props.socket.socket;
         if (this.props.socket.socket && !this.state.eventCreated) {
-            this.setState({eventCreated:true})
+            this.setState({ eventCreated: true })
             const socket = this.props.socket.socket;
             socket.on("NEW_MESSAGE", (msg) => {
                 const newMsg = {
@@ -203,15 +205,14 @@ class Chat extends Component {
                                 {this.state.fetchedRoom
                                     ?
                                     <div>
-                                        <ContextMenuTrigger collect={user} id="my">
                                             <ChatList
                                                 className='chat-lists'
                                                 onClick={e => openChat(e)}
                                                 // onContextMenu={e => openChat(e)}
                                                 dataSource={this.state.rooms}
                                             // dataSource={[
-                                            //     {
-                                            //         avatar: user.url1,
+                                                //     {
+                                                    //         avatar: user.url1,
                                             //         alt: user.firstName,
                                             //         title: user.firstName + " " + user.lastName,
                                             //         subtitle: user.date,
@@ -220,21 +221,23 @@ class Chat extends Component {
                                             //         className: 'chat-app-chat-list'
                                             //     },
                                             // ]} 
-                                            />
+                                            >
+                                        <ContextMenuTrigger collect={this.state.rooms} id="my">
+                                            <div> sdf</div>
                                         </ContextMenuTrigger>
+                                                </ChatList>
                                         <ContextMenu className="chat-context-menu" id="my">
                                             <div className="chat-context-menuItems-wrapper background-class text-color">
-                                                <MenuItem className="chat-context-menuItem" data={{ foo: 'bar' }} onClick={this.handleClick}>
+                                                <MenuItem className="chat-context-menuItem" data={{}} onClick={this.handleClick}>
                                                     Visit Profile
                                             </MenuItem>
-                                                <MenuItem className="chat-context-menuItem" data={{ foo: 'bar' }} onClick={this.handleClick}>
+                                                <MenuItem className="chat-context-menuItem"  onClick={this.handleClick}>
                                                     Delete Chat
                                             </MenuItem>
                                             </div>
                                         </ContextMenu>
                                     </div>
                                     :
-
                                     <div>
                                         <div className="d-flex" style={{ flexDirection: "row", margin: '5px 0 15px 0' }}>
                                             <span> <Skeleton circle={true} height={40} width={40} /></span>
@@ -268,48 +271,53 @@ class Chat extends Component {
                                         </div>
                                     </div>
                                 }
-
                             </div>
                         </div>
                     </div>
                     <div className="chat-app-right-col">
                         <div className="text-center">
                             {/* <h2 className="message" >Chat with the Seller</h2> */}
-                            <div className="chatbox-wrapper">
+                            { this.state.chatFetched
+                                ?
+                                <div className="chatbox-wrapper">
                                 <div className="chatbox">
-                                    <div className="message-box">
-                                        {this.state.chatFetched
-                                            ?
-                                            <MessageList
-                                                className='message-list'
-                                                lockable={true}
-                                                toBottomHeight={'100%'}
-                                                dataSource={this.state.chat}
-                                            // dataSource={[
-                                            //     {
-                                            //         position: 'right',
-                                            //         type: 'text',
-                                            //         text: 'I want to buy what you are selling',
-                                            //         date: new Date(),
-                                            //     },
-                                            // ]}
-                                            />
-                                            :
-                                            <div>
-                                                <div className="mb-1 text-left"><Skeleton height={40} width={200} /></div>
-                                                <div className="mb-1 text-right"><Skeleton height={40} width={200} /></div>
-                                                <div className="mb-1 text-right"><Skeleton height={40} width={200} /></div>
-                                                <div className="mb-1 text-left"><Skeleton height={40} width={200} /></div>
-                                            </div>
-                                        }
-                                    </div>
+                                   
+                                    <ScrollToBottom className="message-box" >
+                                        {/* <div className="message-box"> */}
+                                                <MessageList
+                                                    className='message-list'
+                                                    lockable={true}
+                                                    toBottomHeight={'100%'}
+                                                    dataSource={this.state.chat}
+                                                // dataSource={[
+                                                //     {
+                                                //         position: 'right',
+                                                //         type: 'text',
+                                                //         text: 'I want to buy what you are selling',
+                                                //         date: new Date(),
+                                                //     },
+                                                // ]}
+                                               >
+                                                   </MessageList>
+                                                {/* <div>
+                                                    <div className="mb-1 text-left"><Skeleton height={40} width={200} /></div>
+                                                    <div className="mb-1 text-right"><Skeleton height={40} width={200} /></div>
+                                                    <div className="mb-1 text-right"><Skeleton height={40} width={200} /></div>
+                                                    <div className="mb-1 text-left"><Skeleton height={40} width={200} /></div>
+                                                </div> */}
+                                        {/* </div> */}
+                                    </ScrollToBottom >
                                     <div className="message-input-wrapper position-relative border">
                                         <input type="text" className="message-input" value={this.state.message} onKeyUp={this.handleKeyUp} onInput={e => this.setState({ message: e.target.value })} placeholder="Type here..." />
                                         <button type="submit" className="btn postAd-submit-btn chat-send-btn" onClick={this.handleSend}><FontAwesome name="send" /></button>
                                     </div>
                                 </div>
                             </div>
-                            {/* <SystemMessage text={'End of conversation'}/> */}
+                            :
+                               <div style={{width:'100%'}}>
+                                    <h2 className="message" >Click on the chat head to open the chat</h2>
+                               </div>
+                        }
                         </div>
                     </div>
                 </div>
