@@ -79,8 +79,9 @@ class App extends Component {
             {/* <Route path='/login' render={()=>{
               user ? ( <Redirect to="/"  /> ): (<Login/>)
             }} /> */}
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Signup} />
+           <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+           
             <Route path='/' component={Content} />
 
           </Switch>

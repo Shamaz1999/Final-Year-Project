@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { storage } from './firebase/index'
@@ -28,6 +28,7 @@ class Signup extends Component {
     }
     componentDidMount() {
 
+        
         var d = new Date()
         var months = [
             'January', 'February', 'March', 'April', 'May', 'June', 'July'
@@ -37,8 +38,8 @@ class Signup extends Component {
         var dat = day[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + " " + d.getFullYear();
         this.setState({ date: dat })
 
-        const input = this.refs.firstName;
-        input.focus();
+        // const input = this.refs.firstName;
+        // input.focus();
     }
 
     verify = () => {
@@ -333,7 +334,10 @@ class Signup extends Component {
     render() {
         console.log(this.state)
 
-
+        const user = JSON.parse(localStorage.getItem('user')) 
+        if(user){
+           return <Redirect to="/"/>
+        }
         return (
             <div className='main-signup text-color'>
                 <div className="signup-form " id="signup-form" >

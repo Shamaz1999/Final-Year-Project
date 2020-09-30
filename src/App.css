@@ -162,7 +162,7 @@ li.col-heading{
 .navbar{
   width: 100%;
   height: auto;
-  background-image:url("./images/b7.jpg") ,linear-gradient(to right,var(--primary-color),var(--primary-color));
+  background-image:url("./images/b7.jpg") ,linear-gradient(to right,#d6536b,var(--primary-color));
   background-blend-mode: multiply;
   background-size: 450px 100%;
   color:white;
@@ -1040,7 +1040,7 @@ hr{
 }
 .user-login-dropdown-links-div:hover{
   /* background-color: white !important; */
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
   background-color: var(--profile-dropdown-hover-color) !important;
 }
 .ad-hr{
@@ -1221,10 +1221,11 @@ justify-content: space-between ;
   padding: 20px 0px;
 }
 .chat-app-left-col{
-  width: 300px;
+  width: 445px;
   padding: 10px;
   padding-right: 5px;
-  margin: 0 40px;
+  margin: 49px 40px 0 40px;
+  height: 472px;
   
 }
 .chat-app-right-col{
@@ -1287,14 +1288,49 @@ justify-content: space-between ;
   border-radius: 5px;
   height: 472px;
   /* width: 75%; */
-  margin: 0 0 0 30px;
+  /* margin: 0 0 0 30px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* position: relative; */
 }
-.chat-app-left-col{
-  height: 472px;
+.chatbox-header-menu-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin: 5px 0; */
+  padding:  8px;
+  align-items: center;
+}
+.chatbox-header-menu-header div{
+  font-size: 19px;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  /* letter-spacing: 3px; */
+}
+.chatbox-header-menu-icon-wrapper:hover{
+  background-color: var(--chat-list-hover-color) !important;
+}
+.chat-app-header-btn{
+  font-size: 14px;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+
+.customized-menu-list{
+  padding: 8px 15px !important;
+  color: var(--text-color) !important;
+  background-color: var(--theme-background-color) !important;
+}
+.customized-menu-list .text-color{
+  color: var(--text-color) !important;
+}
+.customized-menu-list:hover{
+  background-color: var(--chat-list-hover-color) !important;
 }
 .message-box{
   /* margin: 10px; */

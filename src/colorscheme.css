@@ -45,7 +45,8 @@ html[data-theme="dark"] {
   --skeleton-loader-second-color: #2c2c2c;
   --drop-links:white;
   --hr-divider-color:white;
-  --profile-dropdown-hover-color: rgb(218, 205, 205);
+  --profile-dropdown-hover-color: rgb(59, 59, 59);
+  /* --profile-dropdown-hover-color: rgb(218, 205, 205); */
   --chat-list-hover-color: rgb(59, 59, 59);
   /* --profile-dropdown-hover-color: #ea10381a; */
   --chat-list-item-border-color : white;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import { connect } from 'react-redux'
 import {toast} from 'react-toastify'
 import {Button} from 'react-bootstrap'
@@ -12,10 +12,10 @@ class Login extends Component {
         password: "",
         isLoggedIn: false
     }
-    componentDidMount() {
-        const input = this.refs.email;
-        input.focus();
-    }
+    // componentDidMount() {
+    //     const input = this.refs.email;
+    //     input.focus();
+    // }
     verify = () => {
         if (this.state.email === "") {
             toast('Email is required!', {
@@ -135,6 +135,10 @@ class Login extends Component {
     }
 
     render() {
+        const user = JSON.parse(localStorage.getItem('user')) 
+        if(user){
+           return <Redirect to="/"/>
+        }
 
         return (
             <div className="main-login text-color">
