@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css";
 import { storage } from './firebase/index'
-// import $ from 'jquery'
 import PhoneInput from 'react-phone-number-input'
 import { connect } from 'react-redux'
 
@@ -50,10 +49,9 @@ class EditAd extends Component {
             }
         }
 
-        fetch('http://localhost:8000/currentad', option)
+        fetch('/currentad', option)
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
                 this.setState({
                     adTitle: data.adTitle,
                     sellerCountry: data.sellerCountry,
@@ -73,32 +71,6 @@ class EditAd extends Component {
                     url3: data.url3,
                     url4: data.url4
                 })
-                    // () => {
-                        // setting category
-                        // var temp = this.state.category;
-                        // var mySelect = this.refs.adCategory;
-                        // var i, j;
-                        // for ( i, j = 0; i = mySelect.options[j]; j++) {
-                        //     if (i.value === temp) {
-                        //         mySelect.selectedIndex = j;
-                        //         break;
-                        //     }
-                        // }
-
-
-
-                        // setting condition
-                        // var temp1 = this.state.condition;
-                        // var mySelect1 = this.refs.adCondition;
-                        // for ( i, j = 0; i = mySelect1.options[j]; j++) {
-                        //     if (i.value === temp1) {
-                        //         mySelect1.selectedIndex = j;
-                        //         break;
-                        //     }
-                        // }
-                    // })
-                // this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId 
-            // })
             })
             .catch(err => console.log(err))
 
@@ -114,8 +86,6 @@ class EditAd extends Component {
         var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         var dat = day[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + " " + d.getFullYear();
         this.setState({ date: dat })
-
-
 
     }
 
@@ -138,18 +108,15 @@ class EditAd extends Component {
             },
             (error) => {
                 // error funcion
-
                 console.log(error);
             },
             () => {
                 // complete funcion
                 storage.ref('images').child(image1.name).getDownloadURL()
                     .then(url1 => {
-                        // this.refs.img.src=url;
                         this.setState({ url1 });
                         console.log(this.state)
                     })
-
             }
         )
     }
@@ -173,7 +140,6 @@ class EditAd extends Component {
             },
             (error) => {
                 // error funcion
-
                 console.log(error);
             },
             () => {
@@ -184,7 +150,6 @@ class EditAd extends Component {
                         this.setState({ url2 });
                         console.log(this.state)
                     })
-
             }
         )
     }
@@ -208,7 +173,6 @@ class EditAd extends Component {
             },
             (error) => {
                 // error funcion
-
                 console.log(error);
             },
             () => {
@@ -219,7 +183,6 @@ class EditAd extends Component {
                         this.setState({ url3 });
                         console.log(this.state)
                     })
-
             }
         )
     }
@@ -242,7 +205,6 @@ class EditAd extends Component {
             },
             (error) => {
                 // error funcion
-
                 console.log(error);
             },
             () => {
@@ -253,7 +215,6 @@ class EditAd extends Component {
                         this.setState({ url4 });
                         console.log(this.state)
                     })
-
             }
         )
     }
@@ -282,7 +243,6 @@ class EditAd extends Component {
     }
 
     // Validating and sending to database
-
     verify = () => {
 
         if (this.state.adTitle === "") {
@@ -353,45 +313,24 @@ class EditAd extends Component {
                     'Content-Type': 'application/json'
                 }
             }
-
-            fetch('http://localhost:8000/editad', option)
+            fetch('/editad', option)
                 .then(res => res.json())
                 .then(data =>
                     console.log(data)
                 )
                 .catch(err => console.log(err))
             alert('Your Ad has been updated!')
-            // this.props.history.push('/');
         }
-
-
-
-
     }
 
     render() {
 
-
-
-        // $(document).ready(function () {
-        //     $(".custom-file-input").on("change", function () {
-        //         var fileName = $(this).val().split("\\").pop();
-        //         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        //     });
-
-        // })
-
-
-        console.log(this.state)
-
         return (
             <div className="app text-color">
                 <div className="container">
-                 <div className="tabs-shadow signup-form-wrapper">
-                     <div className="login-form-container">
-                        <div className="display-4 login-page-heading">
-                            Edit Your Ad!
-                        </div>
+                    <div className="tabs-shadow signup-form-wrapper">
+                        <div className="login-form-container">
+                            <div className="display-4 login-page-heading">Edit Your Ad!</div>
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="adTitle"><b>Ad Title</b> <span className="required">*</span></label>
                                 <input type="text" name="adTitle" id="adTitle" ref="adTitle" value={this.state.adTitle} onChange={e => this.setState({ adTitle: e.target.value })} className="form-control" placeholder="Ad Title Here" />
@@ -437,30 +376,30 @@ class EditAd extends Component {
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="exampleInputEmail1"><b>Upload Pictures</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting images click on upload)</span>* <span style={{ fontSize: '14px' }}>(To use previous images, don't select any images now)</span></span></label>
                                 <div class="ad-img-upload-container">
-                     
+
                                     <div className="imgupload1">
                                         <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
                                         <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
                                         <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                                        <img ref='img1' alt="adpic1" id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                        <img ref='img1' alt="" id="upImg1" src={this.state.url1} className="hid" height="30" />
                                     </div>
                                     <div className="imgupload1">
                                         <input ref="imgup2" accept="image/*" className="img-upload-input" type="file" onInput={this.up2} onChange={this.handleChange2} />
                                         <button type="button" id="upBtn2" className="img-upload-btn login-btn hid" onClick={this.handleUpload2}>Upload</button>
                                         <progress id="upProg2" value={this.state.progress2} className="img-upload-progress hid" max="100" />
-                                        <img ref='img2' alt="adpic2" id="upImg2" src={this.state.url2} className="hid" height="30" />
+                                        <img ref='img2' alt="" id="upImg2" src={this.state.url2} className="hid" height="30" />
                                     </div>
                                     <div className="imgupload1">
                                         <input ref="imgup3" accept="image/*" className="img-upload-input" type="file" onInput={this.up3} onChange={this.handleChange3} />
                                         <button type="button" id="upBtn3" className="img-upload-btn login-btn hid" onClick={this.handleUpload3}>Upload</button>
                                         <progress id="upProg3" value={this.state.progress3} className="img-upload-progress hid" max="100" />
-                                        <img ref='img3' alt="adpic3" id="upImg3" src={this.state.url3} className="hid" height="30" />
+                                        <img ref='img3' alt="" id="upImg3" src={this.state.url3} className="hid" height="30" />
                                     </div>
                                     <div className="imgupload1">
                                         <input ref="imgup4" accept="image/*" className="img-upload-input" type="file" onInput={this.up4} onChange={this.handleChange4} />
                                         <button type="button" id="upBtn4" className="img-upload-btn login-btn hid" onClick={this.handleUpload4}>Upload</button>
                                         <progress id="upProg4" value={this.state.progress4} className="img-upload-progress hid" max="100" />
-                                        <img ref='img4' alt="adpic4" id="upImg4" src={this.state.url4} className="hid" height="30" />
+                                        <img ref='img4' alt="" id="upImg4" src={this.state.url4} className="hid" height="30" />
                                     </div>
                                 </div>
                             </div>
@@ -475,7 +414,7 @@ class EditAd extends Component {
                             <br />
                             <button type="button" onClick={this.verify} className="btn login-btn postAd-submit-btn">Submit</button>
                         </div>
-                 </div>
+                    </div>
                 </div>
             </div>
         );
@@ -487,4 +426,3 @@ const mapStateToProps = (store) => {
     }
 }
 export default connect(mapStateToProps)(EditAd);
-// export default Post

@@ -10,18 +10,10 @@ import Signup from './Components/signup'
 import FootNav from './Components/footnav'
 import About from './Components/about'
 import Contact from './Components/contact'
-// import Details from './Components/details'
-// import MyAds from './Components/myAds'
 import Ad from './Components/currentAd'
 import Seller from './Components/sellerprofile'
-// import Post from './Components/postAd'
-// import Chat from './Components/chat';
-// import favAds from './Components/favAds';
-// import editAd from './Components/editAd';
 import { ToastContainer } from 'react-toastify';
 import {connect } from 'react-redux';
-// import {Provider} from 'react-redux'
-// import store from './redux'
 
 class App extends Component {
 
@@ -51,51 +43,31 @@ class App extends Component {
           }
           }
         />
-        
       )
     }
 
     return (
-      // <Provider store={store}>
       <BrowserRouter>
-
         <div className="background-class">
           <Nav />
-          <Switch>
-            
-            {/* <Route path='/sellerProfile/:sellerId' component={Seller} />
-            <Route path='/myads/:adId/edit' component={editAd} />
-            <Route path='/myads' component={MyAds} />
-            <Route path='/favoriteAds' component={favAds} />
-            <Route path='/postad' component={Post} />
-            <Route path='/:sellerId/chat' component={Chat} />
-            <Route path='/chat' component={Chat} />
-          <Route path='/details/:userId' component={Details} /> */}
+          <Switch>  
             <PrivateRoute path="/home" component={Index} />
             <Route path='/sellerProfile/:sellerId' component={Seller} />
             <Route path='/ad/:adId' component={Ad} />
             <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />
-            {/* <Route path='/login' render={()=>{
-              user ? ( <Redirect to="/"  /> ): (<Login/>)
-            }} /> */}
-           <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
-           
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
             <Route path='/' component={Content} />
-
           </Switch>
           <FootNav />
           <ToastContainer/>
           <Footer />
         </div>
-
       </BrowserRouter>
-      // </Provider>
     );
   }
 }
 const mapStateToProps=(store)=>({
-
 })
 export default connect(mapStateToProps)(App);

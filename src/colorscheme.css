@@ -21,12 +21,7 @@ html[data-theme="normal"] {
   --chat-list-hover-color: #ea10381a;
   /* --profile-dropdown-hover-color: rgba(27, 20, 100, 0.247); */
   --chat-list-item-border-color : #eee;
-
-
 }
-
-
-
 /* Dark Theme */
 html[data-theme="dark"] {
   --primary-color: #EA1039;

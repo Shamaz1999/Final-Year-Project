@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from "react-router-dom"
 import { connect } from 'react-redux'
-import {toast} from 'react-toastify'
-import {Button} from 'react-bootstrap'
+import { toast } from 'react-toastify'
+import { Button } from 'react-bootstrap'
 import 'react-toastify/dist/ReactToastify.min.css';
 
 class Login extends Component {
@@ -12,39 +12,34 @@ class Login extends Component {
         password: "",
         isLoggedIn: false
     }
-    // componentDidMount() {
-    //     const input = this.refs.email;
-    //     input.focus();
-    // }
+
     verify = () => {
         if (this.state.email === "") {
             toast('Email is required!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 4000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: false,
-                closeButton:false,
-                // progress: undefined,
-                });
-            // alert('Email is required');
+                closeButton: false,
+            });
             const input = this.refs.email;
             input.focus();
             return false
         } else
             if (this.state.password === "") {
                 toast('Password is required', {
-                    className:'logout-toast',
+                    className: 'logout-toast',
                     position: "top-center",
                     autoClose: 4000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: false,
-                    closeButton:false,
-                    });
+                    closeButton: false,
+                });
                 const input = this.refs.password;
                 input.focus();
                 return false
@@ -57,76 +52,37 @@ class Login extends Component {
                     }
                 }
 
-                fetch('http://localhost:8000/login', option)
+                fetch('/login', option)
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                        this.setState({isloggedin:true})
-                        let user = JSON.parse(localStorage.getItem('user'));
-                        if (user===null) {
-                            user = {
-                                _id: data._id,
-                                name: data.name,
-                                email: data.email,
-                                password: data.password,
-                                DOB: data.DOB,
-                                phone: data.phone,
-                                gender: data.gender,
-                                country: data.country,
-                                date: data.date,
-                                address: data.address,
-                                url1: data.url1,
-                                about: data.about,
-                                favorites : data.favorites
-                            }
-                            localStorage.setItem('user', JSON.stringify(user))
-                            console.log(user)
-                        }
-                        user = {
-                            _id: data._id,
-                            name: data.name,
-                            email: data.email,
-                            password: data.password,
-                            DOB: data.DOB,
-                            phone: data.phone,
-                            gender: data.gender,
-                            country: data.country,
-                            date: data.date,
-                            address: data.address,
-                            url1: data.url1,
-                            about: data.about,
-                            favorites:data.favorites
-                        }
-                        localStorage.setItem('user', JSON.stringify(user))
-                        console.log(data.favorites)
-                            this.props.dispatch({ type: 'Add_user', payload: data })
-                            this.props.history.push("/")
-
-                        })
+                        this.setState({ isloggedin: true })
+                        localStorage.setItem('user', JSON.stringify(data))
+                        this.props.dispatch({ type: 'Add_user', payload: data })
+                        this.props.history.push("/")
+                    })
                     .catch(err => {
                         console.log(err)
                         this.setState({ isLoggedIn: false })
                         toast('Something Went Wrong!', {
-                            className:'logout-toast',
+                            className: 'logout-toast',
                             position: "top-center",
                             autoClose: 4000,
                             hideProgressBar: true,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: false,
-                            closeButton:false,
-                            });
+                            closeButton: false,
+                        });
                         toast('Please make sure you are entering the right credentials', {
-                            className:'logout-toast',
+                            className: 'logout-toast',
                             position: "top-center",
                             autoClose: 4000,
                             hideProgressBar: true,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: false,
-                            closeButton:false,
-                            });
-                        // alert('Your email and password does not match')
+                            closeButton: false,
+                        });
                     })
 
             }
@@ -135,9 +91,9 @@ class Login extends Component {
     }
 
     render() {
-        const user = JSON.parse(localStorage.getItem('user')) 
-        if(user){
-           return <Redirect to="/"/>
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            return <Redirect to="/" />
         }
 
         return (

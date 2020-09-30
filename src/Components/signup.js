@@ -28,7 +28,6 @@ class Signup extends Component {
     }
     componentDidMount() {
 
-        
         var d = new Date()
         var months = [
             'January', 'February', 'March', 'April', 'May', 'June', 'July'
@@ -37,9 +36,6 @@ class Signup extends Component {
         var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         var dat = day[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + " " + d.getFullYear();
         this.setState({ date: dat })
-
-        // const input = this.refs.firstName;
-        // input.focus();
     }
 
     verify = () => {
@@ -53,7 +49,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var firstName = this.refs.firstName;
@@ -69,7 +64,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var lastName = this.refs.lastName;
@@ -86,7 +80,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var userEmail = this.refs.userEmail;
@@ -102,7 +95,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var userPassword = this.refs.userPassword;
@@ -118,7 +110,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var phoneNum = document.getElementById("phone-num")
@@ -134,7 +125,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             return false
@@ -148,7 +138,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var userDOB = this.refs.userDOB;
@@ -164,7 +153,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var userCountry = this.refs.userCountry;
@@ -180,7 +168,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var userCity = this.refs.userCity;
@@ -197,7 +184,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var userAddress = this.refs.userAddress;
@@ -213,7 +199,6 @@ class Signup extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
             var userPassword1 = this.refs.userPassword;
             userPassword1.focus()
@@ -228,35 +213,11 @@ class Signup extends Component {
                 }
             }
             
-            fetch('http://localhost:8000/signup', option)
+            fetch('/signup', option)
             .then(res => res.json())
             .then(data => {
                     this.setState({isSignedUp:true})
-                    let user = JSON.parse(localStorage.getItem('user'));
-                    if (user === null) {
-                        user = {
-                            _id: data._id,
-                            name: data.name,
-                            email: data.email,
-                            password: data.password,
-                            DOB: data.DOB,
-                            phone: data.phone,
-                            gender: data.gender,
-                            country: data.country,
-                            city: data.city,
-                            date: data.date,
-                            address: data.address,
-                            url1: data.url1,
-                            about: data.about,
-                            favorites: data.favourites
-                        }
-                        localStorage.setItem('user', JSON.stringify(user))
-                    }
-                    // console.log(user)
-                    // this.props.history.push("/")  
-                    // console.log(data._id)
-                    // console.log(data.name)
-                    // console.log(data)
+                    localStorage.setItem('user', JSON.stringify(data))
                     toast('Your Account has been created!', {
                         className: 'logout-toast',
                         position: "top-center",
@@ -266,12 +227,11 @@ class Signup extends Component {
                         pauseOnHover: true,
                         draggable: false,
                         closeButton: false,
-                        // progress: undefined,
                     });
+                    this.props.dispatch({ type: 'Add_user', payload: data })
                     this.props.history.push('/')
                 }
                 )
-
                 .catch(err => {
                     console.log(err)
                     toast('Something went wrong!', {
@@ -283,9 +243,7 @@ class Signup extends Component {
                         pauseOnHover: true,
                         draggable: false,
                         closeButton: false,
-                        // progress: undefined,
                     });
-                    
                 })
         }
     }
@@ -308,21 +266,19 @@ class Signup extends Component {
             },
             (error) => {
                 // error funcion
-
                 console.log(error);
             },
             () => {
                 // complete funcion
                 storage.ref('images').child(image1.name).getDownloadURL()
                     .then(url1 => {
-                        // this.refs.img.src=url;
                         this.setState({ url1 });
                         console.log(this.state)
                     })
-
             }
         )
     }
+
     // Showing hidden upload button and progress bar
     up1 = () => {
         document.getElementById('upBtn1').classList.add('show')
@@ -332,8 +288,6 @@ class Signup extends Component {
 
     country1 = (country) => { this.setState({ country }) }
     render() {
-        console.log(this.state)
-
         const user = JSON.parse(localStorage.getItem('user')) 
         if(user){
            return <Redirect to="/"/>
@@ -677,7 +631,5 @@ class CountrySelect extends Component {
             </select>
         )
     }
-
 }
-
 export default Signup;

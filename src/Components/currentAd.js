@@ -8,7 +8,6 @@ import Skeleton from 'react-loading-skeleton'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-
 class Ad extends Component {
 
     state = {
@@ -36,46 +35,12 @@ class Ad extends Component {
                 }
             }
 
-            fetch('http://localhost:8000/updateuser', option)
+            fetch('/updateuser', option)
                 .then(res => res.json())
                 .then(data => {
                     this.setState({ user: data })
 
-                    let user = JSON.parse(localStorage.getItem('user'));
-                    if (user === null) {
-                        user = {
-                            _id: data._id,
-                            name: data.name,
-                            email: data.email,
-                            password: data.password,
-                            DOB: data.DOB,
-                            phone: data.phone,
-                            gender: data.gender,
-                            country: data.country,
-                            date: data.date,
-                            address: data.address,
-                            url1: data.url1,
-                            about: data.about,
-                            favorites: data.favorites
-                        }
-                        localStorage.setItem('user', JSON.stringify(user))
-                    }
-                    user = {
-                        _id: data._id,
-                        name: data.name,
-                        email: data.email,
-                        password: data.password,
-                        DOB: data.DOB,
-                        phone: data.phone,
-                        gender: data.gender,
-                        country: data.country,
-                        date: data.date,
-                        address: data.address,
-                        url1: data.url1,
-                        about: data.about,
-                        favorites: data.favorites
-                    }
-                    localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('user', JSON.stringify(data))
                 })
                 .catch(err => console.log(err))
 
@@ -83,11 +48,6 @@ class Ad extends Component {
             isFav = user.favorites.includes(adId);
             this.setState({ isFav: isFav });
         }
-       
-
-
-
-
 
         var option1 = {
             method: 'POST',
@@ -97,30 +57,29 @@ class Ad extends Component {
             }
         }
 
-        fetch('http://localhost:8000/currentad', option1)
+        fetch('/currentad', option1)
             .then(res => res.json())
             .then(data => {
-                this.setState({ ad: data }
-                    )
+                this.setState({ ad: data })
                 this.setState({ isDataLoaded: true });
                 this.props.dispatch({ type: 'insertads', payload: this.state.ad.sellerId })
             })
             .catch(err => console.log(err))
     }
 
+
     phoneLoginAlert = () => {
         var user = JSON.parse(localStorage.getItem("user"))
         if (user !== "")
-        toast('You need to log in to view the number', {
-            className:'logout-toast',
-            position: "bottom-left",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            closeButton:false,
-            // progress: undefined,
+            toast('You need to log in to view the number', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
             });
         else
             return
@@ -128,16 +87,15 @@ class Ad extends Component {
     chatLoginAlert = () => {
         var user = JSON.parse(localStorage.getItem("user"))
         if (user !== "")
-        toast('You need to log in to chat with this user!', {
-            className:'logout-toast',
-            position: "bottom-left",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            closeButton:false,
-            // progress: undefined,
+            toast('You need to log in to chat with this user!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
             });
         else
             return
@@ -145,16 +103,15 @@ class Ad extends Component {
     favLoginAlert = () => {
         var user = JSON.parse(localStorage.getItem("user"))
         if (user !== "")
-        toast('You need to log In to mark as favourite!', {
-            className:'logout-toast',
-            position: "bottom-left",
-            autoClose: 4000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: false,
-            closeButton:false,
-            // progress: undefined,
+            toast('You need to log In to mark as favourite!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
             });
         else
             return
@@ -171,7 +128,6 @@ class Ad extends Component {
         let markFav = () => {
             if (!this.state.isFav) {
 
-
                 var option = {
                     method: 'POST',
                     body: JSON.stringify(this.state),
@@ -180,61 +136,25 @@ class Ad extends Component {
                     }
                 }
 
-                fetch('http://localhost:8000/markfavorite', option)
+                fetch('/markfavorite', option)
                     .then(res => res.json())
                     .then(data => {
                         this.setState({ user: data });
-                        let user = JSON.parse(localStorage.getItem('user'));
-                        if (user === null) {
-                            user = {
-                                _id: data._id,
-                                name: data.name,
-                                email: data.email,
-                                password: data.password,
-                                DOB: data.DOB,
-                                phone: data.phone,
-                                gender: data.gender,
-                                country: data.country,
-                                date: data.date,
-                                address: data.address,
-                                url1: data.url1,
-                                about: data.about,
-                                favorites: data.favorites
-                            }
-                            localStorage.setItem('user', JSON.stringify(user))
-                        }
-                        user = {
-                            _id: data._id,
-                            name: data.name,
-                            email: data.email,
-                            password: data.password,
-                            DOB: data.DOB,
-                            phone: data.phone,
-                            gender: data.gender,
-                            country: data.country,
-                            date: data.date,
-                            address: data.address,
-                            url1: data.url1,
-                            about: data.about,
-                            favorites: data.favorites
-                        }
-                        localStorage.setItem('user', JSON.stringify(user))
-
+                        localStorage.setItem('user', JSON.stringify(data))
                     })
                     .catch(err => console.log(err))
 
                 this.setState({ isFav: true });
                 toast('Added to favorites!', {
-                    className:'logout-toast',
+                    className: 'logout-toast',
                     position: "bottom-left",
                     autoClose: 4000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: false,
-                    closeButton:false,
-                    // progress: undefined,
-                    });
+                    closeButton: false,
+                });
             }
             else {
 
@@ -244,70 +164,35 @@ class Ad extends Component {
                     headers: { 'Content-Type': 'application/json' }
                 }
 
-                fetch('http://localhost:8000/removefavorite', option1)
+                fetch('/removefavorite', option1)
                     .then(res => res.json())
                     .then(data => {
                         this.setState({ user: data })
-                        let user = JSON.parse(localStorage.getItem('user'));
-                        if (user === null) {
-                            user = {
-                                _id: data._id,
-                                name: data.name,
-                                email: data.email,
-                                password: data.password,
-                                DOB: data.DOB,
-                                phone: data.phone,
-                                gender: data.gender,
-                                country: data.country,
-                                date: data.date,
-                                address: data.address,
-                                url1: data.url1,
-                                about: data.about,
-                                favorites: data.favorites
-                            }
-                            localStorage.setItem('user', JSON.stringify(user))
-                        }
-                        user = {
-                            _id: data._id,
-                            name: data.name,
-                            email: data.email,
-                            password: data.password,
-                            DOB: data.DOB,
-                            phone: data.phone,
-                            gender: data.gender,
-                            country: data.country,
-                            date: data.date,
-                            address: data.address,
-                            url1: data.url1,
-                            about: data.about,
-                            favorites: data.favorites
-                        }
-                        localStorage.setItem('user', JSON.stringify(user))
-
+                        localStorage.setItem('user', JSON.stringify(data))
                     })
                     .catch(err => console.log(err))
+
                 this.setState({ isFav: false })
                 toast('Removed from favorites!', {
-                    className:'logout-toast',
+                    className: 'logout-toast',
                     position: "bottom-left",
                     autoClose: 4000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: false,
-                    closeButton:false,
-                    // progress: undefined,
-                    });
+                    closeButton: false,
+                });
             }
 
         }
 
-        var userId ;
-        if(this.state.user === null){
+        var userId;
+        if (this.state.user === null) {
             userId = 'empty;'
         }
-        else{
-            userId = this.state.user._id;            
+        else {
+            userId = this.state.user._id;
         }
 
         window.scrollTo(0, 0);
@@ -323,14 +208,12 @@ class Ad extends Component {
                 <div className="row" >
                     <div className="col-md-8" style={{ margin: "0px " }}>
                         <div className="ad-img-container">
-                            {/* <img src={this.state.ad.url1} alt=""/>               */}
                             {this.state.isDataLoaded
                                 ?
                                 <AliceCarousel items={item} autoPlay={false} mouseDragEnabled />
                                 :
                                 <Skeleton className="current-ad-images-skeleton" />
                             }
-                            {/* </AliceCarousel> */}
                         </div>
                         <div className="ad-desc-container">
                             {this.state.isDataLoaded
@@ -401,21 +284,20 @@ class Ad extends Component {
                                         </div>
                                     }
                                     <div className="favourite-container float-right">
-                                       { this.state.ad.sellerId  === userId
+                                        {this.state.ad.sellerId === userId
                                             ?
                                             ""
                                             :
-                                       <>{this.state.isDataLoaded
-                                            ?
-                                            <FontAwesome name={this.state.isFav ? "star" : "star-o"} id="favIcon" size="2x" ref="fav" className="favorite-star-icon"
-                                                onClick={user ? markFav : this.favLoginAlert} />
-                                            :
-                                            <div style={{ position: 'relative', bottom: '9px' }}>
-                                                <Skeleton circle={true} height={40} width={40} />
-                                            </div>
-                                        }</>
+                                            <>{this.state.isDataLoaded
+                                                ?
+                                                <FontAwesome name={this.state.isFav ? "star" : "star-o"} id="favIcon" size="2x" ref="fav" className="favorite-star-icon"
+                                                    onClick={user ? markFav : this.favLoginAlert} />
+                                                :
+                                                <div style={{ position: 'relative', bottom: '9px' }}>
+                                                    <Skeleton circle={true} height={40} width={40} />
+                                                </div>
+                                            }</>
                                         }
-
                                     </div>
                                     <div className="adTitle-container clear">
                                         {this.state.isDataLoaded
@@ -435,7 +317,6 @@ class Ad extends Component {
                                                 :
                                                 <Skeleton height={10} width={90} />
                                             }
-
                                         </div>
                                         <div className="loc-container float-right">
                                             {this.state.isDataLoaded
@@ -444,7 +325,6 @@ class Ad extends Component {
                                                 :
                                                 <Skeleton height={10} width={90} />
                                             }
-
                                         </div>
                                         <div style={{ marginBottom: "10px" }} className="clear"></div>
                                     </div>
@@ -460,7 +340,6 @@ class Ad extends Component {
                                         :
                                         <Skeleton height={30} width={200} />
                                     }
-                                
                                     <div className="seller-info-container ">
                                         <div className="seller-pic-name-container">
                                             <div className="seller-img-container">
@@ -474,14 +353,13 @@ class Ad extends Component {
                                             <div className="seller-name-container">
                                                 {this.state.isDataLoaded
                                                     ?
-                                                    <Link className="current-ad-seller-name" to={"/sellerProfile/"+this.state.ad.sellerId}>{this.state.ad.sellerName}</Link>
+                                                    <Link className="current-ad-seller-name" to={"/sellerProfile/" + this.state.ad.sellerId}>{this.state.ad.sellerName}</Link>
                                                     :
                                                     <Skeleton height={20} width={200} />
                                                 }
                                             </div>
                                         </div>
                                     </div>
-                                
                                     <div>
                                         {this.state.isDataLoaded
                                             ?
@@ -490,8 +368,7 @@ class Ad extends Component {
                                                     <div className="number"
                                                         onClick={user ? () => true : this.phoneLoginAlert}>
                                                         <span className="phone-image-conainer">
-                                                            <FontAwesome name = "phone" className="current-ad-phone-icon" />
-                                                            {/* <img src={require('./../images/phone.png')} height="20" alt="phone" /> */}
+                                                            <FontAwesome name="phone" className="current-ad-phone-icon" />
                                                         </span>
                                                         <input className="no-border no-outline phone-no-field " disabled value={this.state.ad.phone}
                                                             type={user ? "text" : "password"} />
@@ -499,22 +376,20 @@ class Ad extends Component {
                                                 </span>
                                                 <span className="user-chat-btn-container ">
                                                     {
-                                                         this.state.ad.sellerId === userId
+                                                        this.state.ad.sellerId === userId
                                                             ?
-                                                        <Link to={"/home/myads/"+this.state.ad._id+"/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
+                                                            <Link to={"/home/myads/" + this.state.ad._id + "/edit"} className="current-edit-ad-btn edit-ad-btn" >Edit</Link>
                                                             :
-                                                    <button className="btn login-btn current-ad-chat-btn"
-                                                        onClick={user ? () => this.props.history.push('/home/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
-                                                        Chat
+                                                            <button className="btn login-btn current-ad-chat-btn"
+                                                                onClick={user ? () => this.props.history.push('/home/' + this.state.ad.sellerId + '/chat') : this.chatLoginAlert}>
+                                                                Chat
                                                     </button>
-                                                    // <> </>
                                                     }
                                                 </span>
                                             </div>
                                             :
                                             <Skeleton height={30} />
                                         }
-                                
                                     </div>
                                 </div>
                             </div>
@@ -532,4 +407,3 @@ const mapStateToProps = (store) => {
 }
 export default connect(mapStateToProps)(Ad);
 
-// export default Ad

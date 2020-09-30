@@ -6,6 +6,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import Skeleton from 'react-loading-skeleton'
 
 class Content extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -23,15 +24,14 @@ class Content extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        fetch('http://localhost:8000/allads', option)
+
+        fetch('/allads', option)
             .then(res => res.json())
-            // .then(data => console.log(data) )
             .then(data => {
                 this.setState({ ads: data });
                 this.setState({ isDataLoaded: true });
             })
             .catch(err => console.log(err))
-
 
     }
 
@@ -41,8 +41,9 @@ class Content extends Component {
     }
 
     render() {
+
         window.scrollTo(0, 0);
-        let skeletonCards = [ 1, 2, 3, 4, 5, 6, 7, 8];
+        let skeletonCards = [1, 2, 3, 4, 5, 6, 7, 8];
         let d;
         let e;
         let sc;
@@ -78,10 +79,10 @@ class Content extends Component {
                                 <div className="d-flex space-btw align-center ads-btn-container">
                                     <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}>{this.state.ads[index].location}</span>
                                     <span style={{ fontSize: '13px', color: 'grey' }}>
-                                    {this.state.ads[index].date}
+                                        {this.state.ads[index].date}
                                     </span>
                                 </div>
-                                <div style={{textAlign:'left', marginTop:' 10px'}}>
+                                <div style={{ textAlign: 'left', marginTop: ' 10px' }}>
                                     <Link to={"/ad/" + adId} className="btn login-btn open-ad-btn postAd-submit-btn" style={{ marginTop: "0px" }}>Open Ad</Link>
                                 </div>
                             </div>
@@ -116,13 +117,12 @@ class Content extends Component {
                                     <div className="d-flex space-btw align-center ads-btn-container">
                                         <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}>{item.location}</span>
                                         <span style={{ fontSize: '13px', color: 'grey' }}>
-                                                {item.date}
+                                            {item.date}
                                         </span>
                                     </div>
-                                        <div style={{textAlign:'left', marginTop:'10px'}}>
+                                    <div style={{ textAlign: 'left', marginTop: '10px' }}>
                                         <Link to={"/ad/" + item._id} className="btn login-btn open-ad-btn" style={{ marginTop: "0px" }}>Open Ad</Link>
-                                </div>
-                                    {/* <Link to={"/ad/"+item._id} className="btn login-btn float-right" style={{marginTop:"0px"}}>Open Ad</Link> */}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -140,40 +140,37 @@ class Content extends Component {
 
         var sa = localStorage.getItem('sa')
 
-
         //Skeleteon Card Ads
-
-        for( let i = 1; i !== skeletonCards.length; i++){
-            sc = skeletonCards.map((item, index)=>{
-            return  <div key={index} className="card-wrapper card-background-color" >
-                <div className="card" style={im} >                   
-                    <Skeleton height={200} />
-                <div className="card-body">
-                <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton  /></h5>
-                <div className="divider"><hr className="ad-hr" /></div>
-                <p className="text-left"> <Skeleton  /></p>
-                <div className="card-text text-left ad-description"><Skeleton  /></div>
-                <div className="card-text text-left ad-description"><Skeleton  /></div>
-                <div className="d-flex space-btw align-center ads-btn-container">
-                    <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90}  /></span>
-                    <span>
-                        <Skeleton width={90}  />
-                        {/* <Link to={"/ad/"} className="btn login-btn open-ad-btn float-right" style={{ marginTop: "0px" }}>Open Ad</Link> */}
-                    </span>
-                    </div>
-                    <div style={{textAlign:'left', marginTop:' 10px'}} className="float-left">
-                        <Skeleton width={100}  />
-                    </div>
+        for (let i = 1; i !== skeletonCards.length; i++) {
+            sc = skeletonCards.map((item, index) => {
+                return <div key={index} className="card-wrapper card-background-color" >
+                    <div className="card" style={im} >
+                        <Skeleton height={200} />
+                        <div className="card-body">
+                            <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton /></h5>
+                            <div className="divider"><hr className="ad-hr" /></div>
+                            <p className="text-left"> <Skeleton /></p>
+                            <div className="card-text text-left ad-description"><Skeleton /></div>
+                            <div className="card-text text-left ad-description"><Skeleton /></div>
+                            <div className="d-flex space-btw align-center ads-btn-container">
+                                <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
+                                <span>
+                                    <Skeleton width={90} />
+                                </span>
+                            </div>
+                            <div style={{ textAlign: 'left', marginTop: ' 10px' }} className="float-left">
+                                <Skeleton width={100} />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             })
         }
 
         return (
 
             <div className="main-content-container text-color" style={{ textAlign: "center" }}>
-                
+
                 <div className="rdow">
                     {sa ?
                         //This displays Searched Ads
@@ -190,17 +187,17 @@ class Content extends Component {
 
                             {
                                 this.state.isDataLoaded ?
-                                <>{d}</>
-                                :
-                                <>{sc}</>
+                                    <>{d}</>
+                                    :
+                                    <>{sc}</>
                             }
-                        
+
                         </div>
                     }
 
                 </div>
 
-                <div className="content-carousel-container" style={{ marginBottom: "0px",marginTop: "50px" }}>
+                <div className="content-carousel-container" style={{ marginBottom: "0px", marginTop: "50px" }}>
                     <AliceCarousel showSlideInfo={true} buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
                         <img src={require('./../images/ca4.jpg')} alt="slider1" height='500' width='1200' onDragStart={handleOnDragStart} className="content-carousel-image" />
                         <img src={require('./../images/ca3.jpg')} alt="slider2" height='500' width='1200' onDragStart={handleOnDragStart} className="content-carousel-image" />

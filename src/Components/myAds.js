@@ -9,8 +9,6 @@ import Skeleton from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-
-
 class MyAds extends Component {
     state = {
         ads: [],
@@ -30,7 +28,7 @@ class MyAds extends Component {
             }
         }
 
-        fetch('http://localhost:8000/userads', option)
+        fetch('/userads', option)
             .then(res => res.json())
             .then(data => {
                 this.setState({ ads: data })
@@ -48,7 +46,6 @@ class MyAds extends Component {
 
         //Skeleteon Card Ads
 
-        // for( let i = 1; i !== skeletonCards.length; i++){
         sc = skeletonCards.map((item, index) => {
             return <div className="card-wrapper" >
                 <div className="card" style={im} >
@@ -61,7 +58,7 @@ class MyAds extends Component {
                         <div className="card-text text-left ad-description"><Skeleton /></div>
                         <div className="d-flex space-btw align-center ads-btn-container">
                             <span style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
-                            <span style={{ fontSize: '13px', color: 'grey', textAlign:'right' }}><Skeleton width={90} /></span>
+                            <span style={{ fontSize: '13px', color: 'grey', textAlign: 'right' }}><Skeleton width={90} /></span>
                         </div>
                         <div className="text-left">
                             <Skeleton width={120} />
@@ -70,53 +67,37 @@ class MyAds extends Component {
                 </div>
             </div>
         })
-        // }
 
+        const deleteAd = () => {
 
-
-        const deleteAd = (id) => {
-            console.log(id)
-            this.setState({ adToDelete: id }, () => {
-                // let val = window.confirm('Are you sure you want to delete your Ad?');
-                // if(val){
-                var option = {
-                    method: 'POST',
-                    body: JSON.stringify(this.state),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-                fetch('http://localhost:8000/deletead', option)
-                    .then(res => res.json())
-                    .then(data => {
-                        this.setState({ adUpdated: data }, () => {
-                            var ads = [...this.state.ads];
-                            this.setState({ ads: ads.filter((ad) => { return ad._id !== id }) })
-                        })
+            }
+            fetch('/deletead', option)
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({ adUpdated: data }, () => {
+                        var ads = [...this.state.ads];
+                        this.setState({ ads: ads.filter((ad) => { return ad._id !== this.state.adToDelete }) })
                     })
-                    .catch(err => { console.log(err) })
-
-                this.setState({ show: false })
-                toast('Your ad has been deleted!', {
-                    className: 'logout-toast',
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: false,
-                    closeButton: false,
-                    // progress: undefined,
                 })
+                .catch(err => { console.log(err) })
 
-                // window.location.reload();
-                // }
-                // if(!val){
-                //     return false
-                // }
+            this.setState({ show: false })
+            toast('Your ad has been deleted!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
             })
-            // console.log(this.state.adToDelete);
-
         }
 
         let im = {
@@ -125,34 +106,31 @@ class MyAds extends Component {
         const handleOnDragStart = e => e.preventDefault()
         const items = (data) => {
             return data.map((url, index) => {
-                return (<div key={index}>
+                return (<div key={Math.random()}>
                     <img height='180' src={url} onDragStart={handleOnDragStart} alt="Adpic" />
                 </div>)
             })
         }
 
         const handleClose = () => this.setState({ show: false });
-        const handleShow = () => this.setState({ show: true });
+        const handleShow = (adToDelete) => this.setState({ show: true, adToDelete });
 
 
         return (
 
             <div className="App text-color" style={{ textAlign: "center" }}>
                 <div className="display-4 mt-5 mb-5">Your Ads</div>
-
                 <div className="row no-nothing">
                     {
                         this.state.isDataLoaded
                             ?
                             <>  {this.state.ads.length ?
                                 this.state.ads.map((ad, index) => {
-                                    return (<div className="card-wrapper"  >
+                                    return (<div className="card-wrapper" key={Math.random()} >
                                         <div class="card" style={im} >
                                             <AliceCarousel
-                                                // items={items}
                                                 buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
                                                 {items([ad.url1, ad.url2, ad.url3, ad.url4])}
-                                                {/* <img src={cardImg} alt="Card image cap" /> */}
                                             </AliceCarousel>
                                             <div class="card-body">
                                                 <h5 className='card-title text-left'>{ad.adTitle}</h5>
@@ -167,24 +145,15 @@ class MyAds extends Component {
                                                     </span>
                                                 </div>
                                                 <div className="my-ads-btns-wrapper">
-                                                    <button className="postAd-submit-btn my-ad-btn no-outline no-border" onClick={() => handleShow()} >Delete</button>
+                                                    <button className="postAd-submit-btn my-ad-btn no-outline no-border" onClick={() => handleShow(ad._id)} >Delete</button>
                                                     <button className="postAd-submit-btn my-ad-btn no-outline no-border">
-                                                        <Link to={"/home/myads/" + ad._id + "/edit"} style={{color:'white'}} >Edit</Link>
+                                                        <Link to={"/home/myads/" + ad._id + "/edit"} style={{ color: 'white' }} >Edit</Link>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                         {/* Confirmation Modal */}
-                                        <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Confirm</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
-                                            <Modal.Footer className="confirmation-modal-footer">
-                                                <Button className="confirmation-modal-yes-btn no-outline" onClick={() => deleteAd(ad._id)}>Yes</Button>
-                                                <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
-                                            </Modal.Footer>
-                                        </Modal>
+
                                     </div>)
                                 })
                                 :
@@ -193,25 +162,31 @@ class MyAds extends Component {
                             :
                             <>{sc}</>
                     }
-
-
                 </div>
+                <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Confirm</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
+                    <Modal.Footer className="confirmation-modal-footer">
+                        <Button className="confirmation-modal-yes-btn no-outline" onClick={() => deleteAd()}>Yes</Button>
+                        <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
+                    </Modal.Footer>
+                </Modal>
                 <div className="container">
                     <hr />
                 </div>
                 <div className="mt-5">
-                    {
-                        this.state.isDataLoaded
-                            ?
-                            <h5> Total Ads : {this.state.ads.length}</h5>
-                            :
-                            <div>
-                                <Skeleton height={25} width={300} />
-                            </div>
+                    {this.state.isDataLoaded
+                        ?
+                        <h5> Total Ads : {this.state.ads.length}</h5>
+                        :
+                        <div>
+                            <Skeleton height={25} width={300} />
+                        </div>
                     }
                 </div>
             </div>
-
         );
 
     }
@@ -222,5 +197,3 @@ const mapStateToProps = (store) => {
     }
 }
 export default connect(mapStateToProps)(MyAds);
-
-// export default MyAds

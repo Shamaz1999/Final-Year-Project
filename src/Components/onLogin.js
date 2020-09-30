@@ -17,8 +17,8 @@ class Onlogin extends Component {
         socket: null,
         isDataloaded: false,
         theme: localStorage.getItem('theme'),
-        user:{
-          _id: JSON.parse(localStorage.getItem('user'))._id,
+        user: {
+            _id: JSON.parse(localStorage.getItem('user'))._id,
         }
     }
 
@@ -33,11 +33,11 @@ class Onlogin extends Component {
             }
         }
 
-        fetch('http://localhost:8000/updateuser', option)
+        fetch('/updateuser', option)
             .then(res => res.json())
             .then(data => {
                 this.setState({ user: data })
-                this.setState({isDataloaded: true})
+                this.setState({ isDataloaded: true })
                 localStorage.setItem('user', JSON.stringify(data))
             })
             .catch(err => console.log(err))
@@ -45,16 +45,14 @@ class Onlogin extends Component {
 
         if (!this.state.socket) {
             var socket = io('http://localhost:8000'
-                // , {path: '/socket.io'}  
             );
-            // this.setState({socket});
             this.props.dispatch({ type: "ADD_SOCKET", payload: socket })
         }
         let user = JSON.parse(localStorage.getItem('user'));
         socket.emit('new user', user._id);
-        socket.on("NEW_MESSAGE",(msg)=>{
+        socket.on("NEW_MESSAGE", (msg) => {
             toast('You have a new message!', {
-                className:'logout-toast',
+                className: 'logout-toast',
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: true,
@@ -62,18 +60,16 @@ class Onlogin extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
-                });
-            console.log("new msg is here",msg);
+            });
         })
     }
 
     logout = () => {
         this.props.socket.socket.disconnect();
         localStorage.removeItem('user');
-        this.setState({isloggedin:false})
+        this.setState({ isloggedin: false })
         toast('You have been logged out!', {
-            className:'logout-toast',
+            className: 'logout-toast',
             position: "top-center",
             autoClose: 3000,
             hideProgressBar: true,
@@ -81,13 +77,12 @@ class Onlogin extends Component {
             pauseOnHover: true,
             draggable: false,
             closeButton: false,
-            // progress: undefined,
-            });
+        });
     }
     render() {
 
         let user = JSON.parse(localStorage.getItem('user'));
-       
+
         var dp = null;
         if (user.url1 === "") {
             if (user.gender === "male") {
@@ -98,56 +93,49 @@ class Onlogin extends Component {
             }
         }
         else { dp = user.url1 }
-console.log()
 
-const handleTheme = (e) => {
-    console.log(e.target.checked);
-    if (e.target.checked) {
-        // this.setState({ theme: "dark" })
-        this.props.dispatch({type:"theme_change",payload:'dark'})
-        document.documentElement.setAttribute('data-theme', "dark");
-        localStorage.setItem('theme', "dark");
-    } else {
-        // this.setState({ theme: "normal" })
-        this.props.dispatch({type:"theme_change",payload:'normal'})
-        document.documentElement.setAttribute('data-theme', "normal");
-        localStorage.setItem('theme', "normal")
-    }
-}   
-       const {theme}=this.props.theme;
+        const handleTheme = (e) => {
+            if (e.target.checked) {
+                this.props.dispatch({ type: "theme_change", payload: 'dark' })
+                document.documentElement.setAttribute('data-theme', "dark");
+                localStorage.setItem('theme', "dark");
+            } else {
+                this.props.dispatch({ type: "theme_change", payload: 'normal' })
+                document.documentElement.setAttribute('data-theme', "normal");
+                localStorage.setItem('theme', "normal")
+            }
+        }
+        const { theme } = this.props.theme;
         return (
             <div className="app text-color">
-
                 <Dropdown style={{ textAlign: 'center' }} className="user-login-dropdown" >
                     <Dropdown.Toggle className="dropdown">
-                        {this.state.isDataloaded 
-                         ?
-                         <span>
-                             <img id="dropdown" className="user-image" height="50" width="50" alt="User" src={ dp} />
-                             <span className=" user-login-dropdown-links-name">{this.state.user.firstName}</span>
-                         </span>
-                         :
-                         <Skeleton circle={true} height={40} width={40} />}
+                        {this.state.isDataloaded
+                            ?
+                            <span>
+                                <img id="dropdown" className="user-image" height="50" width="50" alt="User" src={dp} />
+                                <span className=" user-login-dropdown-links-name">{this.state.user.firstName}</span>
+                            </span>
+                            :
+                            <Skeleton circle={true} height={40} width={40} />}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item className="no-hover">
                             <span>
-                                <Link className="user-login-dropdown-links" to={"/home/details/"+user._id}>
+                                <Link className="user-login-dropdown-links" to={"/home/details/" + user._id}>
                                     <div className="user-login-dropdown-links-div user-login-dropdown-links">Profile</div>
                                 </Link>
                             </span>
                         </Dropdown.Item>
-                        {/* <Dropdown.Item className="no-hover"> */}
-                            <span>
-                                <div className="user-login-dropdown-links-div user-login-dropdown-links">
-                                 <label className="no-margin" htmlFor="details-switcher">Dark Mode &nbsp;</label>
+                        <span>
+                            <div className="user-login-dropdown-links-div user-login-dropdown-links">
+                                <label className="no-margin" htmlFor="details-switcher">Dark Mode &nbsp;</label>
                                 <label className="switch details-switch">
                                     <input id="details-switcher" onChange={(e) => handleTheme(e)} type="checkbox" checked={theme === "dark"} />
                                     <span className="slider details-slider round"></span>
                                 </label>
-                                </div>
-                            </span>
-                        {/* </Dropdown.Item> */}
+                            </div>
+                        </span>
                         <Dropdown.Item className="no-hover" >
                             <span>
                                 <Link className="user-login-dropdown-links" to="/home/postad">
@@ -185,7 +173,6 @@ const handleTheme = (e) => {
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-
             </div>
         );
     }

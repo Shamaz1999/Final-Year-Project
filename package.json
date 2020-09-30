@@ -6,7 +6,6 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "firebase": "^7.17.2",
-    "jquery": "^3.3.1",
     "react": "^16.8.4",
     "react-alice-carousel": "^1.13.1",
     "react-bootstrap": "^1.0.0-beta.5",
@@ -26,6 +25,7 @@
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {},
+  "proxy":"http://localhost:8000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -42,7 +42,6 @@
   "bugs": {
     "url": "https://github.com/Shamaz1999/Saylani-Final-Year-Project/issues"
   },
-  "homepage": "https://github.com/Shamaz1999/Saylani-Final-Year-Project#readme",
   "browserslist": [
     ">0.2%",
     "not dead",

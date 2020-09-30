@@ -3,7 +3,7 @@ import "./../bootstrap/bootstrapC.css"
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap'
 import Skeleton from 'react-loading-skeleton'
 import { toast } from 'react-toastify';
@@ -28,61 +28,16 @@ class FavAds extends Component {
             }
         }
 
-        fetch('http://localhost:8000/updateuser', option)
+        fetch('/updateuser', option)
             .then(res => res.json())
             .then(data => {
                 this.setState({ user: data })
-                let user = JSON.parse(localStorage.getItem('user'));
-                if (user === null) {
-                    user = {
-                        _id: data._id,
-                        name: data.name,
-                        email: data.email,
-                        password: data.password,
-                        DOB: data.DOB,
-                        phone: data.phone,
-                        gender: data.gender,
-                        country: data.country,
-                        date: data.date,
-                        address: data.address,
-                        url1: data.url1,
-                        about: data.about,
-                        favorites: data.favorites
-                    }
-                    localStorage.setItem('user', JSON.stringify(user))
-                    console.log(user)
-                }
-                user = {
-                    _id: data._id,
-                    name: data.name,
-                    email: data.email,
-                    password: data.password,
-                    DOB: data.DOB,
-                    phone: data.phone,
-                    gender: data.gender,
-                    country: data.country,
-                    date: data.date,
-                    address: data.address,
-                    url1: data.url1,
-                    about: data.about,
-                    favorites: data.favorites
-                }
-                localStorage.setItem('user', JSON.stringify(user))
-                console.log('User Updated' + user.favorites)
+                localStorage.setItem('user', JSON.stringify(data))
             })
             .catch(err => console.log(err))
 
-
-
-
-
-
         let user = JSON.parse(localStorage.getItem('user'))
         let favs = user.favorites;
-        console.log('THis is user ' + user.favorites);
-        console.log('THis is fav ' + favs);
-        console.log('THis is state ' + this.state.user.favorites);
-
         var option1 = {
             method: 'POST',
             body: JSON.stringify(favs),
@@ -91,7 +46,7 @@ class FavAds extends Component {
             }
         }
 
-        fetch('http://localhost:8000/favoriteads', option1)
+        fetch('/favoriteads', option1)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -104,94 +59,41 @@ class FavAds extends Component {
 
     render() {
         const handleClose = () => this.setState({ show: false });
-        const handleShow = () => this.setState({ show: true });
+        const handleShow = (id) => this.setState({ show: true, id: id });
 
-        const removefav = (id) => {
-            this.setState({ id: id }, () => {
+        const removefav = () => {
 
-                // var c = window.confirm('Are you sure you want to remove it from favorites?')
-                // if (c) {
-                var option = {
-                    method: 'POST',
-                    body: JSON.stringify(this.state),
-                    headers: { 'Content-Type': 'application/json' }
-                }
+            console.log(this.state.id);
 
-                fetch('http://localhost:8000/removefavorite', option)
-                    .then(res => res.json())
-                    .then(data => {
-                        this.setState({ user: data }, () => {
-                            console.log(this.state)
-                            let user = JSON.parse(localStorage.getItem('user'));
-                            if (user === null) {
-                                user = {
-                                    _id: data._id,
-                                    name: data.name,
-                                    email: data.email,
-                                    password: data.password,
-                                    DOB: data.DOB,
-                                    phone: data.phone,
-                                    gender: data.gender,
-                                    country: data.country,
-                                    date: data.date,
-                                    address: data.address,
-                                    url1: data.url1,
-                                    about: data.about,
-                                    favorites: data.favorites
-                                }
-                                localStorage.setItem('user', JSON.stringify(user))
-                                console.log(user)
-                            }
-                            user = {
-                                _id: data._id,
-                                name: data.name,
-                                email: data.email,
-                                password: data.password,
-                                DOB: data.DOB,
-                                phone: data.phone,
-                                gender: data.gender,
-                                country: data.country,
-                                date: data.date,
-                                address: data.address,
-                                url1: data.url1,
-                                about: data.about,
-                                favorites: data.favorites
-                            }
-                            localStorage.setItem('user', JSON.stringify(user))
-                            var ads = [...this.state.ads];
-                            // ads.map((value, index) => {
-                            //     if (value._id === this.state.ads[index]._id) {
-                            //         ads.splice(index, 1)
-                            //         this.setState({ ads: ads }, () => console.log(this.state))
-                            //     }
-                            // })
-                            this.setState({ads:ads.filter(ad=>{ return ad._id!==id})})
-
-                        })
-
-                    })
-                    .catch(err => console.log(err))
-                this.setState({ show: false })
-
-                toast('Ad removed from favorites!', {
-                    className: 'logout-toast',
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: false,
-                    closeButton: false,
-                    // progress: undefined,
-                })
-                // (this.props.history.push('/login'))
-
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers: { 'Content-Type': 'application/json' }
             }
-                // else {
-                //     return false
-                // }
-                // }
-            )
+
+            fetch('/removefavorite', option)
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({ user: data }, () => {
+                        localStorage.setItem('user', JSON.stringify(data))
+                        var ads = [...this.state.ads];
+                        this.setState({ ads: ads.filter(ad => { return ad._id !== this.state.id }) })
+                    })
+                })
+                .catch(err => console.log(err))
+            this.setState({ show: false })
+
+            toast('Ad removed from favorites!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
+
         }
 
 
@@ -203,27 +105,27 @@ class FavAds extends Component {
 
 
         //Skeleteon Card Ads
-            sc = skeletonCards.map((item, index) => {
-                return <div className="card-wrapper" >
-                    <div className="card" style={im} >
-                        <Skeleton height={200} />
-                        <div className="card-body">
-                            <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton /></h5>
-                            <div className="divider"><hr /></div>
-                            <p className="text-left"> <Skeleton /></p>
-                            <div className="card-text text-left ad-description"><Skeleton /></div>
-                            <div className="card-text text-left ad-description"><Skeleton /></div>
-                            <div className="d-flex space-btw align-center ads-btn-container">
-                                <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
-                                <span style={{ fontSize: '13px', color: 'grey', textAlign:'right' }}><Skeleton width={90} /></span>
-                            </div>
-                            <div className="text-left">
-                                <Skeleton width={120} />
-                            </div>
+        sc = skeletonCards.map((item, index) => {
+            return <div className="card-wrapper" >
+                <div className="card" style={im} >
+                    <Skeleton height={200} />
+                    <div className="card-body">
+                        <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton /></h5>
+                        <div className="divider"><hr /></div>
+                        <p className="text-left"> <Skeleton /></p>
+                        <div className="card-text text-left ad-description"><Skeleton /></div>
+                        <div className="card-text text-left ad-description"><Skeleton /></div>
+                        <div className="d-flex space-btw align-center ads-btn-container">
+                            <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
+                            <span style={{ fontSize: '13px', color: 'grey', textAlign: 'right' }}><Skeleton width={90} /></span>
+                        </div>
+                        <div className="text-left">
+                            <Skeleton width={120} />
                         </div>
                     </div>
                 </div>
-            })
+            </div>
+        })
 
         let im = {
             margin: "20px 0",
@@ -233,7 +135,7 @@ class FavAds extends Component {
 
         const items = (data) => {
             return data.map((url, index) => {
-                return (<div key={index}>
+                return (<div key={Math.random()}>
                     <img height='180' src={url} onDragStart={handleOnDragStart} alt="Adpic" />
                 </div>)
             })
@@ -249,7 +151,7 @@ class FavAds extends Component {
                             ?
                             <>{this.state.ads.length ?
                                 this.state.ads.map((ad, index) => {
-                                    return (<div className="card-wrapper"  >
+                                    return (<div className="card-wrapper" key={Math.random()} >
                                         <div class="card" style={im} >
                                             <AliceCarousel
                                                 buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
@@ -267,29 +169,16 @@ class FavAds extends Component {
                                                         {ad.date}
                                                     </span>
                                                 </div>
-                                           
-                                            <div className="my-ads-btns-wrapper">
-                                                
-                                                    <button className="postAd-submit-btn my-ad-btn no-outline no-border" onClick={() => handleShow()} >Remove</button>
+                                                <div className="my-ads-btns-wrapper">
+                                                    <button className="postAd-submit-btn my-ad-btn no-outline no-border" onClick={() => { handleShow(ad._id) }} >Remove</button>
                                                     <button className="postAd-submit-btn my-ad-btn no-outline no-border">
-                                                        <Link to={"/ad/" + ad._id} style={{color:'white'}} >Open</Link>
+                                                        <Link to={"/ad/" + ad._id} style={{ color: 'white' }} >Open</Link>
                                                     </button>
-                                                </div>  
+                                                </div>
                                             </div>
                                         </div>
                                         {/* Confirmation Modal */}
-                                        <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
-                                            <div className="background-class text-color">
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>Confirm</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
-                                                <Modal.Footer className="confirmation-modal-footer">
-                                                    <Button className="confirmation-modal-yes-btn no-outline" onClick={() => removefav(ad._id)}>Yes</Button>
-                                                    <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
-                                                </Modal.Footer>
-                                            </div>
-                                        </Modal>
+
                                     </div>)
                                 })
                                 :
@@ -300,24 +189,31 @@ class FavAds extends Component {
                     }
 
                 </div>
+                <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
+                    <div className="background-class text-color">
+                        <Modal.Header closeButton>
+                            <Modal.Title>Confirm</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Are you sure you want to remove this ad from favorites?</Modal.Body>
+                        <Modal.Footer className="confirmation-modal-footer">
+                            <Button className="confirmation-modal-yes-btn no-outline" onClick={() => removefav()}>Yes</Button>
+                            <Button className="confirmation-modal-no-btn no-outline" onClick={handleClose}>No</Button>
+                        </Modal.Footer>
+                    </div>
+                </Modal>
                 <div className="container">
                     <hr />
                 </div>
                 <div className="mt-5">
-                    {
-                        this.state.isDataLoaded
-                            ?
-                            <h5> Total Ads : {this.state.ads.length}</h5>
-                            :
-                            <div>
-                                <Skeleton height={25} width={300} />
-                            </div>
+                    {this.state.isDataLoaded
+                        ?
+                        <h5> Total Ads : {this.state.ads.length}</h5>
+                        :
+                        <div>
+                            <Skeleton height={25} width={300} />
+                        </div>
                     }
                 </div>
-
-
-
-
             </div>
 
         );
@@ -330,5 +226,3 @@ const mapStateToProps = (store) => {
     }
 }
 export default connect(mapStateToProps)(FavAds);
-
-// export default MyAds

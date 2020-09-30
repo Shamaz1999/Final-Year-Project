@@ -39,19 +39,12 @@ class Details extends Component {
         },
         show: false,
         isLoggedIn: true,
-        // theme: JSON.parse(localStorage.getItem('theme')),
         isDataloaded: false,
     }
 
     componentDidMount() {
-        this.setState({ theme: localStorage.getItem('theme') })
-        // var t = this.refs.themeInput
 
-        // if(this.state.theme === 'dark'){
-        //     t.checked= true
-        // }else{
-        //     t.checked= false
-        // }
+        this.setState({ theme: localStorage.getItem('theme') })
 
         var option = {
             method: "POST",
@@ -61,7 +54,7 @@ class Details extends Component {
             }
         }
 
-        fetch('http://localhost:8000/updateuser', option)
+        fetch('/updateuser', option)
             .then(res => res.json())
             .then(data => {
                 this.setState({ user: data })
@@ -70,9 +63,7 @@ class Details extends Component {
             })
             .catch(err => console.log(err))
 
-
         let user = JSON.parse(localStorage.getItem('user'));
-
 
         this.refs.firstName.value = user.firstName
         this.refs.lastName.value = user.lastName
@@ -81,7 +72,6 @@ class Details extends Component {
         this.refs.address.value = user.address
         this.refs.city.value = user.city
 
-        console.log(this.refs.phone)
         this.setState({ firstName: user.firstName })
         this.setState({ lastName: user.lastName })
         this.setState({ phone: user.phone })
@@ -96,8 +86,7 @@ class Details extends Component {
     }
     delete = () => {
 
-        // let retVal = window.confirm("Do you want to delete your account ?");
-        // if (retVal === true) {
+
         var option = {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -105,7 +94,7 @@ class Details extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        fetch('http://localhost:8000/deleteuser', option)
+        fetch('/deleteuser', option)
             .then(res => res.json())
             .then(data => {
                 this.setState({ isLoggedIn: false })
@@ -122,23 +111,13 @@ class Details extends Component {
             pauseOnHover: true,
             draggable: false,
             closeButton: false,
-            // progress: undefined,
         });
         localStorage.removeItem('user')
         this.props.history.push('/')
-        // alert("Your account has been deleted");
-        // return true;
-        // } else {
-        // return false;
-        // }
     }
 
     discard = () => {
-        console.log('discard ran')
-        // e.preventDefault()
         window.location.reload()
-        // form.reset();
-        // this.forceUpdate()
     }
 
     save = () => {
@@ -153,9 +132,7 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
-
             var address = this.refs.address;
             address.focus()
             return false
@@ -169,9 +146,7 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
-
             var firstName = this.refs.firstName;
             firstName.focus()
             return false
@@ -186,9 +161,7 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
-
             var lastName = this.refs.lastName;
             lastName.focus()
             return false
@@ -203,9 +176,7 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
-
             var password = this.refs.password;
             password.focus()
             return false
@@ -219,9 +190,7 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
-
             var country = this.refs.country;
             country.focus()
             return false
@@ -235,7 +204,6 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
 
             var city = this.refs.city;
@@ -251,7 +219,6 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
             var phone = this.refs.phone;
             phone.focus()
@@ -266,14 +233,11 @@ class Details extends Component {
                 pauseOnHover: true,
                 draggable: false,
                 closeButton: false,
-                // progress: undefined,
             });
-
             var about = this.refs.about;
             about.focus()
             return false
         } else {
-
 
             var option = {
                 method: 'POST',
@@ -283,14 +247,9 @@ class Details extends Component {
                 }
             }
             console.log(this.state)
-            fetch('http://localhost:8000/updateinfo', option)
+            fetch('/updateinfo', option)
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data)
-                    // let u = JSON.parse(localStorage.getItem('user'))
-                    // u = data;
-                    // localStorage.setItem('user', JSON.stringify(u))
-                    // this.props.dispatch({type:'Add_user',payload:data})
                     localStorage.setItem('user', JSON.stringify(data))
                     this.setState({ user: data })
                 })
@@ -333,12 +292,10 @@ class Details extends Component {
 
 
             if (e.target.checked) {
-                // this.setState({ theme: "dark" })
                 this.props.dispatch({type:"theme_change",payload:'dark'})
                 document.documentElement.setAttribute('data-theme', "dark");
                 localStorage.setItem('theme', "dark")
             } else {
-                // this.setState({ theme: "normal" })
                 this.props.dispatch({type:"theme_change",payload:'normal'})
                 document.documentElement.setAttribute('data-theme', "normal");
                 localStorage.setItem('theme', "normal")
@@ -418,9 +375,7 @@ class Details extends Component {
                                         <span className="non-editable-details">{u.date}</span>
                                     </div>
                                 </div>
-                                <CopyToClipboard text={'http://localhost:3000/sellerprofile/5f36c52cde036a95dc83b848'}
-                                    onCopy={ (text)=> copyUrl(text)}
-                                >
+                                <CopyToClipboard text={window.location.host +'/sellerprofile/'+u._id} onCopy={ (text)=> copyUrl(text)}>
                                 <button className="btn login-btn details-page-copy-btn postAd-submit-btn">Copy Profile Url &nbsp;<FontAwesome name="copy" />
                                 </button>
                                 </CopyToClipboard>
@@ -467,7 +422,6 @@ class Details extends Component {
                                                 <span className="profile-details-small-heading">Country</span>
                                                 <span>
                                                     <CountrySelect country={this.country1} />
-                                                    {/* <input onChange={e => this.setState({ country: e.target.value })} type="text" ref="country" name="detail-info" className="detail-input" /> */}
                                                 </span>
                                             </div>
                                         </div>
@@ -484,7 +438,6 @@ class Details extends Component {
                                                 <span className="profile-details-small-heading">Phone no.</span>
                                                 <span>
                                                     <PhoneInput className="detail-input detail-input-phone" ref="phone" value={this.state.phone} onChange={phone => this.setState({ phone })} />
-                                                    {/* <input onChange={e => this.setState({ phone: e.target.value })} type="text" ref="phone" name="detail-mobile" className="detail-input" /> */}
                                                 </span>
                                             </div>
                                         </div>
@@ -507,7 +460,6 @@ class Details extends Component {
                                 </div>
                                 <hr />
                                 <div className="details-about-input-wrapper">
-                                    {/* <textarea/> */}
                                     <textarea onChange={e => this.setState({ about: e.target.value })} rows="5" type="text" ref="about" name="detail-info" className=" detail-input-textarea " />
                                 </div>
                             </div>
@@ -518,10 +470,7 @@ class Details extends Component {
                                     <button className="btn login-btn details-page-btn postAd-submit-btn" onClick={this.discard}>Discard</button>
                                 </div>
                                 <div className="details-page-delete-btn">
-                                    <button className="btn login-btn details-page-btn postAd-submit-btn" type="button"
-                                        // onClick={this.delete}
-                                        onClick={handleShow}
-                                    >Delete Account</button>
+                                    <button className="btn login-btn details-page-btn postAd-submit-btn" type="button" onClick={handleShow}>Delete Account</button>
                                     {/* Confirmation Modal */}
                                     <Modal className="confirmation-modal" show={this.state.show} onHide={handleClose}>
                                         <Modal.Header closeButton>

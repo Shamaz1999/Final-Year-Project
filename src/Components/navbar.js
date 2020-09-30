@@ -15,18 +15,15 @@ class Nav extends Component {
     }
 
     componentDidMount() {
-
         var input = document.getElementById("searchBar");
-
         input.addEventListener("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
                 document.getElementById("searchBtn").click();
+                this.setState({ search: "" });
             }
         });
     }
-
-
 
     logout = () => {
         this.props.dispatch({ type: "Add_user", payload: null })
@@ -43,7 +40,7 @@ class Nav extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        fetch('http://localhost:8000/categoryads', option)
+        fetch('/categoryads', option)
             .then(res => res.json())
             .then(data => {
                 let sa = JSON.parse(localStorage.getItem('sa'))
@@ -59,10 +56,8 @@ class Nav extends Component {
         this.props.history.push('/');
     }
 
-
     //Search ads by search
     searchAds = () => {
-        console.log(this.state.search)
         localStorage.removeItem('sa');
         var option = {
             method: 'POST',
@@ -72,7 +67,7 @@ class Nav extends Component {
             }
         }
 
-        fetch('http://localhost:8000/searchads', option)
+        fetch('/searchads', option)
             .then(res => res.json())
             .then(data => {
                 let sa = JSON.parse(localStorage.getItem('sa'))
@@ -82,15 +77,10 @@ class Nav extends Component {
             })
             .catch(err => { console.log(err) })
     }
-
     country1 = (country) => { this.setState({ country }) }
 
     render() {
-
-
-
         return (
-
             <div>
                 <nav className="navbar  ">
                     <div className="nav-logo-container">
@@ -105,15 +95,9 @@ class Nav extends Component {
                                     <CountrySelect prop={this.props} country={this.country1} />
                                 </div>
                                 <div className="input-group nav-searchnar-container">
-                                    <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="form-control showSearch no-outline"
-                                        placeholder="Search for ads"
-                                    />
+                                    <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="form-control showSearch no-outline" placeholder="Search for ads" />
                                     <div className="input-group-append">
-                                        <button className="btn  search-btn postAd-submit-btn"
-                                            id="searchBtn"
-                                            onClick={this.searchAds}
-                                            //   onClick={this.handleSearch} 
-                                            type="button">
+                                        <button className="btn  search-btn postAd-submit-btn" id="searchBtn" onClick={this.searchAds} type="button">
                                             <FontAwesome name="search" />
                                         </button>
                                     </div>
@@ -138,12 +122,11 @@ class Nav extends Component {
                             </div>
                         </div>
                     </div>
-
-                   <div className="user-drop-down-wrapper">
+                    <div className="user-drop-down-wrapper">
                         <div className=" text-center " >
                             {JSON.parse(localStorage.getItem('user')) === null ? <Notloggedin /> : <Onlogin />}
                         </div>
-                   </div>
+                    </div>
                 </nav>
             </div>
         );
@@ -173,12 +156,11 @@ class CountrySelect extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        fetch('http://localhost:8000/countryads', option)
+        fetch('/countryads', option)
             .then(res => res.json())
             .then(data => {
                 let sa = JSON.parse(localStorage.getItem('sa'))
                 sa = data;
-                console.log(data)
                 localStorage.setItem('sa', JSON.stringify(sa))
                 this.props.prop.history.push('/')
             })
