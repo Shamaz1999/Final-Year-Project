@@ -33,7 +33,6 @@ class Chat extends Component {
         fetch('/get-rooms/' + this.state.user._id)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 const rooms = data.map(room => {
                     const person = room.person1._id === user._id ? "person2" : "person1";
                     return {
@@ -120,7 +119,6 @@ class Chat extends Component {
                             date: new Date(msg.date),
                         }
                     })
-                    console.log(msgs);
                     this.setState({ chat: msgs })
                     this.setState({ chatFetched: true })
                 })
@@ -164,7 +162,6 @@ class Chat extends Component {
 
 
         const openChat = (e) => {
-            console.log(e);
             this.setState({ chat: [] });
             this.props.history.push(`/home/${e.data._id}/chat`)
             this.setState({ room: null });
@@ -203,33 +200,33 @@ class Chat extends Component {
                                     :
                                     <div>
                                         <div className="d-flex" style={{ flexDirection: "row", margin: '5px 0 15px 0' }}>
-                                            <span> <Skeleton circle={true} height={40} width={40} /></span>
+                                            <span> <Skeleton className="skeleton-loader" circle={true} height={40} width={40} /></span>
                                             <div style={{ borderBottom: '1px solid white', width: '100%' }} className="pt-2 ml-2 mr-3" >
-                                                <Skeleton width={150} />
+                                                <Skeleton className="skeleton-loader" width={150} />
                                             </div>
                                         </div>
                                         <div className="d-flex" style={{ flexDirection: "row", margin: '5px 0 15px 0' }}>
-                                            <span> <Skeleton circle={true} height={40} width={40} /></span>
+                                            <span> <Skeleton className="skeleton-loader" circle={true} height={40} width={40} /></span>
                                             <div style={{ borderBottom: '1px solid white', width: '100%' }} className="pt-2 ml-2 mr-3" >
-                                                <Skeleton width={150} />
+                                                <Skeleton className="skeleton-loader" width={150} />
                                             </div>
                                         </div>
                                         <div className="d-flex" style={{ flexDirection: "row", margin: '5px 0 15px 0' }}>
-                                            <span> <Skeleton circle={true} height={40} width={40} /></span>
+                                            <span> <Skeleton className="skeleton-loader" circle={true} height={40} width={40} /></span>
                                             <div style={{ borderBottom: '1px solid white', width: '100%' }} className="pt-2 ml-2 mr-3" >
-                                                <Skeleton width={150} />
+                                                <Skeleton className="skeleton-loader" width={150} />
                                             </div>
                                         </div>
                                         <div className="d-flex" style={{ flexDirection: "row", margin: '5px 0 15px 0' }}>
-                                            <span> <Skeleton circle={true} height={40} width={40} /></span>
+                                            <span> <Skeleton className="skeleton-loader" circle={true} height={40} width={40} /></span>
                                             <div style={{ borderBottom: '1px solid white', width: '100%' }} className="pt-2 ml-2 mr-3" >
-                                                <Skeleton width={150} />
+                                                <Skeleton className="skeleton-loader" width={150} />
                                             </div>
                                         </div>
                                         <div className="d-flex" style={{ flexDirection: "row", margin: '5px 0 15px 0' }}>
-                                            <span> <Skeleton circle={true} height={40} width={40} /></span>
+                                            <span> <Skeleton className="skeleton-loader" circle={true} height={40} width={40} /></span>
                                             <div style={{ borderBottom: '1px solid white', width: '100%' }} className="pt-2 ml-2 mr-3" >
-                                                <Skeleton width={150} />
+                                                <Skeleton className="skeleton-loader" width={150} />
                                             </div>
                                         </div>
                                     </div>

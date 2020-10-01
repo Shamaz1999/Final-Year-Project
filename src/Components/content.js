@@ -53,7 +53,7 @@ class Content extends Component {
 
         const items = (data) => {
             return data.map((url, index) => {
-                return (<div key={index}>
+                return (<div key={Math.random()}>
                     <img height='200' src={url} onDragStart={handleOnDragStart} alt="Ad-Pics" />
                 </div>)
             })
@@ -66,7 +66,7 @@ class Content extends Component {
             for (let i = 0; i <= this.state.ads.length; i++) {
                 let adId;
                 d = this.state.ads.map((item, index) =>
-                    <div key={index} className="card-wrapper" >
+                    <div key={Math.random()} className="card-wrapper" >
                         <div className="card" style={im} >
                             <AliceCarousel buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
                                 {items([item.url1, item.url2, item.url3, item.url4])}
@@ -103,7 +103,7 @@ class Content extends Component {
             if (searchedAds.length !== 0) {
                 for (let i = 0; i <= searchedAds.length; i++) {
                     e = searchedAds.map((item, index) =>
-                        <div key={index} className="card-wrapper " >
+                        <div key={Math.random()} className="card-wrapper " >
                             <div className="card card-background-color" style={im} >
                                 <AliceCarousel
                                     buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
@@ -143,23 +143,23 @@ class Content extends Component {
         //Skeleteon Card Ads
         for (let i = 1; i !== skeletonCards.length; i++) {
             sc = skeletonCards.map((item, index) => {
-                return <div key={index} className="card-wrapper card-background-color" >
+                return <div key={Math.random()} className="card-wrapper card-background-color" >
                     <div className="card" style={im} >
-                        <Skeleton height={200} />
+                        <Skeleton className="skeleton-loader" height={200} />
                         <div className="card-body">
-                            <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton /></h5>
+                            <h5 className="card-title text-left"><Skeleton className="skeleton-loader" /></h5><h5 className="card-title text-left"><Skeleton className="skeleton-loader" /></h5>
                             <div className="divider"><hr className="ad-hr" /></div>
-                            <p className="text-left"> <Skeleton /></p>
-                            <div className="card-text text-left ad-description"><Skeleton /></div>
-                            <div className="card-text text-left ad-description"><Skeleton /></div>
+                            <p className="text-left"> <Skeleton className="skeleton-loader" /></p>
+                            <div className="card-text text-left ad-description"><Skeleton className="skeleton-loader" /></div>
+                            <div className="card-text text-left ad-description"><Skeleton className="skeleton-loader" /></div>
                             <div className="d-flex space-btw align-center ads-btn-container">
-                                <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
+                                <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton className="skeleton-loader" width={90} /></span>
                                 <span>
-                                    <Skeleton width={90} />
+                                    <Skeleton className="skeleton-loader" width={90} />
                                 </span>
                             </div>
                             <div style={{ textAlign: 'left', marginTop: ' 10px' }} className="float-left">
-                                <Skeleton width={100} />
+                                <Skeleton className="skeleton-loader" width={100} />
                             </div>
                         </div>
                     </div>

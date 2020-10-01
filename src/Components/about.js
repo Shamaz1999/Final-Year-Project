@@ -15,7 +15,7 @@ class About extends Component {
           </div>
           <p className="about-sub-heading text-center">Makes you feel like shopping.</p>
           <div className="text-center">
-            <Link className="btn cont-btn login-btn postAd-submit-btn" to="/contact">Contact Us</Link>
+            <Link className="btn login-btn postAd-submit-btn" to="/contact">Contact Us</Link>
           </div>
         </div>
         <div className="about-content text-center">

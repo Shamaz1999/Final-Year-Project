@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css";
 import { storage } from './firebase/index'
+import { toast } from 'react-toastify';
 import PhoneInput from 'react-phone-number-input'
 import { connect } from 'react-redux'
 
@@ -115,7 +116,6 @@ class EditAd extends Component {
                 storage.ref('images').child(image1.name).getDownloadURL()
                     .then(url1 => {
                         this.setState({ url1 });
-                        console.log(this.state)
                     })
             }
         )
@@ -146,9 +146,7 @@ class EditAd extends Component {
                 // complete funcion
                 storage.ref('images').child(image2.name).getDownloadURL()
                     .then(url2 => {
-                        // this.refs.img.src=url;
                         this.setState({ url2 });
-                        console.log(this.state)
                     })
             }
         )
@@ -179,9 +177,7 @@ class EditAd extends Component {
                 // complete funcion
                 storage.ref('images').child(image3.name).getDownloadURL()
                     .then(url3 => {
-                        // this.refs.img.src=url;
                         this.setState({ url3 });
-                        console.log(this.state)
                     })
             }
         )
@@ -211,9 +207,7 @@ class EditAd extends Component {
                 // complete funcion
                 storage.ref('images').child(image4.name).getDownloadURL()
                     .then(url4 => {
-                        // this.refs.img.src=url;
                         this.setState({ url4 });
-                        console.log(this.state)
                     })
             }
         )
@@ -246,62 +240,170 @@ class EditAd extends Component {
     verify = () => {
 
         if (this.state.adTitle === "") {
-            alert('Title is required!')
+            toast('Title is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adTitle = this.refs.adTitle;
             adTitle.focus()
             return false
         } else if (this.state.brand === "") {
-            alert('Brand name is required!')
+            toast('Brand name is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var itemBrand = this.refs.itemBrand;
             itemBrand.focus()
             return false
         } else if (this.state.category === "") {
-            alert('Category is required!')
+            toast('Category is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adCategory = this.refs.adCategory;
             adCategory.focus()
             return false
         } else if (this.state.condition === "") {
-            alert('Condition is required!')
+            toast('Condition is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adCondition = this.refs.adCondition;
             adCondition.focus()
             return false
         } else if (this.state.price === "") {
-            alert('Price is required!')
+            toast('Price is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adPrice = this.refs.adPrice;
             adPrice.focus()
             return false
         } else if (this.state.location === "") {
-            alert('Location is required!')
+            toast('Location is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adloc = this.refs.adloc;
             adloc.focus()
             return false
         } else if (this.state.description === "") {
-            alert('Description is required!')
+            toast('Description is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adDesc = this.refs.adDesc;
             adDesc.focus()
             return false
         } else if (this.state.phone === "") {
-            alert('Your Phone number is required!')
+            toast('Your Phone number is required!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var adPhone = this.refs.adPhone;
             adPhone.focus()
             return false
         } else if (this.state.url1 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var imgup1 = this.refs.imgup1;
             imgup1.focus()
             return false
         } else if (this.state.url2 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var imgup2 = this.refs.imgup2;
             imgup2.focus()
             return false
         } else if (this.state.url3 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var imgup3 = this.refs.imgup3;
             imgup3.focus()
             return false
         } else if (this.state.url4 === "") {
-            alert('You have to upload 4 pictures!')
+            toast('You have to upload 4 pictures!', {
+                className: 'logout-toast',
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                closeButton: false,
+            })
             var imgup4 = this.refs.imgup4;
             imgup4.focus()
             return false
@@ -315,11 +417,19 @@ class EditAd extends Component {
             }
             fetch('/editad', option)
                 .then(res => res.json())
-                .then(data =>
-                    console.log(data)
-                )
+                .then(data => data )
                 .catch(err => console.log(err))
-            alert('Your Ad has been updated!')
+                toast('Your Ad has been updated', {
+                    className: 'logout-toast',
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton: false,
+                })
+                this.props.history.push('/')
         }
     }
 

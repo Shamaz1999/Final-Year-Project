@@ -98,7 +98,6 @@ class Details extends Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({ isLoggedIn: false })
-                console.log(data)
             })
             .catch(err => { console.log(err) })
 
@@ -246,7 +245,6 @@ class Details extends Component {
                     'Content-Type': 'application/json'
                 }
             }
-            console.log(this.state)
             fetch('/updateinfo', option)
                 .then(res => res.json())
                 .then(data => {
@@ -316,7 +314,6 @@ class Details extends Component {
         }
 
         const {theme}=this.props.theme;
-        console.log(this.props)
 
         return (
             <div className="app text-color">
@@ -340,7 +337,7 @@ class Details extends Component {
                                 </div>
                             <hr />
                             <div className="details-profile-pic-container">
-                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton className="details-profile-pic-skeleton" />}
+                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton  className="skeleton-loader details-profile-pic-skeleton" />}
                             </div>
                             <div className="no-editable-profile-details-wrapper profile-details-wrapper" >
                                 <div className="profile-details-container">
@@ -375,7 +372,7 @@ class Details extends Component {
                                         <span className="non-editable-details">{u.date}</span>
                                     </div>
                                 </div>
-                                <CopyToClipboard text={window.location.host +'/sellerprofile/'+u._id} onCopy={ (text)=> copyUrl(text)}>
+                                <CopyToClipboard text={window.location.origin +'/sellerprofile/'+u._id} onCopy={ (text)=> copyUrl(text)}>
                                 <button className="btn login-btn details-page-copy-btn postAd-submit-btn">Copy Profile Url &nbsp;<FontAwesome name="copy" />
                                 </button>
                                 </CopyToClipboard>

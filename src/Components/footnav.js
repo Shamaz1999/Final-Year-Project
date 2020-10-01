@@ -1,11 +1,39 @@
 import React, { Component } from 'react';
 import "./../bootstrap/bootstrapC.css"
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 
 class FootNav extends Component {
-
+    state={
+        category: '',
+    }
     render() {
+         //Seach ads by category 
+    const categoryAds = (category) => {
+        this.setState({category:category},()=>{
+            localStorage.removeItem('sa');
+            var option = {
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            fetch('/categoryads', option)
+                .then(res => res.json())
+                .then(data => {
+                    let sa = JSON.parse(localStorage.getItem('sa'))
+                    sa = data;
+                    localStorage.setItem('sa', JSON.stringify(sa))
+                    this.props.history.push('/')
+                })
+                .catch(err => { console.log(err) })
+        })
+    }
+
+
+
+
         let user = JSON.parse(localStorage.getItem('user'));
 
         return (
@@ -16,12 +44,12 @@ class FootNav extends Component {
                             <div>
                                 <ul className="foot-nav-ul">
                                     <li className="col-heading med-headings">Categories</li>
-                                    <li className="col-items"><span className="footnav-social-links">Mobiles</span></li>
-                                    <li className="col-items"><span className="footnav-social-links">Vehicles</span></li>
-                                    <li className="col-items"><span className="footnav-social-links">Clothing</span></li>
-                                    <li className="col-items"><span className="footnav-social-links">Services</span></li>
-                                    <li className="col-items"><span className="footnav-social-links">Furniture</span></li>
-                                    <li className="col-items"><span className="footnav-social-links">Bikes</span></li>
+                                    <li className="col-items" onClick={()=>{categoryAds("mobiles")}}><span className="footnav-social-links">Mobiles</span></li>
+                                    <li className="col-items" onClick={()=>{categoryAds("vehicles")}} category="vehicles"><span className="footnav-social-links">Vehicles</span></li>
+                                    <li className="col-items" onClick={()=>{categoryAds("clothing")}} category="clothing"><span className="footnav-social-links">Clothing</span></li>
+                                    <li className="col-items" onClick={()=>{categoryAds("services")}} category="services"><span className="footnav-social-links">Services</span></li>
+                                    <li className="col-items" onClick={()=>{categoryAds("furniture")}} category="furniture"><span className="footnav-social-links">Furniture</span></li>
+                                    <li className="col-items" onClick={()=>{categoryAds("bikes")}} category="bikes"><span className="footnav-social-links">Bikes</span></li>
                                 </ul>
                             </div>
                             <div >
@@ -71,5 +99,5 @@ class LoggedIn extends Component {
 }
 
 
-export default FootNav
+export default withRouter(FootNav)
 

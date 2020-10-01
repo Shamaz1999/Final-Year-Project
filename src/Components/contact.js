@@ -71,8 +71,32 @@ class Contact extends Component {
 
         fetch('/contact', option)
             .then(res => res.json())
-            .then(data => console.log(data), alert("Thanks for your feedback! Now you can navigate to Homepage"))
-            .catch(err => console.log(err, alert("There was an error please try again.")))
+            .then(data =>{
+                toast('Thanks for your feedback! Now you can navigate to Homepage', {
+                    className: 'logout-toast',
+                    position: "top-center",
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton: false,
+                });
+                // alert("Thanks for your feedback! Now you can navigate to Homepage")
+            })
+            .catch(err => 
+               { toast('There was an error please try again', {
+                    className: 'logout-toast',
+                    position: "top-center",
+                    autoClose: 4000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    closeButton: false,
+                })
+                console.log(err,)}
+                )
 
     }
 

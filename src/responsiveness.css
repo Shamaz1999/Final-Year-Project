@@ -13,6 +13,9 @@
  .nav-search{
    margin: 0 20px !important;
  }
+ .nav-login-links-wrapper{
+   margin: 10px 0 15px 0;
+ }
  .details-container{
    margin: 60px 40px !important;
  }
@@ -174,6 +177,9 @@
   } 
 }
 @media only screen and (max-width:425px){
+  .nav-login-links-wrapper{
+    margin-top: 0px;
+  }
   .details-container{
     margin: 20px 10px !important;
   }

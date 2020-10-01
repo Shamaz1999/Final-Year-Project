@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import { connect } from 'react-redux'
 import { storage } from './firebase/index'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -273,7 +274,6 @@ class Signup extends Component {
                 storage.ref('images').child(image1.name).getDownloadURL()
                     .then(url1 => {
                         this.setState({ url1 });
-                        console.log(this.state)
                     })
             }
         )
@@ -314,11 +314,11 @@ class Signup extends Component {
                             </div>
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="userPassword"><b>Password</b> <span className="required">*</span></label>
-                                <input type="password" id="userPassword" ref="userPassword" onInput={e => this.setState({ password: e.target.value })} className="form-control" placeholder="Enter your password" />
+                                <input type="password" id="userPassword" ref="userPassword"  onInput={e => this.setState({ password: e.target.value })} className="form-control" placeholder="Enter your password" />
                             </div>
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="phone-num"><b>Phone Number</b> <span className="required">*</span></label>
-                                <PhoneInput className="form-control" ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={phone => this.setState({ phone })} />
+                                <PhoneInput className="form-control custom-phone1" ref="userNum" id="phone-num" placeholder="Enter phone number" onChange={phone => this.setState({ phone })} />
                             </div>
                             <div className="form-group">
                                 <label className="signup-label"><b>Gender</b> <span className="required">*</span></label>
@@ -341,9 +341,9 @@ class Signup extends Component {
                                 <label className="signup-label" ><b>Profile Picture</b> <span className="required"><span style={{ fontSize: '14px' }}>(after selecting files click on upload)</span>*</span></label>
                                 <div className="imgupload1">
                                     <input ref="imgup1" accept="image/*" className="img-upload-input" type="file" onInput={this.up1} onChange={this.handleChange1} />
-                                    <button type="button" id="upBtn1" className="img-upload-btn login-btn hid" onClick={this.handleUpload1}>Upload</button>
+                                    <button type="button" id="upBtn1" className="img-upload-btn postAd-submit-btn no-outline hid" onClick={this.handleUpload1}>Upload</button>
                                     <progress id="upProg1" value={this.state.progress1} className="img-upload-progress hid" max="100" />
-                                    <img ref='img1' alt="profile" id="upImg1" src={this.state.url1} className="hid" height="30" />
+                                    <img ref='img1' alt="" id="upImg1" src={this.state.url1} className="hid" height="30" />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -632,4 +632,9 @@ class CountrySelect extends Component {
         )
     }
 }
-export default Signup;
+const mapStateToProps = (store) => {
+    return {
+        user: store.userReducer
+    }
+}
+export default connect(mapStateToProps)(Signup);

@@ -135,8 +135,8 @@ class Nav extends Component {
 
 
 const Notloggedin = () => (
-    <div>
-        <Link className="login-nav-link" to="/login">Log In</Link>
+    <div className="nav-login-links-wrapper">
+        <Link className="login-nav-link" to="/login">Login</Link>
         <Link to="/signup" className="login-nav-link">Signup</Link>
     </div>
 )

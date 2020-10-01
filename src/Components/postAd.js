@@ -88,7 +88,6 @@ class Post extends Component {
                 storage.ref('images').child(image1.name).getDownloadURL()
                     .then(url1 => {
                         this.setState({ url1 });
-                        console.log(this.state)
                     })
 
             }
@@ -121,7 +120,6 @@ class Post extends Component {
                 storage.ref('images').child(image2.name).getDownloadURL()
                     .then(url2 => {
                         this.setState({ url2 });
-                        console.log(this.state)
                     })
 
             }
@@ -154,7 +152,6 @@ class Post extends Component {
                 storage.ref('images').child(image3.name).getDownloadURL()
                     .then(url3 => {
                         this.setState({ url3 });
-                        console.log(this.state)
                     })
 
             }
@@ -186,7 +183,6 @@ class Post extends Component {
                 storage.ref('images').child(image4.name).getDownloadURL()
                     .then(url4 => {
                         this.setState({ url4 });
-                        console.log(this.state)
                     })
             }
         )
@@ -398,9 +394,7 @@ class Post extends Component {
 
             fetch('/postad', option)
                 .then(res => res.json())
-                .then(data =>
-                    console.log(data)
-                )
+                .then(data => (data) )
                 .catch(err => console.log(err))
 
             toast('Your Ad has been posted!', {

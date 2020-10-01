@@ -49,8 +49,7 @@ class FavAds extends Component {
         fetch('/favoriteads', option1)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                this.setState({ ads: data }, () => console.log(this.state))
+                this.setState({ ads: data })
                 this.setState({ isDataLoaded: true })
             })
             .catch(err => console.log(err))
@@ -62,9 +61,6 @@ class FavAds extends Component {
         const handleShow = (id) => this.setState({ show: true, id: id });
 
         const removefav = () => {
-
-            console.log(this.state.id);
-
             var option = {
                 method: 'POST',
                 body: JSON.stringify(this.state),
@@ -108,19 +104,19 @@ class FavAds extends Component {
         sc = skeletonCards.map((item, index) => {
             return <div className="card-wrapper" >
                 <div className="card" style={im} >
-                    <Skeleton height={200} />
+                    <Skeleton className="skeleton-loader" height={200} />
                     <div className="card-body">
-                        <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton /></h5>
+                        <h5 className="card-title text-left"><Skeleton className="skeleton-loader" /></h5><h5 className="card-title text-left"><Skeleton className="skeleton-loader" /></h5>
                         <div className="divider"><hr /></div>
-                        <p className="text-left"> <Skeleton /></p>
-                        <div className="card-text text-left ad-description"><Skeleton /></div>
-                        <div className="card-text text-left ad-description"><Skeleton /></div>
+                        <p className="text-left"> <Skeleton className="skeleton-loader" /></p>
+                        <div className="card-text text-left ad-description"><Skeleton className="skeleton-loader" /></div>
+                        <div className="card-text text-left ad-description"><Skeleton className="skeleton-loader" /></div>
                         <div className="d-flex space-btw align-center ads-btn-container">
-                            <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
-                            <span style={{ fontSize: '13px', color: 'grey', textAlign: 'right' }}><Skeleton width={90} /></span>
+                            <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton className="skeleton-loader" width={90} /></span>
+                            <span style={{ fontSize: '13px', color: 'grey', textAlign: 'right' }}><Skeleton className="skeleton-loader" width={90} /></span>
                         </div>
                         <div className="text-left">
-                            <Skeleton width={120} />
+                            <Skeleton className="skeleton-loader" width={120} />
                         </div>
                     </div>
                 </div>
@@ -210,7 +206,7 @@ class FavAds extends Component {
                         <h5> Total Ads : {this.state.ads.length}</h5>
                         :
                         <div>
-                            <Skeleton height={25} width={300} />
+                            <Skeleton className="skeleton-loader" height={25} width={300} />
                         </div>
                     }
                 </div>

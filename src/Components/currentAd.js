@@ -212,7 +212,7 @@ class Ad extends Component {
                                 ?
                                 <AliceCarousel items={item} autoPlay={false} mouseDragEnabled />
                                 :
-                                <Skeleton className="current-ad-images-skeleton" />
+                                <Skeleton  className=" skeleton-loader current-ad-images-skeleton" />
                             }
                         </div>
                         <div className="ad-desc-container">
@@ -221,7 +221,7 @@ class Ad extends Component {
                                 <h4>Details</h4>
                                 :
                                 <div className="mb-2">
-                                    <Skeleton height={30} width={180} />
+                                    <Skeleton className="skeleton-loader" height={30} width={180} />
                                 </div>
                             }
 
@@ -233,7 +233,7 @@ class Ad extends Component {
                                         <div className="ads-type">{this.state.ad.category}</div>
                                     </div>
                                     :
-                                    <Skeleton width={200} />
+                                    <Skeleton className="skeleton-loader" width={200} />
                                 }
                                 {this.state.isDataLoaded
                                     ?
@@ -243,7 +243,7 @@ class Ad extends Component {
                                     </div>
                                     :
                                     <div className="">
-                                        <Skeleton width={200} />
+                                        <Skeleton className="skeleton-loader" width={200} />
                                     </div>
                                 }
 
@@ -261,10 +261,10 @@ class Ad extends Component {
                                 </div>
                                 :
                                 <div className="mb-4 mt-4">
-                                    <Skeleton height={30} width={180} />
+                                    <Skeleton className="skeleton-loader" height={30} width={180} />
                                     <div className="mt-2">
-                                        <Skeleton />
-                                        <Skeleton />
+                                        <Skeleton className="skeleton-loader" />
+                                        <Skeleton className="skeleton-loader" />
                                     </div>
                                 </div>
                             }
@@ -280,7 +280,7 @@ class Ad extends Component {
                                         <h2 className="current-ad-price float-left">Rs {this.state.ad.price}</h2>
                                         :
                                         <div className="float-left">
-                                            <Skeleton className="current-ad-price-skeleton" height={40} width={200} />
+                                            <Skeleton  className="skeleton-loader current-ad-price-skeleton" height={40} width={200} />
                                         </div>
                                     }
                                     <div className="favourite-container float-right">
@@ -294,7 +294,7 @@ class Ad extends Component {
                                                     onClick={user ? markFav : this.favLoginAlert} />
                                                 :
                                                 <div style={{ position: 'relative', bottom: '9px' }}>
-                                                    <Skeleton circle={true} height={40} width={40} />
+                                                    <Skeleton className="skeleton-loader" circle={true} height={40} width={40} />
                                                 </div>
                                             }</>
                                         }
@@ -305,7 +305,7 @@ class Ad extends Component {
                                             <>{this.state.ad.adTitle}</>
                                             :
                                             <div className="pt-3">
-                                                <Skeleton height={15} width={90} />
+                                                <Skeleton className="skeleton-loader" height={15} width={90} />
                                             </div>
                                         }
                                     </div>
@@ -315,7 +315,7 @@ class Ad extends Component {
                                                 ?
                                                 <>{this.state.ad.location}</>
                                                 :
-                                                <Skeleton height={10} width={90} />
+                                                <Skeleton className="skeleton-loader" height={10} width={90} />
                                             }
                                         </div>
                                         <div className="loc-container float-right">
@@ -323,7 +323,7 @@ class Ad extends Component {
                                                 ?
                                                 <>{this.state.ad.date}</>
                                                 :
-                                                <Skeleton height={10} width={90} />
+                                                <Skeleton className="skeleton-loader" height={10} width={90} />
                                             }
                                         </div>
                                         <div style={{ marginBottom: "10px" }} className="clear"></div>
@@ -338,7 +338,7 @@ class Ad extends Component {
                                         ?
                                         <h5 className="seller-desc-heading">Seller Description</h5>
                                         :
-                                        <Skeleton height={30} width={200} />
+                                        <Skeleton className="skeleton-loader" height={30} width={200} />
                                     }
                                     <div className="seller-info-container ">
                                         <div className="seller-pic-name-container">
@@ -347,7 +347,7 @@ class Ad extends Component {
                                                     ?
                                                     <img src={this.state.ad.sellerImg} width='100' height="80" alt="Profile Pic" />
                                                     :
-                                                    <Skeleton height={100} width={120} />
+                                                    <Skeleton className="skeleton-loader" height={100} width={120} />
                                                 }
                                             </div>
                                             <div className="seller-name-container">
@@ -355,7 +355,7 @@ class Ad extends Component {
                                                     ?
                                                     <Link className="current-ad-seller-name" to={"/sellerProfile/" + this.state.ad.sellerId}>{this.state.ad.sellerName}</Link>
                                                     :
-                                                    <Skeleton height={20} width={200} />
+                                                    <Skeleton className="skeleton-loader" height={20} width={200} />
                                                 }
                                             </div>
                                         </div>
@@ -388,7 +388,7 @@ class Ad extends Component {
                                                 </span>
                                             </div>
                                             :
-                                            <Skeleton height={30} />
+                                            <Skeleton className="skeleton-loader" height={30} />
                                         }
                                     </div>
                                 </div>

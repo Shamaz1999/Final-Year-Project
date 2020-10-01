@@ -106,7 +106,7 @@ class Seller extends Component {
 
         const items = (data) => {
             return data.map((url, index) => {
-                return (<div key={index}>
+                return (<div key={Math.random()}>
                     <img height='200' src={url} onDragStart={handleOnDragStart} alt="Ad-Pics" />
                 </div>)
             })
@@ -115,7 +115,7 @@ class Seller extends Component {
         // Seller Ads
         if (this.state.ads.length) {
             ads = this.state.ads.map((item, index) => {
-                return <div key={index} className="card-wrapper" style={{ margin: '5px' }} >
+                return <div key={Math.random()} className="card-wrapper" style={{ margin: '5px' }} >
                     <div className="card" style={im} >
                         <AliceCarousel buttonsDisabled={true} duration={400} autoPlay={true} autoPlayInterval={5000} mouseDragEnabled >
                             {items([item.url1, item.url2, item.url3, item.url4])}
@@ -138,6 +138,8 @@ class Seller extends Component {
                     </div>
                 </div>
             })
+        }else{
+            ads= <h2 className="message" >This user have not posted any ad!</h2>
         }
 
 
@@ -147,20 +149,20 @@ class Seller extends Component {
 
         //Skeleteon Card Ads
         sc = skeletonCards.map((item, index) => {
-            return <div className="card-wrapper" style={{ margin: '5px' }} >
+            return <div key={Math.random()} className="card-wrapper" style={{ margin: '5px' }} >
                 <div className="card" style={im} >
-                    <Skeleton height={200} />
+                    <Skeleton className="skeleton-loader" height={200} />
                     <div className="card-body">
-                        <h5 className="card-title text-left"><Skeleton /></h5><h5 className="card-title text-left"><Skeleton /></h5>
+                        <h5 className="card-title text-left"><Skeleton className="skeleton-loader" /></h5><h5 className="card-title text-left"><Skeleton className="skeleton-loader" /></h5>
                         <div className="divider"><hr /></div>
-                        <div className="card-text text-left ad-description"><Skeleton /></div>
-                        <div className="card-text text-left ad-description"><Skeleton /></div>
+                        <div className="card-text text-left ad-description"><Skeleton className="skeleton-loader" /></div>
+                        <div className="card-text text-left ad-description"><Skeleton className="skeleton-loader" /></div>
                         <div className="d-flex space-btw align-center ads-btn-container">
-                            <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton width={90} /></span>
-                            <span style={{ fontSize: '13px', color: 'grey', textAlign: 'right' }}><Skeleton width={90} /></span>
+                            <span className="float-left" style={{ fontSize: '13px', color: 'grey' }}><Skeleton className="skeleton-loader" width={90} /></span>
+                            <span style={{ fontSize: '13px', color: 'grey', textAlign: 'right' }}><Skeleton className="skeleton-loader" width={90} /></span>
                         </div>
                         <div className="text-left">
-                            <Skeleton width={120} />
+                            <Skeleton className="skeleton-loader" width={120} />
                         </div>
                     </div>
                 </div>
@@ -181,7 +183,7 @@ class Seller extends Component {
                                             <div className="profile-details-big-heading seller-details-big-heading">Profile Info</div>
                                             <hr />
                                             <div className="details-profile-pic-container">
-                                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton className="details-profile-pic-skeleton" />}
+                                                {this.state.isDataloaded ? <img src={dp} className="details-profile-pic" alt="Profile Pic" /> : <Skeleton  className="skeleton-loader details-profile-pic-skeleton" />}
                                             </div>
                                             <div className="no-editable-profile-details-wrapper profile-details-wrapper" >
                                                 <div className="profile-details-container">
@@ -243,51 +245,51 @@ class Seller extends Component {
                                     <div className="details-cols-container">
                                         <div className="details-left-wrapper tabs-shadow">
                                             <div className="profile-details-big-heading seller-details-big-heading">
-                                                <span><Skeleton height={30} width={200} /></span>
+                                                <span><Skeleton className="skeleton-loader" height={30} width={200} /></span>
                                             </div>
                                             <hr />
                                             <div className="details-profile-pic-container">
-                                                <Skeleton className="details-profile-pic-skeleton" />
+                                                <Skeleton  className="details-profile-pic-skeleton skeleton-loader" />
                                             </div>
                                             <div className="no-editable-profile-details-wrapper profile-details-wrapper" >
                                                 <div className="profile-details-container">
                                                     <div className='non-editable-info-container profile-details-info-container'>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
                                                     </div>
                                                 </div>
                                                 <div className="profile-details-container">
                                                     <div className='non-editable-info-container profile-details-info-container'>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
                                                     </div>
                                                 </div>
                                                 <div className="profile-details-container">
                                                     <div className='non-editable-info-container profile-details-info-container'>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
                                                     </div>
                                                 </div>
                                                 <div className="profile-details-container">
                                                     <div className='non-editable-info-container profile-details-info-container'>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
                                                     </div>
                                                 </div>
                                                 <div className="profile-details-container">
                                                     <div className='non-editable-info-container profile-details-info-container'>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
-                                                        <span><Skeleton width={120} className="seller-info-skeleton" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
+                                                        <span><Skeleton width={120} className="seller-info-skeleton skeleton-loader" /></span>
                                                     </div>
                                                 </div>
                                                 <div className="seller-chat-btn-container">
-                                                    <div className="mt-2"><Skeleton height={30} width={80} className="seller-info-skeleton" /></div>
+                                                    <div className="mt-2"><Skeleton height={30} width={80} className="seller-info-skeleton skeleton-loader" /></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="seller-profile-right-wrapper tabs-shadow">
                                             <div className="profile-details-big-heading">
-                                                <span><Skeleton height={30} width={200} /></span>
+                                                <span><Skeleton className="skeleton-loader" height={30} width={200} /></span>
                                             </div>
                                             <hr />
                                             <div className="seller-ads-container row">

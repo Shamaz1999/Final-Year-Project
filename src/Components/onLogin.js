@@ -67,6 +67,7 @@ class Onlogin extends Component {
     logout = () => {
         this.props.socket.socket.disconnect();
         localStorage.removeItem('user');
+        localStorage.removeItem('theme');
         this.setState({ isloggedin: false })
         toast('You have been logged out!', {
             className: 'logout-toast',
@@ -117,7 +118,7 @@ class Onlogin extends Component {
                                 <span className=" user-login-dropdown-links-name">{this.state.user.firstName}</span>
                             </span>
                             :
-                            <Skeleton circle={true} height={40} width={40} />}
+                            <Skeleton className="skeleton-loader" circle={true} height={40} width={40} />}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item className="no-hover">

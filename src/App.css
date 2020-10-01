@@ -173,12 +173,20 @@ li.col-heading{
   color: white;
   display: inline!important;
   font-size: 19px;
-  padding: 0px!important;
+  padding: 5px 15px 10px 15px!important;
   margin:0 10px;
-  transition: .3s color;
+  transition: .3s all;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 .login-nav-link:hover{
-  color: #007bff !important;
+  /* color: var(--secondary-color) !important; */
+  border: 1px solid var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  /* border: 1px solid #007bff; */
+  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
+  color: white !important;
 }
 .confirmation-modal .modal-content{
   background-color: white;
@@ -834,6 +842,7 @@ div.ads-type{
   border-radius: 5px;
   margin: 0px;
   font-size: 14px;
+  color: white ;
 }
 .hid{
   display: none;
@@ -846,15 +855,25 @@ div.ads-type{
   padding: 10px;
   text-align: center;
   border-radius: 5px;
+  
 }
+
 .img-upload-input{
   width: 100%;
   margin: 5px 0;
   border: 1px solid gainsboro;
 }
+.img-upload-input:active{
+  border: 1px solid var(--primary-color) !important;
+}
+.img-upload-input:focus{
+  border: 1px solid var(--primary-color) !important;
+  outline: none !important;
+  border-radius: 5px;
+}
 .img-upload-progress{
   margin: 0 10px;
-  color: #EA1039;
+  color: #EA1039 !important;
 }
 /* login Portal Styling */
 hr{
@@ -964,7 +983,7 @@ hr{
   background-color: var(--theme-background-color) !important;
 }
 /* Skeleton Loader Styling */
-.css-1vmnjpn-skeletonStyles-Skeleton{
+.skeleton-loader{
   background-color: var(--skeleton-loader-first-color) !important;
   background-image: linear-gradient( 90deg,var(--skeleton-loader-first-color),var(--skeleton-loader-second-color),var(--skeleton-loader-first-color) ) !important;
 }
