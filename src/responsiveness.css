@@ -47,7 +47,7 @@
  .current-ad-pictures{
   height: 350px !important;
  }
- .ad-img-container, .ad-desc-container {
+ .ad-img-container, .ad-desc-container,.similar-container {
   padding: 20px !important;
  }
  .seller-container{

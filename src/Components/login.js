@@ -58,7 +58,7 @@ class Login extends Component {
                         this.setState({ isloggedin: true })
                         localStorage.setItem('user', JSON.stringify(data))
                         this.props.dispatch({ type: 'Add_user', payload: data })
-                        this.props.history.push("/")
+                        this.props.history.push("/home")
                     })
                     .catch(err => {
                         console.log(err)
@@ -89,6 +89,12 @@ class Login extends Component {
 
 
     }
+    handleKeyUp = e => {
+        if (e.keyCode === 13) {
+            this.verify();
+        }
+    }
+
 
     render() {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -106,11 +112,11 @@ class Login extends Component {
                         <div className="login-form-container special">
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="loginEmail"><b>Email Address</b> <span className="required">*</span></label>
-                                <input type="email" name="login-email" id="loginEmail" onChange={e => this.setState({ email: e.target.value })} ref="email" className="form-control" placeholder="Enter email" />
+                                <input type="email" name="login-email" id="loginEmail" onChange={e => this.setState({ email: e.target.value })} onKeyUp={this.handleKeyUp} ref="email" className="form-control" placeholder="Enter email" />
                             </div>
                             <div className="form-group">
                                 <label className="signup-label" htmlFor="loginPassword" ><b>Password</b> <span className="required">*</span></label>
-                                <input type="password" name="login-pass" id="loginPassword" onChange={e => this.setState({ password: e.target.value })} ref="password" className="form-control" placeholder="Enter Password" />
+                                <input type="password" name="login-pass" id="loginPassword" onChange={e => this.setState({ password: e.target.value })} onKeyUp={this.handleKeyUp} ref="password" className="form-control" placeholder="Enter Password" />
                             </div>
                             <div className="login-btn-container">
                                 <div>

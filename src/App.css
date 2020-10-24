@@ -180,10 +180,8 @@ li.col-heading{
   border-radius: 5px;
 }
 .login-nav-link:hover{
-  /* color: var(--secondary-color) !important; */
   border: 1px solid var(--primary-color);
   border: 1px solid var(--secondary-color);
-  /* border: 1px solid #007bff; */
   background-color: var(--primary-color);
   background-color: var(--secondary-color);
   color: white !important;
@@ -513,6 +511,14 @@ table{
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
 }
+.similar-ad-card{
+  width: 200px !important;
+  border: 1px solid var(--hr-divider-color) !important;
+  background-color: var(--theme-background-color) !important;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin: 0 auto; 
+}
 /* Detail Content Styling */
 .content-carousel-image{
   height: 500px;
@@ -794,11 +800,23 @@ table{
   margin-left: 10px;
   display: inline;
 }
+
 .ad-desc-container{
   border: 1px solid gainsboro;
   margin-top: 20px;
   padding: 20px 50px;
   border-radius: 5px;
+}
+
+.similar-container{
+  border: 1px solid gainsboro;
+  margin-top: 20px;
+  padding: 20px 50px;
+  border-radius: 5px;
+}
+
+.similar-ads-cont{
+  padding: 0 20px 20px 20px;
 }
 p.ads-type{
   color: rgb(161, 161, 161);
@@ -812,6 +830,21 @@ div.ads-type{
   display: inline;
   color: var(--primary-color);
   font-size: 18px;
+}
+.similar-card-body{
+  padding: 0 10px 10px 10px !important;
+}
+.my-dots li.slick-active button::before{
+  color: red;
+  opacity: 1;
+}
+.my-dots li button::before{
+  color: var(--secondary-color);
+  opacity: 1;
+}
+.slick-next:before, .slick-prev:before{
+  opacity: 1;
+  color: var(--primary-color);
 }
 /* Post Ad component styling */
 .post-form-container{
@@ -978,6 +1011,9 @@ hr{
 .card-wrapper{
   margin: 5px 15px;
 }
+.similar-ads-card-wrapper{
+  display: inline-block !important;
+}
 .card{
   border: 1px solid var(--hr-divider-color) !important;
   background-color: var(--theme-background-color) !important;
@@ -1013,6 +1049,15 @@ justify-content: space-between ;
 .open-ad-btn:hover{
   background-color: rgba(27, 20, 100,1) !important;
 }
+.similar-ad-btn{
+  font-size: 12px !important;
+  padding: 2px 6px !important;
+  background-color: #EA1039 !important;
+  transition: .5s all !important;
+}
+.similar-ad-btn:hover{
+  background-color: rgba(27, 20, 100,1) !important;
+}
 .ad-description{
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -1033,6 +1078,14 @@ justify-content: space-between ;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap;
+}
+.similar-card-title{
+  font-size: 17px !important;
+  margin-bottom: 0px !important;
+}
+.similar-card-small-title{
+font-size: 14px;
+margin-bottom: 0px !important;
 }
 .seached-ad-heading{
   font-size: 70px;
@@ -1239,10 +1292,6 @@ justify-content: space-between ;
   background-color: #EA1039;
   margin-right: 30px!important;
 }
-
-
-
-
 /* Comments Toggle Switch Css */
 .switch {
   position: relative;
@@ -1262,13 +1311,11 @@ justify-content: space-between ;
   border-radius: 34px; 
   top: 4px;
 }
-
 .switch input { 
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -1280,8 +1327,6 @@ justify-content: space-between ;
   -webkit-transition: .4s;
   transition: .4s;
 }
-
-
 .slider:before {
   position: absolute;
   content: "";
@@ -1298,16 +1343,9 @@ justify-content: space-between ;
   height: 12px;
   width: 12px;
 }
-
 input:checked + .slider {
   background-color: #EA1039;
-  /* background-color: rgba(27, 20, 100,1); */
 }
-
- /* input:focus + .slider {
-   box-shadow: 0 0 1px #2196F3;
-} */
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -1318,12 +1356,10 @@ input:checked + .details-slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(14px);
 }
-
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }

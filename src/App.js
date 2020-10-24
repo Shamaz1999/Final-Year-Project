@@ -53,7 +53,7 @@ class App extends Component {
           <Switch>  
             <PrivateRoute path="/home" component={Index} />
             <Route path='/sellerProfile/:sellerId' component={Seller} />
-            <Route path='/ad/:adId' component={Ad} />
+            <Route path='/ad/:adId' component={(props) => <Ad {...props} key={window.location.pathname}/>}  />
             <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />
             <Route path='/login' component={Login} />

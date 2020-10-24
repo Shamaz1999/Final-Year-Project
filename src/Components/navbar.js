@@ -14,17 +14,6 @@ class Nav extends Component {
         country: '',
     }
 
-    componentDidMount() {
-        var input = document.getElementById("searchBar");
-        input.addEventListener("keyup", function (event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                document.getElementById("searchBtn").click();
-                this.setState({ search: "" });
-            }
-        });
-    }
-
     logout = () => {
         this.props.dispatch({ type: "Add_user", payload: null })
     }
@@ -58,6 +47,8 @@ class Nav extends Component {
 
     //Search ads by search
     searchAds = () => {
+        this.setState({ search: "" });
+        this.refs.searchBar.blur()
         localStorage.removeItem('sa');
         var option = {
             method: 'POST',
@@ -79,6 +70,13 @@ class Nav extends Component {
     }
     country1 = (country) => { this.setState({ country }) }
 
+    handleKeyUp = e => {
+        if (e.keyCode === 13) {
+            this.searchAds();
+        }
+    }
+
+
     render() {
         return (
             <div>
@@ -95,7 +93,7 @@ class Nav extends Component {
                                     <CountrySelect prop={this.props} country={this.country1} />
                                 </div>
                                 <div className="input-group nav-searchnar-container">
-                                    <input type="text" style={{ height: '45px' }} id='searchBar' onChange={e => this.setState({ search: e.target.value })} className="form-control showSearch no-outline" placeholder="Search for ads" />
+                                    <input type="text" style={{ height: '45px' }} id='searchBar' ref="searchBar" onChange={e => this.setState({ search: e.target.value })} onKeyUp={this.handleKeyUp} className="form-control showSearch no-outline" placeholder="Search for ads" />
                                     <div className="input-group-append">
                                         <button className="btn  search-btn postAd-submit-btn" id="searchBtn" onClick={this.searchAds} type="button">
                                             <FontAwesome name="search" />
